@@ -635,8 +635,239 @@
       {
         "observer": "pve-0",
         "target": "actor-0-0",
-        "seen": true,
-        "reason": "visible",
+        "seen": false,
+        "reason": "fuera del cono",
+        "time": 0
+      },
+      {
+        "observer": "pve-1",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "cobertura sólida",
+        "time": 0
+      },
+      {
+        "observer": "pve-2",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera del cono",
+        "time": 0
+      },
+      {
+        "observer": "pve-3",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-4",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-5",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-6",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-7",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-8",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-9",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-10",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-11",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-12",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-13",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-14",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-15",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-16",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-17",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-18",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-19",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-20",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-21",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-22",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-23",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-24",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-25",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-26",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-27",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-28",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-29",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-30",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-31",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-32",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0
+      },
+      {
+        "observer": "pve-33",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
         "time": 0
       },
       {

@@ -20,8 +20,8 @@
     "No shader/renderer faults or broken perspective"
   ],
   "visibleDiff": {
-    "mean": 3.5314814814816358,
-    "changed": 8033,
+    "mean": 3.82866026520333,
+    "changed": 8353,
     "count": 72900
   },
   "coveredDiff": {
@@ -30,8 +30,8 @@
     "count": 72900
   },
   "brightness": {
-    "base": 4.477312221182338,
-    "boost": 5.61966684822119
+    "base": 4.589943847907488,
+    "boost": 5.806490883391296
   },
   "errors": []
 }

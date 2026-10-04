@@ -5,10 +5,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_1H_Attack_Chop",
-        "minY": -17.65,
-        "maxY": 38.52604577719591,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.650000000000006,
+        "maxY": 38.52604577719592,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
         "tilt": 0,
         "invalid": 0
       }
@@ -20,10 +20,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_1H_Attack_Chop",
-        "minY": -17.650000000000002,
-        "maxY": 36.95659642690219,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.65,
+        "maxY": 36.95659642690218,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -36,7 +36,7 @@
       {
         "mode": "KK_Melee_1H_Attack_Chop",
         "minY": -17.65000001820506,
-        "maxY": 37.35415821133617,
+        "maxY": 37.35415821118312,
         "soleClearance": 0.34999998179494085,
         "bodyClearance": 0.34999998179494085,
         "tilt": 0,
@@ -50,10 +50,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_1H_Attack_Jump_Chop",
-        "minY": -17.649999810901765,
-        "maxY": 27.211278607031026,
-        "soleClearance": 0.3500001890982354,
-        "bodyClearance": 0.3500001890982354,
+        "minY": -17.649999810901768,
+        "maxY": 27.211278606877972,
+        "soleClearance": 0.35000018909823183,
+        "bodyClearance": 0.35000018909823183,
         "tilt": 0,
         "invalid": 0
       }
@@ -65,10 +65,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_1H_Attack_Jump_Chop",
-        "minY": -17.65,
+        "minY": -17.649999999999995,
         "maxY": 37.39321752465041,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -80,10 +80,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_1H_Attack_Jump_Chop",
-        "minY": -17.649999940014833,
-        "maxY": 31.750239191801484,
-        "soleClearance": 0.3500000599851667,
-        "bodyClearance": 0.3500000599851667,
+        "minY": -17.649999940014837,
+        "maxY": 31.75023919164843,
+        "soleClearance": 0.35000005998516315,
+        "bodyClearance": 0.35000005998516315,
         "tilt": 0,
         "invalid": 0
       }
@@ -110,10 +110,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_1H_Attack_Slice_Diagonal",
-        "minY": -17.64999999999999,
-        "maxY": 38.953761308103076,
-        "soleClearance": 0.3500000000000085,
-        "bodyClearance": 0.3500000000000085,
+        "minY": -17.649999999999995,
+        "maxY": 38.95376130810308,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -125,10 +125,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_1H_Attack_Slice_Diagonal",
-        "minY": -17.649999999999995,
-        "maxY": 39.04179247480489,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.64999999999999,
+        "maxY": 39.04179247480491,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
         "tilt": 0,
         "invalid": 0
       }
@@ -140,53 +140,8 @@
     "geometry": [
       {
         "mode": "KK_Melee_1H_Attack_Slice_Horizontal",
-        "minY": -17.650000000000002,
-        "maxY": 38.78450461174938,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Melee_1H_Attack_Slice_Horizontal",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Melee_1H_Attack_Slice_Horizontal",
-        "minY": -17.65,
-        "maxY": 40.201215035320125,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Melee_1H_Attack_Slice_Horizontal",
-    "fraction": 0.8,
-    "geometry": [
-      {
-        "mode": "KK_Melee_1H_Attack_Slice_Horizontal",
-        "minY": -17.649999999999995,
-        "maxY": 38.590692888402465,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Melee_1H_Attack_Stab",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Melee_1H_Attack_Stab",
         "minY": -17.650000000000006,
-        "maxY": 38.53962290168725,
+        "maxY": 38.78450461174937,
         "soleClearance": 0.3499999999999943,
         "bodyClearance": 0.3499999999999943,
         "tilt": 0,
@@ -195,15 +150,60 @@
     ]
   },
   {
+    "name": "KK_Melee_1H_Attack_Slice_Horizontal",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Melee_1H_Attack_Slice_Horizontal",
+        "minY": -17.650000000000002,
+        "maxY": 40.20121503532012,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Melee_1H_Attack_Slice_Horizontal",
+    "fraction": 0.8,
+    "geometry": [
+      {
+        "mode": "KK_Melee_1H_Attack_Slice_Horizontal",
+        "minY": -17.65,
+        "maxY": 38.59069288840246,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Melee_1H_Attack_Stab",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Melee_1H_Attack_Stab",
+        "minY": -17.65000000000001,
+        "maxY": 38.53962290168725,
+        "soleClearance": 0.34999999999999076,
+        "bodyClearance": 0.34999999999999076,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
     "name": "KK_Melee_1H_Attack_Stab",
     "fraction": 0.4,
     "geometry": [
       {
         "mode": "KK_Melee_1H_Attack_Stab",
-        "minY": -17.650000053966647,
-        "maxY": 38.22995254522946,
-        "soleClearance": 0.3499999460333534,
-        "bodyClearance": 0.3499999460333534,
+        "minY": -17.650000053966643,
+        "maxY": 38.2299525450764,
+        "soleClearance": 0.34999994603335693,
+        "bodyClearance": 0.34999994603335693,
         "tilt": 0,
         "invalid": 0
       }
@@ -215,10 +215,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_1H_Attack_Stab",
-        "minY": -17.650000063347573,
-        "maxY": 38.455850925376915,
-        "soleClearance": 0.3499999366524271,
-        "bodyClearance": 0.3499999366524271,
+        "minY": -17.65000006334757,
+        "maxY": 38.45585092522386,
+        "soleClearance": 0.3499999366524307,
+        "bodyClearance": 0.3499999366524307,
         "tilt": 0,
         "invalid": 0
       }
@@ -230,10 +230,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_2H_Attack_Chop",
-        "minY": -17.65,
+        "minY": -17.649999999999995,
         "maxY": 36.83079143049112,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -245,10 +245,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_2H_Attack_Chop",
-        "minY": -17.650000000000002,
-        "maxY": 35.85100393160989,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.65,
+        "maxY": 35.85100393160988,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -261,7 +261,7 @@
       {
         "mode": "KK_Melee_2H_Attack_Chop",
         "minY": -17.65000007557562,
-        "maxY": 38.48699368041079,
+        "maxY": 38.486993680257726,
         "soleClearance": 0.349999924424381,
         "bodyClearance": 0.349999924424381,
         "tilt": 0,
@@ -275,10 +275,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_2H_Attack_Slice",
-        "minY": -17.650000000000002,
-        "maxY": 36.834976253766605,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.65,
+        "maxY": 36.83497625376661,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -290,10 +290,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_2H_Attack_Slice",
-        "minY": -17.650000076982213,
-        "maxY": 38.49912230237443,
-        "soleClearance": 0.34999992301778704,
-        "bodyClearance": 0.34999992301778704,
+        "minY": -17.65000007698221,
+        "maxY": 38.49912230222138,
+        "soleClearance": 0.3499999230177906,
+        "bodyClearance": 0.3499999230177906,
         "tilt": 0,
         "invalid": 0
       }
@@ -305,10 +305,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_2H_Attack_Slice",
-        "minY": -17.650000069086893,
-        "maxY": 38.26976207301315,
-        "soleClearance": 0.349999930913107,
-        "bodyClearance": 0.349999930913107,
+        "minY": -17.65000006908689,
+        "maxY": 38.26976207286009,
+        "soleClearance": 0.34999993091311055,
+        "bodyClearance": 0.34999993091311055,
         "tilt": 0,
         "invalid": 0
       }
@@ -320,10 +320,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_2H_Attack_Spin",
-        "minY": -17.65,
+        "minY": -17.649999999999995,
         "maxY": 36.680760647885165,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -336,7 +336,7 @@
       {
         "mode": "KK_Melee_2H_Attack_Spin",
         "minY": -17.649999986746845,
-        "maxY": 35.78637377849095,
+        "maxY": 35.786373778337875,
         "soleClearance": 0.35000001325315466,
         "bodyClearance": 0.35000001325315466,
         "tilt": 0,
@@ -350,10 +350,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_2H_Attack_Spin",
-        "minY": -17.65,
-        "maxY": 36.818288559846614,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.650000000000002,
+        "maxY": 36.81828855984661,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -395,10 +395,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_2H_Attack_Spinning",
-        "minY": -17.65,
-        "maxY": 34.63509478257281,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.650000000000002,
+        "maxY": 34.63509478257279,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -410,10 +410,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_2H_Attack_Stab",
-        "minY": -17.65,
-        "maxY": 38.02608876880959,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.650000000000002,
+        "maxY": 38.0260887688096,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -425,10 +425,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_2H_Attack_Stab",
-        "minY": -17.65,
+        "minY": -17.650000000000002,
         "maxY": 38.53603539634078,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -440,8 +440,23 @@
     "geometry": [
       {
         "mode": "KK_Melee_2H_Attack_Stab",
+        "minY": -17.65,
+        "maxY": 37.60754716269564,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Melee_2H_Idle",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Melee_2H_Idle",
         "minY": -17.649999999999995,
-        "maxY": 37.607547162695646,
+        "maxY": 36.82003329388817,
         "soleClearance": 0.350000000000005,
         "bodyClearance": 0.350000000000005,
         "tilt": 0,
@@ -451,27 +466,12 @@
   },
   {
     "name": "KK_Melee_2H_Idle",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Melee_2H_Idle",
-        "minY": -17.65,
-        "maxY": 36.82003329388817,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Melee_2H_Idle",
     "fraction": 0.4,
     "geometry": [
       {
         "mode": "KK_Melee_2H_Idle",
         "minY": -17.65,
-        "maxY": 35.59412878604861,
+        "maxY": 35.594128786048614,
         "soleClearance": 0.3500000000000014,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
@@ -485,10 +485,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_2H_Idle",
-        "minY": -17.65,
+        "minY": -17.649999999999995,
         "maxY": 36.302399322830055,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -500,10 +500,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_Block",
-        "minY": -17.65,
-        "maxY": 38.581647295533465,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.649999999999995,
+        "maxY": 38.58164729553347,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -515,10 +515,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_Block",
-        "minY": -17.650000070146252,
-        "maxY": 37.95848973011755,
-        "soleClearance": 0.34999992985374817,
-        "bodyClearance": 0.34999992985374817,
+        "minY": -17.65000007014625,
+        "maxY": 37.9584897299645,
+        "soleClearance": 0.3499999298537517,
+        "bodyClearance": 0.3499999298537517,
         "tilt": 0,
         "invalid": 0
       }
@@ -530,10 +530,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_Block",
-        "minY": -17.650000064183235,
-        "maxY": 37.773599856667275,
-        "soleClearance": 0.3499999358167649,
-        "bodyClearance": 0.3499999358167649,
+        "minY": -17.65000006418323,
+        "maxY": 37.773599856514224,
+        "soleClearance": 0.34999993581676847,
+        "bodyClearance": 0.34999993581676847,
         "tilt": 0,
         "invalid": 0
       }
@@ -546,7 +546,7 @@
       {
         "mode": "KK_Melee_Block_Attack",
         "minY": -17.650000057290892,
-        "maxY": 37.633339034757306,
+        "maxY": 37.63333903460425,
         "soleClearance": 0.3499999427091076,
         "bodyClearance": 0.3499999427091076,
         "tilt": 0,
@@ -560,10 +560,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_Block_Attack",
-        "minY": -17.650000000000002,
-        "maxY": 35.67978538721116,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.65,
+        "maxY": 35.679785387211155,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -576,7 +576,7 @@
       {
         "mode": "KK_Melee_Block_Attack",
         "minY": -17.650000039483206,
-        "maxY": 36.956392590499455,
+        "maxY": 36.95639259034638,
         "soleClearance": 0.3499999605167936,
         "bodyClearance": 0.3499999605167936,
         "tilt": 0,
@@ -590,10 +590,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_Block_Hit",
-        "minY": -17.65000006734784,
-        "maxY": 38.03418269709418,
-        "soleClearance": 0.34999993265216034,
-        "bodyClearance": 0.34999993265216034,
+        "minY": -17.650000067347836,
+        "maxY": 38.03418269694113,
+        "soleClearance": 0.3499999326521639,
+        "bodyClearance": 0.3499999326521639,
         "tilt": 0,
         "invalid": 0
       }
@@ -606,7 +606,7 @@
       {
         "mode": "KK_Melee_Block_Hit",
         "minY": -17.650000053582488,
-        "maxY": 37.67644641788709,
+        "maxY": 37.67644641773404,
         "soleClearance": 0.34999994641751186,
         "bodyClearance": 0.34999994641751186,
         "tilt": 0,
@@ -620,10 +620,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_Block_Hit",
-        "minY": -17.65000007909042,
-        "maxY": 38.35429647587129,
-        "soleClearance": 0.3499999209095783,
-        "bodyClearance": 0.3499999209095783,
+        "minY": -17.650000079090415,
+        "maxY": 38.35429647571824,
+        "soleClearance": 0.3499999209095854,
+        "bodyClearance": 0.3499999209095854,
         "tilt": 0,
         "invalid": 0
       }
@@ -635,10 +635,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_Blocking",
-        "minY": -17.650000082285967,
-        "maxY": 38.348246509837004,
-        "soleClearance": 0.34999991771403316,
-        "bodyClearance": 0.34999991771403316,
+        "minY": -17.650000082285963,
+        "maxY": 38.348246509683946,
+        "soleClearance": 0.3499999177140367,
+        "bodyClearance": 0.3499999177140367,
         "tilt": 0,
         "invalid": 0
       }
@@ -651,7 +651,7 @@
       {
         "mode": "KK_Melee_Blocking",
         "minY": -17.650000055788965,
-        "maxY": 36.93279786560057,
+        "maxY": 36.93279786544751,
         "soleClearance": 0.3499999442110351,
         "bodyClearance": 0.3499999442110351,
         "tilt": 0,
@@ -665,10 +665,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_Blocking",
-        "minY": -17.65000007238425,
-        "maxY": 37.854093052030585,
-        "soleClearance": 0.3499999276157517,
-        "bodyClearance": 0.3499999276157517,
+        "minY": -17.65000007238424,
+        "maxY": 37.85409305187754,
+        "soleClearance": 0.3499999276157588,
+        "bodyClearance": 0.3499999276157588,
         "tilt": 0,
         "invalid": 0
       }
@@ -680,10 +680,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_Dualwield_Attack_Chop",
-        "minY": -17.65,
-        "maxY": 38.771396903022456,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.649999999999995,
+        "maxY": 38.77139690302246,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -695,10 +695,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_Dualwield_Attack_Chop",
-        "minY": -17.65,
-        "maxY": 37.23832117986638,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.650000000000002,
+        "maxY": 37.23832117986636,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -710,10 +710,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_Dualwield_Attack_Chop",
-        "minY": -17.650000000000002,
-        "maxY": 39.46593331053497,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.65,
+        "maxY": 39.465933310649774,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -725,10 +725,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_Dualwield_Attack_Slice",
-        "minY": -17.650000000000006,
-        "maxY": 38.34342832420459,
-        "soleClearance": 0.3499999999999943,
-        "bodyClearance": 0.3499999999999943,
+        "minY": -17.65,
+        "maxY": 38.343428324204595,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -740,10 +740,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_Dualwield_Attack_Slice",
-        "minY": -17.649999999999995,
-        "maxY": 35.49864847657111,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.65,
+        "maxY": 35.498648476724156,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -770,10 +770,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_Dualwield_Attack_Stab",
-        "minY": -17.64999998463152,
-        "maxY": 35.15766054698759,
-        "soleClearance": 0.35000001536847947,
-        "bodyClearance": 0.35000001536847947,
+        "minY": -17.649999984631528,
+        "maxY": 35.157660546834535,
+        "soleClearance": 0.35000001536847236,
+        "bodyClearance": 0.35000001536847236,
         "tilt": 0,
         "invalid": 0
       }
@@ -786,7 +786,7 @@
       {
         "mode": "KK_Melee_Dualwield_Attack_Stab",
         "minY": -17.6499999668555,
-        "maxY": 32.25747570595163,
+        "maxY": 32.25747570579857,
         "soleClearance": 0.3500000331445001,
         "bodyClearance": 0.3500000331445001,
         "tilt": 0,
@@ -801,7 +801,7 @@
       {
         "mode": "KK_Melee_Dualwield_Attack_Stab",
         "minY": -17.650000042192772,
-        "maxY": 37.03966190606326,
+        "maxY": 37.03966190591021,
         "soleClearance": 0.3499999578072277,
         "bodyClearance": 0.3499999578072277,
         "tilt": 0,
@@ -815,10 +815,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_Unarmed_Attack_Kick",
-        "minY": -17.65,
+        "minY": -17.650000000000002,
         "maxY": 35.90464862699348,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -830,10 +830,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_Unarmed_Attack_Kick",
-        "minY": -17.649999960697752,
-        "maxY": 33.11834307491319,
-        "soleClearance": 0.3500000393022482,
-        "bodyClearance": 0.3500000393022482,
+        "minY": -17.64999996069775,
+        "maxY": 33.11834307476015,
+        "soleClearance": 0.35000003930225176,
+        "bodyClearance": 0.35000003930225176,
         "tilt": 0,
         "invalid": 0
       }
@@ -846,7 +846,7 @@
       {
         "mode": "KK_Melee_Unarmed_Attack_Kick",
         "minY": -17.64999989114271,
-        "maxY": 31.08935574419315,
+        "maxY": 31.089355744040095,
         "soleClearance": 0.3500001088572908,
         "bodyClearance": 0.3500001088572908,
         "tilt": 0,
@@ -861,7 +861,7 @@
       {
         "mode": "KK_Melee_Unarmed_Attack_Punch_A",
         "minY": -17.649999937513,
-        "maxY": 34.36103433101304,
+        "maxY": 34.36103433085998,
         "soleClearance": 0.35000006248699833,
         "bodyClearance": 0.35000006248699833,
         "tilt": 0,
@@ -876,7 +876,7 @@
       {
         "mode": "KK_Melee_Unarmed_Attack_Punch_A",
         "minY": -17.649999979356732,
-        "maxY": 34.88078330100051,
+        "maxY": 34.88078330084744,
         "soleClearance": 0.3500000206432681,
         "bodyClearance": 0.3500000206432681,
         "tilt": 0,
@@ -890,10 +890,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_Unarmed_Attack_Punch_A",
-        "minY": -17.650000000000006,
-        "maxY": 36.25411549031114,
-        "soleClearance": 0.3499999999999943,
-        "bodyClearance": 0.3499999999999943,
+        "minY": -17.65,
+        "maxY": 36.25411549031115,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -906,7 +906,7 @@
       {
         "mode": "KK_Melee_Unarmed_Idle",
         "minY": -17.649999935022354,
-        "maxY": 34.2684567204517,
+        "maxY": 34.268456720298644,
         "soleClearance": 0.350000064977646,
         "bodyClearance": 0.350000064977646,
         "tilt": 0,
@@ -921,7 +921,7 @@
       {
         "mode": "KK_Melee_Unarmed_Idle",
         "minY": -17.649999889180638,
-        "maxY": 32.59540420068529,
+        "maxY": 32.59540420053223,
         "soleClearance": 0.3500001108193622,
         "bodyClearance": 0.3500001108193622,
         "tilt": 0,
@@ -935,10 +935,10 @@
     "geometry": [
       {
         "mode": "KK_Melee_Unarmed_Idle",
-        "minY": -17.649999917906992,
-        "maxY": 33.6471429829205,
-        "soleClearance": 0.3500000820930076,
-        "bodyClearance": 0.3500000820930076,
+        "minY": -17.64999991790699,
+        "maxY": 33.64714298276745,
+        "soleClearance": 0.35000008209301114,
+        "bodyClearance": 0.35000008209301114,
         "tilt": 0,
         "invalid": 0
       }
@@ -950,10 +950,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_1H_Aiming",
-        "minY": -17.65,
+        "minY": -17.650000000000002,
         "maxY": 38.686014936490494,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -965,10 +965,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_1H_Aiming",
-        "minY": -17.65,
-        "maxY": 38.97388032186068,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.650000000000002,
+        "maxY": 38.973880321860676,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -980,10 +980,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_1H_Aiming",
-        "minY": -17.650000000000002,
-        "maxY": 39.02074573644101,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.64999999999999,
+        "maxY": 39.020745736441015,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
         "tilt": 0,
         "invalid": 0
       }
@@ -1010,10 +1010,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_1H_Reload",
-        "minY": -17.649999999999995,
-        "maxY": 39.34827461246825,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.65,
+        "maxY": 39.34827461246826,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -1025,10 +1025,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_1H_Reload",
-        "minY": -17.650000000000002,
-        "maxY": 38.18063002998587,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.65,
+        "maxY": 38.18063002998588,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -1040,10 +1040,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_1H_Shoot",
-        "minY": -17.65,
+        "minY": -17.649999999999995,
         "maxY": 38.751648209808934,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -1055,10 +1055,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_1H_Shoot",
-        "minY": -17.65,
+        "minY": -17.649999999999995,
         "maxY": 39.00086792423062,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -1070,10 +1070,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_1H_Shoot",
-        "minY": -17.65,
+        "minY": -17.650000000000002,
         "maxY": 39.08268725622496,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -1085,8 +1085,38 @@
     "geometry": [
       {
         "mode": "KK_Ranged_1H_Shooting",
+        "minY": -17.65,
+        "maxY": 39.20347887219167,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Ranged_1H_Shooting",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Ranged_1H_Shooting",
+        "minY": -17.65,
+        "maxY": 39.13600965405654,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Ranged_1H_Shooting",
+    "fraction": 0.8,
+    "geometry": [
+      {
+        "mode": "KK_Ranged_1H_Shooting",
         "minY": -17.64999999999999,
-        "maxY": 39.203478872191674,
+        "maxY": 39.19998651963087,
         "soleClearance": 0.3500000000000085,
         "bodyClearance": 0.3500000000000085,
         "tilt": 0,
@@ -1095,45 +1125,15 @@
     ]
   },
   {
-    "name": "KK_Ranged_1H_Shooting",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Ranged_1H_Shooting",
-        "minY": -17.650000000000002,
-        "maxY": 39.13600965405653,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Ranged_1H_Shooting",
-    "fraction": 0.8,
-    "geometry": [
-      {
-        "mode": "KK_Ranged_1H_Shooting",
-        "minY": -17.65,
-        "maxY": 39.199986519630855,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
     "name": "KK_Ranged_2H_Aiming",
     "fraction": 0.05,
     "geometry": [
       {
         "mode": "KK_Ranged_2H_Aiming",
-        "minY": -17.65000008478272,
-        "maxY": 38.985785825670995,
-        "soleClearance": 0.34999991521727836,
-        "bodyClearance": 0.34999991521727836,
+        "minY": -17.650000084782725,
+        "maxY": 38.98578582551794,
+        "soleClearance": 0.3499999152172748,
+        "bodyClearance": 0.3499999152172748,
         "tilt": 0,
         "invalid": 0
       }
@@ -1145,10 +1145,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_2H_Aiming",
-        "minY": -17.650000089751856,
-        "maxY": 39.93290036016595,
-        "soleClearance": 0.3499999102481439,
-        "bodyClearance": 0.3499999102481439,
+        "minY": -17.650000089751863,
+        "maxY": 39.932900360012894,
+        "soleClearance": 0.3499999102481368,
+        "bodyClearance": 0.3499999102481368,
         "tilt": 0,
         "invalid": 0
       }
@@ -1160,10 +1160,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_2H_Aiming",
-        "minY": -17.650000081422885,
-        "maxY": 39.643665616453085,
-        "soleClearance": 0.3499999185771152,
-        "bodyClearance": 0.3499999185771152,
+        "minY": -17.650000081422874,
+        "maxY": 39.64366561630004,
+        "soleClearance": 0.34999991857712587,
+        "bodyClearance": 0.34999991857712587,
         "tilt": 0,
         "invalid": 0
       }
@@ -1176,7 +1176,7 @@
       {
         "mode": "KK_Ranged_2H_Reload",
         "minY": -17.65000010231557,
-        "maxY": 40.72829528537794,
+        "maxY": 40.728295285224874,
         "soleClearance": 0.3499998976844303,
         "bodyClearance": 0.3499998976844303,
         "tilt": 0,
@@ -1190,10 +1190,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_2H_Reload",
-        "minY": -17.650000089346406,
-        "maxY": 40.583223678977035,
-        "soleClearance": 0.3499999106535938,
-        "bodyClearance": 0.3499999106535938,
+        "minY": -17.650000089346413,
+        "maxY": 40.58322367882397,
+        "soleClearance": 0.3499999106535867,
+        "bodyClearance": 0.3499999106535867,
         "tilt": 0,
         "invalid": 0
       }
@@ -1206,7 +1206,7 @@
       {
         "mode": "KK_Ranged_2H_Reload",
         "minY": -17.64999999999999,
-        "maxY": 39.943420161419134,
+        "maxY": 39.94342016141913,
         "soleClearance": 0.3500000000000085,
         "bodyClearance": 0.3500000000000085,
         "tilt": 0,
@@ -1220,10 +1220,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_2H_Shoot",
-        "minY": -17.650000082032133,
-        "maxY": 38.76636585275704,
-        "soleClearance": 0.34999991796786745,
-        "bodyClearance": 0.34999991796786745,
+        "minY": -17.650000082032122,
+        "maxY": 38.766365852604,
+        "soleClearance": 0.3499999179678781,
+        "bodyClearance": 0.3499999179678781,
         "tilt": 0,
         "invalid": 0
       }
@@ -1235,10 +1235,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_2H_Shoot",
-        "minY": -17.650000089702353,
-        "maxY": 39.4597746213494,
-        "soleClearance": 0.34999991029764743,
-        "bodyClearance": 0.34999991029764743,
+        "minY": -17.65000008970236,
+        "maxY": 39.459774621196345,
+        "soleClearance": 0.3499999102976403,
+        "bodyClearance": 0.3499999102976403,
         "tilt": 0,
         "invalid": 0
       }
@@ -1250,10 +1250,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_2H_Shoot",
-        "minY": -17.650000102315566,
-        "maxY": 39.864862316448104,
-        "soleClearance": 0.34999989768443385,
-        "bodyClearance": 0.34999989768443385,
+        "minY": -17.650000102315573,
+        "maxY": 39.864862316295046,
+        "soleClearance": 0.34999989768442674,
+        "bodyClearance": 0.34999989768442674,
         "tilt": 0,
         "invalid": 0
       }
@@ -1265,10 +1265,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_2H_Shooting",
-        "minY": -17.650000089746044,
-        "maxY": 39.85398638544387,
-        "soleClearance": 0.34999991025395616,
-        "bodyClearance": 0.34999991025395616,
+        "minY": -17.650000089746037,
+        "maxY": 39.853986385290824,
+        "soleClearance": 0.34999991025396326,
+        "bodyClearance": 0.34999991025396326,
         "tilt": 0,
         "invalid": 0
       }
@@ -1280,10 +1280,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_2H_Shooting",
-        "minY": -17.650000089321928,
-        "maxY": 39.6622692129084,
-        "soleClearance": 0.349999910678072,
-        "bodyClearance": 0.349999910678072,
+        "minY": -17.650000089321924,
+        "maxY": 39.66226921275535,
+        "soleClearance": 0.34999991067807557,
+        "bodyClearance": 0.34999991067807557,
         "tilt": 0,
         "invalid": 0
       }
@@ -1296,7 +1296,7 @@
       {
         "mode": "KK_Ranged_2H_Shooting",
         "minY": -17.650000090210668,
-        "maxY": 39.87481343045765,
+        "maxY": 39.874813430304584,
         "soleClearance": 0.34999990978933226,
         "bodyClearance": 0.34999990978933226,
         "tilt": 0,
@@ -1310,10 +1310,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Bow_Aiming_Idle",
-        "minY": -17.650000014549132,
-        "maxY": 38.57854819241545,
-        "soleClearance": 0.34999998545086797,
-        "bodyClearance": 0.34999998545086797,
+        "minY": -17.65000001454913,
+        "maxY": 38.57854819226239,
+        "soleClearance": 0.3499999854508715,
+        "bodyClearance": 0.3499999854508715,
         "tilt": 0,
         "invalid": 0
       }
@@ -1326,7 +1326,7 @@
       {
         "mode": "KK_Ranged_Bow_Aiming_Idle",
         "minY": -17.650000035966116,
-        "maxY": 39.234365047319805,
+        "maxY": 39.23436504716675,
         "soleClearance": 0.3499999640338842,
         "bodyClearance": 0.3499999640338842,
         "tilt": 0,
@@ -1340,10 +1340,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Bow_Aiming_Idle",
-        "minY": -17.650000022943846,
-        "maxY": 38.84534692250398,
-        "soleClearance": 0.3499999770561537,
-        "bodyClearance": 0.3499999770561537,
+        "minY": -17.650000022943853,
+        "maxY": 38.84534692235093,
+        "soleClearance": 0.3499999770561466,
+        "bodyClearance": 0.3499999770561466,
         "tilt": 0,
         "invalid": 0
       }
@@ -1355,10 +1355,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Bow_Draw",
-        "minY": -17.65000007716236,
-        "maxY": 38.69008488748568,
-        "soleClearance": 0.3499999228376396,
-        "bodyClearance": 0.3499999228376396,
+        "minY": -17.650000077162357,
+        "maxY": 38.69008488733263,
+        "soleClearance": 0.34999992283764314,
+        "bodyClearance": 0.34999992283764314,
         "tilt": 0,
         "invalid": 0
       }
@@ -1371,7 +1371,7 @@
       {
         "mode": "KK_Ranged_Bow_Draw",
         "minY": -17.6500000498947,
-        "maxY": 38.97776968524226,
+        "maxY": 38.9777696850892,
         "soleClearance": 0.3499999501052997,
         "bodyClearance": 0.3499999501052997,
         "tilt": 0,
@@ -1386,7 +1386,7 @@
       {
         "mode": "KK_Ranged_Bow_Draw",
         "minY": -17.65000002384192,
-        "maxY": 38.872509274350364,
+        "maxY": 38.87250927419731,
         "soleClearance": 0.349999976158081,
         "bodyClearance": 0.349999976158081,
         "tilt": 0,
@@ -1400,10 +1400,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Bow_Draw_Up",
-        "minY": -17.650000082473078,
-        "maxY": 39.13915204064369,
-        "soleClearance": 0.3499999175269224,
-        "bodyClearance": 0.3499999175269224,
+        "minY": -17.65000008247309,
+        "maxY": 39.13915204049063,
+        "soleClearance": 0.34999991752691173,
+        "bodyClearance": 0.34999991752691173,
         "tilt": 0,
         "invalid": 0
       }
@@ -1415,10 +1415,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Bow_Draw_Up",
-        "minY": -17.650000001798873,
-        "maxY": 37.055722689140644,
-        "soleClearance": 0.3499999982011275,
-        "bodyClearance": 0.3499999982011275,
+        "minY": -17.650000001798862,
+        "maxY": 37.055722689140666,
+        "soleClearance": 0.34999999820113814,
+        "bodyClearance": 0.34999999820113814,
         "tilt": 0,
         "invalid": 0
       }
@@ -1430,10 +1430,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Bow_Draw_Up",
-        "minY": -17.650000000000006,
-        "maxY": 47.18831150879843,
-        "soleClearance": 0.3499999999999943,
-        "bodyClearance": 0.3499999999999943,
+        "minY": -17.65,
+        "maxY": 47.18831150879842,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -1445,10 +1445,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Bow_Idle",
-        "minY": -17.650000060903917,
-        "maxY": 37.90770432861933,
-        "soleClearance": 0.34999993909608307,
-        "bodyClearance": 0.34999993909608307,
+        "minY": -17.65000006090392,
+        "maxY": 37.90770432846627,
+        "soleClearance": 0.3499999390960795,
+        "bodyClearance": 0.3499999390960795,
         "tilt": 0,
         "invalid": 0
       }
@@ -1461,7 +1461,7 @@
       {
         "mode": "KK_Ranged_Bow_Idle",
         "minY": -17.650000059885922,
-        "maxY": 37.79511164262193,
+        "maxY": 37.79511164246888,
         "soleClearance": 0.34999994011407765,
         "bodyClearance": 0.34999994011407765,
         "tilt": 0,
@@ -1475,10 +1475,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Bow_Idle",
-        "minY": -17.65000006054256,
-        "maxY": 37.87480173268201,
-        "soleClearance": 0.34999993945744023,
-        "bodyClearance": 0.34999993945744023,
+        "minY": -17.650000060542556,
+        "maxY": 37.87480173252895,
+        "soleClearance": 0.3499999394574438,
+        "bodyClearance": 0.3499999394574438,
         "tilt": 0,
         "invalid": 0
       }
@@ -1490,10 +1490,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Bow_Release",
-        "minY": -17.65000001420513,
-        "maxY": 40.62246619583881,
-        "soleClearance": 0.3499999857948701,
-        "bodyClearance": 0.3499999857948701,
+        "minY": -17.650000014205126,
+        "maxY": 40.622466195838825,
+        "soleClearance": 0.3499999857948737,
+        "bodyClearance": 0.3499999857948737,
         "tilt": 0,
         "invalid": 0
       }
@@ -1505,10 +1505,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Bow_Release",
-        "minY": -17.65000009305859,
-        "maxY": 39.05014761034885,
-        "soleClearance": 0.3499999069414095,
-        "bodyClearance": 0.3499999069414095,
+        "minY": -17.650000093058587,
+        "maxY": 39.05014761019579,
+        "soleClearance": 0.34999990694141303,
+        "bodyClearance": 0.34999990694141303,
         "tilt": 0,
         "invalid": 0
       }
@@ -1520,10 +1520,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Bow_Release",
-        "minY": -17.65000007643628,
-        "maxY": 38.47938106345588,
-        "soleClearance": 0.34999992356371834,
-        "bodyClearance": 0.34999992356371834,
+        "minY": -17.650000076436275,
+        "maxY": 38.47938106330285,
+        "soleClearance": 0.34999992356372545,
+        "bodyClearance": 0.34999992356372545,
         "tilt": 0,
         "invalid": 0
       }
@@ -1535,10 +1535,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Bow_Release_Up",
-        "minY": -17.649999844251624,
-        "maxY": 42.7342719587492,
-        "soleClearance": 0.3500001557483756,
-        "bodyClearance": 0.3500001557483756,
+        "minY": -17.64999984425163,
+        "maxY": 42.73427195859615,
+        "soleClearance": 0.3500001557483685,
+        "bodyClearance": 0.3500001557483685,
         "tilt": 0,
         "invalid": 0
       }
@@ -1550,10 +1550,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Bow_Release_Up",
-        "minY": -17.649999941050105,
-        "maxY": 33.700996970305745,
-        "soleClearance": 0.3500000589498953,
-        "bodyClearance": 0.3500000589498953,
+        "minY": -17.649999941050094,
+        "maxY": 33.7009969701527,
+        "soleClearance": 0.35000005894990593,
+        "bodyClearance": 0.35000005894990593,
         "tilt": 0,
         "invalid": 0
       }
@@ -1566,7 +1566,7 @@
       {
         "mode": "KK_Ranged_Bow_Release_Up",
         "minY": -17.650000095477797,
-        "maxY": 39.478785104329766,
+        "maxY": 39.47878510417671,
         "soleClearance": 0.3499999045222033,
         "bodyClearance": 0.3499999045222033,
         "tilt": 0,
@@ -1580,10 +1580,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Magic_Raise",
-        "minY": -17.65,
+        "minY": -17.650000000000002,
         "maxY": 36.361877420306726,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -1595,10 +1595,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Magic_Raise",
-        "minY": -17.65,
+        "minY": -17.649999999999995,
         "maxY": 43.783305897373324,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -1611,7 +1611,7 @@
       {
         "mode": "KK_Ranged_Magic_Raise",
         "minY": -17.6500000790823,
-        "maxY": 37.7616801994252,
+        "maxY": 37.76168019927215,
         "soleClearance": 0.3499999209176998,
         "bodyClearance": 0.3499999209176998,
         "tilt": 0,
@@ -1625,10 +1625,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Magic_Shoot",
-        "minY": -17.650000000000002,
-        "maxY": 38.529440718429775,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.65,
+        "maxY": 38.52944071842978,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -1640,10 +1640,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Magic_Shoot",
-        "minY": -17.649999999999995,
-        "maxY": 36.50321219975924,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.65,
+        "maxY": 36.50321219975923,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -1655,10 +1655,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Magic_Shoot",
-        "minY": -17.649999999999995,
+        "minY": -17.64999999999999,
         "maxY": 38.00751962679067,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
         "tilt": 0,
         "invalid": 0
       }
@@ -1670,10 +1670,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Magic_Spellcasting",
-        "minY": -17.650000000000002,
-        "maxY": 38.86395211434151,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.650000000000006,
+        "maxY": 38.8639521143415,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
         "tilt": 0,
         "invalid": 0
       }
@@ -1685,10 +1685,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Magic_Spellcasting",
-        "minY": -17.650000000000002,
-        "maxY": 38.98122497079974,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.650000000000006,
+        "maxY": 38.98122497079973,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
         "tilt": 0,
         "invalid": 0
       }
@@ -1700,8 +1700,23 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Magic_Spellcasting",
+        "minY": -17.650000000000002,
+        "maxY": 38.78995154171905,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Ranged_Magic_Spellcasting_Long",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Ranged_Magic_Spellcasting_Long",
         "minY": -17.65,
-        "maxY": 38.789951541719056,
+        "maxY": 38.433833616365234,
         "soleClearance": 0.3500000000000014,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
@@ -1711,29 +1726,14 @@
   },
   {
     "name": "KK_Ranged_Magic_Spellcasting_Long",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Ranged_Magic_Spellcasting_Long",
-        "minY": -17.649999999999995,
-        "maxY": 38.43383361636523,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Ranged_Magic_Spellcasting_Long",
     "fraction": 0.4,
     "geometry": [
       {
         "mode": "KK_Ranged_Magic_Spellcasting_Long",
-        "minY": -17.650000000000006,
-        "maxY": 38.99633789603903,
-        "soleClearance": 0.3499999999999943,
-        "bodyClearance": 0.3499999999999943,
+        "minY": -17.65,
+        "maxY": 38.99633789603902,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -1745,10 +1745,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Magic_Spellcasting_Long",
-        "minY": -17.649999999999995,
-        "maxY": 39.4545733886219,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.65,
+        "maxY": 39.454573388621895,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -1760,10 +1760,10 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Magic_Summon",
-        "minY": -17.65000001538227,
-        "maxY": 37.35412066552417,
-        "soleClearance": 0.34999998461773174,
-        "bodyClearance": 0.34999998461773174,
+        "minY": -17.650000015382275,
+        "maxY": 37.3541206653711,
+        "soleClearance": 0.34999998461772464,
+        "bodyClearance": 0.34999998461772464,
         "tilt": 0,
         "invalid": 0
       }
@@ -1776,7 +1776,7 @@
       {
         "mode": "KK_Ranged_Magic_Summon",
         "minY": -17.65000001882809,
-        "maxY": 35.46754914835506,
+        "maxY": 35.46754914820201,
         "soleClearance": 0.34999998117190856,
         "bodyClearance": 0.34999998117190856,
         "tilt": 0,
@@ -1790,54 +1790,9 @@
     "geometry": [
       {
         "mode": "KK_Ranged_Magic_Summon",
-        "minY": -17.65,
-        "maxY": 50.37564847743375,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Death_A",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Death_A",
-        "minY": -17.649999999999995,
-        "maxY": 37.548040733628646,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Death_A",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Death_A",
-        "minY": -17.65,
-        "maxY": 25.353781862986416,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Death_A",
-    "fraction": 0.8,
-    "geometry": [
-      {
-        "mode": "KK_Death_A",
         "minY": -17.650000000000002,
-        "maxY": 14.094924120330909,
-        "soleClearance": 7.687609520381038,
+        "maxY": 50.37564847758679,
+        "soleClearance": 0.34999999999999787,
         "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
@@ -1845,15 +1800,60 @@
     ]
   },
   {
+    "name": "KK_Death_A",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Death_A",
+        "minY": -17.65,
+        "maxY": 37.54804073362864,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Death_A",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Death_A",
+        "minY": -17.650000000000002,
+        "maxY": 25.353781862986413,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Death_A",
+    "fraction": 0.8,
+    "geometry": [
+      {
+        "mode": "KK_Death_A",
+        "minY": -17.650000000000006,
+        "maxY": 14.094924120330905,
+        "soleClearance": 7.687609520381034,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
     "name": "KK_Death_A_Pose",
     "fraction": 0.05,
     "geometry": [
       {
         "mode": "KK_Death_A_Pose",
-        "minY": -17.649999999999995,
-        "maxY": 14.423678016477524,
-        "soleClearance": 8.01636354547777,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.65,
+        "maxY": 14.423678016477513,
+        "soleClearance": 8.016363545477763,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -1865,10 +1865,10 @@
     "geometry": [
       {
         "mode": "KK_Death_A_Pose",
-        "minY": -17.649999999999995,
-        "maxY": 14.423678016477524,
-        "soleClearance": 8.01636354547777,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.65,
+        "maxY": 14.423678016477513,
+        "soleClearance": 8.016363545477763,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -1880,10 +1880,10 @@
     "geometry": [
       {
         "mode": "KK_Death_A_Pose",
-        "minY": -17.649999999999995,
-        "maxY": 14.423678016477524,
-        "soleClearance": 8.01636354547777,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.65,
+        "maxY": 14.423678016477513,
+        "soleClearance": 8.016363545477763,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -1895,8 +1895,98 @@
     "geometry": [
       {
         "mode": "KK_Death_B",
+        "minY": -17.649999999999995,
+        "maxY": 32.50410059358748,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Death_B",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Death_B",
+        "minY": -17.65,
+        "maxY": 34.457706474370354,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Death_B",
+    "fraction": 0.8,
+    "geometry": [
+      {
+        "mode": "KK_Death_B",
+        "minY": -17.65,
+        "maxY": 18.30350093184217,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Death_B_Pose",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Death_B_Pose",
+        "minY": -17.65,
+        "maxY": 18.758911812886314,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Death_B_Pose",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Death_B_Pose",
+        "minY": -17.65,
+        "maxY": 18.758911812886314,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Death_B_Pose",
+    "fraction": 0.8,
+    "geometry": [
+      {
+        "mode": "KK_Death_B_Pose",
+        "minY": -17.65,
+        "maxY": 18.758911812886314,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Hit_A",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Hit_A",
         "minY": -17.650000000000006,
-        "maxY": 32.50410059358746,
+        "maxY": 38.536473330368,
         "soleClearance": 0.3499999999999943,
         "bodyClearance": 0.3499999999999943,
         "tilt": 0,
@@ -1905,105 +1995,15 @@
     ]
   },
   {
-    "name": "KK_Death_B",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Death_B",
-        "minY": -17.65,
-        "maxY": 34.45770647437036,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Death_B",
-    "fraction": 0.8,
-    "geometry": [
-      {
-        "mode": "KK_Death_B",
-        "minY": -17.65,
-        "maxY": 18.303500931842173,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Death_B_Pose",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Death_B_Pose",
-        "minY": -17.65,
-        "maxY": 18.758911812886318,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Death_B_Pose",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Death_B_Pose",
-        "minY": -17.65,
-        "maxY": 18.758911812886318,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Death_B_Pose",
-    "fraction": 0.8,
-    "geometry": [
-      {
-        "mode": "KK_Death_B_Pose",
-        "minY": -17.65,
-        "maxY": 18.758911812886318,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Hit_A",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Hit_A",
-        "minY": -17.65,
-        "maxY": 38.536473330368004,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
     "name": "KK_Hit_A",
     "fraction": 0.4,
     "geometry": [
       {
         "mode": "KK_Hit_A",
-        "minY": -17.649999999999995,
-        "maxY": 38.73685033747109,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.65,
+        "maxY": 38.73685033747108,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -2015,38 +2015,8 @@
     "geometry": [
       {
         "mode": "KK_Hit_A",
-        "minY": -17.65,
-        "maxY": 38.45604223288271,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Hit_B",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Hit_B",
-        "minY": -17.649999999999995,
-        "maxY": 36.713396231591,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Hit_B",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Hit_B",
         "minY": -17.650000000000002,
-        "maxY": 31.397028726784065,
+        "maxY": 38.45604223288271,
         "soleClearance": 0.34999999999999787,
         "bodyClearance": 0.34999999999999787,
         "tilt": 0,
@@ -2056,14 +2026,44 @@
   },
   {
     "name": "KK_Hit_B",
-    "fraction": 0.8,
+    "fraction": 0.05,
     "geometry": [
       {
         "mode": "KK_Hit_B",
         "minY": -17.65,
-        "maxY": 37.94539375661661,
+        "maxY": 36.71339623159099,
         "soleClearance": 0.3500000000000014,
         "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Hit_B",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Hit_B",
+        "minY": -17.65,
+        "maxY": 31.397028726784075,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Hit_B",
+    "fraction": 0.8,
+    "geometry": [
+      {
+        "mode": "KK_Hit_B",
+        "minY": -17.649999999999995,
+        "maxY": 37.94539375661661,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -2075,10 +2075,10 @@
     "geometry": [
       {
         "mode": "KK_Idle_A",
-        "minY": -17.65,
+        "minY": -17.649999999999995,
         "maxY": 38.18086880142448,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -2090,10 +2090,10 @@
     "geometry": [
       {
         "mode": "KK_Idle_A",
-        "minY": -17.65,
+        "minY": -17.650000000000002,
         "maxY": 37.78737741086853,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -2105,10 +2105,10 @@
     "geometry": [
       {
         "mode": "KK_Idle_A",
-        "minY": -17.64999999999999,
-        "maxY": 38.04850879437975,
-        "soleClearance": 0.3500000000000085,
-        "bodyClearance": 0.3500000000000085,
+        "minY": -17.649999999999995,
+        "maxY": 38.04850879437974,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -2135,10 +2135,10 @@
     "geometry": [
       {
         "mode": "KK_Idle_B",
-        "minY": -17.65,
+        "minY": -17.650000000000002,
         "maxY": 38.17771939197853,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -2150,10 +2150,10 @@
     "geometry": [
       {
         "mode": "KK_Idle_B",
-        "minY": -17.65,
+        "minY": -17.650000000000002,
         "maxY": 35.52416282092817,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -2165,10 +2165,10 @@
     "geometry": [
       {
         "mode": "KK_Interact",
-        "minY": -17.650000000000002,
-        "maxY": 38.519814925312325,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.64999999999999,
+        "maxY": 38.51981492531232,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
         "tilt": 0,
         "invalid": 0
       }
@@ -2180,8 +2180,38 @@
     "geometry": [
       {
         "mode": "KK_Interact",
+        "minY": -17.65,
+        "maxY": 38.570329577534366,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Interact",
+    "fraction": 0.8,
+    "geometry": [
+      {
+        "mode": "KK_Interact",
+        "minY": -17.65000007873975,
+        "maxY": 38.77522508249545,
+        "soleClearance": 0.3499999212602489,
+        "bodyClearance": 0.3499999212602489,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_PickUp",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_PickUp",
         "minY": -17.649999999999995,
-        "maxY": 38.57032957753437,
+        "maxY": 38.13422910279125,
         "soleClearance": 0.350000000000005,
         "bodyClearance": 0.350000000000005,
         "tilt": 0,
@@ -2190,43 +2220,13 @@
     ]
   },
   {
-    "name": "KK_Interact",
-    "fraction": 0.8,
-    "geometry": [
-      {
-        "mode": "KK_Interact",
-        "minY": -17.650000078739758,
-        "maxY": 38.7752250826485,
-        "soleClearance": 0.3499999212602418,
-        "bodyClearance": 0.3499999212602418,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_PickUp",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_PickUp",
-        "minY": -17.65,
-        "maxY": 38.134229102791245,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
     "name": "KK_PickUp",
     "fraction": 0.4,
     "geometry": [
       {
         "mode": "KK_PickUp",
         "minY": -17.650000000000002,
-        "maxY": 32.71117614878464,
+        "maxY": 32.71117614878463,
         "soleClearance": 0.34999999999999787,
         "bodyClearance": 0.34999999999999787,
         "tilt": 0,
@@ -2240,8 +2240,38 @@
     "geometry": [
       {
         "mode": "KK_PickUp",
+        "minY": -17.65,
+        "maxY": 37.85446519718023,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Spawn_Air",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Spawn_Air",
+        "minY": -17.65,
+        "maxY": 36.62504515709169,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Spawn_Air",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Spawn_Air",
         "minY": -17.650000000000006,
-        "maxY": 37.85446519718024,
+        "maxY": 51.10144960775261,
         "soleClearance": 0.3499999999999943,
         "bodyClearance": 0.3499999999999943,
         "tilt": 0,
@@ -2251,57 +2281,12 @@
   },
   {
     "name": "KK_Spawn_Air",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Spawn_Air",
-        "minY": -17.650000000000002,
-        "maxY": 36.6250451570917,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Spawn_Air",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Spawn_Air",
-        "minY": -17.650000000000002,
-        "maxY": 51.10144960759954,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Spawn_Air",
     "fraction": 0.8,
     "geometry": [
       {
         "mode": "KK_Spawn_Air",
-        "minY": -17.649999999999995,
-        "maxY": 35.49011160487304,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Spawn_Ground",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Spawn_Ground",
         "minY": -17.65,
-        "maxY": 36.62528397212052,
+        "maxY": 35.490111604873036,
         "soleClearance": 0.3500000000000014,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
@@ -2311,14 +2296,29 @@
   },
   {
     "name": "KK_Spawn_Ground",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Spawn_Ground",
+        "minY": -17.650000000000002,
+        "maxY": 36.62528397212051,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Spawn_Ground",
     "fraction": 0.4,
     "geometry": [
       {
         "mode": "KK_Spawn_Ground",
-        "minY": -17.650000000000006,
-        "maxY": 51.101454683029466,
-        "soleClearance": 0.3499999999999943,
-        "bodyClearance": 0.3499999999999943,
+        "minY": -17.65,
+        "maxY": 51.101454683182524,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -2330,10 +2330,10 @@
     "geometry": [
       {
         "mode": "KK_Spawn_Ground",
-        "minY": -17.649999999999995,
-        "maxY": 35.49011160487304,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.65,
+        "maxY": 35.490111604873036,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -2345,10 +2345,10 @@
     "geometry": [
       {
         "mode": "KK_Throw",
-        "minY": -17.649999999999995,
-        "maxY": 38.57806018278108,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.65,
+        "maxY": 38.57806018278107,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -2360,10 +2360,10 @@
     "geometry": [
       {
         "mode": "KK_Throw",
-        "minY": -17.649999979271797,
-        "maxY": 36.334141323155414,
-        "soleClearance": 0.3500000207282028,
-        "bodyClearance": 0.3500000207282028,
+        "minY": -17.6499999792718,
+        "maxY": 36.33414132323193,
+        "soleClearance": 0.35000002072819925,
+        "bodyClearance": 0.35000002072819925,
         "tilt": 0,
         "invalid": 0
       }
@@ -2375,8 +2375,23 @@
     "geometry": [
       {
         "mode": "KK_Throw",
+        "minY": -17.649999999999995,
+        "maxY": 40.20790870727269,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Use_Item",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Use_Item",
         "minY": -17.65,
-        "maxY": 40.2079087072727,
+        "maxY": 38.617809836809656,
         "soleClearance": 0.3500000000000014,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
@@ -2386,29 +2401,14 @@
   },
   {
     "name": "KK_Use_Item",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Use_Item",
-        "minY": -17.649999999999995,
-        "maxY": 38.61780983680966,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Use_Item",
     "fraction": 0.4,
     "geometry": [
       {
         "mode": "KK_Use_Item",
-        "minY": -17.649999999999995,
-        "maxY": 37.1416676879222,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.65,
+        "maxY": 37.141667687922194,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -2420,10 +2420,10 @@
     "geometry": [
       {
         "mode": "KK_Use_Item",
-        "minY": -17.649999999999995,
-        "maxY": 38.97914681498734,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.65,
+        "maxY": 38.97914681498733,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -2436,7 +2436,7 @@
       {
         "mode": "KK_Crawling",
         "minY": -17.65,
-        "maxY": 17.420045332280786,
+        "maxY": 17.420045332280775,
         "soleClearance": 0.50369196688359,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
@@ -2451,7 +2451,7 @@
       {
         "mode": "KK_Crawling",
         "minY": -17.65,
-        "maxY": 19.720343772320042,
+        "maxY": 19.72034377232004,
         "soleClearance": 7.622494201315735,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
@@ -2466,8 +2466,8 @@
       {
         "mode": "KK_Crawling",
         "minY": -17.650000008242284,
-        "maxY": 18.192760779377238,
-        "soleClearance": 5.973147089278832,
+        "maxY": 18.19276077939637,
+        "soleClearance": 5.973147089297964,
         "bodyClearance": 0.34999999175771634,
         "tilt": 0,
         "invalid": 0
@@ -2480,143 +2480,8 @@
     "geometry": [
       {
         "mode": "KK_Crouching",
-        "minY": -17.65,
-        "maxY": 29.723786889385963,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Crouching",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Crouching",
-        "minY": -17.649999979985154,
-        "maxY": 32.68644241028545,
-        "soleClearance": 0.3500000200148463,
-        "bodyClearance": 0.3500000200148463,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Crouching",
-    "fraction": 0.8,
-    "geometry": [
-      {
-        "mode": "KK_Crouching",
-        "minY": -17.650000000000002,
-        "maxY": 33.812748402052485,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Dodge_Backward",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Dodge_Backward",
-        "minY": -17.649999999999995,
-        "maxY": 37.9000221135314,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Dodge_Backward",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Dodge_Backward",
-        "minY": -17.649999999999995,
-        "maxY": 34.35639978507272,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Dodge_Backward",
-    "fraction": 0.8,
-    "geometry": [
-      {
-        "mode": "KK_Dodge_Backward",
-        "minY": -17.649999999999995,
-        "maxY": 36.77401994778955,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Dodge_Forward",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Dodge_Forward",
-        "minY": -17.650000000000002,
-        "maxY": 38.0183093383503,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Dodge_Forward",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Dodge_Forward",
-        "minY": -17.650000025484445,
-        "maxY": 33.97333194448198,
-        "soleClearance": 0.34999997451555487,
-        "bodyClearance": 0.34999997451555487,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Dodge_Forward",
-    "fraction": 0.8,
-    "geometry": [
-      {
-        "mode": "KK_Dodge_Forward",
-        "minY": -17.649999960654526,
-        "maxY": 37.57269322077784,
-        "soleClearance": 0.3500000393454741,
-        "bodyClearance": 0.3500000393454741,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Dodge_Left",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Dodge_Left",
         "minY": -17.64999999999999,
-        "maxY": 37.96553301160328,
+        "maxY": 29.723786889385966,
         "soleClearance": 0.3500000000000085,
         "bodyClearance": 0.3500000000000085,
         "tilt": 0,
@@ -2625,15 +2490,150 @@
     ]
   },
   {
+    "name": "KK_Crouching",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Crouching",
+        "minY": -17.64999997998515,
+        "maxY": 32.686442410132386,
+        "soleClearance": 0.35000002001484987,
+        "bodyClearance": 0.35000002001484987,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Crouching",
+    "fraction": 0.8,
+    "geometry": [
+      {
+        "mode": "KK_Crouching",
+        "minY": -17.64999999999999,
+        "maxY": 33.81274840216729,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Dodge_Backward",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Dodge_Backward",
+        "minY": -17.65,
+        "maxY": 37.90002211353139,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Dodge_Backward",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Dodge_Backward",
+        "minY": -17.65,
+        "maxY": 34.35639978507271,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Dodge_Backward",
+    "fraction": 0.8,
+    "geometry": [
+      {
+        "mode": "KK_Dodge_Backward",
+        "minY": -17.65,
+        "maxY": 36.77401994778954,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Dodge_Forward",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Dodge_Forward",
+        "minY": -17.65,
+        "maxY": 38.018309338350306,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Dodge_Forward",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Dodge_Forward",
+        "minY": -17.650000025484434,
+        "maxY": 33.97333194455851,
+        "soleClearance": 0.3499999745155655,
+        "bodyClearance": 0.3499999745155655,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Dodge_Forward",
+    "fraction": 0.8,
+    "geometry": [
+      {
+        "mode": "KK_Dodge_Forward",
+        "minY": -17.64999996065452,
+        "maxY": 37.572693220854376,
+        "soleClearance": 0.3500000393454812,
+        "bodyClearance": 0.3500000393454812,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Dodge_Left",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Dodge_Left",
+        "minY": -17.649999999999995,
+        "maxY": 37.96553301160327,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
     "name": "KK_Dodge_Left",
     "fraction": 0.4,
     "geometry": [
       {
         "mode": "KK_Dodge_Left",
-        "minY": -17.65,
+        "minY": -17.649999999999995,
         "maxY": 35.46225999906302,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -2645,10 +2645,10 @@
     "geometry": [
       {
         "mode": "KK_Dodge_Left",
-        "minY": -17.650000000000002,
-        "maxY": 35.28308483774196,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.65,
+        "maxY": 35.28308483774197,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -2661,7 +2661,7 @@
       {
         "mode": "KK_Dodge_Right",
         "minY": -17.65,
-        "maxY": 38.07482206511789,
+        "maxY": 38.074822065117885,
         "soleClearance": 0.3500000000000014,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
@@ -2676,7 +2676,7 @@
       {
         "mode": "KK_Dodge_Right",
         "minY": -17.650000000000006,
-        "maxY": 35.545034337743935,
+        "maxY": 35.54503433774393,
         "soleClearance": 0.3499999999999943,
         "bodyClearance": 0.3499999999999943,
         "tilt": 0,
@@ -2690,10 +2690,10 @@
     "geometry": [
       {
         "mode": "KK_Dodge_Right",
-        "minY": -17.65,
-        "maxY": 35.64405610031148,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.650000000000006,
+        "maxY": 35.644056100311474,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
         "tilt": 0,
         "invalid": 0
       }
@@ -2705,10 +2705,10 @@
     "geometry": [
       {
         "mode": "KK_Running_HoldingBow",
-        "minY": -17.649999983361642,
-        "maxY": 35.83941401346279,
-        "soleClearance": 0.3500000166383579,
-        "bodyClearance": 0.3500000166383579,
+        "minY": -17.64999998336164,
+        "maxY": 35.83941401355844,
+        "soleClearance": 0.35000001663836144,
+        "bodyClearance": 0.35000001663836144,
         "tilt": 0,
         "invalid": 0
       }
@@ -2720,10 +2720,10 @@
     "geometry": [
       {
         "mode": "KK_Running_HoldingBow",
-        "minY": -17.650000000000006,
+        "minY": -17.649999999999995,
         "maxY": 36.06848816759228,
-        "soleClearance": 0.3499999999999943,
-        "bodyClearance": 0.3499999999999943,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -2735,8 +2735,83 @@
     "geometry": [
       {
         "mode": "KK_Running_HoldingBow",
+        "minY": -17.65,
+        "maxY": 37.362143100539456,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Running_HoldingRifle",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Running_HoldingRifle",
+        "minY": -17.649999995867223,
+        "maxY": 35.71971358991132,
+        "soleClearance": 0.3500000041327773,
+        "bodyClearance": 0.3500000041327773,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Running_HoldingRifle",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Running_HoldingRifle",
+        "minY": -17.65,
+        "maxY": 36.77514139914814,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Running_HoldingRifle",
+    "fraction": 0.8,
+    "geometry": [
+      {
+        "mode": "KK_Running_HoldingRifle",
+        "minY": -17.649999999999995,
+        "maxY": 38.86429923098176,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Running_Strafe_Left",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Running_Strafe_Left",
+        "minY": -17.6499999476717,
+        "maxY": 37.18899080233673,
+        "soleClearance": 0.35000005232830134,
+        "bodyClearance": 0.35000005232830134,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Running_Strafe_Left",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Running_Strafe_Left",
         "minY": -17.650000000000002,
-        "maxY": 37.36214310053946,
+        "maxY": 34.08715718410477,
         "soleClearance": 0.34999999999999787,
         "bodyClearance": 0.34999999999999787,
         "tilt": 0,
@@ -2745,43 +2820,13 @@
     ]
   },
   {
-    "name": "KK_Running_HoldingRifle",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Running_HoldingRifle",
-        "minY": -17.649999995867226,
-        "maxY": 35.719713589815655,
-        "soleClearance": 0.35000000413277377,
-        "bodyClearance": 0.35000000413277377,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Running_HoldingRifle",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Running_HoldingRifle",
-        "minY": -17.649999999999995,
-        "maxY": 36.77514139914815,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Running_HoldingRifle",
+    "name": "KK_Running_Strafe_Left",
     "fraction": 0.8,
     "geometry": [
       {
-        "mode": "KK_Running_HoldingRifle",
+        "mode": "KK_Running_Strafe_Left",
         "minY": -17.65,
-        "maxY": 38.864299230981764,
+        "maxY": 33.376682964215235,
         "soleClearance": 0.3500000000000014,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
@@ -2790,28 +2835,28 @@
     ]
   },
   {
-    "name": "KK_Running_Strafe_Left",
+    "name": "KK_Running_Strafe_Right",
     "fraction": 0.05,
     "geometry": [
       {
-        "mode": "KK_Running_Strafe_Left",
-        "minY": -17.649999947671702,
-        "maxY": 37.18899080224107,
-        "soleClearance": 0.3500000523282978,
-        "bodyClearance": 0.3500000523282978,
+        "mode": "KK_Running_Strafe_Right",
+        "minY": -17.649999934159446,
+        "maxY": 37.84089516730492,
+        "soleClearance": 0.350000065840554,
+        "bodyClearance": 0.350000065840554,
         "tilt": 0,
         "invalid": 0
       }
     ]
   },
   {
-    "name": "KK_Running_Strafe_Left",
+    "name": "KK_Running_Strafe_Right",
     "fraction": 0.4,
     "geometry": [
       {
-        "mode": "KK_Running_Strafe_Left",
+        "mode": "KK_Running_Strafe_Right",
         "minY": -17.65,
-        "maxY": 34.08715718410478,
+        "maxY": 33.391173685476105,
         "soleClearance": 0.3500000000000014,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
@@ -2820,60 +2865,15 @@
     ]
   },
   {
-    "name": "KK_Running_Strafe_Left",
-    "fraction": 0.8,
-    "geometry": [
-      {
-        "mode": "KK_Running_Strafe_Left",
-        "minY": -17.650000000000006,
-        "maxY": 33.37668296421523,
-        "soleClearance": 0.3499999999999943,
-        "bodyClearance": 0.3499999999999943,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Running_Strafe_Right",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Running_Strafe_Right",
-        "minY": -17.649999934159453,
-        "maxY": 37.84089516720925,
-        "soleClearance": 0.3500000658405469,
-        "bodyClearance": 0.3500000658405469,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Running_Strafe_Right",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Running_Strafe_Right",
-        "minY": -17.649999999999995,
-        "maxY": 33.3911736854761,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
     "name": "KK_Running_Strafe_Right",
     "fraction": 0.8,
     "geometry": [
       {
         "mode": "KK_Running_Strafe_Right",
-        "minY": -17.649999976089894,
-        "maxY": 33.565962249140206,
-        "soleClearance": 0.35000002391010554,
-        "bodyClearance": 0.35000002391010554,
+        "minY": -17.64999997608989,
+        "maxY": 33.56596224898715,
+        "soleClearance": 0.3500000239101091,
+        "bodyClearance": 0.3500000239101091,
         "tilt": 0,
         "invalid": 0
       }
@@ -2886,7 +2886,7 @@
       {
         "mode": "KK_Sneaking",
         "minY": -17.65,
-        "maxY": 28.260294290110714,
+        "maxY": 28.26029429011071,
         "soleClearance": 0.3500000000000014,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
@@ -2901,7 +2901,7 @@
       {
         "mode": "KK_Sneaking",
         "minY": -17.649999886085702,
-        "maxY": 29.54102573154254,
+        "maxY": 29.5410257313895,
         "soleClearance": 0.3500001139142981,
         "bodyClearance": 0.3500001139142981,
         "tilt": 0,
@@ -2915,10 +2915,10 @@
     "geometry": [
       {
         "mode": "KK_Sneaking",
-        "minY": -17.650000000000002,
-        "maxY": 30.741815377378963,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.65,
+        "maxY": 30.74181537749377,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -2930,10 +2930,10 @@
     "geometry": [
       {
         "mode": "KK_Walking_Backwards",
-        "minY": -17.65000000509845,
-        "maxY": 36.91388218385057,
-        "soleClearance": 0.34999999490155176,
-        "bodyClearance": 0.34999999490155176,
+        "minY": -17.65000000509844,
+        "maxY": 36.91388218394623,
+        "soleClearance": 0.34999999490155886,
+        "bodyClearance": 0.34999999490155886,
         "tilt": 0,
         "invalid": 0
       }
@@ -2945,10 +2945,10 @@
     "geometry": [
       {
         "mode": "KK_Walking_Backwards",
-        "minY": -17.650000000000002,
-        "maxY": 34.59454744933213,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.65,
+        "maxY": 34.594547449332126,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -2960,10 +2960,10 @@
     "geometry": [
       {
         "mode": "KK_Walking_Backwards",
-        "minY": -17.65000001069385,
-        "maxY": 37.14515156085793,
-        "soleClearance": 0.3499999893061485,
-        "bodyClearance": 0.3499999893061485,
+        "minY": -17.650000010693848,
+        "maxY": 37.145151560704875,
+        "soleClearance": 0.34999998930615206,
+        "bodyClearance": 0.34999998930615206,
         "tilt": 0,
         "invalid": 0
       }
@@ -2975,23 +2975,8 @@
     "geometry": [
       {
         "mode": "KK_Jump_Full_Long",
-        "minY": -17.65,
-        "maxY": 35.63007824304113,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Jump_Full_Long",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Jump_Full_Long",
         "minY": -17.649999999999995,
-        "maxY": 41.621999264000785,
+        "maxY": 35.63007824304114,
         "soleClearance": 0.350000000000005,
         "bodyClearance": 0.350000000000005,
         "tilt": 0,
@@ -3001,12 +2986,27 @@
   },
   {
     "name": "KK_Jump_Full_Long",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Jump_Full_Long",
+        "minY": -17.65,
+        "maxY": 41.62199926400078,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Jump_Full_Long",
     "fraction": 0.8,
     "geometry": [
       {
         "mode": "KK_Jump_Full_Long",
         "minY": -17.65,
-        "maxY": 30.156190291467638,
+        "maxY": 30.15619029146764,
         "soleClearance": 0.3500000000000014,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
@@ -3020,10 +3020,10 @@
     "geometry": [
       {
         "mode": "KK_Jump_Full_Short",
-        "minY": -17.65,
-        "maxY": 37.7376634129174,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.649999999999995,
+        "maxY": 37.73766341291741,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -3050,10 +3050,10 @@
     "geometry": [
       {
         "mode": "KK_Jump_Full_Short",
-        "minY": -17.65,
-        "maxY": 32.212553122920276,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.64999999999999,
+        "maxY": 32.21255312292028,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
         "tilt": 0,
         "invalid": 0
       }
@@ -3065,10 +3065,10 @@
     "geometry": [
       {
         "mode": "KK_Jump_Idle",
-        "minY": -17.650000000000002,
-        "maxY": 39.08187251289818,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.65,
+        "maxY": 39.08187251289819,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -3080,10 +3080,10 @@
     "geometry": [
       {
         "mode": "KK_Jump_Idle",
-        "minY": -17.65,
-        "maxY": 42.34390397986129,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.64999999999999,
+        "maxY": 42.343903979861295,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
         "tilt": 0,
         "invalid": 0
       }
@@ -3095,10 +3095,10 @@
     "geometry": [
       {
         "mode": "KK_Jump_Idle",
-        "minY": -17.650000000000002,
-        "maxY": 40.252219170117904,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.64999999999999,
+        "maxY": 40.25221917011791,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
         "tilt": 0,
         "invalid": 0
       }
@@ -3126,7 +3126,7 @@
       {
         "mode": "KK_Jump_Land",
         "minY": -17.65,
-        "maxY": 28.630108759059915,
+        "maxY": 28.63010875905991,
         "soleClearance": 0.3500000000000014,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
@@ -3140,23 +3140,8 @@
     "geometry": [
       {
         "mode": "KK_Jump_Land",
-        "minY": -17.650000000000002,
-        "maxY": 38.49153482576697,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Jump_Start",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Jump_Start",
         "minY": -17.65,
-        "maxY": 38.37022363255346,
+        "maxY": 38.49153482576696,
         "soleClearance": 0.3500000000000014,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
@@ -3166,102 +3151,12 @@
   },
   {
     "name": "KK_Jump_Start",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Jump_Start",
-        "minY": -17.649999848344635,
-        "maxY": 31.231687375659227,
-        "soleClearance": 0.35000015165536524,
-        "bodyClearance": 0.35000015165536524,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Jump_Start",
-    "fraction": 0.8,
-    "geometry": [
-      {
-        "mode": "KK_Jump_Start",
-        "minY": -17.650000000000002,
-        "maxY": 38.63725393021867,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Running_A",
     "fraction": 0.05,
     "geometry": [
       {
-        "mode": "KK_Running_A",
-        "minY": -17.649999942523216,
-        "maxY": 38.10317129535165,
-        "soleClearance": 0.35000005747678387,
-        "bodyClearance": 0.35000005747678387,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Running_A",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Running_A",
-        "minY": -17.650000000000002,
-        "maxY": 32.667907488940024,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Running_A",
-    "fraction": 0.8,
-    "geometry": [
-      {
-        "mode": "KK_Running_A",
-        "minY": -17.650000000000002,
-        "maxY": 32.55325698522914,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Running_B",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Running_B",
-        "minY": -17.649999995867226,
-        "maxY": 35.517967512841224,
-        "soleClearance": 0.35000000413277377,
-        "bodyClearance": 0.35000000413277377,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Running_B",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Running_B",
+        "mode": "KK_Jump_Start",
         "minY": -17.649999999999995,
-        "maxY": 36.61235030809577,
+        "maxY": 38.37022363255346,
         "soleClearance": 0.350000000000005,
         "bodyClearance": 0.350000000000005,
         "tilt": 0,
@@ -3270,15 +3165,120 @@
     ]
   },
   {
+    "name": "KK_Jump_Start",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Jump_Start",
+        "minY": -17.64999984834463,
+        "maxY": 31.231687375506173,
+        "soleClearance": 0.3500001516553688,
+        "bodyClearance": 0.3500001516553688,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Jump_Start",
+    "fraction": 0.8,
+    "geometry": [
+      {
+        "mode": "KK_Jump_Start",
+        "minY": -17.65,
+        "maxY": 38.63725393021868,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Running_A",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Running_A",
+        "minY": -17.649999942523213,
+        "maxY": 38.10317129544731,
+        "soleClearance": 0.3500000574767874,
+        "bodyClearance": 0.3500000574767874,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Running_A",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Running_A",
+        "minY": -17.65,
+        "maxY": 32.66790748894002,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Running_A",
+    "fraction": 0.8,
+    "geometry": [
+      {
+        "mode": "KK_Running_A",
+        "minY": -17.65,
+        "maxY": 32.55325698522914,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Running_B",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Running_B",
+        "minY": -17.649999995867223,
+        "maxY": 35.51796751293689,
+        "soleClearance": 0.3500000041327773,
+        "bodyClearance": 0.3500000041327773,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Running_B",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Running_B",
+        "minY": -17.65,
+        "maxY": 36.61235030809577,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
     "name": "KK_Running_B",
     "fraction": 0.8,
     "geometry": [
       {
         "mode": "KK_Running_B",
-        "minY": -17.65,
-        "maxY": 39.02837612418373,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.649999999999995,
+        "maxY": 39.02837612418372,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -3290,10 +3290,10 @@
     "geometry": [
       {
         "mode": "KK_Walking_A",
-        "minY": -17.64999999058688,
-        "maxY": 36.449720843301066,
-        "soleClearance": 0.3500000094131188,
-        "bodyClearance": 0.3500000094131188,
+        "minY": -17.649999990586885,
+        "maxY": 36.44972084339672,
+        "soleClearance": 0.35000000941311527,
+        "bodyClearance": 0.35000000941311527,
         "tilt": 0,
         "invalid": 0
       }
@@ -3305,10 +3305,10 @@
     "geometry": [
       {
         "mode": "KK_Walking_A",
-        "minY": -17.65,
+        "minY": -17.649999999999995,
         "maxY": 36.127480073932844,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -3320,10 +3320,10 @@
     "geometry": [
       {
         "mode": "KK_Walking_A",
-        "minY": -17.650000000000002,
-        "maxY": 37.15575081923094,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.65,
+        "maxY": 37.155750819230946,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -3335,10 +3335,10 @@
     "geometry": [
       {
         "mode": "KK_Walking_B",
-        "minY": -17.65000001404204,
-        "maxY": 34.985826151378184,
-        "soleClearance": 0.349999985957961,
-        "bodyClearance": 0.349999985957961,
+        "minY": -17.650000014042035,
+        "maxY": 34.98582615147386,
+        "soleClearance": 0.34999998595796455,
+        "bodyClearance": 0.34999998595796455,
         "tilt": 0,
         "invalid": 0
       }
@@ -3350,10 +3350,10 @@
     "geometry": [
       {
         "mode": "KK_Walking_B",
-        "minY": -17.650000000000002,
-        "maxY": 34.31060195305175,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.65,
+        "maxY": 34.31060195305176,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -3365,10 +3365,10 @@
     "geometry": [
       {
         "mode": "KK_Walking_B",
-        "minY": -17.650000000000002,
-        "maxY": 36.28904946876916,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.65,
+        "maxY": 36.289049468769164,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -3380,10 +3380,10 @@
     "geometry": [
       {
         "mode": "KK_Walking_C",
-        "minY": -17.650000002043395,
-        "maxY": 35.817375878116444,
-        "soleClearance": 0.34999999795660486,
-        "bodyClearance": 0.34999999795660486,
+        "minY": -17.65000000204339,
+        "maxY": 35.817375878212104,
+        "soleClearance": 0.3499999979566084,
+        "bodyClearance": 0.3499999979566084,
         "tilt": 0,
         "invalid": 0
       }
@@ -3392,28 +3392,28 @@
   {
     "name": "KK_Walking_C",
     "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Walking_C",
-        "minY": -17.650000000000002,
-        "maxY": 36.69938337095709,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Walking_C",
-    "fraction": 0.8,
     "geometry": [
       {
         "mode": "KK_Walking_C",
         "minY": -17.65,
-        "maxY": 36.003261806845565,
+        "maxY": 36.699383370957094,
         "soleClearance": 0.3500000000000014,
         "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Walking_C",
+    "fraction": 0.8,
+    "geometry": [
+      {
+        "mode": "KK_Walking_C",
+        "minY": -17.649999999999995,
+        "maxY": 36.00326180684557,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -3425,10 +3425,10 @@
     "geometry": [
       {
         "mode": "KK_Cheering",
-        "minY": -17.650000000000002,
+        "minY": -17.650000000000006,
         "maxY": 38.18652493494372,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
         "tilt": 0,
         "invalid": 0
       }
@@ -3440,10 +3440,10 @@
     "geometry": [
       {
         "mode": "KK_Cheering",
-        "minY": -17.65,
-        "maxY": 48.79595123550897,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.649999999999995,
+        "maxY": 48.795951235508966,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -3456,7 +3456,7 @@
       {
         "mode": "KK_Cheering",
         "minY": -17.65,
-        "maxY": 48.79594930274016,
+        "maxY": 48.795949302740155,
         "soleClearance": 0.3500000000000014,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
@@ -3471,7 +3471,7 @@
       {
         "mode": "KK_Lie_Down",
         "minY": -17.64999995596087,
-        "maxY": 34.768615852041556,
+        "maxY": 34.7686158518885,
         "soleClearance": 0.3500000440391311,
         "bodyClearance": 0.3500000440391311,
         "tilt": 0,
@@ -3486,8 +3486,8 @@
       {
         "mode": "KK_Lie_Down",
         "minY": -17.650000000000002,
-        "maxY": 16.109598480967144,
-        "soleClearance": 0.7324598244009444,
+        "maxY": 16.10959848096714,
+        "soleClearance": 0.7324598243052911,
         "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
@@ -3500,10 +3500,10 @@
     "geometry": [
       {
         "mode": "KK_Lie_Down",
-        "minY": -17.649999847619654,
-        "maxY": 17.356210434107574,
-        "soleClearance": 4.339678115494706,
-        "bodyClearance": 0.3500001523803462,
+        "minY": -17.649999847619647,
+        "maxY": 17.356210434107584,
+        "soleClearance": 4.339678115379918,
+        "bodyClearance": 0.3500001523803533,
         "tilt": 0,
         "invalid": 0
       }
@@ -3516,8 +3516,8 @@
       {
         "mode": "KK_Lie_Idle",
         "minY": -17.649999853181747,
-        "maxY": 17.176357559862673,
-        "soleClearance": 4.476952524219808,
+        "maxY": 17.176357559862684,
+        "soleClearance": 4.476952524105016,
         "bodyClearance": 0.3500001468182532,
         "tilt": 0,
         "invalid": 0
@@ -3531,8 +3531,8 @@
       {
         "mode": "KK_Lie_Idle",
         "minY": -17.649999851017554,
-        "maxY": 16.831176898625245,
-        "soleClearance": 4.100917577321564,
+        "maxY": 16.831176898625248,
+        "soleClearance": 4.100917577206776,
         "bodyClearance": 0.3500001489824456,
         "tilt": 0,
         "invalid": 0
@@ -3545,10 +3545,10 @@
     "geometry": [
       {
         "mode": "KK_Lie_Idle",
-        "minY": -17.649999850855107,
-        "maxY": 16.808498412208053,
-        "soleClearance": 4.076656139614338,
-        "bodyClearance": 0.3500001491448934,
+        "minY": -17.64999985085511,
+        "maxY": 16.80849841220805,
+        "soleClearance": 4.076656139499544,
+        "bodyClearance": 0.35000014914488986,
         "tilt": 0,
         "invalid": 0
       }
@@ -3561,8 +3561,8 @@
       {
         "mode": "KK_Lie_StandUp",
         "minY": -17.6499998555258,
-        "maxY": 18.74674312677393,
-        "soleClearance": 4.9646647860880115,
+        "maxY": 18.746743126659144,
+        "soleClearance": 4.96466478597322,
         "bodyClearance": 0.35000014447420114,
         "tilt": 0,
         "invalid": 0
@@ -3575,10 +3575,10 @@
     "geometry": [
       {
         "mode": "KK_Lie_StandUp",
-        "minY": -17.649999999999995,
-        "maxY": 18.35995079946118,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.65,
+        "maxY": 18.359950799461178,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -3590,10 +3590,10 @@
     "geometry": [
       {
         "mode": "KK_Lie_StandUp",
-        "minY": -17.64999985747981,
-        "maxY": 31.451501507514543,
-        "soleClearance": 0.35000014252019085,
-        "bodyClearance": 0.35000014252019085,
+        "minY": -17.649999857479806,
+        "maxY": 31.45150150736148,
+        "soleClearance": 0.3500001425201944,
+        "bodyClearance": 0.3500001425201944,
         "tilt": 0,
         "invalid": 0
       }
@@ -3605,10 +3605,10 @@
     "geometry": [
       {
         "mode": "KK_Push_Ups",
-        "minY": -17.65,
-        "maxY": 20.25696578017169,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.650000000000002,
+        "maxY": 20.256965780171686,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -3621,7 +3621,7 @@
       {
         "mode": "KK_Push_Ups",
         "minY": -17.65,
-        "maxY": 16.875359710420327,
+        "maxY": 16.875359710535125,
         "soleClearance": 2.3503617568057873,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
@@ -3635,143 +3635,8 @@
     "geometry": [
       {
         "mode": "KK_Push_Ups",
-        "minY": -17.65,
-        "maxY": 19.283928350905583,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Sit_Chair_Down",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Sit_Chair_Down",
-        "minY": -17.650000000000002,
-        "maxY": 38.10256456671515,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Sit_Chair_Down",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Sit_Chair_Down",
-        "minY": -17.64999999999999,
-        "maxY": 38.395787611298964,
-        "soleClearance": 0.3500000000000085,
-        "bodyClearance": 0.3500000000000085,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Sit_Chair_Down",
-    "fraction": 0.8,
-    "geometry": [
-      {
-        "mode": "KK_Sit_Chair_Down",
-        "minY": -17.65,
-        "maxY": 25.941971176158326,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Sit_Chair_Idle",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Sit_Chair_Idle",
-        "minY": -17.65,
-        "maxY": 25.807893617469666,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Sit_Chair_Idle",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Sit_Chair_Idle",
-        "minY": -17.65,
-        "maxY": 26.527346518930408,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Sit_Chair_Idle",
-    "fraction": 0.8,
-    "geometry": [
-      {
-        "mode": "KK_Sit_Chair_Idle",
-        "minY": -17.65,
-        "maxY": 26.458118856400425,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Sit_Chair_StandUp",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Sit_Chair_StandUp",
-        "minY": -17.65,
-        "maxY": 26.425330288076793,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Sit_Chair_StandUp",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Sit_Chair_StandUp",
-        "minY": -17.650000000000002,
-        "maxY": 42.38747081291232,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Sit_Chair_StandUp",
-    "fraction": 0.8,
-    "geometry": [
-      {
-        "mode": "KK_Sit_Chair_StandUp",
         "minY": -17.649999999999995,
-        "maxY": 37.44125081095934,
+        "maxY": 19.283928350905587,
         "soleClearance": 0.350000000000005,
         "bodyClearance": 0.350000000000005,
         "tilt": 0,
@@ -3780,15 +3645,150 @@
     ]
   },
   {
+    "name": "KK_Sit_Chair_Down",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Sit_Chair_Down",
+        "minY": -17.65,
+        "maxY": 38.102564566715145,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Sit_Chair_Down",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Sit_Chair_Down",
+        "minY": -17.649999999999995,
+        "maxY": 38.39578761129896,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Sit_Chair_Down",
+    "fraction": 0.8,
+    "geometry": [
+      {
+        "mode": "KK_Sit_Chair_Down",
+        "minY": -17.650000000000002,
+        "maxY": 25.941971176158322,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Sit_Chair_Idle",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Sit_Chair_Idle",
+        "minY": -17.650000000000002,
+        "maxY": 25.807893617469663,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Sit_Chair_Idle",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Sit_Chair_Idle",
+        "minY": -17.65,
+        "maxY": 26.527346518930404,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Sit_Chair_Idle",
+    "fraction": 0.8,
+    "geometry": [
+      {
+        "mode": "KK_Sit_Chair_Idle",
+        "minY": -17.65,
+        "maxY": 26.45811885640042,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Sit_Chair_StandUp",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Sit_Chair_StandUp",
+        "minY": -17.650000000000006,
+        "maxY": 26.42533028807679,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Sit_Chair_StandUp",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Sit_Chair_StandUp",
+        "minY": -17.65,
+        "maxY": 42.38747081291231,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Sit_Chair_StandUp",
+    "fraction": 0.8,
+    "geometry": [
+      {
+        "mode": "KK_Sit_Chair_StandUp",
+        "minY": -17.64999999999999,
+        "maxY": 37.441250810959346,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
     "name": "KK_Sit_Floor_Down",
     "fraction": 0.05,
     "geometry": [
       {
         "mode": "KK_Sit_Floor_Down",
-        "minY": -17.650000049375684,
-        "maxY": 37.66718598919463,
-        "soleClearance": 0.34999995062431566,
-        "bodyClearance": 0.34999995062431566,
+        "minY": -17.65000004937569,
+        "maxY": 37.66718598904157,
+        "soleClearance": 0.34999995062430855,
+        "bodyClearance": 0.34999995062430855,
         "tilt": 0,
         "invalid": 0
       }
@@ -3800,10 +3800,10 @@
     "geometry": [
       {
         "mode": "KK_Sit_Floor_Down",
-        "minY": -17.649999499401822,
-        "maxY": 19.061094339675385,
-        "soleClearance": 0.35000050059817767,
-        "bodyClearance": 0.35000050059817767,
+        "minY": -17.649999499401815,
+        "maxY": 19.06109433952233,
+        "soleClearance": 0.35000050059818477,
+        "bodyClearance": 0.35000050059818477,
         "tilt": 0,
         "invalid": 0
       }
@@ -3815,10 +3815,10 @@
     "geometry": [
       {
         "mode": "KK_Sit_Floor_Down",
-        "minY": -17.649999459202935,
-        "maxY": 16.124278459138885,
-        "soleClearance": 0.35000054079706544,
-        "bodyClearance": 0.35000054079706544,
+        "minY": -17.649999459202938,
+        "maxY": 16.12427845898583,
+        "soleClearance": 0.3500005407970619,
+        "bodyClearance": 0.3500005407970619,
         "tilt": 0,
         "invalid": 0
       }
@@ -3831,7 +3831,7 @@
       {
         "mode": "KK_Sit_Floor_Idle",
         "minY": -17.649999459276493,
-        "maxY": 16.718726467394717,
+        "maxY": 16.718726467241655,
         "soleClearance": 0.3500005407235065,
         "bodyClearance": 0.3500005407235065,
         "tilt": 0,
@@ -3846,7 +3846,7 @@
       {
         "mode": "KK_Sit_Floor_Idle",
         "minY": -17.6499994568172,
-        "maxY": 17.790147444226406,
+        "maxY": 17.790147444073344,
         "soleClearance": 0.3500005431828015,
         "bodyClearance": 0.3500005431828015,
         "tilt": 0,
@@ -3860,10 +3860,10 @@
     "geometry": [
       {
         "mode": "KK_Sit_Floor_Idle",
-        "minY": -17.64999945610228,
-        "maxY": 16.326040389167062,
-        "soleClearance": 0.3500005438977212,
-        "bodyClearance": 0.3500005438977212,
+        "minY": -17.649999456102275,
+        "maxY": 16.326040389014015,
+        "soleClearance": 0.3500005438977247,
+        "bodyClearance": 0.3500005438977247,
         "tilt": 0,
         "invalid": 0
       }
@@ -3875,10 +3875,10 @@
     "geometry": [
       {
         "mode": "KK_Sit_Floor_StandUp",
-        "minY": -17.64999947569949,
-        "maxY": 17.113186557463372,
-        "soleClearance": 0.35000052430050843,
-        "bodyClearance": 0.35000052430050843,
+        "minY": -17.649999475699488,
+        "maxY": 17.113186557310318,
+        "soleClearance": 0.350000524300512,
+        "bodyClearance": 0.350000524300512,
         "tilt": 0,
         "invalid": 0
       }
@@ -3890,10 +3890,10 @@
     "geometry": [
       {
         "mode": "KK_Sit_Floor_StandUp",
-        "minY": -17.649999888948454,
-        "maxY": 33.13671075592519,
-        "soleClearance": 0.35000011105154627,
-        "bodyClearance": 0.35000011105154627,
+        "minY": -17.649999888948457,
+        "maxY": 33.13671075577213,
+        "soleClearance": 0.3500001110515427,
+        "bodyClearance": 0.3500001110515427,
         "tilt": 0,
         "invalid": 0
       }
@@ -3905,10 +3905,10 @@
     "geometry": [
       {
         "mode": "KK_Sit_Floor_StandUp",
-        "minY": -17.650000073051288,
-        "maxY": 38.40316963899377,
-        "soleClearance": 0.34999992694871196,
-        "bodyClearance": 0.34999992694871196,
+        "minY": -17.650000073051277,
+        "maxY": 38.40316963884071,
+        "soleClearance": 0.3499999269487226,
+        "bodyClearance": 0.3499999269487226,
         "tilt": 0,
         "invalid": 0
       }
@@ -3920,23 +3920,8 @@
     "geometry": [
       {
         "mode": "KK_Sit_Ups",
-        "minY": -17.65,
-        "maxY": 17.38476799747726,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Sit_Ups",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Sit_Ups",
         "minY": -17.650000000000006,
-        "maxY": 22.577523457376486,
+        "maxY": 17.384767997477258,
         "soleClearance": 0.3499999999999943,
         "bodyClearance": 0.3499999999999943,
         "tilt": 0,
@@ -3946,12 +3931,27 @@
   },
   {
     "name": "KK_Sit_Ups",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Sit_Ups",
+        "minY": -17.650000000000002,
+        "maxY": 22.577523457376476,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Sit_Ups",
     "fraction": 0.8,
     "geometry": [
       {
         "mode": "KK_Sit_Ups",
         "minY": -17.65,
-        "maxY": 25.4967917433708,
+        "maxY": 25.49679174337081,
         "soleClearance": 0.3500000000000014,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
@@ -3965,10 +3965,10 @@
     "geometry": [
       {
         "mode": "KK_Waving",
-        "minY": -17.64999994572412,
-        "maxY": 43.17681202289807,
-        "soleClearance": 0.3500000542758812,
-        "bodyClearance": 0.3500000542758812,
+        "minY": -17.64999994572411,
+        "maxY": 43.17681202320419,
+        "soleClearance": 0.3500000542758883,
+        "bodyClearance": 0.3500000542758883,
         "tilt": 0,
         "invalid": 0
       }
@@ -3980,10 +3980,10 @@
     "geometry": [
       {
         "mode": "KK_Waving",
-        "minY": -17.649999948863808,
-        "maxY": 52.63302166074259,
-        "soleClearance": 0.3500000511361918,
-        "bodyClearance": 0.3500000511361918,
+        "minY": -17.649999948863805,
+        "maxY": 52.633021661048716,
+        "soleClearance": 0.35000005113619537,
+        "bodyClearance": 0.35000005113619537,
         "tilt": 0,
         "invalid": 0
       }
@@ -3995,10 +3995,10 @@
     "geometry": [
       {
         "mode": "KK_Waving",
-        "minY": -17.649999956069127,
-        "maxY": 56.44303297303954,
-        "soleClearance": 0.3500000439308728,
-        "bodyClearance": 0.3500000439308728,
+        "minY": -17.649999956069124,
+        "maxY": 56.4430329731926,
+        "soleClearance": 0.35000004393087636,
+        "bodyClearance": 0.35000004393087636,
         "tilt": 0,
         "invalid": 0
       }
@@ -4011,8 +4011,8 @@
       {
         "mode": "KK_Skeletons_Awaken_Floor",
         "minY": -17.65,
-        "maxY": 11.054297115072515,
-        "soleClearance": 13.3431551842962,
+        "maxY": 11.054297115072508,
+        "soleClearance": 13.343155184449252,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
@@ -4025,10 +4025,10 @@
     "geometry": [
       {
         "mode": "KK_Skeletons_Awaken_Floor",
-        "minY": -17.650000000000002,
-        "maxY": 14.89671938583659,
-        "soleClearance": 5.065714452487814,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.65,
+        "maxY": 14.896719385836594,
+        "soleClearance": 5.065714452487818,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -4040,10 +4040,10 @@
     "geometry": [
       {
         "mode": "KK_Skeletons_Awaken_Floor",
-        "minY": -17.649999915721953,
-        "maxY": 31.225670738064757,
-        "soleClearance": 0.3500000842780473,
-        "bodyClearance": 0.3500000842780473,
+        "minY": -17.64999991572196,
+        "maxY": 31.22567073791169,
+        "soleClearance": 0.3500000842780402,
+        "bodyClearance": 0.3500000842780402,
         "tilt": 0,
         "invalid": 0
       }
@@ -4057,7 +4057,7 @@
         "mode": "KK_Skeletons_Awaken_Floor_Long",
         "minY": -17.65,
         "maxY": 11.01442854573547,
-        "soleClearance": 14.01402948303626,
+        "soleClearance": 14.014029483189304,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
@@ -4070,10 +4070,10 @@
     "geometry": [
       {
         "mode": "KK_Skeletons_Awaken_Floor_Long",
-        "minY": -17.64999984884282,
-        "maxY": 24.472279167794852,
-        "soleClearance": 0.35000015115717886,
-        "bodyClearance": 0.35000015115717886,
+        "minY": -17.649999848842818,
+        "maxY": 24.472279167641805,
+        "soleClearance": 0.3500001511571824,
+        "bodyClearance": 0.3500001511571824,
         "tilt": 0,
         "invalid": 0
       }
@@ -4085,10 +4085,10 @@
     "geometry": [
       {
         "mode": "KK_Skeletons_Awaken_Floor_Long",
-        "minY": -17.649999951315564,
-        "maxY": 36.61428489568003,
-        "soleClearance": 0.3500000486844357,
-        "bodyClearance": 0.3500000486844357,
+        "minY": -17.64999995131557,
+        "maxY": 36.614284895526964,
+        "soleClearance": 0.3500000486844286,
+        "bodyClearance": 0.3500000486844286,
         "tilt": 0,
         "invalid": 0
       }
@@ -4100,10 +4100,10 @@
     "geometry": [
       {
         "mode": "KK_Skeletons_Awaken_Standing",
-        "minY": -17.65,
+        "minY": -17.649999999999995,
         "maxY": 32.915938943271286,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -4115,53 +4115,8 @@
     "geometry": [
       {
         "mode": "KK_Skeletons_Awaken_Standing",
-        "minY": -17.650000000000002,
-        "maxY": 44.53735007968995,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Skeletons_Awaken_Standing",
-    "fraction": 0.8,
-    "geometry": [
-      {
-        "mode": "KK_Skeletons_Awaken_Standing",
-        "minY": -17.650000000000002,
-        "maxY": 25.172124611369817,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Skeletons_Death",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Skeletons_Death",
-        "minY": -17.649999778528198,
-        "maxY": 23.49998030378908,
-        "soleClearance": 0.3500002214718023,
-        "bodyClearance": 0.3500002214718023,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Skeletons_Death",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Skeletons_Death",
         "minY": -17.64999999999999,
-        "maxY": 16.12492392245435,
+        "maxY": 44.53735007968994,
         "soleClearance": 0.3500000000000085,
         "bodyClearance": 0.3500000000000085,
         "tilt": 0,
@@ -4170,15 +4125,60 @@
     ]
   },
   {
+    "name": "KK_Skeletons_Awaken_Standing",
+    "fraction": 0.8,
+    "geometry": [
+      {
+        "mode": "KK_Skeletons_Awaken_Standing",
+        "minY": -17.65,
+        "maxY": 25.172124611369814,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Skeletons_Death",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Skeletons_Death",
+        "minY": -17.649999778528205,
+        "maxY": 23.499980303636026,
+        "soleClearance": 0.3500002214717952,
+        "bodyClearance": 0.3500002214717952,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Skeletons_Death",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Skeletons_Death",
+        "minY": -17.649999999999995,
+        "maxY": 16.124923922454347,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
     "name": "KK_Skeletons_Death",
     "fraction": 0.8,
     "geometry": [
       {
         "mode": "KK_Skeletons_Death",
-        "minY": -17.64999999999999,
-        "maxY": 16.209713992630682,
-        "soleClearance": 16.13712400540549,
-        "bodyClearance": 0.3500000000000085,
+        "minY": -17.65,
+        "maxY": 16.20971399263067,
+        "soleClearance": 16.137124005405486,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -4191,7 +4191,7 @@
       {
         "mode": "KK_Skeletons_Death_Pose",
         "minY": -17.64999999999999,
-        "maxY": 16.255436545364084,
+        "maxY": 16.255436545364066,
         "soleClearance": 16.137121268366496,
         "bodyClearance": 0.3500000000000085,
         "tilt": 0,
@@ -4206,7 +4206,7 @@
       {
         "mode": "KK_Skeletons_Death_Pose",
         "minY": -17.64999999999999,
-        "maxY": 16.255436545364084,
+        "maxY": 16.255436545364066,
         "soleClearance": 16.137121268366496,
         "bodyClearance": 0.3500000000000085,
         "tilt": 0,
@@ -4221,7 +4221,7 @@
       {
         "mode": "KK_Skeletons_Death_Pose",
         "minY": -17.64999999999999,
-        "maxY": 16.255436545364084,
+        "maxY": 16.255436545364066,
         "soleClearance": 16.137121268366496,
         "bodyClearance": 0.3500000000000085,
         "tilt": 0,
@@ -4236,7 +4236,7 @@
       {
         "mode": "KK_Skeletons_Death_Resurrect",
         "minY": -17.650000000000002,
-        "maxY": 14.197100823785476,
+        "maxY": 14.19710082378548,
         "soleClearance": 14.523889571006645,
         "bodyClearance": 0.34999999999999787,
         "tilt": 0,
@@ -4250,10 +4250,10 @@
     "geometry": [
       {
         "mode": "KK_Skeletons_Death_Resurrect",
-        "minY": -17.649999999999995,
-        "maxY": 20.483116032688713,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.650000000000006,
+        "maxY": 20.483116032841753,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
         "tilt": 0,
         "invalid": 0
       }
@@ -4266,7 +4266,7 @@
       {
         "mode": "KK_Skeletons_Death_Resurrect",
         "minY": -17.649999897757553,
-        "maxY": 30.702209022207946,
+        "maxY": 30.70220902205489,
         "soleClearance": 0.35000010224244704,
         "bodyClearance": 0.35000010224244704,
         "tilt": 0,
@@ -4280,10 +4280,10 @@
     "geometry": [
       {
         "mode": "KK_Skeletons_Idle",
-        "minY": -17.649999884485215,
-        "maxY": 28.767770970649103,
-        "soleClearance": 0.35000011551478494,
-        "bodyClearance": 0.35000011551478494,
+        "minY": -17.64999988448522,
+        "maxY": 28.767770970496034,
+        "soleClearance": 0.3500001155147814,
+        "bodyClearance": 0.3500001155147814,
         "tilt": 0,
         "invalid": 0
       }
@@ -4296,7 +4296,7 @@
       {
         "mode": "KK_Skeletons_Idle",
         "minY": -17.649999817000342,
-        "maxY": 28.708967547541228,
+        "maxY": 28.708967547502954,
         "soleClearance": 0.35000018299965774,
         "bodyClearance": 0.35000018299965774,
         "tilt": 0,
@@ -4310,10 +4310,10 @@
     "geometry": [
       {
         "mode": "KK_Skeletons_Idle",
-        "minY": -17.64999988449112,
-        "maxY": 30.399455706049842,
-        "soleClearance": 0.3500001155088803,
-        "bodyClearance": 0.3500001155088803,
+        "minY": -17.649999884491123,
+        "maxY": 30.399455705896774,
+        "soleClearance": 0.3500001155088768,
+        "bodyClearance": 0.3500001155088768,
         "tilt": 0,
         "invalid": 0
       }
@@ -4326,8 +4326,8 @@
       {
         "mode": "KK_Skeletons_Inactive_Floor_Pose",
         "minY": -17.65,
-        "maxY": 11.443287007235242,
-        "soleClearance": 13.22477565237925,
+        "maxY": 11.443287007235234,
+        "soleClearance": 13.224775652532301,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
@@ -4341,8 +4341,8 @@
       {
         "mode": "KK_Skeletons_Inactive_Floor_Pose",
         "minY": -17.65,
-        "maxY": 11.443287007235242,
-        "soleClearance": 13.22477565237925,
+        "maxY": 11.443287007235234,
+        "soleClearance": 13.224775652532301,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
@@ -4356,8 +4356,8 @@
       {
         "mode": "KK_Skeletons_Inactive_Floor_Pose",
         "minY": -17.65,
-        "maxY": 11.443287007235242,
-        "soleClearance": 13.22477565237925,
+        "maxY": 11.443287007235234,
+        "soleClearance": 13.224775652532301,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
@@ -4370,53 +4370,38 @@
     "geometry": [
       {
         "mode": "KK_Skeletons_Inactive_Standing_Pose",
-        "minY": -17.65,
-        "maxY": 32.8871683249103,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Skeletons_Inactive_Standing_Pose",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Skeletons_Inactive_Standing_Pose",
-        "minY": -17.65,
-        "maxY": 32.8871683249103,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Skeletons_Inactive_Standing_Pose",
-    "fraction": 0.8,
-    "geometry": [
-      {
-        "mode": "KK_Skeletons_Inactive_Standing_Pose",
-        "minY": -17.65,
-        "maxY": 32.8871683249103,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Skeletons_Spawn_Ground",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Skeletons_Spawn_Ground",
         "minY": -17.649999999999995,
-        "maxY": 67.80973185231286,
+        "maxY": 32.887168324910306,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Skeletons_Inactive_Standing_Pose",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Skeletons_Inactive_Standing_Pose",
+        "minY": -17.649999999999995,
+        "maxY": 32.887168324910306,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Skeletons_Inactive_Standing_Pose",
+    "fraction": 0.8,
+    "geometry": [
+      {
+        "mode": "KK_Skeletons_Inactive_Standing_Pose",
+        "minY": -17.649999999999995,
+        "maxY": 32.887168324910306,
         "soleClearance": 0.350000000000005,
         "bodyClearance": 0.350000000000005,
         "tilt": 0,
@@ -4426,14 +4411,14 @@
   },
   {
     "name": "KK_Skeletons_Spawn_Ground",
-    "fraction": 0.4,
+    "fraction": 0.05,
     "geometry": [
       {
         "mode": "KK_Skeletons_Spawn_Ground",
-        "minY": -17.650000000000002,
-        "maxY": 49.216155735736486,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.65,
+        "maxY": 67.80973185231286,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -4441,12 +4426,12 @@
   },
   {
     "name": "KK_Skeletons_Spawn_Ground",
-    "fraction": 0.8,
+    "fraction": 0.4,
     "geometry": [
       {
         "mode": "KK_Skeletons_Spawn_Ground",
         "minY": -17.64999999999999,
-        "maxY": 27.950174770185207,
+        "maxY": 49.21615573585129,
         "soleClearance": 0.3500000000000085,
         "bodyClearance": 0.3500000000000085,
         "tilt": 0,
@@ -4455,13 +4440,28 @@
     ]
   },
   {
+    "name": "KK_Skeletons_Spawn_Ground",
+    "fraction": 0.8,
+    "geometry": [
+      {
+        "mode": "KK_Skeletons_Spawn_Ground",
+        "minY": -17.650000000000006,
+        "maxY": 27.950174770185175,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
     "name": "KK_Skeletons_Taunt",
     "fraction": 0.05,
     "geometry": [
       {
         "mode": "KK_Skeletons_Taunt",
         "minY": -17.649999999999995,
-        "maxY": 33.4433774187814,
+        "maxY": 33.443377418781395,
         "soleClearance": 0.350000000000005,
         "bodyClearance": 0.350000000000005,
         "tilt": 0,
@@ -4475,10 +4475,10 @@
     "geometry": [
       {
         "mode": "KK_Skeletons_Taunt",
-        "minY": -17.65,
-        "maxY": 45.46270964743912,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.649999999999995,
+        "maxY": 45.46270964743911,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -4491,7 +4491,7 @@
       {
         "mode": "KK_Skeletons_Taunt",
         "minY": -17.65,
-        "maxY": 25.148929256774913,
+        "maxY": 25.148929256774895,
         "soleClearance": 0.3500000000000014,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
@@ -4506,7 +4506,7 @@
       {
         "mode": "KK_Skeletons_Taunt_Longer",
         "minY": -17.64999986008877,
-        "maxY": 29.973153330938807,
+        "maxY": 29.973153330785753,
         "soleClearance": 0.3500001399112307,
         "bodyClearance": 0.3500001399112307,
         "tilt": 0,
@@ -4520,10 +4520,10 @@
     "geometry": [
       {
         "mode": "KK_Skeletons_Taunt_Longer",
-        "minY": -17.64999998847795,
-        "maxY": 32.602406765888865,
-        "soleClearance": 0.35000001152204874,
-        "bodyClearance": 0.35000001152204874,
+        "minY": -17.64999998847796,
+        "maxY": 32.60240676573581,
+        "soleClearance": 0.35000001152204163,
+        "bodyClearance": 0.35000001152204163,
         "tilt": 0,
         "invalid": 0
       }
@@ -4535,10 +4535,10 @@
     "geometry": [
       {
         "mode": "KK_Skeletons_Taunt_Longer",
-        "minY": -17.64999998434983,
-        "maxY": 35.36838255348825,
-        "soleClearance": 0.3500000156501706,
-        "bodyClearance": 0.3500000156501706,
+        "minY": -17.649999984349822,
+        "maxY": 35.36838255333521,
+        "soleClearance": 0.3500000156501777,
+        "bodyClearance": 0.3500000156501777,
         "tilt": 0,
         "invalid": 0
       }
@@ -4550,8 +4550,23 @@
     "geometry": [
       {
         "mode": "KK_Skeletons_Walking",
+        "minY": -17.65,
+        "maxY": 37.95004045517183,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Skeletons_Walking",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Skeletons_Walking",
         "minY": -17.650000000000002,
-        "maxY": 37.95004045517184,
+        "maxY": 36.68554937704714,
         "soleClearance": 0.34999999999999787,
         "bodyClearance": 0.34999999999999787,
         "tilt": 0,
@@ -4561,57 +4576,12 @@
   },
   {
     "name": "KK_Skeletons_Walking",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Skeletons_Walking",
-        "minY": -17.65,
-        "maxY": 36.685549377047145,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Skeletons_Walking",
     "fraction": 0.8,
     "geometry": [
       {
         "mode": "KK_Skeletons_Walking",
-        "minY": -17.65,
-        "maxY": 33.912796083637794,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Chop",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Chop",
-        "minY": -17.65,
-        "maxY": 37.33519186573195,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Chop",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Chop",
         "minY": -17.649999999999995,
-        "maxY": 44.558242300706034,
+        "maxY": 33.9127960836378,
         "soleClearance": 0.350000000000005,
         "bodyClearance": 0.350000000000005,
         "tilt": 0,
@@ -4621,12 +4591,42 @@
   },
   {
     "name": "KK_Chop",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Chop",
+        "minY": -17.64999999999999,
+        "maxY": 37.33519186573196,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Chop",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Chop",
+        "minY": -17.65,
+        "maxY": 44.55824230070603,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Chop",
     "fraction": 0.8,
     "geometry": [
       {
         "mode": "KK_Chop",
         "minY": -17.65,
-        "maxY": 35.91936299672464,
+        "maxY": 35.91936299672463,
         "soleClearance": 0.3500000000000014,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
@@ -4640,10 +4640,10 @@
     "geometry": [
       {
         "mode": "KK_Chopping",
-        "minY": -17.650000000000006,
-        "maxY": 43.686126189948986,
-        "soleClearance": 0.3499999999999943,
-        "bodyClearance": 0.3499999999999943,
+        "minY": -17.65,
+        "maxY": 43.686126189948965,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -4655,10 +4655,10 @@
     "geometry": [
       {
         "mode": "KK_Chopping",
-        "minY": -17.65,
-        "maxY": 35.95290120544262,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.649999999999995,
+        "maxY": 35.952901205442615,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -4671,7 +4671,7 @@
       {
         "mode": "KK_Chopping",
         "minY": -17.65,
-        "maxY": 37.15309682317453,
+        "maxY": 37.153096823174536,
         "soleClearance": 0.3500000000000014,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
@@ -4685,10 +4685,10 @@
     "geometry": [
       {
         "mode": "KK_Dig",
-        "minY": -17.65,
+        "minY": -17.649999999999995,
         "maxY": 41.973679598731024,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -4700,10 +4700,10 @@
     "geometry": [
       {
         "mode": "KK_Dig",
-        "minY": -17.649999999999995,
-        "maxY": 42.79755419551547,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.65,
+        "maxY": 42.79755419551546,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -4715,10 +4715,10 @@
     "geometry": [
       {
         "mode": "KK_Dig",
-        "minY": -17.649999999999995,
-        "maxY": 36.35244790425079,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.65,
+        "maxY": 36.35244790425078,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -4730,10 +4730,10 @@
     "geometry": [
       {
         "mode": "KK_Digging",
-        "minY": -17.65,
-        "maxY": 43.90160861984632,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.650000000000002,
+        "maxY": 43.901608619846314,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -4745,10 +4745,10 @@
     "geometry": [
       {
         "mode": "KK_Digging",
-        "minY": -17.65,
+        "minY": -17.650000000000002,
         "maxY": 36.31087365795254,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -4760,10 +4760,10 @@
     "geometry": [
       {
         "mode": "KK_Digging",
-        "minY": -17.65,
-        "maxY": 42.83871330964765,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.650000000000002,
+        "maxY": 42.838713309647645,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -4775,10 +4775,10 @@
     "geometry": [
       {
         "mode": "KK_Fishing_Bite",
-        "minY": -17.650000038720247,
-        "maxY": 36.379624260223274,
-        "soleClearance": 0.3499999612797531,
-        "bodyClearance": 0.3499999612797531,
+        "minY": -17.65000003872024,
+        "maxY": 36.37962426007023,
+        "soleClearance": 0.3499999612797602,
+        "bodyClearance": 0.3499999612797602,
         "tilt": 0,
         "invalid": 0
       }
@@ -4790,10 +4790,10 @@
     "geometry": [
       {
         "mode": "KK_Fishing_Bite",
-        "minY": -17.65,
-        "maxY": 35.592338666879776,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.650000000000002,
+        "maxY": 35.59233866687977,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -4805,10 +4805,10 @@
     "geometry": [
       {
         "mode": "KK_Fishing_Bite",
-        "minY": -17.650000000000006,
-        "maxY": 37.44006206281339,
-        "soleClearance": 0.3499999999999943,
-        "bodyClearance": 0.3499999999999943,
+        "minY": -17.650000000000002,
+        "maxY": 37.440062062813396,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -4820,8 +4820,23 @@
     "geometry": [
       {
         "mode": "KK_Fishing_Cast",
+        "minY": -17.65,
+        "maxY": 37.62166553985932,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Fishing_Cast",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Fishing_Cast",
         "minY": -17.649999999999995,
-        "maxY": 37.62166553985933,
+        "maxY": 33.59878351678071,
         "soleClearance": 0.350000000000005,
         "bodyClearance": 0.350000000000005,
         "tilt": 0,
@@ -4831,29 +4846,14 @@
   },
   {
     "name": "KK_Fishing_Cast",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Fishing_Cast",
-        "minY": -17.64999999999999,
-        "maxY": 33.59878351678072,
-        "soleClearance": 0.3500000000000085,
-        "bodyClearance": 0.3500000000000085,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Fishing_Cast",
     "fraction": 0.8,
     "geometry": [
       {
         "mode": "KK_Fishing_Cast",
-        "minY": -17.65,
+        "minY": -17.650000000000002,
         "maxY": 37.93294045215197,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -4865,10 +4865,10 @@
     "geometry": [
       {
         "mode": "KK_Fishing_Catch",
-        "minY": -17.650000000000002,
-        "maxY": 36.642797293684815,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.65,
+        "maxY": 36.64279729368482,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -4880,10 +4880,10 @@
     "geometry": [
       {
         "mode": "KK_Fishing_Catch",
-        "minY": -17.65,
+        "minY": -17.650000000000002,
         "maxY": 37.56297565216758,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -4895,10 +4895,10 @@
     "geometry": [
       {
         "mode": "KK_Fishing_Catch",
-        "minY": -17.65,
-        "maxY": 37.52428798759549,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.650000000000002,
+        "maxY": 37.524287987595486,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -4910,10 +4910,10 @@
     "geometry": [
       {
         "mode": "KK_Fishing_Idle",
-        "minY": -17.64999999999999,
-        "maxY": 37.61743985755158,
-        "soleClearance": 0.3500000000000085,
-        "bodyClearance": 0.3500000000000085,
+        "minY": -17.649999999999995,
+        "maxY": 37.617439857551574,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -4925,10 +4925,10 @@
     "geometry": [
       {
         "mode": "KK_Fishing_Idle",
-        "minY": -17.649999999999995,
-        "maxY": 37.08270128782568,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.65,
+        "maxY": 37.08270128782567,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -4940,10 +4940,10 @@
     "geometry": [
       {
         "mode": "KK_Fishing_Idle",
-        "minY": -17.649999999999995,
-        "maxY": 37.5094370051034,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.65,
+        "maxY": 37.50943700510339,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -4955,23 +4955,8 @@
     "geometry": [
       {
         "mode": "KK_Fishing_Reeling",
-        "minY": -17.65,
-        "maxY": 36.809467543445244,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Fishing_Reeling",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Fishing_Reeling",
         "minY": -17.650000000000002,
-        "maxY": 35.61515111582167,
+        "maxY": 36.80946754344524,
         "soleClearance": 0.34999999999999787,
         "bodyClearance": 0.34999999999999787,
         "tilt": 0,
@@ -4981,14 +4966,29 @@
   },
   {
     "name": "KK_Fishing_Reeling",
-    "fraction": 0.8,
+    "fraction": 0.4,
     "geometry": [
       {
         "mode": "KK_Fishing_Reeling",
         "minY": -17.65,
-        "maxY": 36.80760658762237,
+        "maxY": 35.615151115821675,
         "soleClearance": 0.3500000000000014,
         "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Fishing_Reeling",
+    "fraction": 0.8,
+    "geometry": [
+      {
+        "mode": "KK_Fishing_Reeling",
+        "minY": -17.650000000000002,
+        "maxY": 36.80760658762236,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -5000,10 +5000,10 @@
     "geometry": [
       {
         "mode": "KK_Fishing_Struggling",
-        "minY": -17.649999988544636,
-        "maxY": 35.25133928949229,
-        "soleClearance": 0.3500000114553643,
-        "bodyClearance": 0.3500000114553643,
+        "minY": -17.64999998854463,
+        "maxY": 35.25133928933924,
+        "soleClearance": 0.3500000114553714,
+        "bodyClearance": 0.3500000114553714,
         "tilt": 0,
         "invalid": 0
       }
@@ -5015,10 +5015,10 @@
     "geometry": [
       {
         "mode": "KK_Fishing_Struggling",
-        "minY": -17.64999999999999,
-        "maxY": 33.06061129888736,
-        "soleClearance": 0.3500000000000085,
-        "bodyClearance": 0.3500000000000085,
+        "minY": -17.65,
+        "maxY": 33.06061129888735,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -5031,7 +5031,7 @@
       {
         "mode": "KK_Fishing_Struggling",
         "minY": -17.64999990749565,
-        "maxY": 32.38815896922613,
+        "maxY": 32.388158969073075,
         "soleClearance": 0.3500000925043487,
         "bodyClearance": 0.3500000925043487,
         "tilt": 0,
@@ -5045,10 +5045,10 @@
     "geometry": [
       {
         "mode": "KK_Fishing_Tug",
-        "minY": -17.65,
-        "maxY": 37.969349903044424,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.649999999999995,
+        "maxY": 37.96934990304443,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -5060,10 +5060,10 @@
     "geometry": [
       {
         "mode": "KK_Fishing_Tug",
-        "minY": -17.650000000000006,
+        "minY": -17.64999999999999,
         "maxY": 37.157909971774984,
-        "soleClearance": 0.3499999999999943,
-        "bodyClearance": 0.3499999999999943,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
         "tilt": 0,
         "invalid": 0
       }
@@ -5075,10 +5075,10 @@
     "geometry": [
       {
         "mode": "KK_Fishing_Tug",
-        "minY": -17.650000000000002,
-        "maxY": 37.60431221989952,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.65,
+        "maxY": 37.604312219899526,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -5090,10 +5090,10 @@
     "geometry": [
       {
         "mode": "KK_Hammer",
-        "minY": -17.649999999999995,
-        "maxY": 38.39674947985373,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.65,
+        "maxY": 38.396749479853725,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -5105,10 +5105,10 @@
     "geometry": [
       {
         "mode": "KK_Hammer",
-        "minY": -17.649999999999995,
-        "maxY": 42.94735239829635,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.65,
+        "maxY": 42.947352398296346,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -5120,10 +5120,10 @@
     "geometry": [
       {
         "mode": "KK_Hammer",
-        "minY": -17.65,
-        "maxY": 40.52094108943273,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.650000000000002,
+        "maxY": 40.52094108943274,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -5136,7 +5136,7 @@
       {
         "mode": "KK_Hammering",
         "minY": -17.65,
-        "maxY": 40.27911813510382,
+        "maxY": 40.279118135103815,
         "soleClearance": 0.3500000000000014,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
@@ -5150,98 +5150,8 @@
     "geometry": [
       {
         "mode": "KK_Hammering",
-        "minY": -17.650000000000002,
-        "maxY": 39.08129952529977,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Hammering",
-    "fraction": 0.8,
-    "geometry": [
-      {
-        "mode": "KK_Hammering",
-        "minY": -17.649999999999995,
-        "maxY": 40.55252161379595,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Holding_A",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Holding_A",
-        "minY": -17.65,
-        "maxY": 37.5613829902832,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Holding_A",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Holding_A",
-        "minY": -17.650000000000002,
-        "maxY": 36.953873835218616,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Holding_A",
-    "fraction": 0.8,
-    "geometry": [
-      {
-        "mode": "KK_Holding_A",
-        "minY": -17.65,
-        "maxY": 37.33577068206109,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Holding_B",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Holding_B",
-        "minY": -17.65,
-        "maxY": 37.2912976519458,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Holding_B",
-    "fraction": 0.4,
-    "geometry": [
-      {
-        "mode": "KK_Holding_B",
         "minY": -17.650000000000006,
-        "maxY": 36.65789173429412,
+        "maxY": 39.08129952529977,
         "soleClearance": 0.3499999999999943,
         "bodyClearance": 0.3499999999999943,
         "tilt": 0,
@@ -5250,73 +5160,58 @@
     ]
   },
   {
-    "name": "KK_Holding_B",
+    "name": "KK_Hammering",
     "fraction": 0.8,
     "geometry": [
       {
-        "mode": "KK_Holding_B",
-        "minY": -17.650000000000002,
-        "maxY": 37.05573271432134,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "mode": "KK_Hammering",
+        "minY": -17.65,
+        "maxY": 40.552521613795946,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
     ]
   },
   {
-    "name": "KK_Holding_C",
+    "name": "KK_Holding_A",
     "fraction": 0.05,
     "geometry": [
       {
-        "mode": "KK_Holding_C",
-        "minY": -17.65000006332834,
-        "maxY": 37.83743016182094,
-        "soleClearance": 0.3499999366716615,
-        "bodyClearance": 0.3499999366716615,
+        "mode": "KK_Holding_A",
+        "minY": -17.65,
+        "maxY": 37.56138299028321,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
     ]
   },
   {
-    "name": "KK_Holding_C",
+    "name": "KK_Holding_A",
     "fraction": 0.4,
     "geometry": [
       {
-        "mode": "KK_Holding_C",
-        "minY": -17.650000043547706,
-        "maxY": 37.195107922678275,
-        "soleClearance": 0.34999995645229376,
-        "bodyClearance": 0.34999995645229376,
+        "mode": "KK_Holding_A",
+        "minY": -17.65,
+        "maxY": 36.953873835218616,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
     ]
   },
   {
-    "name": "KK_Holding_C",
+    "name": "KK_Holding_A",
     "fraction": 0.8,
     "geometry": [
       {
-        "mode": "KK_Holding_C",
-        "minY": -17.65000005594056,
-        "maxY": 37.597551707194434,
-        "soleClearance": 0.3499999440594408,
-        "bodyClearance": 0.3499999440594408,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Lockpick",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Lockpick",
+        "mode": "KK_Holding_A",
         "minY": -17.649999999999995,
-        "maxY": 37.92692172750851,
+        "maxY": 37.335770682061096,
         "soleClearance": 0.350000000000005,
         "bodyClearance": 0.350000000000005,
         "tilt": 0,
@@ -5325,15 +5220,120 @@
     ]
   },
   {
+    "name": "KK_Holding_B",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Holding_B",
+        "minY": -17.649999999999995,
+        "maxY": 37.2912976519458,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Holding_B",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Holding_B",
+        "minY": -17.649999999999995,
+        "maxY": 36.657891734294125,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Holding_B",
+    "fraction": 0.8,
+    "geometry": [
+      {
+        "mode": "KK_Holding_B",
+        "minY": -17.65,
+        "maxY": 37.05573271432134,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Holding_C",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Holding_C",
+        "minY": -17.650000063328335,
+        "maxY": 37.83743016166788,
+        "soleClearance": 0.34999993667166507,
+        "bodyClearance": 0.34999993667166507,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Holding_C",
+    "fraction": 0.4,
+    "geometry": [
+      {
+        "mode": "KK_Holding_C",
+        "minY": -17.6500000435477,
+        "maxY": 37.195107922525224,
+        "soleClearance": 0.34999995645230086,
+        "bodyClearance": 0.34999995645230086,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Holding_C",
+    "fraction": 0.8,
+    "geometry": [
+      {
+        "mode": "KK_Holding_C",
+        "minY": -17.650000055940552,
+        "maxY": 37.59755170704139,
+        "soleClearance": 0.3499999440594479,
+        "bodyClearance": 0.3499999440594479,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Lockpick",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Lockpick",
+        "minY": -17.65,
+        "maxY": 37.9269217275085,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
     "name": "KK_Lockpick",
     "fraction": 0.4,
     "geometry": [
       {
         "mode": "KK_Lockpick",
-        "minY": -17.650000000686546,
-        "maxY": 36.222796527102346,
-        "soleClearance": 0.3499999993134537,
-        "bodyClearance": 0.3499999993134537,
+        "minY": -17.650000000686543,
+        "maxY": 36.222796526949296,
+        "soleClearance": 0.34999999931345727,
+        "bodyClearance": 0.34999999931345727,
         "tilt": 0,
         "invalid": 0
       }
@@ -5345,10 +5345,10 @@
     "geometry": [
       {
         "mode": "KK_Lockpick",
-        "minY": -17.65000000805659,
-        "maxY": 37.02408463863191,
-        "soleClearance": 0.3499999919434096,
-        "bodyClearance": 0.3499999919434096,
+        "minY": -17.650000008056587,
+        "maxY": 37.024084638478854,
+        "soleClearance": 0.34999999194341314,
+        "bodyClearance": 0.34999999194341314,
         "tilt": 0,
         "invalid": 0
       }
@@ -5361,7 +5361,7 @@
       {
         "mode": "KK_Lockpicking",
         "minY": -17.650000006636837,
-        "maxY": 37.05059411016154,
+        "maxY": 37.05059411000849,
         "soleClearance": 0.3499999933631628,
         "bodyClearance": 0.3499999933631628,
         "tilt": 0,
@@ -5376,7 +5376,7 @@
       {
         "mode": "KK_Lockpicking",
         "minY": -17.650000001570135,
-        "maxY": 36.25406796411741,
+        "maxY": 36.254067963964346,
         "soleClearance": 0.3499999984298654,
         "bodyClearance": 0.3499999984298654,
         "tilt": 0,
@@ -5390,10 +5390,10 @@
     "geometry": [
       {
         "mode": "KK_Lockpicking",
-        "minY": -17.6500000092287,
-        "maxY": 36.98787234360676,
-        "soleClearance": 0.3499999907712983,
-        "bodyClearance": 0.3499999907712983,
+        "minY": -17.65000000922871,
+        "maxY": 36.9878723434537,
+        "soleClearance": 0.3499999907712912,
+        "bodyClearance": 0.3499999907712912,
         "tilt": 0,
         "invalid": 0
       }
@@ -5405,10 +5405,10 @@
     "geometry": [
       {
         "mode": "KK_Pickaxe",
-        "minY": -17.650000000000006,
-        "maxY": 39.12238938574489,
-        "soleClearance": 0.3499999999999943,
-        "bodyClearance": 0.3499999999999943,
+        "minY": -17.649999999999995,
+        "maxY": 39.12238938574488,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -5420,10 +5420,10 @@
     "geometry": [
       {
         "mode": "KK_Pickaxe",
-        "minY": -17.650000000000006,
-        "maxY": 45.09384250303257,
-        "soleClearance": 0.3499999999999943,
-        "bodyClearance": 0.3499999999999943,
+        "minY": -17.650000000000002,
+        "maxY": 45.093842503032576,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -5435,8 +5435,23 @@
     "geometry": [
       {
         "mode": "KK_Pickaxe",
+        "minY": -17.650000000000006,
+        "maxY": 38.947598481216716,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Pickaxing",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Pickaxing",
         "minY": -17.65,
-        "maxY": 38.94759848121672,
+        "maxY": 38.610697014421945,
         "soleClearance": 0.3500000000000014,
         "bodyClearance": 0.3500000000000014,
         "tilt": 0,
@@ -5446,29 +5461,14 @@
   },
   {
     "name": "KK_Pickaxing",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Pickaxing",
-        "minY": -17.650000000000002,
-        "maxY": 38.61069701442194,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Pickaxing",
     "fraction": 0.4,
     "geometry": [
       {
         "mode": "KK_Pickaxing",
-        "minY": -17.650000000000002,
-        "maxY": 39.01007493165587,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.65,
+        "maxY": 39.01007493165588,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -5480,10 +5480,10 @@
     "geometry": [
       {
         "mode": "KK_Pickaxing",
-        "minY": -17.64999999999999,
-        "maxY": 38.96688770793822,
-        "soleClearance": 0.3500000000000085,
-        "bodyClearance": 0.3500000000000085,
+        "minY": -17.649999999999995,
+        "maxY": 38.9668877079382,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -5495,10 +5495,10 @@
     "geometry": [
       {
         "mode": "KK_Saw",
-        "minY": -17.65,
-        "maxY": 38.43264224673991,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.649999999999995,
+        "maxY": 38.4326422467399,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -5511,7 +5511,7 @@
       {
         "mode": "KK_Saw",
         "minY": -17.65000008322115,
-        "maxY": 38.606380578443144,
+        "maxY": 38.606380578290086,
         "soleClearance": 0.3499999167788488,
         "bodyClearance": 0.3499999167788488,
         "tilt": 0,
@@ -5525,10 +5525,10 @@
     "geometry": [
       {
         "mode": "KK_Saw",
-        "minY": -17.649999999999995,
-        "maxY": 37.457407445320136,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.65,
+        "maxY": 37.45740744532013,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -5540,10 +5540,10 @@
     "geometry": [
       {
         "mode": "KK_Sawing",
-        "minY": -17.649999999999995,
-        "maxY": 38.63096543929514,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.64999999999999,
+        "maxY": 38.63096543929515,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
         "tilt": 0,
         "invalid": 0
       }
@@ -5555,10 +5555,10 @@
     "geometry": [
       {
         "mode": "KK_Sawing",
-        "minY": -17.65,
+        "minY": -17.650000000000002,
         "maxY": 37.42332530927047,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -5570,10 +5570,10 @@
     "geometry": [
       {
         "mode": "KK_Sawing",
-        "minY": -17.650000000000002,
-        "maxY": 38.16240054772789,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.65,
+        "maxY": 38.1624005477279,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -5585,10 +5585,10 @@
     "geometry": [
       {
         "mode": "KK_Work_A",
-        "minY": -17.650000000000002,
-        "maxY": 38.366694566766945,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.65,
+        "maxY": 38.36669456676694,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -5600,10 +5600,10 @@
     "geometry": [
       {
         "mode": "KK_Work_A",
-        "minY": -17.650000025085674,
-        "maxY": 37.56271741954121,
-        "soleClearance": 0.34999997491432566,
-        "bodyClearance": 0.34999997491432566,
+        "minY": -17.65000002508567,
+        "maxY": 37.56271741938815,
+        "soleClearance": 0.3499999749143292,
+        "bodyClearance": 0.3499999749143292,
         "tilt": 0,
         "invalid": 0
       }
@@ -5615,10 +5615,10 @@
     "geometry": [
       {
         "mode": "KK_Work_A",
-        "minY": -17.65000004063395,
-        "maxY": 38.075678759675384,
-        "soleClearance": 0.34999995936604833,
-        "bodyClearance": 0.34999995936604833,
+        "minY": -17.650000040633948,
+        "maxY": 38.07567875952233,
+        "soleClearance": 0.3499999593660519,
+        "bodyClearance": 0.3499999593660519,
         "tilt": 0,
         "invalid": 0
       }
@@ -5630,10 +5630,10 @@
     "geometry": [
       {
         "mode": "KK_Work_B",
-        "minY": -17.65,
+        "minY": -17.650000000000002,
         "maxY": 38.60567114141902,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -5645,10 +5645,10 @@
     "geometry": [
       {
         "mode": "KK_Work_B",
-        "minY": -17.65000009524185,
-        "maxY": 38.74958286405309,
-        "soleClearance": 0.3499999047581497,
-        "bodyClearance": 0.3499999047581497,
+        "minY": -17.650000095241854,
+        "maxY": 38.74958286390003,
+        "soleClearance": 0.34999990475814613,
+        "bodyClearance": 0.34999990475814613,
         "tilt": 0,
         "invalid": 0
       }
@@ -5660,23 +5660,8 @@
     "geometry": [
       {
         "mode": "KK_Work_B",
-        "minY": -17.65,
-        "maxY": 40.158165463824986,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
-        "tilt": 0,
-        "invalid": 0
-      }
-    ]
-  },
-  {
-    "name": "KK_Work_C",
-    "fraction": 0.05,
-    "geometry": [
-      {
-        "mode": "KK_Work_C",
         "minY": -17.650000000000006,
-        "maxY": 38.495757190693176,
+        "maxY": 40.15816546397804,
         "soleClearance": 0.3499999999999943,
         "bodyClearance": 0.3499999999999943,
         "tilt": 0,
@@ -5686,14 +5671,29 @@
   },
   {
     "name": "KK_Work_C",
+    "fraction": 0.05,
+    "geometry": [
+      {
+        "mode": "KK_Work_C",
+        "minY": -17.649999999999995,
+        "maxY": 38.49575719069318,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  },
+  {
+    "name": "KK_Work_C",
     "fraction": 0.4,
     "geometry": [
       {
         "mode": "KK_Work_C",
-        "minY": -17.65,
+        "minY": -17.650000000000002,
         "maxY": 36.62100909119758,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
         "tilt": 0,
         "invalid": 0
       }
@@ -5705,10 +5705,10 @@
     "geometry": [
       {
         "mode": "KK_Work_C",
-        "minY": -17.65,
-        "maxY": 36.506423647079906,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.649999999999995,
+        "maxY": 36.50642364707991,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -5721,7 +5721,7 @@
       {
         "mode": "KK_Working_A",
         "minY": -17.65000003852835,
-        "maxY": 38.32728018234941,
+        "maxY": 38.32728018219636,
         "soleClearance": 0.34999996147164936,
         "bodyClearance": 0.34999996147164936,
         "tilt": 0,
@@ -5735,10 +5735,10 @@
     "geometry": [
       {
         "mode": "KK_Working_A",
-        "minY": -17.650000038930493,
-        "maxY": 38.420026402355035,
-        "soleClearance": 0.34999996106950704,
-        "bodyClearance": 0.34999996106950704,
+        "minY": -17.65000003893049,
+        "maxY": 38.42002640220197,
+        "soleClearance": 0.3499999610695106,
+        "bodyClearance": 0.3499999610695106,
         "tilt": 0,
         "invalid": 0
       }
@@ -5751,7 +5751,7 @@
       {
         "mode": "KK_Working_A",
         "minY": -17.650000035272328,
-        "maxY": 37.96824560979429,
+        "maxY": 37.968245609641244,
         "soleClearance": 0.34999996472767236,
         "bodyClearance": 0.34999996472767236,
         "tilt": 0,
@@ -5765,10 +5765,10 @@
     "geometry": [
       {
         "mode": "KK_Working_B",
-        "minY": -17.649999999999995,
-        "maxY": 39.17245515250466,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.65,
+        "maxY": 39.17245515265772,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -5780,10 +5780,10 @@
     "geometry": [
       {
         "mode": "KK_Working_B",
-        "minY": -17.650000000000002,
-        "maxY": 38.42378547032467,
-        "soleClearance": 0.34999999999999787,
-        "bodyClearance": 0.34999999999999787,
+        "minY": -17.650000000000006,
+        "maxY": 38.42378547032466,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
         "tilt": 0,
         "invalid": 0
       }
@@ -5795,10 +5795,10 @@
     "geometry": [
       {
         "mode": "KK_Working_B",
-        "minY": -17.649999999999995,
-        "maxY": 40.604364807444625,
-        "soleClearance": 0.350000000000005,
-        "bodyClearance": 0.350000000000005,
+        "minY": -17.65,
+        "maxY": 40.604364807597676,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
         "tilt": 0,
         "invalid": 0
       }
@@ -5810,10 +5810,10 @@
     "geometry": [
       {
         "mode": "KK_Working_C",
-        "minY": -17.65,
-        "maxY": 36.47985183306931,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "minY": -17.649999999999995,
+        "maxY": 36.47985183306932,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }
@@ -5825,10 +5825,10 @@
     "geometry": [
       {
         "mode": "KK_Working_C",
-        "minY": -17.65,
+        "minY": -17.649999999999995,
         "maxY": 36.47985495193005,
-        "soleClearance": 0.3500000000000014,
-        "bodyClearance": 0.3500000000000014,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
         "tilt": 0,
         "invalid": 0
       }

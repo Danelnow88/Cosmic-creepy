@@ -43,7 +43,7 @@
       "standard": "render-cadence-exponential",
       "points": 100,
       "response": 32,
-      "frames": 2,
+      "frames": 1,
       "maxSegment": 2.949631156029245
     },
     "prediction": {
@@ -72,18 +72,18 @@
       "standard": "render-cadence-exponential",
       "points": 100,
       "response": 32,
-      "frames": 51,
-      "maxSegment": 2.959475284688624
+      "frames": 49,
+      "maxSegment": 2.9594752846532004
     },
     "prediction": {
       "impact": [
-        -5.644364713924258,
-        6.549260922610813,
-        -188.53641066337468
+        -5.644364710225562,
+        6.549260922451796,
+        -188.53641066324127
       ],
       "flight": 1.1607259114583333,
       "blocked": false,
-      "range": 192.27108897294642
+      "range": 192.27108897273786
     }
   },
   "impact": {
@@ -98,15 +98,15 @@
       "z": 65
     },
     "lastImpact": [
-      -5.64436471392425,
-      6.549260922611134,
-      -188.53641066337443
+      -5.644364713264751,
+      6.549260922582777,
+      -188.5364106633507
     ],
     "telemetry": {
       "standard": "render-cadence-exponential",
       "points": 100,
       "response": 32,
-      "frames": 56,
+      "frames": 54,
       "maxSegment": 2.959478123487235
     },
     "prediction": {

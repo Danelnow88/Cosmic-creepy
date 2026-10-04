@@ -17,3 +17,9 @@ QA empaquetado: --kaykit-qa verifica estados reales, disparos aceptados, recarga
 
 ## Resultado final de validación
 Regresión completa ejecutada en COSMIC ROLL 3D.exe: 417 comprobaciones aprobadas (402 existentes + 15 KayKit); 390 poses muestreadas, 648 configuraciones de cámara y prueba online real entre dos ventanas. Cero errores de renderer registrados. QA mundo registró 60 FPS, igual a la referencia anterior; es una muestra, no una garantía para todo hardware/escenario. Checks Node: física 8, colisiones 15, estrategia 54; 74 archivos originales de referencia preservados y sintaxis válida. Log de ejecución: Juego/kaykit-final.out.log. Sin commit/push.
+
+## Corrección de vibración de locomoción
+Reproducido con variaciones de velocidad cerca de 170: 52 cambios walk/run en seis segundos; con una pérdida de apoyo de un cuadro cada ocho: 90 cambios jump/land. Ahora ambos casos dan cero cambios espurios. Histeresis de locomoción (correr entra >185, sale <155; caminar entra >8, sale <3), conserva la fase de zancada entre caminar/correr y detiene acciones inactivas al completar su fundido. La representación espera 80 ms antes de interpretar una pérdida de apoyo como caída; un salto real con velocidad vertical ascendente >40 es inmediato. Física, collider, velocidad de juego, combate y cámara siguen intactos. La transición de aterrizaje se emite sólo al volver de un estado aéreo confirmado.
+
+Regresiones nuevas en verify-humanoid-debug.cjs: velocidad alrededor del umbral, microfallos de apoyo, salto real inmediato y caída sostenida. Respaldo antes-locomocion en resources/app/respaldos. No es IK ni una eliminación del movimiento natural de la zancada.
+Validación de esta corrección: --thirdperson-qa aprobado, 421 comprobaciones (28 de humanoides + 15 KayKit), 390 poses, 648 configuraciones de cámara. Cero fallos de renderer registrados y muestra del mundo a 60 FPS. Log: Juego/locomotion-fix.out.log.

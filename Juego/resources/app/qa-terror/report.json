@@ -47,12 +47,12 @@
       "shotVisual": 0,
       "hurt": 0,
       "hit": 0,
-      "time": 56.27499999999745,
+      "time": 56.25833333333078,
       "paused": false,
       "dead": false,
       "won": false,
       "cameraMode": "free",
-      "lastMouse": 8.758333333333477,
+      "lastMouse": 8.741666666666811,
       "matchMode": false,
       "dimension": 0
     },
@@ -71,7 +71,7 @@
       "fauna": 24,
       "rainDrops": 260,
       "region": "umbral",
-      "weather": 0.9932974780168868
+      "weather": 0.9932634376526197
     },
     "expedition": {
       "relays": [
@@ -87,7 +87,7 @@
       "upgrades": 0,
       "visited": [],
       "notice": "Explorá la marisma y activá los tres relés.",
-      "noticeUntil": 64.27499999999745
+      "noticeUntil": 64.25833333333078
     },
     "audio": {
       "started": true,
@@ -95,15 +95,15 @@
       "voices": 1,
       "voiceLimit": 32,
       "peakVoices": 32,
-      "played": 341,
+      "played": 342,
       "dropped": 325,
       "stolen": 41,
       "volume": 0.65,
       "mute": false,
       "region": 0,
       "paused": false,
-      "peak": 0.11130280047655106,
-      "rms": 0.03032171352686851,
+      "peak": 0.1404321938753128,
+      "rms": 0.027705711686208456,
       "buses": [
         "master",
         "ambient",
@@ -128,8 +128,8 @@
         "hush": 0,
         "uneaseCalls": 0,
         "wonderCalls": 0,
-        "nextUnease": 69.97621565344488,
-        "nextWonder": 60.27499999999745
+        "nextUnease": 66.46320090888123,
+        "nextWonder": 60.25833333333078
       },
       "growth": {
         "source": "original-voiced-granular",
@@ -143,9 +143,9 @@
       "emitters": 9,
       "emitterLimit": 12,
       "panners": 44,
-      "spatialEvents": 290,
+      "spatialEvents": 291,
       "flybys": 1,
-      "occlusionQueries": 2749,
+      "occlusionQueries": 2711,
       "events": {
         "growth-air": 34,
         "jump": 1,
@@ -155,7 +155,7 @@
         "shot": 13,
         "reload": 2,
         "impact": 11,
-        "growth-hover": 3,
+        "growth-hover": 4,
         "relay": 8,
         "growth-touch": 11,
         "boss": 203,
@@ -171,14 +171,14 @@
         "y": 29.836452503503875,
         "z": 0,
         "forward": {
-          "x": 0.0037678241752722606,
-          "y": -0.3108001431862367,
-          "z": -0.9504678187589515
+          "x": 0.0037339966717172745,
+          "y": -0.31126895207720223,
+          "z": -0.9503145251660715
         },
         "up": {
-          "x": 0.0012320575919469545,
-          "y": 0.9504752868935702,
-          "z": -0.31079770114766836
+          "x": 0.0012230353512610484,
+          "y": 0.9503218609885602,
+          "z": -0.3112665492978151
         }
       },
       "sources": [
@@ -355,7 +355,7 @@
     },
     "terrorAudio": {
       "started": true,
-      "wind": 0.0007348402868956327,
+      "wind": 0.0004914369201287627,
       "metal": 0,
       "voices": 0,
       "voiceLimit": 8,
@@ -374,8 +374,8 @@
       "vignette": true,
       "lens": true,
       "lensAmount": 0.38071243981426495,
-      "lensRadius": 0.03158741004556252,
-      "lensDepth": 0.9995161566720379,
+      "lensRadius": 0.03159104962598202,
+      "lensDepth": 0.9995160970815207,
       "depthOcclusion": true,
       "accretionArcs": true,
       "colorCorrect": false,
@@ -440,7 +440,7 @@
     "render": {
       "triangles": 679690,
       "calls": 446,
-      "frameSerial": 1663,
+      "frameSerial": 1639,
       "frameFaults": 0,
       "contextLost": false,
       "lastFrameError": null
@@ -478,12 +478,12 @@
       "shotVisual": 0,
       "hurt": 0,
       "hit": 0,
-      "time": 58.28333333333067,
+      "time": 58.266666666664,
       "paused": false,
       "dead": false,
       "won": false,
       "cameraMode": "free",
-      "lastMouse": 8.758333333333477,
+      "lastMouse": 8.741666666666811,
       "matchMode": false,
       "dimension": 0
     },
@@ -502,7 +502,7 @@
       "fauna": 24,
       "rainDrops": 260,
       "region": "umbral",
-      "weather": 0.9967708206446286
+      "weather": 0.9967471383378188
     },
     "expedition": {
       "relays": [
@@ -520,7 +520,7 @@
         "umbral"
       ],
       "notice": "UMBRAL · MARISMA VIVA · región descubierta",
-      "noticeUntil": 61.28333333333078
+      "noticeUntil": 61.266666666664115
     },
     "audio": {
       "started": true,
@@ -528,15 +528,15 @@
       "voices": 7,
       "voiceLimit": 32,
       "peakVoices": 32,
-      "played": 348,
+      "played": 349,
       "dropped": 325,
       "stolen": 41,
       "volume": 0.65,
       "mute": false,
       "region": 0,
       "paused": false,
-      "peak": 0.0668182373046875,
-      "rms": 0.01876278106733659,
+      "peak": 0.07161957770586014,
+      "rms": 0.01891652646173793,
       "buses": [
         "master",
         "ambient",
@@ -555,30 +555,30 @@
         0,
         0
       ],
-      "threat": 0.11598356341223674,
+      "threat": 0.11598359222953171,
       "duck": 1,
       "atmosphere": {
         "hush": 0,
         "uneaseCalls": 0,
         "wonderCalls": 0,
-        "nextUnease": 69.97621565344488,
-        "nextWonder": 60.27499999999745
+        "nextUnease": 66.46320090888123,
+        "nextWonder": 60.25833333333078
       },
       "growth": {
         "source": "original-voiced-granular",
         "grains": 1,
         "touches": 0,
         "focus": null,
-        "level": 0.4108555473483701,
+        "level": 0.4108555376225331,
         "pad": false,
         "soundscape": "natural-marsh"
       },
       "emitters": 9,
       "emitterLimit": 12,
       "panners": 44,
-      "spatialEvents": 297,
+      "spatialEvents": 298,
       "flybys": 1,
-      "occlusionQueries": 2768,
+      "occlusionQueries": 2730,
       "events": {
         "growth-air": 34,
         "jump": 1,
@@ -588,7 +588,7 @@
         "shot": 13,
         "reload": 2,
         "impact": 11,
-        "growth-hover": 3,
+        "growth-hover": 4,
         "relay": 8,
         "growth-touch": 11,
         "boss": 203,
@@ -679,16 +679,16 @@
           "id": "enemy-3",
           "kind": "enemy",
           "position": {
-            "x": 28.046779730282502,
-            "y": 27.727593431319715,
-            "z": -537.5034689544467
+            "x": 28.046918862249274,
+            "y": 27.727606040909045,
+            "z": -537.5032014265176
           },
           "category": "enemies",
-          "distance": 53.823883943644304,
+          "distance": 53.823857947458954,
           "occlusion": 0.3333333333333333,
-          "cutoff": 1563.4890148014208,
+          "cutoff": 1563.4899686835952,
           "gain": 0.74,
-          "audibility": 0.05499417327629561
+          "audibility": 0.05499419983772722
         },
         {
           "id": "goal",
@@ -758,9 +758,9 @@
       "emergency": 0,
       "matches": 3,
       "lit": true,
-      "fear": 0.2797074717608413,
-      "darkness": 0.2961792036742862,
-      "flicker": 0.8594525683023606,
+      "fear": 0.27970861608343023,
+      "darkness": 0.2913616238699266,
+      "flicker": 0.8676124256945689,
       "movementMultiplier": 1,
       "aggressionMultiplier": 1,
       "stage": "calm",
@@ -770,7 +770,7 @@
       "eventsPending": 0
     },
     "lighting": {
-      "intensity": 8594.525683023607,
+      "intensity": 8676.124256945688,
       "radius": 380
     },
     "shelters": {
@@ -788,8 +788,8 @@
     },
     "terrorAudio": {
       "started": true,
-      "wind": 0.019304338842630386,
-      "metal": 0.000031015657441457734,
+      "wind": 0.01906500943005085,
+      "metal": 0.000024839708203217015,
       "voices": 0,
       "voiceLimit": 8,
       "sharedContext": true,
@@ -800,8 +800,8 @@
       "width": 1088,
       "height": 672,
       "scale": 0.8,
-      "fear": 0.2797074717608413,
-      "darkness": 0.2961792036742862,
+      "fear": 0.27970861608343023,
+      "darkness": 0.2913616238699266,
       "chromatic": true,
       "grain": true,
       "vignette": true,
@@ -873,7 +873,7 @@
     "render": {
       "triangles": 680346,
       "calls": 455,
-      "frameSerial": 1664,
+      "frameSerial": 1640,
       "frameFaults": 0,
       "contextLost": false,
       "lastFrameError": null
@@ -911,12 +911,12 @@
       "shotVisual": 0,
       "hurt": 0,
       "hit": 0,
-      "time": 58.78333333333064,
+      "time": 58.76666666666397,
       "paused": false,
       "dead": false,
       "won": false,
       "cameraMode": "free",
-      "lastMouse": 8.758333333333477,
+      "lastMouse": 8.741666666666811,
       "matchMode": false,
       "dimension": 0
     },
@@ -935,7 +935,7 @@
       "fauna": 24,
       "rainDrops": 260,
       "region": "umbral",
-      "weather": 0.9974411680124582
+      "weather": 0.9974200747748168
     },
     "expedition": {
       "relays": [
@@ -953,7 +953,7 @@
         "umbral"
       ],
       "notice": "UMBRAL · MARISMA VIVA · región descubierta",
-      "noticeUntil": 61.28333333333078
+      "noticeUntil": 61.266666666664115
     },
     "audio": {
       "started": true,
@@ -961,15 +961,15 @@
       "voices": 5,
       "voiceLimit": 32,
       "peakVoices": 32,
-      "played": 348,
+      "played": 349,
       "dropped": 325,
       "stolen": 41,
       "volume": 0.65,
       "mute": false,
       "region": 0,
       "paused": false,
-      "peak": 0.06237395480275154,
-      "rms": 0.020831550261384668,
+      "peak": 0.06694640964269638,
+      "rms": 0.02006019742551087,
       "buses": [
         "master",
         "ambient",
@@ -988,30 +988,30 @@
         0,
         0
       ],
-      "threat": 0.1969025498183125,
+      "threat": 0.196902598740752,
       "duck": 1,
       "atmosphere": {
         "hush": 0,
         "uneaseCalls": 0,
         "wonderCalls": 0,
-        "nextUnease": 69.97621565344488,
-        "nextWonder": 60.27499999999745
+        "nextUnease": 66.46320090888123,
+        "nextWonder": 60.25833333333078
       },
       "growth": {
         "source": "original-voiced-granular",
         "grains": 1,
         "touches": 0,
         "focus": null,
-        "level": 0.38354538943631955,
+        "level": 0.3835453729249962,
         "pad": false,
         "soundscape": "natural-marsh"
       },
       "emitters": 9,
       "emitterLimit": 12,
       "panners": 44,
-      "spatialEvents": 297,
+      "spatialEvents": 298,
       "flybys": 1,
-      "occlusionQueries": 2783,
+      "occlusionQueries": 2745,
       "events": {
         "growth-air": 34,
         "jump": 1,
@@ -1021,7 +1021,7 @@
         "shot": 13,
         "reload": 2,
         "impact": 11,
-        "growth-hover": 3,
+        "growth-hover": 4,
         "relay": 8,
         "growth-touch": 11,
         "boss": 203,
@@ -1112,16 +1112,16 @@
           "id": "enemy-3",
           "kind": "enemy",
           "position": {
-            "x": 28.046779730282502,
-            "y": 27.727593431319715,
-            "z": -537.5034689544467
+            "x": 28.046918862249274,
+            "y": 27.727606040909045,
+            "z": -537.5032014265176
           },
           "category": "enemies",
-          "distance": 53.823883943644304,
+          "distance": 53.823857947458954,
           "occlusion": 0.3333333333333333,
-          "cutoff": 1563.4890148014208,
+          "cutoff": 1563.4899686835952,
           "gain": 0.74,
-          "audibility": 0.05499417327629561
+          "audibility": 0.05499419983772722
         },
         {
           "id": "goal",
@@ -1221,8 +1221,8 @@
     },
     "terrorAudio": {
       "started": true,
-      "wind": 0.02456255629658699,
-      "metal": 0.0005448783631436527,
+      "wind": 0.0241351667791605,
+      "metal": 0.0005244740750640631,
       "voices": 1,
       "voiceLimit": 8,
       "sharedContext": true,
@@ -1306,7 +1306,7 @@
     "render": {
       "triangles": 680346,
       "calls": 455,
-      "frameSerial": 1666,
+      "frameSerial": 1642,
       "frameFaults": 0,
       "contextLost": false,
       "lastFrameError": null
@@ -1344,12 +1344,12 @@
       "shotVisual": 0,
       "hurt": 0,
       "hit": 0,
-      "time": 58.78333333333064,
+      "time": 58.76666666666397,
       "paused": false,
       "dead": false,
       "won": false,
       "cameraMode": "free",
-      "lastMouse": 8.758333333333477,
+      "lastMouse": 8.741666666666811,
       "matchMode": false,
       "dimension": 0
     },
@@ -1368,7 +1368,7 @@
       "fauna": 24,
       "rainDrops": 260,
       "region": "umbral",
-      "weather": 0.9974411680124582
+      "weather": 0.9974200747748168
     },
     "expedition": {
       "relays": [
@@ -1386,7 +1386,7 @@
         "umbral"
       ],
       "notice": "UMBRAL · MARISMA VIVA · región descubierta",
-      "noticeUntil": 61.28333333333078
+      "noticeUntil": 61.266666666664115
     },
     "audio": {
       "started": true,
@@ -1394,15 +1394,15 @@
       "voices": 5,
       "voiceLimit": 32,
       "peakVoices": 32,
-      "played": 348,
+      "played": 349,
       "dropped": 325,
       "stolen": 41,
       "volume": 0.65,
       "mute": false,
       "region": 0,
       "paused": false,
-      "peak": 0.08058672398328781,
-      "rms": 0.02246544220793434,
+      "peak": 0.06694640964269638,
+      "rms": 0.019203521999760925,
       "buses": [
         "master",
         "ambient",
@@ -1421,30 +1421,30 @@
         0,
         0
       ],
-      "threat": 0.1969025498183125,
+      "threat": 0.196902598740752,
       "duck": 1,
       "atmosphere": {
         "hush": 0,
         "uneaseCalls": 0,
         "wonderCalls": 0,
-        "nextUnease": 69.97621565344488,
-        "nextWonder": 60.27499999999745
+        "nextUnease": 66.46320090888123,
+        "nextWonder": 60.25833333333078
       },
       "growth": {
         "source": "original-voiced-granular",
         "grains": 1,
         "touches": 0,
         "focus": null,
-        "level": 0.38354538943631955,
+        "level": 0.3835453729249962,
         "pad": false,
         "soundscape": "natural-marsh"
       },
       "emitters": 9,
       "emitterLimit": 12,
       "panners": 44,
-      "spatialEvents": 297,
+      "spatialEvents": 298,
       "flybys": 1,
-      "occlusionQueries": 2783,
+      "occlusionQueries": 2745,
       "events": {
         "growth-air": 34,
         "jump": 1,
@@ -1454,7 +1454,7 @@
         "shot": 13,
         "reload": 2,
         "impact": 11,
-        "growth-hover": 3,
+        "growth-hover": 4,
         "relay": 8,
         "growth-touch": 11,
         "boss": 203,
@@ -1545,16 +1545,16 @@
           "id": "enemy-3",
           "kind": "enemy",
           "position": {
-            "x": 28.046779730282502,
-            "y": 27.727593431319715,
-            "z": -537.5034689544467
+            "x": 28.046918862249274,
+            "y": 27.727606040909045,
+            "z": -537.5032014265176
           },
           "category": "enemies",
-          "distance": 53.823883943644304,
+          "distance": 53.823857947458954,
           "occlusion": 0.3333333333333333,
-          "cutoff": 1563.4890148014208,
+          "cutoff": 1563.4899686835952,
           "gain": 0.74,
-          "audibility": 0.05499417327629561
+          "audibility": 0.05499419983772722
         },
         {
           "id": "goal",
@@ -1654,8 +1654,8 @@
     },
     "terrorAudio": {
       "started": true,
-      "wind": 0.02603386528789997,
-      "metal": 0.0010670889168977737,
+      "wind": 0.02546495944261551,
+      "metal": 0.0009442779701203108,
       "voices": 1,
       "voiceLimit": 8,
       "sharedContext": true,
@@ -1739,7 +1739,7 @@
     "render": {
       "triangles": 680346,
       "calls": 455,
-      "frameSerial": 1668,
+      "frameSerial": 1644,
       "frameFaults": 0,
       "contextLost": false,
       "lastFrameError": null
@@ -1777,12 +1777,12 @@
       "shotVisual": 0,
       "hurt": 0,
       "hit": 0,
-      "time": 58.78333333333064,
+      "time": 58.76666666666397,
       "paused": false,
       "dead": false,
       "won": false,
       "cameraMode": "free",
-      "lastMouse": 8.758333333333477,
+      "lastMouse": 8.741666666666811,
       "matchMode": false,
       "dimension": 0
     },
@@ -1801,7 +1801,7 @@
       "fauna": 24,
       "rainDrops": 260,
       "region": "umbral",
-      "weather": 0.9974411680124582
+      "weather": 0.9974200747748168
     },
     "expedition": {
       "relays": [
@@ -1819,7 +1819,7 @@
         "umbral"
       ],
       "notice": "UMBRAL · MARISMA VIVA · región descubierta",
-      "noticeUntil": 61.28333333333078
+      "noticeUntil": 61.266666666664115
     },
     "audio": {
       "started": true,
@@ -1827,15 +1827,15 @@
       "voices": 2,
       "voiceLimit": 32,
       "peakVoices": 32,
-      "played": 348,
+      "played": 349,
       "dropped": 325,
       "stolen": 41,
       "volume": 0.65,
       "mute": false,
       "region": 0,
       "paused": false,
-      "peak": 0.08885139226913452,
-      "rms": 0.03184217229119496,
+      "peak": 0.09333084523677826,
+      "rms": 0.02944585789018438,
       "buses": [
         "master",
         "ambient",
@@ -1854,30 +1854,30 @@
         0,
         0
       ],
-      "threat": 0.1969025498183125,
+      "threat": 0.196902598740752,
       "duck": 1,
       "atmosphere": {
         "hush": 0,
         "uneaseCalls": 0,
         "wonderCalls": 0,
-        "nextUnease": 69.97621565344488,
-        "nextWonder": 60.27499999999745
+        "nextUnease": 66.46320090888123,
+        "nextWonder": 60.25833333333078
       },
       "growth": {
         "source": "original-voiced-granular",
         "grains": 1,
         "touches": 0,
         "focus": null,
-        "level": 0.38354538943631955,
+        "level": 0.3835453729249962,
         "pad": false,
         "soundscape": "natural-marsh"
       },
       "emitters": 9,
       "emitterLimit": 12,
       "panners": 44,
-      "spatialEvents": 297,
+      "spatialEvents": 298,
       "flybys": 1,
-      "occlusionQueries": 2815,
+      "occlusionQueries": 2777,
       "events": {
         "growth-air": 34,
         "jump": 1,
@@ -1887,7 +1887,7 @@
         "shot": 13,
         "reload": 2,
         "impact": 11,
-        "growth-hover": 3,
+        "growth-hover": 4,
         "relay": 8,
         "growth-touch": 11,
         "boss": 203,
@@ -1978,16 +1978,16 @@
           "id": "enemy-3",
           "kind": "enemy",
           "position": {
-            "x": 28.046779730282502,
-            "y": 27.727593431319715,
-            "z": -537.5034689544467
+            "x": 28.046918862249274,
+            "y": 27.727606040909045,
+            "z": -537.5032014265176
           },
           "category": "enemies",
-          "distance": 53.823883943644304,
+          "distance": 53.823857947458954,
           "occlusion": 0.3333333333333333,
-          "cutoff": 1563.4890148014208,
+          "cutoff": 1563.4899686835952,
           "gain": 0.74,
-          "audibility": 0.05499417327629561
+          "audibility": 0.05499419983772722
         },
         {
           "id": "goal",
@@ -2087,8 +2087,8 @@
     },
     "terrorAudio": {
       "started": true,
-      "wind": 0,
-      "metal": 0,
+      "wind": 0.0342375747859478,
+      "metal": 0.0069544194266200066,
       "voices": 8,
       "voiceLimit": 8,
       "sharedContext": true,
@@ -2172,7 +2172,7 @@
     "render": {
       "triangles": 680346,
       "calls": 455,
-      "frameSerial": 1692,
+      "frameSerial": 1667,
       "frameFaults": 0,
       "contextLost": false,
       "lastFrameError": null
@@ -2210,12 +2210,12 @@
       "shotVisual": 0,
       "hurt": 0,
       "hit": 0,
-      "time": 59.08333333333062,
+      "time": 59.066666666663956,
       "paused": false,
       "dead": false,
       "won": false,
       "cameraMode": "free",
-      "lastMouse": 8.758333333333477,
+      "lastMouse": 8.741666666666811,
       "matchMode": false,
       "dimension": 0
     },
@@ -2234,7 +2234,7 @@
       "fauna": 24,
       "rainDrops": 260,
       "region": "umbral",
-      "weather": 0.9978060750296981
+      "weather": 0.9977865368414424
     },
     "expedition": {
       "relays": [
@@ -2252,7 +2252,7 @@
         "umbral"
       ],
       "notice": "UMBRAL · MARISMA VIVA · región descubierta",
-      "noticeUntil": 61.28333333333078
+      "noticeUntil": 61.266666666664115
     },
     "audio": {
       "started": true,
@@ -2260,15 +2260,15 @@
       "voices": 1,
       "voiceLimit": 32,
       "peakVoices": 32,
-      "played": 350,
+      "played": 351,
       "dropped": 325,
       "stolen": 41,
       "volume": 0.65,
       "mute": false,
       "region": 0,
       "paused": false,
-      "peak": 0.09882119297981262,
-      "rms": 0.03373773470365839,
+      "peak": 0.10570558905601501,
+      "rms": 0.035499877472081096,
       "buses": [
         "master",
         "ambient",
@@ -2287,30 +2287,30 @@
         0,
         0
       ],
-      "threat": 0.2533578109634952,
+      "threat": 0.253357873912818,
       "duck": 1,
       "atmosphere": {
         "hush": 0,
         "uneaseCalls": 0,
         "wonderCalls": 0,
-        "nextUnease": 69.97621565344488,
-        "nextWonder": 60.27499999999745
+        "nextUnease": 66.46320090888123,
+        "nextWonder": 60.25833333333078
       },
       "growth": {
         "source": "original-voiced-granular",
         "grains": 1,
         "touches": 0,
         "focus": null,
-        "level": 0.3644917387998204,
+        "level": 0.36449171755442394,
         "pad": false,
         "soundscape": "natural-marsh"
       },
       "emitters": 9,
       "emitterLimit": 12,
       "panners": 44,
-      "spatialEvents": 299,
+      "spatialEvents": 300,
       "flybys": 2,
-      "occlusionQueries": 2893,
+      "occlusionQueries": 2857,
       "events": {
         "growth-air": 34,
         "jump": 1,
@@ -2320,7 +2320,7 @@
         "shot": 13,
         "reload": 2,
         "impact": 11,
-        "growth-hover": 3,
+        "growth-hover": 4,
         "relay": 8,
         "growth-touch": 11,
         "boss": 203,
@@ -2411,16 +2411,16 @@
           "id": "enemy-3",
           "kind": "enemy",
           "position": {
-            "x": 28.046779730282502,
-            "y": 27.727593431319715,
-            "z": -537.5034689544467
+            "x": 28.046918862249274,
+            "y": 27.727606040909045,
+            "z": -537.5032014265176
           },
           "category": "enemies",
-          "distance": 53.823883943644304,
+          "distance": 53.823857947458954,
           "occlusion": 0.3333333333333333,
-          "cutoff": 1563.4890148014208,
+          "cutoff": 1563.4899686835952,
           "gain": 0.74,
-          "audibility": 0.05499417327629561
+          "audibility": 0.05499419983772722
         },
         {
           "id": "goal",
@@ -2520,8 +2520,8 @@
     },
     "terrorAudio": {
       "started": true,
-      "wind": 0.048498526215553284,
-      "metal": 0.014634323306381702,
+      "wind": 0.04779036343097687,
+      "metal": 0.014531067572534084,
       "voices": 0,
       "voiceLimit": 8,
       "sharedContext": true,
@@ -2605,7 +2605,7 @@
     "render": {
       "triangles": 680346,
       "calls": 455,
-      "frameSerial": 1753,
+      "frameSerial": 1728,
       "frameFaults": 0,
       "contextLost": false,
       "lastFrameError": null
@@ -2643,12 +2643,12 @@
       "shotVisual": 0,
       "hurt": 0,
       "hit": 0,
-      "time": 59.08333333333062,
+      "time": 59.066666666663956,
       "paused": false,
       "dead": false,
       "won": false,
       "cameraMode": "free",
-      "lastMouse": 8.758333333333477,
+      "lastMouse": 8.741666666666811,
       "matchMode": false,
       "dimension": 0
     },
@@ -2667,7 +2667,7 @@
       "fauna": 24,
       "rainDrops": 260,
       "region": "umbral",
-      "weather": 0.9978060750296981
+      "weather": 0.9977865368414424
     },
     "expedition": {
       "relays": [
@@ -2683,7 +2683,7 @@
       "upgrades": 0,
       "visited": [],
       "notice": "Explorá la marisma y activá los tres relés.",
-      "noticeUntil": 67.08333333333061
+      "noticeUntil": 67.06666666666396
     },
     "audio": {
       "started": true,
@@ -2691,15 +2691,15 @@
       "voices": 1,
       "voiceLimit": 32,
       "peakVoices": 32,
-      "played": 351,
+      "played": 352,
       "dropped": 325,
       "stolen": 41,
       "volume": 0.65,
       "mute": false,
       "region": 0,
       "paused": false,
-      "peak": 0.12122148275375366,
-      "rms": 0.03208125604096668,
+      "peak": 0.11801205575466156,
+      "rms": 0.040624196726567745,
       "buses": [
         "master",
         "ambient",
@@ -2724,8 +2724,8 @@
         "hush": 0,
         "uneaseCalls": 0,
         "wonderCalls": 0,
-        "nextUnease": 68.21699249356092,
-        "nextWonder": 63.08333333333062
+        "nextUnease": 72.6381041465921,
+        "nextWonder": 63.066666666663956
       },
       "growth": {
         "source": "original-voiced-granular",
@@ -2739,9 +2739,9 @@
       "emitters": 9,
       "emitterLimit": 12,
       "panners": 44,
-      "spatialEvents": 300,
+      "spatialEvents": 301,
       "flybys": 2,
-      "occlusionQueries": 2943,
+      "occlusionQueries": 2891,
       "events": {
         "growth-air": 35,
         "jump": 1,
@@ -2751,7 +2751,7 @@
         "shot": 13,
         "reload": 2,
         "impact": 11,
-        "growth-hover": 3,
+        "growth-hover": 4,
         "relay": 8,
         "growth-touch": 11,
         "boss": 203,
@@ -2951,7 +2951,7 @@
     },
     "terrorAudio": {
       "started": true,
-      "wind": 0.0009763952693901956,
+      "wind": 0.0004914369201287627,
       "metal": 0,
       "voices": 0,
       "voiceLimit": 8,
@@ -3036,7 +3036,7 @@
     "render": {
       "triangles": 679698,
       "calls": 447,
-      "frameSerial": 1786,
+      "frameSerial": 1746,
       "frameFaults": 0,
       "contextLost": false,
       "lastFrameError": null

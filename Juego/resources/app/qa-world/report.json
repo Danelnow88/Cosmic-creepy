@@ -66,12 +66,12 @@
       "shotVisual": 0,
       "hurt": 0,
       "hit": 0,
-      "time": 11.91666666666663,
+      "time": 11.899999999999965,
       "paused": false,
       "dead": false,
       "won": false,
       "cameraMode": "free",
-      "lastMouse": 8.758333333333477,
+      "lastMouse": 8.741666666666811,
       "matchMode": false,
       "dimension": 0
     },
@@ -90,7 +90,7 @@
       "fauna": 24,
       "rainDrops": 260,
       "region": "umbral",
-      "weather": 0.6467646412145318
+      "weather": 0.6465654722131073
     },
     "expedition": {
       "relays": [
@@ -108,7 +108,7 @@
         "umbral"
       ],
       "notice": "UMBRAL · MARISMA VIVA · región descubierta",
-      "noticeUntil": 16.816666666666634
+      "noticeUntil": 16.79999999999997
     },
     "audio": {
       "started": true,
@@ -123,8 +123,8 @@
       "mute": false,
       "region": 0,
       "paused": false,
-      "peak": 0.05951908975839615,
-      "rms": 0.015616203135899736,
+      "peak": 0.05998282879590988,
+      "rms": 0.0153341233896062,
       "buses": [
         "master",
         "ambient",
@@ -143,21 +143,21 @@
         0,
         0
       ],
-      "threat": 0.07030800779035982,
+      "threat": 0.07032809932398369,
       "duck": 1,
       "atmosphere": {
-        "hush": 0.0017743358979822015,
+        "hush": 0.0017616754049346165,
         "uneaseCalls": 0,
         "wonderCalls": 0,
-        "nextUnease": 19.830132369634974,
-        "nextWonder": 15.808333333333303
+        "nextUnease": 19.81346570296831,
+        "nextWonder": 15.791666666666638
       },
       "growth": {
         "source": "original-voiced-granular",
         "grains": 1,
         "touches": 0,
         "focus": null,
-        "level": 0.42627104737075355,
+        "level": 0.4262642664781555,
         "pad": false,
         "soundscape": "natural-marsh"
       },
@@ -166,7 +166,7 @@
       "panners": 19,
       "spatialEvents": 12,
       "flybys": 0,
-      "occlusionQueries": 171,
+      "occlusionQueries": 182,
       "events": {
         "growth-air": 4,
         "jump": 1,
@@ -254,16 +254,16 @@
           "id": "enemy-3",
           "kind": "enemy",
           "position": {
-            "x": 27.797269057533857,
-            "y": 27.70392482219983,
-            "z": -538.2077929457927
+            "x": 27.819025779524587,
+            "y": 27.70663460926638,
+            "z": -538.008935024509
           },
           "category": "enemies",
-          "distance": 53.89293684973474,
+          "distance": 53.873188924156956,
           "occlusion": 1,
           "cutoff": 260,
           "gain": 0.21999999999999997,
-          "audibility": 0.016328670349764606
+          "audibility": 0.016334655838526096
         },
         {
           "id": "goal",
@@ -329,16 +329,16 @@
           "id": "flock",
           "kind": "fauna",
           "position": {
-            "x": -457.219510833591,
-            "y": 134.57210757487627,
-            "z": -293.5302643578821
+            "x": -457.47596867343896,
+            "y": 134.71583094342878,
+            "z": -293.4366681716779
           },
           "category": "biome",
-          "distance": 55.33346678314543,
+          "distance": 55.352418570767234,
           "occlusion": 0,
-          "cutoff": 3039.9548645086315,
+          "cutoff": 3038.521646871314,
           "gain": 1,
-          "audibility": 0.0994033411765113
+          "audibility": 0.0993696452495829
         }
       ],
       "latency": 0.01
@@ -348,9 +348,9 @@
       "emergency": 0,
       "matches": 3,
       "lit": true,
-      "fear": 0.015098126415269031,
-      "darkness": 0.2930990894075282,
-      "flicker": 0.8646695640116392,
+      "fear": 0.014954831768182845,
+      "darkness": 0.29047233151869556,
+      "flicker": 0.8691186796770061,
       "movementMultiplier": 1,
       "aggressionMultiplier": 1,
       "stage": "calm",
@@ -360,7 +360,7 @@
       "eventsPending": 0
     },
     "lighting": {
-      "intensity": 8646.695640116392,
+      "intensity": 8691.18679677006,
       "radius": 380
     },
     "shelters": {
@@ -378,8 +378,8 @@
     },
     "terrorAudio": {
       "started": true,
-      "wind": 0.0005074147484265268,
-      "metal": 7.237374433088917e-8,
+      "wind": 0.0005052988999523222,
+      "metal": 7.100647536617544e-8,
       "voices": 0,
       "voiceLimit": 8,
       "sharedContext": true,
@@ -390,8 +390,8 @@
       "width": 1088,
       "height": 672,
       "scale": 0.8,
-      "fear": 0.015098126415269031,
-      "darkness": 0.2930990894075282,
+      "fear": 0.014954831768182845,
+      "darkness": 0.29047233151869556,
       "chromatic": true,
       "grain": true,
       "vignette": true,
@@ -463,7 +463,7 @@
     "render": {
       "triangles": 679874,
       "calls": 452,
-      "frameSerial": 194,
+      "frameSerial": 180,
       "frameFaults": 0,
       "contextLost": false,
       "lastFrameError": null
@@ -482,8 +482,8 @@
     "mute": false,
     "region": 0,
     "paused": false,
-    "peak": 0.03319226950407028,
-    "rms": 0.01047242447643131,
+    "peak": 0.030553316697478294,
+    "rms": 0.009178650021851788,
     "buses": [
       "master",
       "ambient",
@@ -502,21 +502,21 @@
       0,
       0
     ],
-    "threat": 0.07040689380581315,
+    "threat": 0.07040687936562715,
     "duck": 1,
     "atmosphere": {
-      "hush": 0.025112548690310807,
+      "hush": 0.02506611613084221,
       "uneaseCalls": 0,
       "wonderCalls": 0,
-      "nextUnease": 36.3116828494078,
-      "nextWonder": 26.558333333332694
+      "nextUnease": 36.295016182741136,
+      "nextWonder": 26.54166666666603
     },
     "growth": {
       "source": "original-voiced-granular",
       "grains": 1,
       "touches": 0,
       "focus": null,
-      "level": 0.4262376733405381,
+      "level": 0.42623767821410086,
       "pad": false,
       "soundscape": "natural-marsh"
     },
@@ -525,7 +525,7 @@
     "panners": 44,
     "spatialEvents": 98,
     "flybys": 0,
-    "occlusionQueries": 649,
+    "occlusionQueries": 643,
     "events": {
       "growth-air": 10,
       "jump": 1,
@@ -622,16 +622,16 @@
         "id": "enemy-3",
         "kind": "enemy",
         "position": {
-          "x": 27.773045783390913,
-          "y": 27.706516445378178,
-          "z": -537.2358020359987
+          "x": 27.7727612849461,
+          "y": 27.706492495504538,
+          "z": -537.235958771378
         },
         "category": "enemies",
-        "distance": 53.79574199590159,
+        "distance": 53.79575618912965,
         "occlusion": 0.3333333333333333,
-        "cutoff": 1564.5221245438856,
+        "cutoff": 1564.5216032522562,
         "gain": 0.74,
-        "audibility": 0.05502294215452046
+        "audibility": 0.05502292763751722
       },
       {
         "id": "goal",
@@ -697,23 +697,23 @@
         "id": "flock",
         "kind": "fauna",
         "position": {
-          "x": -307.90617309361784,
-          "y": 148.16346285471167,
-          "z": -380.11073187449233
+          "x": -308.102643884294,
+          "y": 148.03491787926743,
+          "z": -379.9410102512387
         },
         "category": "biome",
-        "distance": 50.32808970087917,
+        "distance": 50.324277208561035,
         "occlusion": 0.6666666666666666,
-        "cutoff": 499.9345919891595,
+        "cutoff": 499.98506766281434,
         "gain": 0.48,
-        "audibility": 0.0524071467998736
+        "audibility": 0.05241107373582711
       }
     ],
     "latency": 0.01
   },
   "frames": {
     "frames": 60,
-    "seconds": 1.001300000011921
+    "seconds": 1.0015
   },
   "final": {
     "ready": true,
@@ -732,7 +732,7 @@
     "worldSize": 7200,
     "projectiles": 0,
     "targets": 34,
-    "cameraDistance": 184.09893964256844,
+    "cameraDistance": 184.09894248273793,
     "state": {
       "hp": 100,
       "kills": 0,
@@ -742,17 +742,17 @@
       "dashBuffer": 0,
       "dash": 0,
       "cooldown": 0,
-      "invincible": 0.008333333333334384,
+      "invincible": 1.0512424264419451e-15,
       "fireCooldown": 0,
       "shotVisual": 0,
       "hurt": 0,
       "hit": 0,
-      "time": 23.65833333333263,
+      "time": 23.6499999999993,
       "paused": false,
       "dead": false,
       "won": false,
       "cameraMode": "free",
-      "lastMouse": 8.758333333333477,
+      "lastMouse": 8.741666666666811,
       "matchMode": false,
       "dimension": 0
     },
@@ -771,7 +771,7 @@
       "fauna": 24,
       "rainDrops": 260,
       "region": "umbral",
-      "weather": 0.7787861096785818
+      "weather": 0.7786996319170817
     },
     "expedition": {
       "relays": [
@@ -789,7 +789,7 @@
         "umbral"
       ],
       "notice": "UMBRAL · MARISMA VIVA · región descubierta",
-      "noticeUntil": 27.674999999999354
+      "noticeUntil": 27.65833333333269
     },
     "audio": {
       "started": true,
@@ -804,8 +804,8 @@
       "mute": false,
       "region": 0,
       "paused": false,
-      "peak": 0.0691860169172287,
-      "rms": 0.020941936939643392,
+      "peak": 0.05525278300046921,
+      "rms": 0.0185257897270204,
       "buses": [
         "master",
         "ambient",
@@ -824,21 +824,21 @@
         0,
         0
       ],
-      "threat": 0.24079066146308417,
+      "threat": 0.2412363334464171,
       "duck": 1,
       "atmosphere": {
-        "hush": 0.18960830181223046,
+        "hush": 0.19054970543911967,
         "uneaseCalls": 0,
         "wonderCalls": 0,
-        "nextUnease": 36.75190096270849,
-        "nextWonder": 26.66666666666602
+        "nextUnease": 36.735234296041824,
+        "nextWonder": 26.649999999999356
       },
       "growth": {
         "source": "original-voiced-granular",
         "grains": 1,
         "touches": 0,
         "focus": null,
-        "level": 0.3687331517562091,
+        "level": 0.36858273746183423,
         "pad": false,
         "soundscape": "natural-marsh"
       },
@@ -847,7 +847,7 @@
       "panners": 44,
       "spatialEvents": 99,
       "flybys": 0,
-      "occlusionQueries": 749,
+      "occlusionQueries": 734,
       "events": {
         "growth-air": 11,
         "jump": 1,
@@ -869,14 +869,14 @@
         "y": 29.836452503503875,
         "z": 0,
         "forward": {
-          "x": 0.000003874967395570701,
-          "y": -0.16428803008612622,
-          "z": -0.9864124102805097
+          "x": 0.000003819069945414012,
+          "y": -0.1642880036019625,
+          "z": -0.9864124146916928
         },
         "up": {
-          "x": 6.453799175948426e-7,
-          "y": 0.9864124102881209,
-          "z": -0.16428803008485857
+          "x": 6.360700327760234e-7,
+          "y": 0.9864124146990859,
+          "z": -0.16428800360073115
         }
       },
       "sources": [
@@ -944,16 +944,16 @@
           "id": "enemy-3",
           "kind": "enemy",
           "position": {
-            "x": 27.774892977050143,
-            "y": 27.706671878871838,
-            "z": -537.2347989432341
+            "x": 27.58543351804168,
+            "y": 27.69286883826827,
+            "z": -536.882513426053
           },
           "category": "enemies",
-          "distance": 53.795651296454515,
+          "distance": 53.75950002706352,
           "occlusion": 0.3333333333333333,
-          "cutoff": 1564.5254557766723,
+          "cutoff": 1565.8540459656701,
           "gain": 0.74,
-          "audibility": 0.05502303492317944
+          "audibility": 0.055060035872913284
         },
         {
           "id": "goal",
@@ -1019,42 +1019,42 @@
           "id": "flock",
           "kind": "fauna",
           "position": {
-            "x": -297.47135397563403,
-            "y": 154.47172686925703,
-            "z": -389.4304606579953
+            "x": -298.6136922433109,
+            "y": 153.83925164031905,
+            "z": -388.38002947395506
           },
           "category": "biome",
-          "distance": 50.56473491877733,
+          "distance": 50.53571793129473,
           "occlusion": 1,
           "cutoff": 260,
           "gain": 0.21999999999999997,
-          "audibility": 0.023908749556810334
+          "audibility": 0.023922328390127014
         }
       ],
       "latency": 0.01
     },
     "survival": {
-      "fuel": 238.96866666666625,
+      "fuel": 238.95999999999958,
       "emergency": 0,
       "matches": 3,
       "lit": true,
-      "fear": 0.13817674958908663,
-      "darkness": 0.23797349611117732,
-      "flicker": 0.9580394713564071,
+      "fear": 0.13940439799362556,
+      "darkness": 0.24085539568771777,
+      "flicker": 0.9531582051359793,
       "movementMultiplier": 1,
       "aggressionMultiplier": 1,
       "stage": "calm",
       "fragments": 3,
       "lightRadius": 380,
-      "fuelRatio": 0.995702777777776,
+      "fuelRatio": 0.9956666666666649,
       "eventsPending": 0
     },
     "lighting": {
-      "intensity": 9580.39471356407,
+      "intensity": 9531.582051359792,
       "radius": 380
     },
     "shelters": {
-      "elapsed": 0.9916666666666656,
+      "elapsed": 0.9999999999999989,
       "guards": [],
       "kits": [],
       "anchors": [],
@@ -1068,8 +1068,8 @@
     },
     "terrorAudio": {
       "started": true,
-      "wind": 0.025788551196455956,
-      "metal": 0.0001471617433708161,
+      "wind": 0.02588297240436077,
+      "metal": 0.00014999358973000199,
       "voices": 0,
       "voiceLimit": 8,
       "sharedContext": true,
@@ -1080,15 +1080,15 @@
       "width": 1088,
       "height": 672,
       "scale": 0.8,
-      "fear": 0.13817674958908663,
-      "darkness": 0.23797349611117732,
+      "fear": 0.13940439799362556,
+      "darkness": 0.24085539568771777,
       "chromatic": true,
       "grain": true,
       "vignette": true,
       "lens": true,
-      "lensAmount": 0.3801258660155619,
-      "lensRadius": 0.0306117278722139,
-      "lensDepth": 0.9995324414932711,
+      "lensAmount": 0.38012586560138084,
+      "lensRadius": 0.030611726942472602,
+      "lensDepth": 0.9995324415086991,
       "depthOcclusion": true,
       "accretionArcs": true,
       "colorCorrect": false,
@@ -1153,7 +1153,7 @@
     "render": {
       "triangles": 679874,
       "calls": 452,
-      "frameSerial": 708,
+      "frameSerial": 697,
       "frameFaults": 0,
       "contextLost": false,
       "lastFrameError": null
