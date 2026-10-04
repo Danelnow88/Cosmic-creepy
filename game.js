@@ -17,6 +17,11 @@ const config = {
 function init() {
     const container = document.getElementById('container');
     
+    if (!container) {
+        console.error('Container not found');
+        return;
+    }
+    
     scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x020612, 0.003);
     
@@ -30,18 +35,16 @@ function init() {
     renderer.shadowMap.enabled = true;
     container.appendChild(renderer.domElement);
     
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
     
-    const directionalLight = new THREE.DirectionalLight(0x75e6ff, 0.8);
+    const directionalLight = new THREE.DirectionalLight(0x75e6ff, 1);
     directionalLight.position.set(10, 20, 10);
     directionalLight.castShadow = true;
-    directionalLight.shadow.mapSize.width = 2048;
-    directionalLight.shadow.mapSize.height = 2048;
     scene.add(directionalLight);
     
-    const pointLight = new THREE.PointLight(0x6ef7d2, 0.5, 100);
-    pointLight.position.set(0, 10, 0);
+    const pointLight = new THREE.PointLight(0x6ef7d2, 1, 100);
+    pointLight.position.set(0, 15, 0);
     scene.add(pointLight);
     
     createEnvironment();
@@ -62,13 +65,17 @@ function init() {
     
     window.addEventListener('resize', onWindowResize);
     
-    document.getElementById('playBtn').addEventListener('click', startGame);
-    document.getElementById('restartBtn').addEventListener('click', restartGame);
+    const playBtn = document.getElementById('playBtn');
+    const restartBtn = document.getElementById('restartBtn');
+    
+    if (playBtn) playBtn.addEventListener('click', startGame);
+    if (restartBtn) restartBtn.addEventListener('click', restartGame);
     
     animate();
 }
 
 function createEnvironment() {
+    // Estrellas
     const starGeometry = new THREE.BufferGeometry();
     const starCount = 500;
     const posArray = new Float32Array(starCount * 3);
@@ -89,50 +96,40 @@ function createEnvironment() {
     const starField = new THREE.Points(starGeometry, starMaterial);
     scene.add(starField);
     
-    const groundGeometry = new THREE.PlaneGeometry(40, 40);
-    const groundMaterial = new THREE.MeshStandardMaterial({
+    // Suelo
+    const groundGeometry = new THREE.PlaneGeometry(50, 50);
+    const groundMaterial = new THREE.MeshPhongMaterial({
         color: 0x1d1d33,
-        metalness: 0.3,
-        roughness: 0.8,
     });
     const ground = new THREE.Mesh(groundGeometry, groundMaterial);
     ground.rotation.x = -Math.PI / 2;
-    ground.receiveShadow = true;
+    ground.position.y = -1;
     scene.add(ground);
 }
 
 function createPlayer() {
     player = {
-        position: new THREE.Vector3(0, 1, 0),
+        position: new THREE.Vector3(0, 0, 0),
         velocity: new THREE.Vector3(0, 0, 0),
         mesh: null,
         isJumping: false,
-        health: 3,
-        canJump: false,
+        canJump: true,
     };
     
     const playerGeometry = new THREE.ConeGeometry(0.4, 1.5, 8);
-    const playerMaterial = new THREE.MeshStandardMaterial({
+    const playerMaterial = new THREE.MeshPhongMaterial({
         color: 0x75e6ff,
-        emissive: 0x3ad5ff,
-        emissiveIntensity: 0.3,
-        metalness: 0.8,
-        roughness: 0.2,
     });
     player.mesh = new THREE.Mesh(playerGeometry, playerMaterial);
     player.mesh.position.copy(player.position);
-    player.mesh.castShadow = true;
     scene.add(player.mesh);
     
-    const glowGeometry = new THREE.IcosahedronGeometry(0.5, 4);
-    const glowMaterial = new THREE.MeshStandardMaterial({
+    const glowGeometry = new THREE.IcosahedronGeometry(0.5, 3);
+    const glowMaterial = new THREE.MeshPhongMaterial({
         color: 0x6ef7d2,
-        emissive: 0x6ef7d2,
-        emissiveIntensity: 0.5,
     });
     const glow = new THREE.Mesh(glowGeometry, glowMaterial);
     glow.position.copy(player.position);
-    glow.castShadow = true;
     scene.add(glow);
     
     player.glow = glow;
@@ -148,13 +145,13 @@ function createPlayer() {
         
         this.position.add(this.velocity);
         
-        if (this.position.x > 18) this.position.x = 18;
-        if (this.position.x < -18) this.position.x = -18;
-        if (this.position.z > 18) this.position.z = 18;
-        if (this.position.z < -18) this.position.z = -18;
+        if (this.position.x > 20) this.position.x = 20;
+        if (this.position.x < -20) this.position.x = -20;
+        if (this.position.z > 20) this.position.z = 20;
+        if (this.position.z < -20) this.position.z = -20;
         
-        if (this.position.y <= 0.75) {
-            this.position.y = 0.75;
+        if (this.position.y <= -0.5) {
+            this.position.y = -0.5;
             this.velocity.y = 0;
             this.canJump = true;
         }
@@ -163,9 +160,9 @@ function createPlayer() {
         this.glow.position.copy(this.position);
         
         camera.position.x = this.position.x;
-        camera.position.y = this.position.y + 1.5;
-        camera.position.z = this.position.z + 3;
-        camera.lookAt(this.position.x, this.position.y, this.position.z - 5);
+        camera.position.y = this.position.y + 3;
+        camera.position.z = this.position.z + 4;
+        camera.lookAt(this.position.x, this.position.y + 0.5, this.position.z);
     };
     
     player.jump = function() {
@@ -178,23 +175,21 @@ function createPlayer() {
 
 function createEnemy() {
     const enemy = {
-        position: new THREE.Vector3((Math.random() - 0.5) * 30, 1, (Math.random() - 0.5) * 30),
+        position: new THREE.Vector3(
+            (Math.random() - 0.5) * 35,
+            2,
+            (Math.random() - 0.5) * 35
+        ),
         mesh: null,
-        health: 1,
         speed: config.enemySpeed * (1 + level * 0.1),
     };
     
     const enemyGeometry = new THREE.OctahedronGeometry(0.5);
-    const enemyMaterial = new THREE.MeshStandardMaterial({
+    const enemyMaterial = new THREE.MeshPhongMaterial({
         color: 0xff5e7d,
-        emissive: 0xff5e7d,
-        emissiveIntensity: 0.4,
-        metalness: 0.6,
-        roughness: 0.4,
     });
     enemy.mesh = new THREE.Mesh(enemyGeometry, enemyMaterial);
     enemy.mesh.position.copy(enemy.position);
-    enemy.mesh.castShadow = true;
     scene.add(enemy.mesh);
     
     enemy.update = function() {
@@ -207,7 +202,7 @@ function createEnemy() {
     
     enemy.checkCollision = function() {
         const distance = this.position.distanceTo(player.position);
-        return distance < 1;
+        return distance < 1.2;
     };
     
     enemies.push(enemy);
@@ -264,8 +259,9 @@ function startGame() {
     spawnRate = 2;
     enemies.forEach(e => scene.remove(e.mesh));
     enemies = [];
-    player.position.set(0, 1, 0);
+    player.position.set(0, 0, 0);
     player.velocity.set(0, 0, 0);
+    player.canJump = true;
     document.getElementById('score').textContent = '0';
     document.getElementById('lives').textContent = '3';
     document.getElementById('level').textContent = '1';
@@ -287,4 +283,8 @@ function onWindowResize() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
-window.addEventListener('load', init);
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
