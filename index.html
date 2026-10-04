@@ -1,39 +1,37 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="0; url=https://github.com/Danelnow88/Cosmic-creepy" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cosmic-creepy</title>
-  <style>
-    html, body {
-      margin: 0;
-      height: 100%;
-      background: #040b14;
-      color: #dfefff;
-      font-family: Arial, sans-serif;
-    }
-    body {
-      display: grid;
-      place-items: center;
-    }
-    .box {
-      text-align: center;
-      padding: 24px 30px;
-      border: 1px solid rgba(117,230,255,0.35);
-      border-radius: 12px;
-      background: rgba(11,18,30,0.8);
-    }
-    a {
-      color: #75e6ff;
-      text-decoration: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COSMIC ROLL 3D - Humanoides</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="box">
-    <p>Redirigiendo al repositorio...</p>
-    <p><a href="https://github.com/Danelnow88/Cosmic-creepy">Abrir repositorio</a></p>
-  </div>
+    <div id="container"></div>
+    <div id="ui">
+        <div id="hud">
+            <div class="stat"><span>NIVEL</span><span id="level">1</span></div>
+            <div class="stat"><span>VIDAS</span><span id="lives">3</span></div>
+            <div class="stat"><span>PUNTOS</span><span id="score">0</span></div>
+        </div>
+        <div id="menu" class="menu visible">
+            <h1>COSMIC ROLL 3D</h1>
+            <h2>Humanoides</h2>
+            <p>Versión web jugable</p>
+            <button id="playBtn">JUGAR</button>
+            <div class="controls">
+                <p><strong>Controles:</strong></p>
+                <p>WASD - Movimiento</p>
+                <p>ESPACIO - Saltar</p>
+            </div>
+        </div>
+        <div id="gameOver" class="menu">
+            <h1>GAME OVER</h1>
+            <p id="finalScore"></p>
+            <button id="restartBtn">REINTENTAR</button>
+        </div>
+    </div>
+    <script src="game.js"></script>
 </body>
 </html>
