@@ -1,0 +1,94 @@
+/* Capa de producto independiente: no cambia el tamaño lógico del mundo. */
+.alpha-launch { position:absolute; z-index:3; left:6%; right:6%; bottom:16px; padding:14px; border:1px solid #406479; border-radius:14px; background:linear-gradient(135deg,rgba(6,19,31,.96),rgba(20,15,42,.94)); box-shadow:0 8px 35px #0009; display:grid; gap:9px; text-align:left; }
+.lobby-hero { position:relative; }
+.alpha-kicker { font:700 10px/1.3 monospace; letter-spacing:2px; color:#a5dae7; }
+.alpha-mode-row,.alpha-links,.alpha-preps { display:flex; gap:8px; }
+.alpha-button,.alpha-prep { appearance:none; cursor:pointer; font:600 11px/1.4 system-ui,sans-serif; border:1px solid #36566b; border-radius:8px; background:#101e31; color:#dbeffa; padding:9px 12px; transition:background .15s,border-color .15s; }
+.alpha-mode-row .alpha-button { flex:1; }
+.alpha-button:hover,.alpha-prep:hover { background:#20354b; border-color:#7cf8ff; }
+.alpha-button[aria-pressed="true"],.alpha-prep[aria-pressed="true"] { background:#193c49; color:#8ff6e9; border-color:#73e4d7; }
+.alpha-button:disabled,.alpha-prep:disabled { opacity:.5; cursor:default; }
+.alpha-links .alpha-button { border:0; background:none; padding:2px; font-size:10px; color:#abbfd3; }
+.alpha-links { justify-content:space-between; }
+.alpha-note { color:#a3b6ca; font:12px/1.5 system-ui,sans-serif; margin:0; }
+.alpha-launch .alpha-note { font-size:10px; }
+.alpha-launch [hidden],.alpha-route[hidden],.alpha-run-strip[hidden] { display:none; }
+.alpha-preps { margin-top:10px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+.alpha-prep { display:flex; flex-direction:column; gap:5px; text-align:left; flex:1; min-width:0; }
+.alpha-prep b { color:#dceff7; font-size:11px; }
+.alpha-prep small { font-size:11px; font-weight:400; color:#b7c9db; }
+.alpha-price { color:#89ecd2; margin-top:auto; padding-top:5px; }
+.alpha-route { display:flex; gap:6px; flex-wrap:wrap; align-items:center; margin-top:12px; font:11px system-ui; }
+.alpha-route .alpha-button { font-size:10px; padding:6px; }
+.alpha-prep-trigger { margin-left:auto; flex:none; padding:6px 9px; font-size:10px; white-space:nowrap; }
+.alpha-save-quit { position:absolute; left:clamp(8px,1.5vw,18px); bottom:clamp(8px,1.5vw,18px); z-index:2; padding:8px 12px; font-size:10px; }
+.alpha-save-status { position:absolute; left:clamp(8px,1.5vw,18px); bottom:55px; z-index:2; color:#ffbcbf; font:11px/1.4 system-ui,sans-serif; }
+.alpha-dialog { box-sizing:border-box; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); margin:0; width:min(710px,94vw); max-height:88vh; overflow:auto; color:#d9e7f3; background:linear-gradient(140deg,#081623,#19182d); border:1px solid #526b85; border-radius:16px; padding:24px; box-shadow:0 24px 100px #000b; font:14px/1.6 system-ui,sans-serif; }
+.alpha-dialog::backdrop { background:#010813cf; backdrop-filter:blur(5px); }
+.alpha-dialog > button { float:right; }
+.alpha-dialog h2 { font-size:20px; letter-spacing:1px; color:#9ceee6; padding-right:100px; }
+.alpha-dialog h3 { font-size:12px; color:#abaff5; margin-top:25px; letter-spacing:2px; }
+.alpha-lead { font-size:17px; color:#dbe9fa; }
+.alpha-manual-grid { display:grid; grid-template-columns:1fr 1fr; gap:5px 18px; }
+.alpha-manual-grid p { margin:3px 0; display:flex; flex-direction:column; }
+.alpha-manual-grid kbd { font:700 12px/1.5 monospace; color:#8ef1df; }
+.alpha-manual-grid span { font-size:12px; color:#a6b8ce; }
+.alpha-weapon-line { padding:8px 10px; background:#ffffff05; border-left:2px solid #59738f; font-size:12px; }
+.alpha-achievement { border:1px solid #344455; border-radius:8px; padding:12px; color:#8b9bae; }
+.alpha-achievement.unlocked { border-color:#3f8c82; color:#9cddbc; background:#233f3a55; }
+.alpha-result { font:13px/1.5 system-ui; color:#bbccdf; padding:10px 0; }
+.alpha-result p { margin:3px 0; }
+.alpha-result::before,.alpha-result::after { content:none !important; }
+.alpha-run-strip { position:fixed; z-index:4; bottom:5px; left:50%; transform:translateX(-50%); color:#abc3d5; background:#05101bd9; border:1px solid #31485d; padding:3px 10px; border-radius:20px; pointer-events:none; white-space:nowrap; font:10px/1.4 monospace; letter-spacing:1px; }
+.alpha-button:focus-visible,.alpha-prep:focus-visible,.offer:focus-visible { outline:2px solid #ffe196; outline-offset:3px; }
+@media (max-height:560px) { .alpha-launch { bottom:8px; gap:5px; padding:8px; } .alpha-launch .alpha-kicker,.alpha-launch .alpha-note { display:none; } .alpha-launch .alpha-button { padding:5px; font-size:9px; } .alpha-dialog { padding:15px; max-height:92vh; } }
+@media (max-width:600px) { .alpha-preps { grid-template-columns:1fr; } .alpha-manual-grid { grid-template-columns:1fr; } .alpha-prep-trigger { font-size:9px; padding:5px; } }
+.nv-mobile .alpha-run-strip { display:none; }
+/* El render ocupa el padding lateral/inferior de la shell; el HUD mantiene
+   EXACTAMENTE su caja y separación superior. Sin borde CSS ni recorte de esquinas.
+   No reemplaza métricas de canvas: el resize controller existente lo mide. */
+html:not(.nv-mobile) .shell > .game-box {
+  margin:0 -10px -10px;
+  border:0;
+  border-radius:0;
+  min-width:0;
+  min-height:0;
+}
+/* Móvil conserva su caja actual: variar su aspecto CSS también cambia la arena
+   dinámica. No modificar bounds como efecto lateral de este pulido de ventana. */
+/* Las dos columnas deben poder encogerse: el min-content del piloto no puede
+   empujar los controles de dificultad o Continuar fuera de un monitor bajo. */
+@media (max-height:560px) {
+  .main-lobby-panel { height:calc(100dvh - 12px); grid-template-rows:minmax(0,1fr); align-items:stretch; }
+  .main-lobby-copy { min-height:0; overflow-y:auto; justify-content:flex-start; gap:5px; }
+  .main-lobby-panel h1 { font-size:clamp(30px,8vh,43px); }
+  .lobby-hero { height:100%; max-height:calc(100dvh - 12px); }
+  .hero-info-identity { display:none; }
+  .lobby-hero-info { padding:6px; gap:4px; }
+}
+.nv-mobile .main-lobby-copy { scrollbar-width:none; -ms-overflow-style:none; }
+.nv-mobile .main-lobby-copy::-webkit-scrollbar { width:0; height:0; display:none; }
+/* Una explicación táctica larga se presenta como placa compacta para no
+   tapar al jefe. Los títulos breves conservan su impacto original. */
+.wave-banner.compact { top:15%; max-width:min(720px,72vw); padding:7px 14px; border:1px solid currentColor; border-radius:999px; background:rgba(3,8,18,.82); box-shadow:0 8px 30px rgba(0,0,0,.45),inset 0 0 18px rgba(255,255,255,.05); font-size:clamp(15px,2.1vw,25px); line-height:1.1; letter-spacing:.035em; text-align:center; white-space:nowrap; }
+.nv-mobile .wave-banner.compact { top:13%; max-width:68vw; padding:4px 9px; font-size:clamp(10px,3.2vh,15px); overflow:hidden; text-overflow:ellipsis; }
+@media (max-height:450px) {
+  .main-lobby-panel > .main-lobby-copy > .subtitle,.main-lobby-copy .hero-info-passive,.main-lobby-copy .hero-info-skill { display:none; }
+  .main-lobby-panel h1 { font-size:30px; }
+}
+@media (prefers-reduced-motion:reduce) { .alpha-button,.alpha-prep { transition:none; } }
+
+/* Tutorial no modal: informa sin detener ni tapar el centro de combate. */
+.nv-tutorial { position:absolute; z-index:7; top:10px; left:50%; transform:translateX(-50%); width:min(410px,76%); padding:9px 12px; border:1px solid #78edff99; border-radius:10px; background:#06111bea; box-shadow:0 8px 28px #0009; color:#eaffff; pointer-events:none; text-align:left; }
+.nv-tutorial[hidden] { display:none; }
+.nv-tutorial-head { display:flex; align-items:center; gap:8px; color:#7cf8ff; font:800 10px/1.2 monospace; letter-spacing:1px; }
+.nv-tutorial-step { margin-top:4px; font:700 13px/1.35 system-ui,sans-serif; }
+.nv-tutorial-progress { margin-left:auto; color:#89a8ba; }
+.nv-tutorial-skip { pointer-events:auto; border:0; background:transparent; color:#a9bdca; font:700 9px system-ui; cursor:pointer; padding:2px 4px; }
+.nv-mobile .nv-tutorial { top:5px; width:min(360px,68%); padding:6px 9px; }
+.nv-mobile .nv-tutorial-step { font-size:10px; }
+html[data-large-text="true"] .alpha-dialog,html[data-large-text="true"] .settings-panel { font-size:17px; }
+html[data-large-text="true"] .alpha-note,html[data-large-text="true"] .alpha-manual-grid span,html[data-large-text="true"] .settings-note { font-size:14px; }
+html[data-large-text="true"] .stat { font-size:13px; }
+html[data-large-text="true"] .wave-banner.compact { font-size:clamp(18px,2.4vw,29px); }
+html[data-large-text="true"] .nv-tutorial-step { font-size:16px; }

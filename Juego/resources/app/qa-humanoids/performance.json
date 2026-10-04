@@ -1,0 +1,271 @@
+{
+  "medianMs": 16.699999999999818,
+  "p95Ms": 16.800000000000182,
+  "meanMs": 16.804999999999996,
+  "snapshot": {
+    "ready": true,
+    "characters": {
+      "style": "doll-porcelain-v1",
+      "faceTextures": 6,
+      "bodyTextures": 1
+    },
+    "position": [
+      0,
+      15.836452503503875,
+      0
+    ],
+    "speed": 0,
+    "travelled": 0,
+    "worldSize": 7200,
+    "projectiles": 1,
+    "targets": 34,
+    "cameraDistance": 184.0991304150374,
+    "state": {
+      "hp": 100,
+      "kills": 0,
+      "grounded": true,
+      "coyote": 0.1,
+      "jumpBuffer": 0,
+      "dashBuffer": 0,
+      "dash": 0,
+      "cooldown": 0,
+      "invincible": 0,
+      "fireCooldown": 0,
+      "hurt": 0,
+      "hit": 0,
+      "time": 3.691666666666656,
+      "paused": false,
+      "dead": false,
+      "won": false,
+      "cameraMode": "free",
+      "lastMouse": -10,
+      "matchMode": false,
+      "dimension": 0
+    },
+    "height": 0,
+    "world": {
+      "trees": 620,
+      "reeds": 9000,
+      "fungi": 750,
+      "shrubs": 960,
+      "mysteries": 3,
+      "waterPockets": 32,
+      "landmarks": 33,
+      "covers": 0,
+      "routes": 0,
+      "colliders": 731,
+      "fauna": 24,
+      "rainDrops": 260,
+      "region": "umbral",
+      "weather": 0.5460803514354847
+    },
+    "expedition": {
+      "relays": [
+        false,
+        false,
+        false
+      ],
+      "phase": "relays",
+      "extract": 0,
+      "xp": 25,
+      "level": 1,
+      "shards": 0,
+      "upgrades": 0,
+      "visited": [
+        "umbral"
+      ],
+      "notice": "UMBRAL · MARISMA VIVA · región descubierta",
+      "noticeUntil": 6.65833333333333
+    },
+    "audio": {
+      "started": false,
+      "running": false,
+      "voices": 0,
+      "voiceLimit": 32,
+      "peakVoices": 0,
+      "played": 0,
+      "dropped": 0,
+      "stolen": 0,
+      "volume": 0.65,
+      "mute": false,
+      "region": 0,
+      "paused": false,
+      "peak": 0,
+      "rms": 0,
+      "buses": [],
+      "mixes": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "threat": 0,
+      "duck": 1,
+      "atmosphere": {
+        "hush": 0,
+        "uneaseCalls": 0,
+        "wonderCalls": 0,
+        "nextUnease": 14.194001478468996,
+        "nextWonder": 5.649999999999997
+      },
+      "growth": {
+        "source": "original-voiced-granular",
+        "grains": 0,
+        "touches": 0,
+        "focus": null,
+        "level": 0,
+        "pad": false,
+        "soundscape": "natural-marsh"
+      },
+      "emitters": 0,
+      "emitterLimit": 12,
+      "panners": 0,
+      "spatialEvents": 0,
+      "flybys": 0,
+      "occlusionQueries": 0,
+      "events": {},
+      "listener": {
+        "x": 0,
+        "y": 29.836452503503875,
+        "z": 0,
+        "forward": {
+          "x": 5.716857285427599e-15,
+          "y": -0.164286384281356,
+          "z": -0.9864126843972347
+        },
+        "up": {
+          "x": 9.521388235689045e-16,
+          "y": 0.9864126843972347,
+          "z": -0.164286384281356
+        }
+      },
+      "sources": [],
+      "latency": 0
+    },
+    "survival": {
+      "fuel": 237.8766666666658,
+      "emergency": 0,
+      "matches": 3,
+      "lit": true,
+      "fear": 0.28437793275649503,
+      "darkness": 0.23708620163811722,
+      "flicker": 0.9595423413988529,
+      "movementMultiplier": 1,
+      "aggressionMultiplier": 1,
+      "stage": "calm",
+      "fragments": 3,
+      "lightRadius": 380,
+      "fuelRatio": 0.9911527777777742,
+      "eventsPending": 0
+    },
+    "lighting": {
+      "intensity": 9595.423413988528,
+      "radius": 380
+    },
+    "shelters": {
+      "elapsed": 2.041666666666662,
+      "guards": [],
+      "kits": [],
+      "anchors": [],
+      "echoes": [],
+      "collected": []
+    },
+    "shelterViews": {
+      "slots": 0,
+      "max": 24,
+      "decoys": 0
+    },
+    "terrorAudio": {
+      "started": false,
+      "wind": 0,
+      "metal": 0,
+      "voices": 0,
+      "voiceLimit": 8,
+      "sharedContext": false,
+      "permanentNodes": 0
+    },
+    "post": {
+      "enabled": true,
+      "width": 1088,
+      "height": 672,
+      "scale": 0.8,
+      "fear": 0.28437793275649503,
+      "darkness": 0.23708620163811722,
+      "chromatic": true,
+      "grain": true,
+      "vignette": true,
+      "lens": true,
+      "lensAmount": 0.38012583819583745,
+      "lensRadius": 0.030611664192003278,
+      "lensDepth": 0.9995324425496837,
+      "depthOcclusion": true,
+      "accretionArcs": true,
+      "colorCorrect": false,
+      "legacyDarkTone": true,
+      "transitFade": 0,
+      "lightPower": 0.65
+    },
+    "weapon": {
+      "name": "Pistola",
+      "ammo": 14,
+      "reserve": 28,
+      "reload": 0
+    },
+    "loadout": {
+      "ammo": [
+        14,
+        28,
+        6,
+        3
+      ],
+      "reserve": [
+        28,
+        56,
+        12,
+        3
+      ],
+      "items": {
+        "medkit": 1,
+        "shield": 1,
+        "antidote": 1
+      }
+    },
+    "supplies": {
+      "lastTarget": null,
+      "crates": []
+    },
+    "commentary": {
+      "current": null,
+      "history": []
+    },
+    "strategy": {
+      "enabled": false,
+      "elapsed": 0,
+      "turn": 0,
+      "serial": 0,
+      "channel": null,
+      "goals": [],
+      "fields": [],
+      "couriers": [],
+      "stocks": [],
+      "contracts": [],
+      "cargo": [],
+      "reveals": [],
+      "logs": [],
+      "damageLog": []
+    },
+    "strategyViews": {
+      "goals": 12,
+      "effects": 40,
+      "objects": 0
+    },
+    "render": {
+      "triangles": 2,
+      "calls": 1,
+      "frameSerial": 216,
+      "frameFaults": 0,
+      "contextLost": false,
+      "lastFrameError": null
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "pass": false,
+  "error": "AssertionError [ERR_ASSERTION]: Black hole close-up stays inside the 165 FPS frame budget\n    at check (c:\\Users\\party\\Desktop\\COSMIC ROLL 3D\\resources\\app\\desktop\\verify-perf.cjs:52:23)\n    at measure (c:\\Users\\party\\Desktop\\COSMIC ROLL 3D\\resources\\app\\desktop\\verify-perf.cjs:65:3)\n    at async module.exports (c:\\Users\\party\\Desktop\\COSMIC ROLL 3D\\resources\\app\\desktop\\verify-perf.cjs:10:14)\n    at async c:\\Users\\party\\Desktop\\COSMIC ROLL 3D\\resources\\app\\desktop\\main.cjs:62:18",
+  "errors": []
+}

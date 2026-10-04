@@ -1,0 +1,71 @@
+TODOS LOS PERSONAJES: tela/porcelana gastada, rostros inquietantes. Leer PERSONAJES-LORE-ESTETICO.md.
+COSMIC ROLL 3D - TURNOS / EXPEDICION 0.17.0
+
+Cerrar la instancia anterior y abrir JUGAR COSMIC ROLL 3D.cmd.
+La esquina superior debe mostrar TURNOS - EXPEDICION - 0.17.0.
+OSCURIDAD RESTAURADA: luz base 10000, fragmento 18000. Vela/L retiradas.
+Agujero negro rehecho: disco contenido, colores del cuerpo y fundido de viaje.
+Leer OSCURIDAD-Y-SINGULARIDAD.md. Circuito conservado: tres resonadores (E / 6 s) y brecha (8 s) para ganar sin bajas.
+Leer DIRECCION-OBJETIVOS-Y-TERROR.md. Ambas PC requieren 0.17.0.
+P -> Partida local por turnos: 2-4 equipos, 1-6 miembros, tiempo configurable.
+Enter termina turno. 5 segundos de resolucion; cambio automatico de player/camara.
+PvE sigue activo, jugadores esperando inmoviles y vulnerables. Conexion directa: P -> Crear sala / Conectar. Red privada o VPN, misma version.
+Leer OBJETIVOS-Y-SIGILO.md y JUGAR-CON-AMIGO.md. P: elegir Objetivos + sigilo o Ultimo equipo en pie.
+Objetivos: 24 puntos, victoria sin matar. G usa herramienta por icono. E activa/recoge/extrae.
+Balizas +6, carga +8, zona +2/turno, contrato privado +3, recompensa PVE robable +7.
+Los eliminados no reaparecen; se omiten sus turnos. Ultimo equipo en pie gana.
+M: Observatorio y Pasaje inferior. Escalera, deck elevado y estructura hundida.
+Leer PLAN-TURNOS.md para reglas provisionales y siguientes etapas.
+P: ajustes de calidad, sombras, efectos de panico, FPS y campo de vision.
+Verificar escena revisa camara, jugador y colisiones. Ajustes guardados.
+Desplazamiento y camara corregidos contra suelo y coberturas superpuestas.
+Correccion: un impacto ya no puede cortar permanentemente el loop de cuadros.
+La carga luminica dura 4 minutos. Q activa fragmento de energia por 22 segundos, radio 55m.
+E recoge cristales. B capullo, X piedra, T ancla, Y eco: refugios finitos durante espera.
+Oscuridad y enemigos elevan miedo, distorsion visual y presion sonora espacial.
+UMBRAL I: marisma natural y resonancias discretas.
+UMBRAL II: capas vocales graves continuas y mas granos inspirados en Growth.
+Cruzar el portal cambia la mezcla; regresar retira las capas vocales.
+Mirar reliquias/orbes: resonancia suave. E: respuesta breve mas brillante.
+Portales: resonancia larga y grave. El combate conserva sus avisos claros.
+Nueva muestra visual Growth SOLO en UMBRAL II: ramificaciones organicas,
+esferas translucidas, bordes iridiscentes y particulas suaves.
+UMBRAL I conserva el aspecto anterior para comparar. La mezcla es estetica.
+M muestra PORTAL, unos 52 m hacia adelante/izquierda del refugio.
+Acercate a la ruina circular y pulsa E: UMBRAL I <-> UMBRAL II.
+Mismo tamano, terreno propio y mismo ecosistema. E tambien permite regresar.
+Vida y armas viajan; contratos/enemigos se conservan separados durante la sesion.
+Cerrar o Nueva expedicion vuelve a UMBRAL I. El guardado en disco sigue siendo
+el checkpoint original; UMBRAL II se conserva solamente durante la sesion.
+Todos los enemigos y el jefe tienen mascaras curvas con expresiones inquietantes.
+Nueva direccion ambiental: silencios inquietantes, crujidos espaciales,
+resonancias en tres lugares ocultos, arbustos agrupados y niebla suave.
+
+MORTERO: junto al refugio inicial, hacia la derecha y atras.
+Tiene una pequena base y un icono ambar flotante.
+Acercate y pulsa E para recogerlo. Se equipa en la ranura 4.
+El arco y el circulo muestran donde caera y el radio de explosion.
+La telemetria se actualiza en cada frame y usa una curva densa de 100 puntos.
+Gira/apunta con mouse. Clic / F dispara. R recarga 3 proyectiles.
+Fuego compacto, luz calida, humo, chispas y sonido posicional.
+Las coberturas frenan proyectiles y protegen de la explosion.
+
+WASD: moverse. Espacio: saltar. Shift: dash.
+Clic derecho: apuntar con precision.
+1 / 2 / 3 / 4: cambiar arma. El mortero requiere recogerlo.
+E: recoger / activar rele / descansar / calibrar arsenal.
+M: mapa. C: cambiar camara. P: pausa y volumen. V: silencio.
+N: nueva expedicion, respawnea el mortero y borra avance activo.
+Esc: liberar mouse. F11: pantalla completa.
+
+Recomendados auriculares estereo. Funciona offline.
+Objetivo: tres reles, Leviatan y regreso al refugio.
+README.md explica controles, pruebas y limites del efecto procedural.
+ARSENAL 0.15.0: R usa reserva finita. E recoge cajas caidas entre turnos.
+H botiquin / J escudo / K antidoto / L vela. Pesados PvE pueden envenenar.
+P -> Nombres de equipos y jugadores, guardados localmente para probar en misma PC.
+Comentarios contextuales con nombres. Leer ARSENAL-Y-SUMINISTROS.md.
+
+P -> Dimensión -> UMBRAL II. Explorar dimensión elegida / Partida local / Crear sala. En expedición, E junto a la bola negra cruza en 3 segundos. Leer UMBRAL-II.md y UNIVERSO-DEL-JUEGO.md.
+
+ACTUAL 0.15.0: gana último equipo con miembros vivos, aunque sea uno a1HP. Eliminados no reaparecen. P -> Crear equipos: nombres propios, emojis, equipo y cantidad de jugadores. El resultado muestra supervivientes. Leer VICTORIA-Y-EQUIPOS.md.

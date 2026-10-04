@@ -1,0 +1,8 @@
+
+QA start boti cleared=2
+QA start nova cleared=2
+QA start rook cleared=2
+QA start swarm cleared=2
+QA start boti cleared=1
+QA manual fire: boss HP 1440 -> 1398
+DEPTH_QA PASS: four pilots, movement/dash/special, pause, 2D/3D, boss, cursor, resize; errors=0

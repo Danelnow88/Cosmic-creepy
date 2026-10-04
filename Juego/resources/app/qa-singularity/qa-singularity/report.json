@@ -1,0 +1,37 @@
+{
+  "pass": true,
+  "cases": [
+    "Recovered gravitational lens is wired to the actual render",
+    "Depth-aware arcs preserve the original dark display tone",
+    "Lensing produces a measurable image rather than only a flag",
+    "Opaque foreground blocks lens/glow instead of x-ray compositing",
+    "Lens turns off when horizon is behind camera",
+    "Base light is restored to 10000 without global amplification",
+    "Energy returns to 18000 and preserves useful local range",
+    "Charge range and finite light duration preserved",
+    "Energy actually brightens surrounding scene pixels",
+    "Restored contrast keeps the surrounding forest dark",
+    "Removed candle has no UI, stock or accepted action",
+    "Tidal proxy visibly stretches and thins before the horizon",
+    "Body converges into real horizon without 200-unit overshoot",
+    "Dark fade conceals map switch without a visible camera cut",
+    "Dimension transition completes once in existing 3.05s window",
+    "Same enhanced lens remains available in Umbral II",
+    "No shader/renderer faults or broken perspective"
+  ],
+  "visibleDiff": {
+    "mean": 5.177389117512323,
+    "changed": 11175,
+    "count": 72900
+  },
+  "coveredDiff": {
+    "mean": 0,
+    "changed": 0,
+    "count": 72900
+  },
+  "brightness": {
+    "base": 4.658303830790813,
+    "boost": 5.506266858595098
+  },
+  "errors": []
+}

@@ -1,0 +1,9 @@
+{
+  "name": "cosmic-roll-third-person",
+  "productName": "COSMIC ROLL 3D",
+  "version": "0.17.0",
+  "private": true,
+  "main": "desktop/main.cjs",
+  "description": "Prototipo independiente de mundo 3D en tercera persona",
+  "scripts": { "verify:source": "node prototype/verify-source.cjs" }
+}

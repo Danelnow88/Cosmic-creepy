@@ -1,0 +1,3 @@
+/* Survival HUD sits above the existing health panel. */
+.candle-status { bottom: 205px; }
+@media (max-width: 760px) { .candle-status { bottom: 181px; } }

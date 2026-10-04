@@ -1,0 +1,264 @@
+{
+  "before": {
+    "depth": {
+      "ready": true,
+      "active": true,
+      "contextLost": false,
+      "elevation": 43,
+      "entities": 1,
+      "projectiles": 0,
+      "triangles": 3430,
+      "drawCalls": 23,
+      "frame": 45
+    },
+    "run": {
+      "state": "playing",
+      "paused": false,
+      "frame": 45,
+      "wave": 3,
+      "waveTimer": 18.228399999999986,
+      "objective": {
+        "defeats": 0,
+        "spawned": 5,
+        "cleared": 0,
+        "required": 25
+      },
+      "wavePressure": null,
+      "transition": 0,
+      "presentation": {
+        "kind": null,
+        "elapsed": 0,
+        "duration": 0,
+        "isBoss": false,
+        "zoom": 1
+      },
+      "enemies": 5,
+      "arrivals": 5,
+      "arrivalPuffs": 0,
+      "outsideEnemies": 0,
+      "hostileBudget": {
+        "hostiles": 5,
+        "heavy": 2,
+        "medium": 0,
+        "light": 3,
+        "maxHostiles": 30,
+        "maxHeavy": 7,
+        "remainingHostiles": 25,
+        "remainingHeavy": 5
+      },
+      "softHostileTarget": 23,
+      "sectorHazards": [],
+      "player": {
+        "character": "swarm",
+        "x": 675,
+        "y": 680,
+        "hp": 5000,
+        "maxHp": 5000
+      },
+      "dashTrail": {
+        "count": 0,
+        "cap": 96,
+        "life": 0.42,
+        "pool": 0,
+        "glowCache": 0
+      },
+      "special": {
+        "phase": 0,
+        "bulwark": 0,
+        "invuln": 0,
+        "cooldown": 0,
+        "meteors": 0,
+        "orbitants": 0,
+        "visual": null
+      }
+    },
+    "alpha": {
+      "state": "playing",
+      "paused": false,
+      "showHUD": true,
+      "combatLab": false,
+      "saveDisabled": false,
+      "wave": 3,
+      "score": 0,
+      "shards": 0,
+      "run": {
+        "version": 1,
+        "mode": "expedition",
+        "seed": 0,
+        "bossProgression": "full-roster",
+        "seconds": 0.7465999999999999,
+        "kills": 0,
+        "hits": 0,
+        "bosses": 0,
+        "cleared": 2,
+        "completed": false,
+        "rewardClaimed": false,
+        "weaponKills": {
+          "pistol": 0,
+          "rifle": 0,
+          "smg": 0,
+          "shotgun": 0,
+          "sniper": 0,
+          "laser": 0,
+          "plasma": 0,
+          "flamethrower": 0,
+          "bow": 0,
+          "railgun": 0
+        },
+        "waveKills": {},
+        "waveHits": 0,
+        "prep": null,
+        "contract": false,
+        "contracts": 0,
+        "lastReward": 0,
+        "lastReport": "",
+        "event": null
+      },
+      "mode": "expedition",
+      "hp": 5000,
+      "maxHp": 5000,
+      "inventory": [
+        {
+          "id": "pistol",
+          "name": "Pistola",
+          "level": 1,
+          "role": "Versátil y confiable"
+        }
+      ],
+      "weapon": "pistol",
+      "character": "swarm",
+      "event": "fog"
+    }
+  },
+  "moved": {
+    "depth": {
+      "ready": true,
+      "active": true,
+      "contextLost": false,
+      "elevation": 43,
+      "entities": 4,
+      "projectiles": 0,
+      "triangles": 6218,
+      "drawCalls": 56,
+      "frame": 76
+    },
+    "run": {
+      "state": "playing",
+      "paused": false,
+      "frame": 76,
+      "wave": 3,
+      "waveTimer": 17.71169999999998,
+      "objective": {
+        "defeats": 0,
+        "spawned": 10,
+        "cleared": 0,
+        "required": 25
+      },
+      "wavePressure": null,
+      "transition": 0,
+      "presentation": {
+        "kind": null,
+        "elapsed": 0,
+        "duration": 0,
+        "isBoss": false,
+        "zoom": 1
+      },
+      "enemies": 10,
+      "arrivals": 5,
+      "arrivalPuffs": 0,
+      "outsideEnemies": 0,
+      "hostileBudget": {
+        "hostiles": 10,
+        "heavy": 4,
+        "medium": 0,
+        "light": 6,
+        "maxHostiles": 30,
+        "maxHeavy": 7,
+        "remainingHostiles": 20,
+        "remainingHeavy": 3
+      },
+      "softHostileTarget": 23,
+      "sectorHazards": [],
+      "player": {
+        "character": "swarm",
+        "x": 745.3142806153846,
+        "y": 680,
+        "hp": 5000,
+        "maxHp": 5000
+      },
+      "dashTrail": {
+        "count": 0,
+        "cap": 96,
+        "life": 0.42,
+        "pool": 0,
+        "glowCache": 0
+      },
+      "special": {
+        "phase": 0,
+        "bulwark": 0,
+        "invuln": 0,
+        "cooldown": 0,
+        "meteors": 0,
+        "orbitants": 0,
+        "visual": null
+      }
+    },
+    "alpha": {
+      "state": "playing",
+      "paused": false,
+      "showHUD": true,
+      "combatLab": false,
+      "saveDisabled": false,
+      "wave": 3,
+      "score": 0,
+      "shards": 0,
+      "run": {
+        "version": 1,
+        "mode": "expedition",
+        "seed": 0,
+        "bossProgression": "full-roster",
+        "seconds": 1.2632999999999994,
+        "kills": 0,
+        "hits": 0,
+        "bosses": 0,
+        "cleared": 2,
+        "completed": false,
+        "rewardClaimed": false,
+        "weaponKills": {
+          "pistol": 0,
+          "rifle": 0,
+          "smg": 0,
+          "shotgun": 0,
+          "sniper": 0,
+          "laser": 0,
+          "plasma": 0,
+          "flamethrower": 0,
+          "bow": 0,
+          "railgun": 0
+        },
+        "waveKills": {},
+        "waveHits": 0,
+        "prep": null,
+        "contract": false,
+        "contracts": 0,
+        "lastReward": 0,
+        "lastReport": "",
+        "event": null
+      },
+      "mode": "expedition",
+      "hp": 5000,
+      "maxHp": 5000,
+      "inventory": [
+        {
+          "id": "pistol",
+          "name": "Pistola",
+          "level": 1,
+          "role": "Versátil y confiable"
+        }
+      ],
+      "weapon": "pistol",
+      "character": "swarm",
+      "event": "fog"
+    }
+  }
+}

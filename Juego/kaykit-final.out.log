@@ -1,0 +1,19 @@
+
+COMBAT QA PASS: 28 checks; errors=0
+WORLD QA PASS: 32 checks; errors=0; sampled FPS=60
+AUDIO QA PASS: 41 checks; errors=0
+MORTAR QA PASS: 26 checks; errors=0
+DIMENSIONS QA PASS: 22 checks; errors=0
+TERROR QA PASS: 13 checks; errors=0
+STABILITY QA PASS: 16 checks; 648 camera configurations
+TURNS / VERTICAL QA PASS: 31 checks
+ONLINE QA PASS: 23 checks · actual two-window TCP
+SUPPLIES / INVENTORY / DIALOGUE QA PASS: 18 checks
+UMBRAL QA PASS: 21 checks
+SHELTERS / LIGHT QA PASS: 29 checks
+STRATEGY / OBJECTIVES QA PASS: 36 checks
+SINGULARITY / LIGHT QA PASS: 17 checks
+CIRCUIT QA PASS: 17 checks
+CHARACTERS QA PASS: 8 checks
+HUMANOID DEBUG QA PASS: 24 checks
+KAYKIT QA PASS: 15 checks · 390 sampled poses

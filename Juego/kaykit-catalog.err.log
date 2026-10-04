@@ -1,0 +1,4 @@
+AssertionError [ERR_ASSERTION]: Reload uses matching one-hand animation
+    at check (C:\Users\party\Desktop\COSMIC ROLL 3D - Humanoides\Juego\resources\app\desktop\verify-kaykit.cjs:1:333)
+    at module.exports (C:\Users\party\Desktop\COSMIC ROLL 3D - Humanoides\Juego\resources\app\desktop\verify-kaykit.cjs:5:227)
+    at async C:\Users\party\Desktop\COSMIC ROLL 3D - Humanoides\Juego\resources\app\desktop\main.cjs:63:20

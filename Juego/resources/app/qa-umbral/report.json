@@ -1,0 +1,107 @@
+{
+  "pass": true,
+  "cases": [
+    "Portal is a small black hole in both dimensions",
+    "E starts a visible timed transit",
+    "Space transition does not switch maps prematurely",
+    "Repeated E and firing cannot escape or duplicate transit",
+    "Pause freezes the dimensional animation",
+    "Travel completes once and restores control",
+    "Transit consumes no arsenal resources",
+    "Dimension has tactical cover and three connected route recipes",
+    "Existing Growth identity remains intact",
+    "Dimensional soundscape changes with the map",
+    "All three Umbral II relays activate the actual boss",
+    "Boss and extraction complete Umbral II expedition",
+    "Exploration button starts the selected actual map",
+    "Starting an alternate expedition preserves origin disk checkpoint and inventory",
+    "A full local match can start directly in Umbral II",
+    "Local relay scoring works on the alternate terrain",
+    "Air supplies still precede the next turn",
+    "Next player and camera remain on the same dimension",
+    "Menu exposes both maps and a direct exploration action",
+    "Restart safely cancels transit and preserves Umbral I identity",
+    "No renderer errors or frame faults"
+  ],
+  "map": {
+    "id": 1,
+    "name": "UMBRAL II",
+    "size": 7200,
+    "portal": {
+      "x": -260,
+      "z": -450,
+      "radius": 82,
+      "destination": "UMBRAL I",
+      "kind": "black-hole",
+      "visualRadius": 21
+    },
+    "content": {
+      "covers": 16,
+      "routes": 3,
+      "points": [
+        {
+          "x": -375,
+          "z": -700,
+          "name": "Receptor ahogado"
+        },
+        {
+          "x": 1595,
+          "z": -900,
+          "name": "Horno de la emisión"
+        },
+        {
+          "x": 795,
+          "z": -2250,
+          "name": "Antena del coro"
+        },
+        {
+          "x": -1605,
+          "z": -1400,
+          "name": "Archivo sin audiencia"
+        }
+      ]
+    },
+    "transit": {
+      "active": false,
+      "elapsed": 3.058333333333325,
+      "committed": true,
+      "duration": 3.05,
+      "intensity": 0,
+      "proxyPosition": [
+        -260,
+        44.23814637164128,
+        -450
+      ],
+      "proxyScale": [
+        1,
+        1,
+        1
+      ],
+      "horizon": [
+        -260,
+        44.23814637164128,
+        -450
+      ],
+      "fade": 0,
+      "preservesAppearance": true
+    },
+    "terrainSample": [
+      46.49910204788118,
+      -6.220035503217505
+    ],
+    "loaded": 2,
+    "visible": 1,
+    "trees": 620,
+    "boxes": 1153,
+    "aesthetic": {
+      "style": "growth-marsh",
+      "sculptures": 12,
+      "stems": 1560,
+      "orbs": 6,
+      "particles": 1600,
+      "cosmetic": true
+    },
+    "grounded": true
+  },
+  "errors": []
+}

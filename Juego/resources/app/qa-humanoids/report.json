@@ -1,0 +1,21 @@
+{
+  "pass": true,
+  "cases": [
+    "All 36 initial actors have individual skeletons",
+    "All original eight clips are included offline",
+    "Face generator and physics not replaced",
+    "Locomotion selects native movement clip",
+    "Jump preserves physical height",
+    "Attack selects attack clip",
+    "Damage selects hurt clip",
+    "Local teams gain bodies",
+    "Roster rebuild releases old skeletons",
+    "Death follows existing game state",
+    "No frame faults or renderer errors"
+  ],
+  "errors": [],
+  "perf": {
+    "medianMs": 16.699999999999818,
+    "p95Ms": 16.800000000000182
+  }
+}

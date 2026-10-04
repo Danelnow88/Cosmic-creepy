@@ -1,0 +1,14 @@
+{
+  "pass": true,
+  "cases": [
+    "Active player wears new doll face",
+    "All 35 enemies including boss carry new style",
+    "Six face variants cached rather than per-frame textures",
+    "Dark local lighting is preserved",
+    "Every waiting member has the same art direction",
+    "Turn handoff keeps face and team identity",
+    "Rebuilding roster preserves shared texture cache",
+    "No invalid scene or renderer failures"
+  ],
+  "errors": []
+}

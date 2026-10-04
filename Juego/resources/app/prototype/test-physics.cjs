@@ -1,0 +1,11 @@
+const assert=require('node:assert/strict'),P=require('./physics.js');
+const v=(x,y=0,z=0)=>({x,y,z}),bounds={min:v(10,-5,-5),max:v(20,5,5)};
+assert.equal(P.sphere(v(0),v(100),v(50),5),.45);
+assert.equal(P.sphere(v(0,10),v(100,10),v(50),5),null);
+assert.equal(P.box(v(0),v(100),bounds),.1);
+assert.equal(P.box(v(0),v(100),bounds,2),.08);
+assert.equal(P.box(v(0,20),v(100,20),bounds),null);
+assert.equal(P.box(v(15),v(15),bounds),0);
+assert(Math.abs(P.terrain(v(0,10),v(100,-10),()=>0)-.5)<.001);
+assert.equal(P.terrain(v(0,10),v(100,10),()=>0),null);
+console.log('8 collision tests passed');

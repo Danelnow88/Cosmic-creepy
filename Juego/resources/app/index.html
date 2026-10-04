@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>COSMIC ROLL — Prototipo 3D real</title>
+    <link rel="icon" href="assets/brand/neon-void-mark.svg?nv=audio-20261002b" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/styles.css?nv=audio-20261002b" />
+    <link rel="stylesheet" href="css/lobby-f093.css?nv=audio-20261002b" />
+    <link rel="stylesheet" href="css/alpha.css?nv=audio-20261002b" />
+    <!-- Capa móvil: detección por capacidad (se carga primero; solo etiqueta <html>). -->
+    <script src="js/core/capabilities.js?nv=audio-20261002b"></script>
+    <!-- La distribución Canvas2D funciona offline. WebGL legado sólo a pedido. -->
+<link rel="stylesheet" href="prototype/roll.css">
+</head>
+  <body>
+    <main class="shell">
+      <header class="hud">
+        <div class="logo"><span>CR</span> COSMIC ROLL</div>
+        <div id="rhythm-widget" class="rhythm-widget" title="Control de música externa (permite capturar audio de una pestaña o ventana)">
+          <span class="rw-icon" aria-hidden="true">
+            <svg class="mn" viewBox="0 0 32 32" width="20" height="20" focusable="false">
+              <path class="mn-base" d="M11 25V7l12-3v15" />
+              <circle class="mn-dot" cx="7.5" cy="25" r="2.6" />
+              <circle class="mn-dot" cx="20.5" cy="19" r="2.6" />
+              <path class="mn-ghost" d="M5 9h6M5 13h4" />
+            </svg>
+          </span>
+          <button id="rwAddMusicBtn" class="rw-btn" type="button" title="Agregar música (capturar pestaña/ventana)">♫+</button>
+          <button id="rwStopBtn" class="rw-btn" type="button" title="Detener captura">⏹</button>
+        </div>
+        <div class="stats" aria-label="Estado de la partida">
+          <div class="stat stat-wave" title="Oleada"><span class="stat-icon" aria-hidden="true">W</span><span id="wave">Oleada 1</span></div>
+          <div class="stat stat-score" title="Puntaje"><span class="stat-icon" aria-hidden="true"><svg class="stat-svg" viewBox="0 0 16 16" focusable="false"><path d="M3 13V8h2v5H3Zm4 0V4h2v9H7Zm4 0V2h2v11h-2Z" /></svg></span><span id="score">0</span></div>
+          <div class="stat shard" title="Fragmentos"><span class="stat-icon shard-icon" aria-hidden="true">◆</span><span id="shards">0</span></div>
+          <div class="hp-bar" aria-label="Vida"><div id="hpFill"></div><span id="hpText">100/100</span></div>
+        </div>
+        <div class="hud-btns">
+          <button id="charBtn" class="hud-btn" type="button" title="Estadísticas (TAB)"><svg class="stat-svg" viewBox="0 0 16 16" focusable="false" aria-hidden="true"><path d="M3 13V8h2v5H3Zm4 0V4h2v9H7Zm4 0V2h2v11h-2Z" /></svg></button>
+          <button id="hudToggle" class="hud-btn active" type="button" title="Mostrar/ocultar HUD">HUD</button>
+          <button id="sound" class="sound" type="button" title="Silenciar sonido" aria-pressed="true">🔊 SONIDO</button>
+          <button id="settingsBtn" class="hud-btn desktop-settings" type="button" title="Ajustes">⚙</button>
+          <button id="fullscreenBtn" class="hud-btn touch-fullscreen" type="button" title="Jugar en pantalla completa">⛶</button>
+          <button id="optionsBtn" class="hud-btn touch-options" type="button" title="Opciones móviles">☰</button>
+        </div>
+      </header>
+
+      <section class="game-box">
+        <canvas id="game" width="900" height="520"></canvas>
+        <canvas id="specter-overlay" class="espectro-lite-canvas" width="900" height="520"></canvas>
+        <div id="waveBanner" class="wave-banner hidden"></div>
+
+        <div id="startScreen" class="overlay lobby-screen main-lobby-screen">
+          <div class="lobby-atmosphere" aria-hidden="true">
+            <div class="lobby-nebula lobby-nebula-a"></div>
+            <div class="lobby-nebula lobby-nebula-b"></div>
+            <div class="lobby-grid-floor"></div>
+            <span class="lobby-star star-a"></span><span class="lobby-star star-b"></span>
+            <span class="lobby-star star-c"></span><span class="lobby-star star-d"></span>
+          </div>
+          <section class="main-lobby-panel" aria-labelledby="lobbyTitle">
+            <div class="main-lobby-copy">
+              <div class="lobby-kicker">PROTOTIPO 3D REAL · ESTUDIO DE MOVIMIENTO</div>
+              <div class="lobby-brand" aria-label="Cosmic Roll">
+                <span class="lobby-brand-mark">CR</span>
+                <h1 id="lobbyTitle"><span>COSMIC</span><strong>ROLL</strong></h1>
+              </div>
+              <p class="subtitle">Atravesá el umbral. Prepará tu piloto. Sobreviví al pulso del Vacío.</p>
+              <div class="lobby-hero-info" aria-live="polite">
+                <div class="hero-info-header">
+                  <button id="hero-prev" class="hero-nav hero-prev" type="button" aria-label="Piloto anterior">◀</button>
+                  <div class="hero-info-name">
+                    <span id="heroName">BOTI</span>
+                    <small id="heroTag">Equilibrado</small>
+                  </div>
+                  <button id="hero-next" class="hero-nav hero-next" type="button" aria-label="Piloto siguiente">▶</button>
+                </div>
+                <div class="hero-info-stats" id="heroStats">HP 120 · SPD 195 · ARM 0</div>
+                <p class="hero-info-passive"><span>PASIVA</span><strong id="heroPassive">Regenera 1 HP cada 5s</strong></p>
+                <div class="hero-info-skill">
+                  <canvas class="hero-skill-icon" id="heroSkillIcon" width="24" height="24"></canvas>
+                  <p><span>ESPECIAL</span><strong id="heroSkillName">Lluvia Criocósmica</strong><small id="heroSkillDesc">12 cometas fríos, con daño reducido contra jefes</small></p>
+                </div>
+                <p class="hero-info-identity" id="heroIdentity">Supervivencia estable · especial de alto impacto y recarga larga</p>
+              </div>
+              <div class="main-lobby-actions" aria-label="Menú principal">
+                <button id="lobbyPlayBtn" class="primary lobby-play" type="button"><span>JUGAR</span><small>Iniciar con el piloto seleccionado</small></button>
+                <button id="pilotsBtn" class="primary secondary lobby-secondary" type="button">PILOTOS</button>
+                <button id="permBtn" class="primary secondary lobby-secondary" type="button">MEJORAS PERMANENTES</button>
+                <button id="lobbySettingsBtn" class="primary secondary lobby-settings" type="button">AJUSTES</button>
+                <button id="lobbyFullscreenBtn" class="primary secondary lobby-fullscreen hidden" type="button" aria-hidden="true">⛶ PANTALLA COMPLETA</button>
+              </div>
+              <div class="lobby-difficulty" id="lobbyDifficulty" aria-label="Dificultad">
+                <span class="lobby-diff-label">DIFICULTAD</span>
+                <div class="lobby-diff-options" id="lobbyDiffOptions">
+                  <button type="button" class="lobby-diff-btn" data-diff="easy" aria-pressed="false">FÁCIL</button>
+                  <button type="button" class="lobby-diff-btn" data-diff="normal" aria-pressed="false">NORMAL</button>
+                  <button type="button" class="lobby-diff-btn" data-diff="hard" aria-pressed="false">DIFÍCIL</button>
+                </div>
+              </div>
+              <div class="main-lobby-status" aria-label="Progreso guardado">
+                <span class="status-light"></span>
+                <p><strong>PROGRESO LOCAL ACTIVO</strong><small>Mejoras y ajustes guardados automáticamente</small></p>
+              </div>
+            </div>
+            <div class="lobby-hero" aria-label="Vista previa del piloto seleccionado">
+              <canvas id="lobbyPreview" class="lobby-preview"></canvas>
+            </div>
+          </section>
+        </div>
+
+        <div id="characterSelectScreen" class="overlay lobby-screen character-select-screen hidden">
+          <div class="lobby-atmosphere character-select-atmosphere" aria-hidden="true">
+            <div class="lobby-nebula lobby-nebula-a"></div><div class="lobby-nebula lobby-nebula-b"></div>
+            <div class="lobby-grid-floor"></div>
+          </div>
+          <div class="lobby-shell">
+            <header class="lobby-header">
+              <div class="lobby-kicker">ARCHIVO DE PILOTOS · ESCUADRÓN 04</div>
+              <h1><span>BIBLIOTECA</span> DE PILOTOS</h1>
+              <p class="subtitle">Compará perfiles, habilidades y riesgos. Tu selección queda lista en el lobby.</p>
+            </header>
+            <section class="lobby-roster" aria-labelledby="lobbyRosterTitle">
+              <div class="lobby-section-head">
+                <span id="lobbyRosterTitle">PILOTOS DISPONIBLES</span>
+                <span id="lobbyCharacterCount">0 disponibles</span>
+              </div>
+              <div id="charGrid" class="char-grid"></div>
+            </section>
+            <footer class="lobby-actions character-select-actions">
+              <button id="startBtn" class="primary lobby-play" type="button">← USAR PILOTO · VOLVER AL LOBBY</button>
+            </footer>
+          </div>
+        </div>
+        <div id="shop" class="shop-screen hidden">
+          <div class="shop-terminal-head">
+            <div>
+              <h2 class="shop-title">SYS TERMINAL DE REABASTECIMIENTO</h2>
+              <p class="shop-sub">Seleccioná tu kit para la oleada <span id="shopWave">1</span></p>
+            </div>
+            <div class="shard-bar"><span class="shard-glyph">◆</span><span id="shopShards">0</span></div>
+          </div>
+          <div id="shopTabs" class="shop-tabs" role="tablist" aria-label="Secciones de la tienda">
+            <button type="button" class="shop-tab shop-tab-upgrades active" data-tab="upgrades" role="tab">MEJORAS</button>
+            <button type="button" class="shop-tab shop-tab-weapons" data-tab="weapons" role="tab">ARMAS</button>
+            <button type="button" class="shop-tab shop-tab-consumables" data-tab="consumables" role="tab">CONSUMIBLES</button>
+          </div>
+          <div class="shop-grid">
+            <div class="shop-section shop-section-calibrations" data-shop-tab="upgrades">
+              <div class="shop-section-title"><span class="section-chip">SYS</span> MEJORAS</div>
+              <div class="protocol-loadout shop-upgrade-dock">
+                <div class="dock-label">MEJORAS ADQUIRIDAS <span class="inv-hint">tipos 0/6 · nivel máx 6</span></div>
+                <div id="upgradeSlots" class="consumable-loadout upgrade-loadout"></div>
+              </div>
+              <div id="upgradesOffers" class="offers offers-upgrades"></div>
+            </div>
+            <div class="shop-section shop-section-armory" data-shop-tab="weapons">
+              <div class="shop-section-title"><span class="section-chip">WPN</span> ARMERÍA</div>
+              <div id="invPanel" class="inv-panel shop-weapon-dock">
+                <div class="dock-label">DOCK DE ARMAS <span class="inv-hint">clic equipar · vender · click en 2 armas para intercambiar</span></div>
+                <div id="invSlots" class="inv-slots"></div>
+              </div>
+              <div id="weaponOffers" class="offers offers-weapons"></div>
+            </div>
+            <div class="shop-section shop-section-protocols" data-shop-tab="consumables">
+              <div class="shop-section-title"><span class="section-chip">PRT</span> CONSUMIBLES</div>
+              <div class="protocol-loadout">
+                <div class="dock-label">CONSUMIBLES EQUIPADOS <span class="inv-hint">tipos 0/6 · stack 0/10</span></div>
+                <div id="shopConsumableLoadout" class="consumable-loadout"></div>
+              </div>
+              <div id="consumableOffers" class="offers offers-consumables"></div>
+            </div>
+          </div>
+          <button id="skipWave" class="primary shop-deploy" type="button">DESPLEGAR EN OLEADA <span id="shopNextWave">2</span></button>
+        </div>
+
+        <div id="permShop" class="shop-screen hidden">
+          <h2 class="shop-title">MEJORAS PERMANENTES</h2>
+          <p class="shop-sub">Gastá fragmentos de meta · se ganan al terminar una partida · mejoran a todos los pilotos</p>
+          <div class="shard-bar"><span class="shard-glyph">◆</span><span id="permShards">0</span></div>
+          <div class="shop-grid">
+            <div class="shop-section">
+              <div class="shop-section-title">MEJORAS GLOBALES</div>
+              <div id="permOffers" class="offers"></div>
+            </div>
+          </div>
+          <button id="permBack" class="primary" type="button">← VOLVER AL LOBBY</button>
+        </div>
+
+        <div id="gameOver" class="overlay hidden game-over-screen">
+          <section class="game-over-panel" aria-labelledby="goTitle">
+            <div class="game-over-kicker">RUN FINALIZADA</div>
+            <h1 id="goTitle">FIN</h1>
+            <p id="goText" class="game-over-summary"></p>
+            <div class="go-stats">
+              <div class="go-stat"><span>PUNTOS</span><span id="goScore">0</span></div>
+              <div class="go-stat"><span>OLEADA</span><span id="goWave">0</span></div>
+            </div>
+            <div class="game-over-future" aria-hidden="true"></div>
+            <button id="restartBtn" class="primary" type="button">VOLVER AL LOBBY</button>
+          </section>
+        </div>
+      </section>
+
+      <nav class="controls" aria-label="Controles" style="display:none;">
+        <button id="left" class="move" type="button">←</button>
+          <button id="specialBtn" class="special" type="button">ESPECIAL</button>
+        <button id="right" class="move" type="button">→</button>
+      </nav>
+
+      <!-- ===== CAPA MÓVIL: controles táctiles y overlay de orientación ===== -->
+      <!-- Solo se muestran con la clase .nv-mobile (capabilities.js). En escritorio
+           quedan ocultos sin tocar el layout ni el gameplay. -->
+      <div id="mobileHud" class="mobile-hud">
+        <div id="joystickZone" class="joystick-zone" aria-label="Zona de joystick">
+          <div id="joystickBase" class="joystick-base"><div id="joystickThumb" class="joystick-thumb"></div></div>
+        </div>
+        <div id="mobileActions" class="mobile-actions" aria-label="Controles táctiles">
+          <button id="touchUseBtn" class="touch-btn touch-use" type="button">USAR</button>
+          <button id="touchSlideBtn" class="touch-btn touch-slide" type="button">DASH</button>
+          <button id="touchSpecialBtn" class="touch-btn touch-special is-ready" type="button" aria-label="Especial listo">
+            <span class="touch-special-label">ESPECIAL</span>
+            <span id="touchSpecialStatus" class="touch-special-status" aria-hidden="true">LISTO</span>
+          </button>
+        </div>
+        <div id="mobileWeaponSwitch" class="mobile-weapon-switch" aria-label="Cambio de arma">
+          <button id="touchWeaponPrev" class="touch-btn touch-switch" type="button">◀</button>
+          <div id="weaponIndicator" class="switch-indicator" aria-live="polite">
+            <canvas id="weaponIndicatorIcon" class="switch-indicator-icon" width="32" height="32" aria-hidden="true"></canvas>
+            <span class="switch-indicator-copy"><span class="switch-indicator-kind">ARMA</span><span id="weaponIndicatorName" class="switch-indicator-name">—</span></span>
+          </div>
+          <button id="touchWeaponNext" class="touch-btn touch-switch" type="button">▶</button>
+        </div>
+        <div id="mobileConsumableSwitch" class="mobile-consumable-switch" aria-label="Selección de consumible">
+          <button id="touchConsumPrev" class="touch-btn touch-switch" type="button">◀</button>
+          <div id="consumableIndicator" class="switch-indicator is-empty" aria-live="polite">
+            <canvas id="consumableIndicatorIcon" class="switch-indicator-icon" width="32" height="32" aria-hidden="true"></canvas>
+            <span class="switch-indicator-copy"><span class="switch-indicator-kind">ITEM</span><span id="consumableIndicatorName" class="switch-indicator-name">SIN</span></span>
+          </div>
+          <button id="touchConsumNext" class="touch-btn touch-switch" type="button">▶</button>
+        </div>
+        <div id="mobileOptions" class="mobile-options hidden" aria-label="Panel de opciones">
+          <button id="mPauseBtn" class="opt-btn" type="button">⏸ Pausa</button>
+          <button id="mStatsBtn" class="opt-btn" type="button">Estadísticas</button>
+          <button id="mSoundBtn" class="opt-btn" type="button" aria-pressed="true">🔊 Sonido: ON</button>
+          <button id="mSettingsBtn" class="opt-btn" type="button">⚙ Ajustes</button>
+          <button id="mFullscreenBtn" class="opt-btn" type="button">⛶ Fullscreen</button>
+        </div>
+      </div>
+
+      <div id="settingsPanel" class="settings-overlay hidden" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="settingsTitle" tabindex="-1">
+        <section id="settingsPanelBody" class="settings-panel" aria-label="Ajustes">
+          <header class="settings-head">
+            <div><span class="settings-kicker">SISTEMA</span><h2 id="settingsTitle">AJUSTES</h2></div>
+            <button id="settingsClose" class="settings-close" type="button" aria-label="Cerrar ajustes">×</button>
+          </header>
+          <nav id="settingsTabs" class="settings-tabs" role="tablist" aria-label="Secciones de ajustes">
+            <button id="tabAudio" class="settings-tab active" type="button" role="tab" aria-selected="true" aria-controls="panelAudio" data-tab="audio">AUDIO</button>
+            <button id="tabControls" class="settings-tab" type="button" role="tab" aria-selected="false" aria-controls="panelControls" data-tab="controls" tabindex="-1">CONTROLES</button>
+            <button id="tabGraphics" class="settings-tab" type="button" role="tab" aria-selected="false" aria-controls="panelGraphics" data-tab="graphics" tabindex="-1">GRÁFICOS</button>
+          </nav>
+          <div id="settingsTabPanels" class="settings-tab-panels">
+            <div id="panelAudio" class="settings-tab-panel" role="tabpanel" aria-labelledby="tabAudio" aria-hidden="false" data-tab="audio">
+              <div class="settings-mute-row">
+                <button id="settingsMuteToggle" type="button" class="settings-mute-btn" aria-pressed="true">🔊 SONIDO</button>
+                <span class="settings-mute-note">Mute transitorio: no se guarda.</span>
+              </div>
+              <div class="settings-volume-list">
+                <label class="settings-range" for="settingsMasterVolume">
+                  <span><b>Volumen general</b><small>Controla toda la salida de audio.</small></span>
+                  <output id="settingsMasterVolumeValue" for="settingsMasterVolume" aria-live="polite">100%</output>
+                  <input class="settings-volume" id="settingsMasterVolume" type="range" min="0" max="100" step="1" value="100" data-setting="masterVolume" aria-label="Volumen general" />
+                </label>
+                <label class="settings-range" for="settingsMusicVolume">
+                  <span><b>Música</b><small>Temas y banda sonora del juego.</small></span>
+                  <output id="settingsMusicVolumeValue" for="settingsMusicVolume" aria-live="polite">100%</output>
+                  <input class="settings-volume" id="settingsMusicVolume" type="range" min="0" max="100" step="1" value="100" data-setting="musicVolume" aria-label="Volumen de música" />
+                </label>
+                <label class="settings-range" for="settingsWeaponsVolume">
+                  <span><b>Armas</b><small>Disparos, explosiones y efectos de armas.</small></span>
+                  <output id="settingsWeaponsVolumeValue" for="settingsWeaponsVolume" aria-live="polite">100%</output>
+                  <input class="settings-volume" id="settingsWeaponsVolume" type="range" min="0" max="100" step="1" value="100" data-setting="weaponsVolume" aria-label="Volumen de armas" />
+                </label>
+                <label class="settings-range" for="settingsUiVolume">
+                  <span><b>Interfaz y pickups</b><small>UI, menús y recogida de objetos.</small></span>
+                  <output id="settingsUiVolumeValue" for="settingsUiVolume" aria-live="polite">100%</output>
+                  <input class="settings-volume" id="settingsUiVolume" type="range" min="0" max="100" step="1" value="100" data-setting="uiVolume" aria-label="Volumen de interfaz y pickups" />
+                </label>
+                <label class="settings-range" for="settingsPlayerVolume">
+                  <span><b>Jugador y avisos</b><small>Daño, disparo propio y notificaciones.</small></span>
+                  <output id="settingsPlayerVolumeValue" for="settingsPlayerVolume" aria-live="polite">100%</output>
+                  <input class="settings-volume" id="settingsPlayerVolume" type="range" min="0" max="100" step="1" value="100" data-setting="playerVolume" aria-label="Volumen de jugador y avisos" />
+                </label>
+                <label class="settings-range" for="settingsEnemiesVolume">
+                  <span><b>Enemigos</b><small>Sonidos de hostiles y sus ataques.</small></span>
+                  <output id="settingsEnemiesVolumeValue" for="settingsEnemiesVolume" aria-live="polite">100%</output>
+                  <input class="settings-volume" id="settingsEnemiesVolume" type="range" min="0" max="100" step="1" value="100" data-setting="enemiesVolume" aria-label="Volumen de enemigos" />
+                </label>
+                <label class="settings-range" for="settingsAmbientVolume">
+                  <span><b>Ambiente y eventos</b><small>Música ambiental y eventos del mundo.</small></span>
+                  <output id="settingsAmbientVolumeValue" for="settingsAmbientVolume" aria-live="polite">100%</output>
+                  <input class="settings-volume" id="settingsAmbientVolume" type="range" min="0" max="100" step="1" value="100" data-setting="ambientVolume" aria-label="Volumen de ambiente y eventos" />
+                </label>
+              </div>
+              <p class="settings-note">El volumen general controla toda la salida. El mute es transitorio y afecta a todo el audio.</p>
+            </div>
+            <div id="panelControls" class="settings-tab-panel" role="tabpanel" aria-labelledby="tabControls" aria-hidden="true" data-tab="controls" hidden>
+              <div class="quality-options" role="radiogroup" aria-label="Política de disparo en escritorio">
+                <label><input type="radio" name="firePolicy" value="manual" /><span><b>Manual</b><small>Apuntá con mouse o stick derecho; dispará con clic o gatillo.</small></span></label>
+                <label><input type="radio" name="firePolicy" value="legacy-auto" /><span><b>Auto clásico</b><small>Dispara al objetivo más cercano como hasta ahora.</small></span></label>
+              </div>
+              <p id="gamepadStatus" class="settings-note" role="status">Mando: no detectado. Estándar: stick izq. mover · stick der. apuntar · RT disparar · B dash · A especial.</p>
+              <p class="settings-note">En móvil se conserva el auto clásico. Los mandos estándar y Steam Input usan la misma lógica que teclado/mouse.</p>
+            </div>
+            <div id="panelGraphics" class="settings-tab-panel" role="tabpanel" aria-labelledby="tabGraphics" aria-hidden="true" data-tab="graphics" hidden>
+              <div class="quality-options" role="radiogroup" aria-label="Calidad visual">
+                <label><input type="radio" name="graphicsQuality" value="auto" /><span><b>Auto</b><small>Equilibra detalle cuando hay muchas élites.</small></span></label>
+                <label><input type="radio" name="graphicsQuality" value="high" /><span><b>Alta</b><small>Calidad visual completa actual.</small></span></label>
+                <label><input type="radio" name="graphicsQuality" value="performance" /><span><b>Rendimiento</b><small>Simplifica VFX secundarios antes.</small></span></label>
+              </div>
+              <label class="settings-toggle"><input id="settingsParticles" type="checkbox" /><span><b>Partículas mejoradas</b><small>Partículas decorativas de enemigos.</small></span></label>
+              <label class="settings-toggle"><input id="settingsHeavyVfx" type="checkbox" /><span><b>VFX intensos de élites</b><small>Halos y geometría secundaria de la familia Hidra.</small></span></label>
+              <p class="settings-note">Los ajustes gráficos no cambian enemigos, daño, vida, spawns ni dificultad.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+
+      <div id="rotateOverlay" class="rotate-overlay" role="alert" aria-live="assertive">
+        <svg class="rotate-ico" viewBox="0 0 64 64" focusable="false" aria-hidden="true">
+          <rect class="r-phone" x="22" y="6" width="20" height="52" rx="4" fill="none" stroke="currentColor" stroke-width="3" />
+          <circle class="r-dot" cx="32" cy="52" r="2" fill="currentColor" />
+          <path class="r-arrow" d="M14 14 L4 24 M4 24 H14 M4 24 V14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <p>GIRÁ TU DISPOSITIVO</p>
+        <span class="rotate-hint">El juego se juega en horizontal</span>
+      </div>
+    </main>
+
+    <script src="js/core/state.js?nv=audio-20261002b"></script>
+    <script src="js/data/gameData.js?nv=audio-20261002b"></script>
+    <script src="js/data/balance.js?nv=audio-20261002b"></script>
+    <script src="js/core/settings.js?nv=audio-20261002b"></script>
+    <script src="js/core/utils.js?nv=audio-20261002b"></script>
+    <script src="js/core/viewport.js?nv=audio-20261002b"></script>
+    <script src="js/core/inputIntent.js?nv=audio-20261002b"></script>
+    <script src="js/data/consumables.js?nv=audio-20261002b"></script>
+    <script src="js/audio/voices.js?nv=groove-20261003"></script>
+    <script src="js/audio/synth.js?nv=groove-20261003"></script>
+    <script src="js/audio/weaponSfx.js?nv=audio-20261002b"></script>
+    <script src="js/audio/uiAudio.js?nv=audio-20261002b"></script>
+    <script src="js/ui/dom.js?nv=audio-20261002b"></script>
+    <script src="js/ui/settingsPanel.js?nv=audio-20261002b"></script>
+    <script src="js/ui/characters.js?nv=audio-20261002b"></script>
+    <script src="js/render/canvas.js?nv=audio-20261002b"></script>
+    <script src="js/render/sectors.js?nv=audio-20261002b"></script>
+    <script src="js/render/projectiles.js?nv=audio-20261002b"></script>
+    <script src="js/render/specialEffects.js?nv=audio-20261002b"></script>
+    <script src="js/render/consumableEffects.js?v=shield-2&amp;nv=audio-20261002b"></script>
+    <script src="js/render/spectralEnemies2D.js?nv=audio-20261002b"></script>
+    <script src="js/render/enemies.js?nv=audio-20261002b"></script>
+    <script src="js/render/metaReadability.js?nv=audio-20261002b"></script>
+    <script src="js/render/visualBudget.js?nv=audio-20261002b"></script>
+    <script src="js/render/hazards.js?nv=audio-20261002b"></script>
+    <script src="js/render/espectroLite.js?nv=audio-20261002b"></script>
+    <script src="js/render/bosses.js?nv=audio-20261002b"></script>
+    <script src="js/data/pilotAnimationBaseline.js?nv=audio-20261002b"></script>
+    <script src="js/render/pilotGeometry.js?nv=audio-20261002b"></script>
+    <script src="js/render/pilotAppearance.js?nv=audio-20261002b"></script>
+    <script src="js/render/player.js?nv=audio-20261002b"></script>
+    <script src="js/render/weaponIcons.js?nv=audio-20261002b"></script>
+    <script src="js/render/consumableIcons.js?nv=audio-20261002b"></script>
+    <script src="js/render/metaSkillIcons.js?nv=audio-20261002b"></script>
+    <script src="js/render/hud.js?nv=audio-20261002b"></script>
+    <script src="js/engine/rhythm.js?nv=audio-20261002b"></script>
+    <script src="js/engine/fx.js?nv=audio-20261002b"></script>
+    <script src="js/engine/drones.js?nv=audio-20261002b"></script>
+    <script src="js/engine/meteors.js?nv=audio-20261002b"></script>
+    <script src="js/engine/pickups.js?nv=audio-20261002b"></script>
+    <script src="js/engine/movement.js?nv=audio-20261002b"></script>
+    <script src="js/engine/consumables.js?nv=audio-20261002b"></script>
+    <script src="js/engine/metaDiagnostics.js?nv=audio-20261002b"></script>
+    <script src="js/engine/hostileBudget.js?nv=audio-20261002b"></script>
+    <script src="js/engine/enemySpawnRegistry.js?nv=audio-20261002b"></script>
+    <script src="js/engine/performanceMonitor.js?nv=audio-20261002b"></script>
+      <script src="js/engine/cameraSafety.js?nv=audio-20261002b"></script>
+      <script src="js/engine/hazards.js?nv=audio-20261002b"></script>
+      <script src="js/engine/sectorEncounters.js?nv=audio-20261002b"></script>
+      <script src="js/engine/enemies.js?nv=audio-20261002b"></script>
+      <script src="js/engine/enemyArrival.js?nv=spawn-icon-20261003"></script>
+      <script src="js/engine/wavePressure.js?nv=audio-20261002b"></script>
+    <script src="js/engine/combat.js?nv=audio-20261002b"></script>
+    <script src="js/engine/playerStun.js?nv=audio-20261002b"></script>
+    <script src="js/engine/playtestTelemetry.js?nv=audio-20261002b"></script>
+    <script src="js/engine/expedition.js?nv=audio-20261002b"></script>
+    <script src="js/engine/boss.js?nv=audio-20261002b"></script>
+    <script src="js/engine/bossEncounters.js?nv=audio-20261002b"></script>
+    <script src="js/engine/bullets.js?nv=audio-20261002b"></script>
+    <script src="js/engine/flame.js?nv=audio-20261002b"></script>
+    <script src="js/engine/weapons.js?nv=audio-20261002b"></script>
+    <script src="js/engine/special.js?nv=audio-20261002b"></script>
+<script src="vendor/three-0.160.0.min.js"></script>
+<script src="prototype/roll.js"></script>
+    <script src="js/game.js?nv=audio-20261002b"></script>
+    <script src="js/ui/onboarding.js?nv=audio-20261002b"></script>
+    <script src="js/ui/gamepadControls.js?nv=audio-20261002b"></script>
+    <script src="js/ui/alpha.js?nv=audio-20261002b"></script>
+    <!-- Último: necesita NV.input (expuesto por game.js) y NV.viewport. -->
+    <script src="js/ui/mobileControls.js?nv=audio-20261002b"></script>
+  </body>
+</html>

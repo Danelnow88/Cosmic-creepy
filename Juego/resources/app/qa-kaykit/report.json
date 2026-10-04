@@ -1,0 +1,21 @@
+{
+  "pass": true,
+  "cases": [
+    "KayKit retarget bank is active",
+    "Running uses KayKit clip",
+    "Air state uses jump clip",
+    "Changing weapon does not fake a shot",
+    "Pistol actually fires",
+    "Pistol uses one-hand firing",
+    "Reload uses matching one-hand animation",
+    "Rifle actually fires",
+    "Rifle uses two-hand firing",
+    "Damage uses KayKit hit reaction",
+    "Preview blocks unpause from gameplay keys",
+    "All 130 clips load locally and pose without invalid geometry",
+    "Preview restores gameplay",
+    "Closing preview cancels a pending clip",
+    "No renderer or frame faults"
+  ],
+  "errors": []
+}

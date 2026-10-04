@@ -1,0 +1,4573 @@
+/* ============================================================
+   NEON VOID - ROGUELITE
+   ============================================================ */
+(() => {
+  'use strict';
+
+  const worldMetrics = NV.worldMetrics || (NV.worldMetrics = {
+    refW: 900,
+    refH: 520,
+    viewW: 900,
+    viewH: 520,
+    viewX: 0,
+    viewY: 0,
+    arenaW: 900,
+    arenaH: 520,
+    scale: 1,
+  });
+  const REF_W = worldMetrics.refW, REF_H = worldMetrics.refH;
+  const ARENA_W = worldMetrics.arenaW, ARENA_H = worldMetrics.arenaH;
+  // Aliases legacy iniciales. En Stage 3 el gameplay consulta arenaW()/arenaH()
+  // para que mobile landscape use la arena dinámica y desktop conserve legacy.
+  const GW = REF_W, GH = REF_H;
+  const canvas = NV.canvas;
+  const ctx = NV.ctx;
+  const specterCanvas = document.getElementById('specter-overlay');
+  const queryString = (typeof window !== 'undefined' && window.location) ? (window.location.search || '') : '';
+  const runMode = /(?:^|[?&])combatLab=1(?:&|$)/.test(queryString) ? 'combatLab' : 'production';
+  const combatLabMode = runMode === 'combatLab';
+  let scaleX = 1, scaleY = 1;
+  let canvasResizeController = null;
+
+  function markCanvasResizeDirty() {
+    if (canvasResizeController) canvasResizeController.markDirty();
+  }
+  function resizeCanvas(force) {
+    if (!canvasResizeController) return false;
+    const result = canvasResizeController.flush(!!force);
+    if (result.metrics) {
+      scaleX = result.metrics.scaleX;
+      scaleY = result.metrics.scaleY;
+    }
+    return result.layoutRead;
+  }
+  const W = ARENA_W, H = ARENA_H;
+  function arenaW() { return worldMetrics.arenaW || REF_W; }
+  function arenaH() { return worldMetrics.arenaH || REF_H; }
+  function viewW() { return worldMetrics.viewW || REF_W; }
+  function viewH() { return worldMetrics.viewH || REF_H; }
+  function viewX() { return worldMetrics.viewX || 0; }
+  function viewY() { return worldMetrics.viewY || 0; }
+  // Reutiliza la única cámara del viewport; input y render comparten sus métricas.
+  let aimPointerClient = null;
+  function followPlayerCamera() {
+    if (NV.viewport && NV.viewport.followPlayer) NV.viewport.followPlayer(player.x, player.y);
+    syncEspectroCamera();
+    if (aimPointerClient && NV.screenToGame) {
+      const pt = NV.screenToGame(aimPointerClient.x, aimPointerClient.y);
+      NV.inputIntent.setAimWorld(combatIntent, pt.x, pt.y, player.x, player.y);
+    }
+  }
+  function syncEspectroCamera() {
+    const lite = NV.espectroLite;
+    const camera = lite && lite.camera;
+    if (!camera) return;
+    camera.left = viewX();
+    camera.right = viewX() + viewW();
+    camera.top = -viewY();
+    camera.bottom = -(viewY() + viewH());
+    if (typeof camera.updateProjectionMatrix === 'function') camera.updateProjectionMatrix();
+  }
+  canvasResizeController = NV.createCanvasResizeController({
+    canvas,
+    overlay: specterCanvas,
+    getDpr: () => (NV.viewport && typeof NV.viewport.getEffectiveDpr === 'function')
+      ? NV.viewport.getEffectiveDpr() : 1,
+    getView: () => ({ width: viewW(), height: viewH() }),
+    onBackingStoreResize: (dw, dh) => {
+      if (specterCanvas && NV.espectroLite && typeof NV.espectroLite.resize === 'function') {
+        NV.espectroLite.resize(dw, dh);
+      }
+    },
+    onLayoutSync: syncEspectroCamera,
+  });
+
+  // === PUENTE ESPECTRO LITE WEBGL ===
+  // Totalmente deprecado: Three.js legacy se desactiva por completo. Todos los
+  // espectros (incl. specter_lite / specter_core) usan el renderer Canvas2D líquido.
+  NV.SPECTER_ENABLED = true;
+  NV.ESPECTRO_LITE_ACTIVE = false;
+  // === MODO ESPECTRAL ENEMIES 2D ===
+  // Render alternativo Canvas2D para enemigos (no specters). Default: true (remaster).
+  // NV.toggleSpectralEnemyMode(false) revierte al render geométrico original.
+  NV.SPECTRAL_ENEMY_MODE = true;
+  const ESPECTRO_THREE_CDN = 'https://unpkg.com/three@0.160.0/build/three.module.js';
+  const espectroEntries = new Map();
+  // Identidad visual aprobada en previews/espectro-lite-single-preview.html.
+  const SPECTER_FORM = 0.35;
+  const SPECTER_SCALE = 0.4;
+  const SPECTER_VARIANT = [1, 0, 0];
+  let espectroLiteLoading = false;
+  let espectroLiteFailed = false;
+  let espectroTime = 0;
+  // Tipo de espectro forzado vía URL (?forceSpecter=specter_lite) o consola forceSpecter()
+  let forceSpecterType = null;
+
+  // === ESTADO ===
+  let state = 'menu', frame = 0, lastTime = 0, visualTimeSeconds = 0;
+  let shake = 0, hitstop = 0, flashColor = null, flashAlpha = 0, specialVFX = null;
+  let consumableVfx = [];
+  function spawnConsumableVfx(type, opts) {
+    if (typeof NV.spawnConsumableFx !== 'function') return;
+    const o = opts || {};
+    if (type === 'bomb') {
+      // #11: el evento bomb necesita dimensiones REALES de la arena para calcular
+      // el radio de detonación hasta la esquina más lejana (sin caps arbitrarios).
+      o.arenaW = arenaW();
+      o.arenaH = arenaH();
+    }
+    consumableVfx = NV.spawnConsumableFx(consumableVfx, type, player.x, player.y, o);
+  }
+  function updateConsumableVfx(dt) {
+    if (typeof NV.updateConsumableFx === 'function') consumableVfx = NV.updateConsumableFx(consumableVfx, dt);
+  }
+  // #11: impactos de bomba pendientes. Sin setTimeout: el game loop los tickea con
+  // dt y NV.tickBombImpacts aplica el daño exactamente una vez al cruzar el umbral.
+  let pendingBombImpacts = [];
+  function registerBombImpact(impact) {
+    if (impact && !impact.applied) pendingBombImpacts.push(impact);
+  }
+  function updateBombImpacts(dt) {
+    if (pendingBombImpacts.length && typeof NV.tickBombImpacts === 'function') {
+      pendingBombImpacts = NV.tickBombImpacts(pendingBombImpacts, dt);
+    }
+  }
+  const DEATH_TRANSITION_DURATION = 0.82;
+  const WAVE_END_DURATION = 2.10;
+  const WAVE_CLEANUP_DURATION = 0.4;
+  // #10 micro-feedback visual del cleanup: pop inicial + dispersión render-only.
+  const WAVE_CLEANUP_POP_T = 0.08;
+  const WAVE_CLEANUP_POP_SCALE = 1.08;
+  // #2 muerte del personaje: composición completa en tiempo absoluto.
+  // La muerte visual manda el timing; FIN espera 0.12s después del último residuo.
+  const PLAYER_DEATH_IMPACT_END = 0.06;
+  const PLAYER_DEATH_POP_END = 0.12;
+  const PLAYER_DEATH_POOF_T = 0.18;
+  const PLAYER_DEATH_MAIN_PUFF_END = 0.40;
+  const PLAYER_DEATH_DISSOLVE_END = 0.68;
+  const PLAYER_DEATH_VISUAL_END = 0.70;
+  const BOSS_WAVE_END_DURATION = 2.25;
+  // Tarea #8: margen extra en wave_end de jefe para recoger su cofre manualmente.
+  // Total antes de la tienda: BOSS_WAVE_END_DURATION + BOSS_CHEST_HOLD ≈ 4.5s.
+  const BOSS_CHEST_HOLD = 2.25;
+  // Tarea #8c: feedback visual del auto-pickup del cofre de boss.
+  const BOSS_CHEST_ANIM = 0.4;   // vuelo del cofre hacia el jugador (0.35-0.5)
+  const BOSS_CHEST_SETTLE = 0.3; // pausa post-recogida antes de la tienda (~0.3s)
+  const SHOP_ENTER_DURATION = 0.35;
+  let presentation = {
+    kind: null,
+    elapsed: 0,
+    duration: 0,
+    targetX: 0,
+    targetY: 0,
+    isBoss: false,
+    pilot: 'boti',
+    finalized: false,
+    hold: 0,
+  };
+
+  function resetPresentation() {
+    presentation.kind = null;
+    presentation.elapsed = 0;
+    presentation.duration = 0;
+    presentation.targetX = 0;
+    presentation.targetY = 0;
+    presentation.isBoss = false;
+    presentation.pilot = 'boti';
+    presentation.finalized = false;
+    presentation.hold = 0;
+    presentation.chestAnim = null; // Tarea #8c: sin animación de auto-pickup residual
+  }
+
+  function clearCombatIntent() {
+    NV.input.setFire(false);
+    combatIntent.fireIntent = false;
+    combatIntent.dashIntent = false;
+    combatIntent.abilityIntent = false;
+    fireTimer = 0;
+    currentAutoTarget = null;
+    NV.resetDashPauseLatch(player, false);
+    if (NV.audio && typeof NV.audio.stopAllWeapons === 'function') NV.audio.stopAllWeapons();
+  }
+
+  function easeOutCubic(value) {
+    const p = Math.max(0, Math.min(1, value));
+    return 1 - Math.pow(1 - p, 3);
+  }
+
+  function easeInOutCubic(value) {
+    const p = Math.max(0, Math.min(1, value));
+    return p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+  }
+
+  function presentationProgress() {
+    return presentation.duration > 0 ? Math.max(0, Math.min(1, presentation.elapsed / presentation.duration)) : 0;
+  }
+
+  function presentationZoom() {
+    const reduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (state === 'player_dying' || state === 'gameover') {
+      const maxZoom = reduced ? 1.02 : 1.075;
+      const focusP = Math.max(0, Math.min(1, (presentation.elapsed - 0.02) / 0.28));
+      return 1 + (maxZoom - 1) * easeOutCubic(focusP);
+    }
+    const maxZoom = reduced ? 1.02 : (presentation.isBoss ? 1.08 : 1.07);
+    const raw = presentationProgress();
+    const delayed = Math.max(0, (raw - 0.08) / 0.72);
+    const progress = state === 'shop_enter' || state === 'shop' ? 1 : easeInOutCubic(Math.min(1, delayed));
+    return 1 + (maxZoom - 1) * progress;
+  }
+
+  function cinematicView(vx, vy, vw, vh) {
+    if (state !== 'player_dying' && state !== 'gameover' && state !== 'wave_end' && state !== 'shop_enter' && state !== 'shop') {
+      return { zoom: 1, centerX: vx + vw / 2, centerY: vy + vh / 2 };
+    }
+    const zoom = presentationZoom();
+    const halfW = vw / zoom / 2;
+    const halfH = vh / zoom / 2;
+    // El zoom usa la misma regla visual que followPlayer, sin redefinir arena.
+    const centerX = NV.viewport && NV.viewport.clampCameraOrigin
+      ? NV.viewport.clampCameraOrigin((presentation.targetX || player.x) - halfW, arenaW(), halfW * 2) + halfW
+      : Math.max(halfW, Math.min(arenaW() - halfW, presentation.targetX || player.x));
+    const centerY = NV.viewport && NV.viewport.clampCameraOrigin
+      ? NV.viewport.clampCameraOrigin((presentation.targetY || player.y) - halfH, arenaH(), halfH * 2) + halfH
+      : Math.max(halfH, Math.min(arenaH() - halfH, presentation.targetY || player.y));
+    return { zoom, centerX, centerY };
+  }
+
+  function playerPresentationStyle() {
+    if (state === 'player_dying' || state === 'gameover') {
+      const visual = playerDeathVisualAt(presentation.elapsed);
+      return { alpha: visual.bodyAlpha, scale: visual.bodyScale, scaleX: visual.bodyScaleX, scaleY: visual.bodyScaleY, flourish: 0 };
+    }
+    if (state === 'wave_end') {
+      const local = Math.max(0, Math.min(1, presentation.elapsed / 0.55));
+      return { alpha: 1, scale: 1 + Math.sin(local * Math.PI) * 0.035, flourish: Math.sin(local * Math.PI) };
+    }
+    return null;
+  }
+
+  // Publica el estado compartido para que CSS y la UI móvil controlen visibilidad.
+  function syncGameState() {
+    const root = document.documentElement;
+    if (root) {
+      root.setAttribute('data-game-state', state);
+      root.setAttribute('data-paused', paused ? 'true' : 'false');
+    }
+    if (typeof document !== 'undefined' && typeof document.dispatchEvent === 'function' && typeof CustomEvent === 'function') {
+      document.dispatchEvent(new CustomEvent('nv-game-state-change', { detail: { state, paused } }));
+    }
+  }
+
+  // === JUGADOR ===
+  const player = {
+    x: arenaW()/2, y: arenaH()-100, hp: 100, maxHp: 100,
+    baseMoveSpeed: 195, effectiveMoveSpeed: 195, speed: 195, color: '#7cf8ff',
+    specialCd: 0, maxCd: 4, invuln: 0, character: 'boti',
+    armor: 0, luck: 0, overdrive: 0, xp: 0, level: 1, xpToNext: 100,
+    moveVx: 0, moveVy: 0, agility: 1,
+    moveSpeedPermanentMult: 1, moveControlPermanentMult: 1, moveSpeedTemporaryMult: 1,
+    acceleration: 0, deceleration: 0, turnControl: 0, reversalControl: 0,
+    moveReversing: false,
+    lastMoveDirX: 0, lastMoveDirY: -1,
+    dashStaminaMax: 100, dashStamina: 100, dashCost: 50,
+    dashTime: 0, dashRechargeDelay: 0, dashDirX: 0, dashDirY: -1,
+    dashInputHeld: false, dashActive: false,
+  };
+
+  // === ENTIDADES ===
+  let enemies = [], bullets = [], particles = [], pickups = [], floatTexts = [], shockwaves = [], trails = [], weaponPickups = [], drones = [], meteors = [], bossChests = [], hazards = [];
+  let flameZones = [];
+  let minefieldState = NV.createMinefieldState ? NV.createMinefieldState() : { spawnTimer: 0, serial: 0, spawned: 0, active: false };
+  let sectorEncounterState = NV.createSectorEncounterState ? NV.createSectorEncounterState() : { timer: 2.8, serial: 0, active: false };
+  const MAX_HOSTILES = NV.BALANCE.MAX_HOSTILES, MAX_HEAVY_HOSTILES = NV.BALANCE.MAX_HEAVY_HOSTILES;
+  const MAX_ENEMIES = MAX_HOSTILES, MAX_BULLETS = NV.BALANCE.MAX_BULLETS, MAX_PARTICLES = NV.BALANCE.MAX_PARTICLES;
+  // Presupuesto separado de balas por bando: evita que las balas enemigas
+  // (p. ej. muchos ESCOPURAS) congele el disparo del jugador al saturar el buffer común.
+  const MAX_PLAYER_BULLETS = NV.BALANCE.MAX_PLAYER_BULLETS;
+  const MAX_ENEMY_BULLETS = NV.BALANCE.MAX_ENEMY_BULLETS;
+  // Cuenta cuántas balas hay de cada bando (para respetar los topes propios).
+  function playerBulletCount() { let n = 0; for (const b of bullets) if (!b.isEnemy) n++; return n; }
+  function enemyBulletCount() { let n = 0; for (const b of bullets) if (b.isEnemy) n++; return n; }
+
+  // Three.js legacy FULLY DEPRECATED. Todos los espectros ahora renderizan
+  // por completo con el Canvas 2D líquido del Visual Lab. Siempre retorna false.
+  function shouldUseEspectroLite() {
+    return false;
+  }
+
+  function isEnemyRenderedByLite(e) {
+    return !!(NV.SPECTER_ENABLED !== false && NV.ESPECTRO_LITE_ACTIVE
+      && hasEspectroLiteApi(NV.espectroLite) && NV.espectroLite.initialized && espectroEntries.has(e));
+  }
+
+  function hasEspectroLiteApi(lite) {
+    return !!(lite
+      && typeof lite.setVisible === 'function'
+      && typeof lite.clearEnemies === 'function'
+      && typeof lite.removeEnemy === 'function'
+      && typeof lite.createEnemy === 'function'
+      && typeof lite.syncEnemy === 'function'
+      && typeof lite.update === 'function');
+  }
+
+  // Cortafuegos: una incompatibilidad, caché vieja o error WebGL jamás debe
+  // propagarse al requestAnimationFrame ni alterar el gameplay Canvas2D.
+  function disableEspectroLiteSafely() {
+    const lite = NV.espectroLite;
+    try {
+      if (lite && typeof lite.setVisible === 'function') lite.setVisible(false);
+      else {
+        const staleCanvas = document.querySelector('.espectro-lite-canvas');
+        if (staleCanvas) staleCanvas.style.display = 'none';
+      }
+    } catch (_) { /* fallback Canvas2D: ignorar errores de una capa visual */ }
+    espectroEntries.clear();
+    espectroLiteFailed = true;
+    NV.ESPECTRO_LITE_ACTIVE = false;
+  }
+
+  function ensureEspectroLite() {
+    if (!NV.ESPECTRO_LITE_ACTIVE || !NV.SPECTER_ENABLED || espectroLiteLoading || espectroLiteFailed) return;
+    if (NV.espectroLite && NV.espectroLite.initialized) return;
+    espectroLiteLoading = true;
+    (NV.THREE_READY || import(ESPECTRO_THREE_CDN)).then((THREE) => {
+      if (!NV.ESPECTRO_LITE_ACTIVE) return;
+      const host = canvas.parentElement;
+      const rect = canvas.getBoundingClientRect();
+      const webglCanvas = specterCanvas;
+      if (!webglCanvas) throw new Error('Canvas #specter-overlay no encontrado');
+      const camera = new THREE.OrthographicCamera(viewX(), viewX() + viewW(), -viewY(), -(viewY() + viewH()), 0.1, 100);
+      camera.position.z = 10;
+      const lite = NV.initEspectroLite(THREE, {
+        host, canvas: webglCanvas, camera,
+        width: Math.max(1, Math.round(rect.width)),
+        height: Math.max(1, Math.round(rect.height)),
+      });
+      if (!lite || !hasEspectroLiteApi(lite)) throw new Error('API incompatible de Espectro Lite');
+      if (typeof lite.resize === 'function') lite.resize(rect.width, rect.height);
+      lite.setVisible(false);
+    }).catch(() => {
+      disableEspectroLiteSafely();
+    }).finally(() => { espectroLiteLoading = false; });
+  }
+
+  function clearEspectroBridge() {
+    const lite = NV.espectroLite;
+    if (hasEspectroLiteApi(lite)) {
+      try {
+        lite.clearEnemies();
+        lite.setVisible(false);
+      } catch (_) {
+        disableEspectroLiteSafely();
+      }
+    } else if (lite) {
+      disableEspectroLiteSafely();
+    }
+    espectroEntries.clear();
+  }
+
+  function updateEspectroBridge(dt) {
+    try {
+      // La asignación directa NV.SPECTER_ENABLED=false también es efectiva:
+      // retira entidades existentes, limpia meshes y oculta el overlay.
+      if (NV.SPECTER_ENABLED === false) {
+        enemies = enemies.filter((e) => e.shape !== 'specter');
+        clearEspectroBridge();
+        return;
+      }
+      if (!NV.ESPECTRO_LITE_ACTIVE || state !== 'playing' || paused) {
+        const inactiveLite = NV.espectroLite;
+        if (inactiveLite) {
+          if (!hasEspectroLiteApi(inactiveLite)) disableEspectroLiteSafely();
+          else inactiveLite.setVisible(false);
+        }
+        return;
+      }
+
+      const selected = [];
+      for (const e of enemies) {
+        if (shouldUseEspectroLite(e)) selected.push(e);
+      }
+      if (!selected.length) {
+        clearEspectroBridge();
+        return;
+      }
+
+      ensureEspectroLite();
+      const lite = NV.espectroLite;
+      if (!lite || !lite.initialized) return; // Canvas2D continúa visible durante carga/fallo
+      if (!hasEspectroLiteApi(lite)) { disableEspectroLiteSafely(); return; }
+
+      const selectedSet = new Set(selected);
+      for (const [enemy, entry] of espectroEntries) {
+        if (!selectedSet.has(enemy)) {
+          lite.removeEnemy(entry);
+          espectroEntries.delete(enemy);
+        }
+      }
+
+      for (const e of selected) {
+        let entry = espectroEntries.get(e);
+        if (!entry) {
+          entry = lite.createEnemy({
+            x: e.x, y: -e.y,
+            scale: SPECTER_SCALE,
+            phase: 0,
+            form: SPECTER_FORM,
+            variantColor: SPECTER_VARIANT,
+          });
+          if (entry) espectroEntries.set(e, entry);
+        }
+        if (entry) {
+          lite.syncEnemy(entry, {
+            x: e.x, y: -e.y,
+            scale: SPECTER_SCALE,
+            lookX: player.x,
+            lookY: -player.y,
+          });
+        }
+      }
+
+      espectroTime += dt;
+      const beat = NV.rhythm ? Math.max(NV.rhythm.kick || 0, NV.rhythm.onset || 0) : 0;
+      lite.setVisible(espectroEntries.size > 0);
+      NV.updateEspectroLite(espectroTime, beat);
+    } catch (_) {
+      disableEspectroLiteSafely();
+    }
+  }
+
+  NV.toggleEspectroLite = function (enabled) {
+    NV.ESPECTRO_LITE_ACTIVE = !!enabled;
+    espectroLiteFailed = false;
+    if (!NV.ESPECTRO_LITE_ACTIVE) clearEspectroBridge();
+    return NV.ESPECTRO_LITE_ACTIVE;
+  };
+
+  NV.toggleSpecter = function (enabled) {
+    NV.SPECTER_ENABLED = !!enabled;
+    espectroLiteFailed = false;
+    if (!NV.SPECTER_ENABLED) {
+      enemies = enemies.filter((e) => e.shape !== 'specter');
+      clearEspectroBridge();
+    } else {
+      NV.ESPECTRO_LITE_ACTIVE = true;
+    }
+    return NV.SPECTER_ENABLED;
+  };
+
+  // Toggle para el render espectral de enemigos (Canvas2D). No afecta specters (WebGL).
+  // Default: off. Al activarse, drawEnemy usa drawSpectralEnemy2D para cada enemigo.
+  NV.toggleSpectralEnemyMode = function (enabled) {
+    NV.SPECTRAL_ENEMY_MODE = !!enabled;
+    return NV.SPECTRAL_ENEMY_MODE;
+  };
+
+  // Ayuda de prueba compatible con el parámetro ?forceSpecter=...
+  NV.forceSpecter = function (typeId) {
+    forceSpecterType = typeId || null;
+  };
+
+  // === PROGRESO ===
+  let wave = 1, score = 0, shards = 0, waveTimer = 0, spawnTimer = 0, boss = null, transition = 0;
+  let waveDefeats = 0, waveSpawned = 0, waveGoal = null;
+  let wavePressure = NV.createWavePressure ? NV.createWavePressure() : null;
+  let waveGoalNudgeShown = false;
+  let waveDirectorCycle = 0;
+  // F3: hookSystem game-owned (un juego, un hookSystem). Fases: idle/windup/projectile/tether.
+  let hookSystem = NV.createHookSystem ? NV.createHookSystem() : null;
+  // Evento de oleada activo (null si no hay): modifica la run de esa oleada.
+  let waveEvent = null;
+  let expeditionRun = null;
+  let expeditionMode = 'expedition';
+  const WAVE_EVENTS = NV.WAVE_EVENTS;
+  const combatLabState = {
+    status: combatLabMode ? 'IDLE' : null,
+    encounterMode: 'enemies',
+    elapsed: 0,
+    duration: null,
+    lastConfig: null,
+    requestedComposition: [],
+    selectedBossIndex: null,
+    loadout: null,
+    telemetryWasEnabled: null,
+    error: null,
+  };
+
+  // === INVENTARIO ===
+  let inventory = [];
+  const INVENTORY_SLOTS = 6;
+  let consumableItems = [];
+  let consumSel = 0; // índice del tipo de consumible seleccionado (cicla con Q, usa F)
+  const CONSUMABLES = NV.CONSUMABLES;
+
+  // === PROGRESIÓN PERMANENTE ===
+  let metaShards = 0;
+  let permUpgrades = NV.defaultPermUpgrades();
+  // Compras por partida en la tienda de oleada (topes anti-acumulación infinita).
+  let shopBought = {};
+  const SHOP_CAPS = { hp: 8, armor: 5, luck: 7 }; // +25 HP ×8, +3 armadura ×5, +2 suerte ×7
+  // Slots de mejoras por partida: cada mejora ocupa UN slot (agrupada por tipo) y sube de nivel.
+  const UPGRADE_SLOT_CAP = 6;
+  const UPGRADE_LEVEL_CAP = 6; // nivel máximo por mejora
+  const UPGRADE_LEVELS = {
+    hp: Math.min(SHOP_CAPS.hp, UPGRADE_LEVEL_CAP),
+    speed: UPGRADE_LEVEL_CAP,
+    armor: Math.min(SHOP_CAPS.armor, UPGRADE_LEVEL_CAP),
+    luck: Math.min(SHOP_CAPS.luck, UPGRADE_LEVEL_CAP),
+  };
+  let upgradeSlots = []; // registro de compras de mejoras de la partida actual (se agrupa por tipo)
+  // Tope de compras del mismo consumible POR VISITA a la tienda (se resetea en showShop).
+  const CONSUMABLE_CAP = 3;
+  let consumableBought = {};
+  const CONSUMABLE_STACK_CAP = NV.CONSUMABLE_STACK_CAP;
+  const CONSUMABLE_TYPE_SLOT_CAP = NV.CONSUMABLE_TYPE_SLOT_CAP;
+
+  // Mejoras permanentes comprables con metaShards (afectan a TODOS los personajes).
+  // El coste crece con el nivel y tienen un tope máximo (MAX_PERM_LEVEL).
+  const MAX_PERM_LEVEL = NV.BALANCE.MAX_PERM_LEVEL;
+  const PERM_UPGRADES = NV.PERM_UPGRADES;
+
+  // === INPUT ===
+  const moveButtons = { left: false, right: false, up: false, down: false };
+  const analogMove = { x: 0, y: 0 };
+  const combatIntent = NV.inputIntent.createCombatIntent(NV.settings.controls.firePolicy);
+  let showStats = false, showHUD = true, paused = false;
+  let settingsRestorePaused = false;
+
+  // === PUENTE INPUT (táctil → el MISMO sistema lógico) ===
+  // La capa móvil (mobileControls.js) escribe en ESTOS mismos canales booleanos que
+  // ya usa el teclado: nada de duplicar física ni lógica. En escritorio este puente
+  // queda inactivo (mobileControls no se activa si no hay detección móvil).
+  NV.input = NV.input || {};
+  function syncMoveIntent() {
+    NV.inputIntent.setMoveFromButtons(combatIntent, moveButtons);
+    const combined = NV.inputIntent.normalizeVector(combatIntent.moveX + analogMove.x, combatIntent.moveY + analogMove.y);
+    combatIntent.moveX = combined.x; combatIntent.moveY = combined.y;
+  }
+  NV.input.setMoveLeft = (v) => { moveButtons.left = !!v; syncMoveIntent(); };
+  NV.input.setMoveRight = (v) => { moveButtons.right = !!v; syncMoveIntent(); };
+  NV.input.setMoveUp = (v) => { moveButtons.up = !!v; syncMoveIntent(); };
+  NV.input.setMoveDown = (v) => { moveButtons.down = !!v; syncMoveIntent(); };
+  NV.input.setMoveVector = (x, y) => {
+    analogMove.x = Number.isFinite(x) ? Math.max(-1, Math.min(1, x)) : 0;
+    analogMove.y = Number.isFinite(y) ? Math.max(-1, Math.min(1, y)) : 0;
+    syncMoveIntent();
+  };
+  NV.input.setSlide = (v) => { combatIntent.dashIntent = !!v; };
+  NV.input.setSpecial = (v) => { combatIntent.abilityIntent = !!v; };
+  NV.input.setFire = (v) => { combatIntent.fireIntent = !!v; };
+  NV.input.setAimWorld = (x, y) => {
+    aimPointerClient = null; // Joystick/mando/Lab proveen mundo, no cursor físico.
+    return NV.inputIntent.setAimWorld(combatIntent, x, y, player.x, player.y);
+  };
+  NV.input.getPlayerPosition = () => ({ x: player.x, y: player.y });
+  NV.input.getCombatIntent = () => Object.assign({}, combatIntent);
+  NV.input.getEffectiveFirePolicy = () => NV.inputIntent.effectiveFirePolicy(combatIntent, !!(NV.capabilities && NV.capabilities.isMobile));
+  NV.input.useSelected = () => {
+    if (state === 'playing' && !paused) useConsumable();
+  };
+  // Cambio de consumible táctil → misma lógica que Q/E (grupos + selección circular).
+  NV.input.cycleConsumable = (dir) => {
+    if (state !== 'playing' || paused) return;
+    const g = NV.groupConsumables(consumableItems);
+    if (g.length) {
+      consumSel = NV.cycleIndex(consumSel, g.length, dir > 0 ? +1 : -1);
+      try { if (sfx && typeof sfx.wheelSelect === 'function') sfx.wheelSelect(); } catch (_) { /* defensivo */ }
+      notifyMobileConsumable();
+    }
+  };
+  // API mínima para que mobileControls lea el estado actual sin duplicarlo.
+  NV.input.getWeaponInfo = () => {
+    if (!currentWeapon) return { id: 'pistol', name: '—', rarity: 'common' };
+    return { id: currentWeapon.id || 'pistol', name: currentWeapon.name || '—', rarity: currentWeapon.rarity || 'common' };
+  };
+  NV.input.getConsumableInfo = () => {
+    const g = NV.groupConsumables(consumableItems);
+    if (!g.length || consumSel === undefined || consumSel < 0 || consumSel >= g.length) return null;
+    const cur = g[consumSel];
+    return { type: (cur && cur.type) || '—', name: (cur && cur.name) || (cur && cur.type) || '—', count: (cur && cur.count) || 0 };
+  };
+  NV.input.getSpecialInfo = () => {
+    const char = CHARACTERS[player.character];
+    const max = char && char.maxCd > 0 ? char.maxCd : 1;
+    const remaining = Math.max(0, player.specialCd || 0);
+    const active = state === 'playing' && !paused;
+    return {
+      active,
+      ready: active && remaining <= 0,
+      remaining,
+      max,
+      name: (char && char.skillName) || 'Especial',
+      progress: active ? Math.max(0, Math.min(1, 1 - remaining / max)) : 0,
+      color: (char && (char.skillColor || char.color)) || '#7cf8ff',
+    };
+  };
+  // Notifica a la capa móvil cuando cambia el estado de arma/consumible.
+  function notifyMobileWeapon() { const cbs = NV.input._onWeaponChange; if (Array.isArray(cbs)) { const info = NV.input.getWeaponInfo(); try { cbs.forEach((cb) => { if (typeof cb === 'function') cb(info); }); } catch (_) { /* defensivo */ } } }
+  function notifyMobileConsumable() { const cbs = NV.input._onConsumableChange; if (Array.isArray(cbs)) { const info = NV.input.getConsumableInfo(); try { cbs.forEach((cb) => { if (typeof cb === 'function') cb(info); }); } catch (_) { /* defensivo */ } } }
+  let lastMobileSpecialSignature = '';
+  function notifyMobileSpecial() {
+    const cbs = NV.input._onSpecialChange;
+    if (!Array.isArray(cbs) || !cbs.length) return;
+    const info = NV.input.getSpecialInfo();
+    const signature = [info.active ? 1 : 0, info.ready ? 1 : 0, info.progress.toFixed(4), Math.ceil(info.remaining), info.color, info.name].join('|');
+    if (signature === lastMobileSpecialSignature) return;
+    lastMobileSpecialSignature = signature;
+    try { cbs.forEach((cb) => { if (typeof cb === 'function') cb(info); }); } catch (_) { /* defensivo */ }
+  }
+  NV.input.notifyWeaponChange = notifyMobileWeapon;
+  NV.input.notifyConsumableChange = notifyMobileConsumable;
+  NV.input.notifySpecialChange = notifyMobileSpecial;
+  NV.input._onWeaponChange = NV.input._onWeaponChange || [];
+  NV.input._onConsumableChange = NV.input._onConsumableChange || [];
+  NV.input._onSpecialChange = NV.input._onSpecialChange || [];
+  // Panel de opciones móvil → reutiliza togglePause / showStats y el toggle de sonido.
+  NV.input.toggleStats = () => { showStats = !showStats; };
+  function syncSoundUI() {
+    const enabled = NV.soundOn !== false;
+    if (dom && dom.sound) {
+      dom.sound.textContent = enabled ? '🔊 SONIDO' : '🔇 SILENCIO';
+      dom.sound.classList.toggle('off', !enabled);
+      dom.sound.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+      dom.sound.title = enabled ? 'Silenciar sonido' : 'Activar sonido';
+    }
+    if (dom && dom.mSoundBtn) {
+      dom.mSoundBtn.textContent = enabled ? '🔊 Sonido: ON' : '🔇 Sonido: OFF';
+      dom.mSoundBtn.classList.toggle('off', !enabled);
+      dom.mSoundBtn.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+    }
+    if (NV.settingsUI && typeof NV.settingsUI.syncMute === 'function') NV.settingsUI.syncMute();
+  }
+  NV.syncSoundUI = syncSoundUI;
+  NV.input.toggleSound = () => {
+    NV.setSoundEnabled(!NV.soundOn);
+  };
+  NV.input.setSettingsOpen = (open) => {
+    if (state !== 'playing') { syncGameState(); return; }
+    if (open) {
+      NV.input.setFire(false);
+      combatIntent.dashIntent = false;
+      NV.resetDashPauseLatch(player, false);
+      settingsRestorePaused = paused;
+      paused = true;
+      if (NV.audio && typeof NV.audio.stopAllWeapons === 'function') NV.audio.stopAllWeapons();
+    } else {
+      paused = settingsRestorePaused;
+      combatIntent.dashIntent = false;
+      NV.resetDashPauseLatch(player, false);
+    }
+    syncGameState();
+  };
+
+  // === PERSONAJES ===
+  const CHARACTERS = NV.CHARACTERS;
+
+  // === ARMAS (10) ===
+  const WEAPONS = NV.WEAPONS;
+
+  const RARITY_COLORS = NV.RARITY_COLORS;
+  let currentWeapon = NV.starterWeapon(), fireTimer = 0;
+  NV.onSettingsChange((settings) => {
+    combatIntent.firePolicy = settings.controls.firePolicy;
+    combatIntent.fireIntent = false;
+    fireTimer = 0;
+  });
+  let invSwapSel = -1; // origen de intercambio de slots en el dock de armas (shop)
+  function stopCurrentWeaponAudio() {
+    if (currentWeapon && NV.audio && typeof NV.audio.weaponStop === 'function') NV.audio.weaponStop(currentWeapon.id);
+  }
+  function playtestWeaponStates() {
+    const states = {};
+    for (const weapon of inventory) {
+      if (!weapon || !weapon.id || states[weapon.id]) continue;
+      states[weapon.id] = { level: weaponLevels[weapon.id] || 1, fusion: weaponFus[weapon.id] || 0 };
+    }
+    return states;
+  }
+  let killCombo = { count: 0, timer: 0 }; // combo de kills (E1)
+  let currentAutoTarget = null;
+  let densityField = null;
+  let damageFeedback = null;
+  let heartbeatTimer = 0, heartbeatWasCritical = false;
+  let countdownLastSecond = 0;
+  // Cadencia determinista (en segundos). fireRate se interpreta como frames a ~60fps.
+  const FIRE_FPS = NV.BALANCE.FIRE_FPS;                 // frames por segundo asumidos en fireRate
+  const MIN_FIRE_INTERVAL = NV.BALANCE.MIN_FIRE_INTERVAL; // ~0.0667s -> máx ~15 disparos/s (piso anti-congestión)
+  const WAVE_CADENCE_SCALE = NV.BALANCE.WAVE_CADENCE_SCALE;     // -1% de intervalo por oleada (máx -45% de factor)
+  const WEAPON_LEVEL_CADENCE_SCALE = NV.BALANCE.WEAPON_LEVEL_CADENCE_SCALE; // -0.4% de intervalo por nivel de arma (máx -40%)
+  const SHIELD_COOLDOWN = NV.BALANCE.SHIELD_COOLDOWN;        // recarga del escudo del shielder (s): vulnerable entre bloqueos
+  const MAX_AGILITY = NV.BALANCE.MAX_AGILITY;              // tope de control in-run; no aumenta velocidad punta
+  const AGILITY_PER_UPGRADE = NV.BALANCE.AGILITY_PER_UPGRADE;    // +0.2 control por compra (5 compras llegan al tope)
+  // Intervalo de disparo efectivo: base del arma acortada por la dificultad de la oleada
+  // (factor wave) y por el nivel del arma (factor nivel): la cadencia mejora al subir de nivel.
+  function weaponFireInterval() {
+    const base = currentWeapon.fireRate / FIRE_FPS;                      // intervalo base en segundos
+    const waveFactor = Math.max(0.55, 1 - WAVE_CADENCE_SCALE * wave);    // dificultad de la oleada
+    const levelFactor = Math.max(0.6, 1 - WEAPON_LEVEL_CADENCE_SCALE * (currentWeaponLevel() - 1)); // nivel del arma
+    return Math.max(MIN_FIRE_INTERVAL, base * waveFactor * levelFactor);
+  }
+  // Niveles por arma: cada derribo aporta "puntos de progreso" (weaponKills) que
+  // pesan según la dificultad de la oleada (más difícil = más progreso), con tope.
+  let weaponLevels = {}, weaponKills = {};
+  // Fusión de repetidas: duplicar un arma sube este contador (cap MAX_WEAPON_FUSION).
+  // Multiplica el daño vía NV.weaponFusionDamage. Reseteado por partida como weaponLevels.
+  let weaponFus = {};
+  const MAX_WEAPON_FUSION = NV.BALANCE.MAX_WEAPON_FUSION;
+  const WEAPON_FUSION_DMG = NV.BALANCE.WEAPON_FUSION_DMG;
+  const WEAPON_FUSE_PRICE = NV.BALANCE.WEAPON_FUSE_PRICE;
+  const WEAPON_SELL_PRICES = NV.BALANCE.WEAPON_SELL_PRICES;
+  function currentWeaponFusion() { return weaponFus[currentWeapon.id] || 0; }
+  function weaponFusionLevel(id) { return weaponFus[id] || 0; }
+  const WEAPON_KILLS_PER_LEVEL = NV.BALANCE.WEAPON_KILLS_PER_LEVEL;   // ~6 puntos de progreso por nivel
+  const WEAPON_PROGRESS_SCALE = NV.BALANCE.WEAPON_PROGRESS_SCALE; // +6% de progreso por derribo, por oleada
+  const WEAPON_PROGRESS_CAP = NV.BALANCE.WEAPON_PROGRESS_CAP;      // máx ~3 puntos de progreso por derribo
+  // Progreso que aporta un derribo: crece con la oleada, acotado para no explotar.
+  function weaponKillProgress() {
+    return Math.min(WEAPON_PROGRESS_CAP, 1 + WEAPON_PROGRESS_SCALE * wave);
+  }
+  function currentWeaponLevel() { return weaponLevels[currentWeapon.id] || 1; }
+  // Estética por nivel del arma: cada 10 niveles cambia la apariencia de los disparos
+  // (tier). Solo visual; NO afecta colisiones ni velocidad/pierce/count de proyectiles.
+  const BULLET_TIER_COLORS = NV.BULLET_TIER_COLORS;
+  const MAX_BULLET_TIER = BULLET_TIER_COLORS.length - 1; // 5 (nivel >= 60)
+  function weaponVisualTier() {
+    return Math.min(MAX_BULLET_TIER, Math.floor(currentWeaponLevel() / 10));
+  }
+  // Identidad visual de cada arma: forma y tamaño base del proyectil del jugador.
+  // El "len" es largo (a lo largo del vuelo), "w" grosor (transversal). Solo render;
+  // no participan en colisiones. El tier aplica un factor de crecimiento tardío y sutil.
+  const BULLET_DEFS = NV.BULLET_DEFS;
+
+  // === ENEMIGOS BÁSICOS (7 tipos) ===
+  const ENEMY_TYPES = NV.ENEMY_TYPES;
+
+  // === ÉLITES (8 tipos) ===
+  const ELITE_TYPES = NV.ELITE_TYPES;
+
+  // === BOSSES (10 tipos) ===
+    const BOSS_TYPES = NV.BOSS_TYPES;
+  const formatPoints = NV.formatPoints;
+  // === AUDIO (migrado a js/audio/synth.js) ===
+  const initAudio = NV.initAudio;
+  const updateMusic = NV.updateMusic;
+  const playWeaponSound = NV.playWeaponSound;
+  const sfx = NV.sfx;
+
+  // === DOM ELEMENTS ===
+  const dom = NV.dom;
+
+  const SHOP_BALANCE_INSUFFICIENT_CLASS = 'shop-balance-insufficient';
+
+  function clearShopBalanceFeedback() {
+    if (!dom.shopShards) return;
+    dom.shopShards.classList.remove(SHOP_BALANCE_INSUFFICIENT_CLASS);
+    dom.shopShards.onanimationend = null;
+  }
+
+  function restartShopBalanceFeedback() {
+    if (!dom.shopShards) return;
+    dom.shopShards.classList.remove(SHOP_BALANCE_INSUFFICIENT_CLASS);
+    void dom.shopShards.offsetWidth;
+    dom.shopShards.classList.add(SHOP_BALANCE_INSUFFICIENT_CLASS);
+    dom.shopShards.onanimationend = (event) => {
+      if (event.animationName === 'shop-balance-insufficient') clearShopBalanceFeedback();
+    };
+  }
+
+  function updateLobbyHeroInfo() {
+    const char = CHARACTERS[player.character];
+    if (!char || typeof document === 'undefined') return;
+    const card = char.card || {};
+    const setText = (id, value) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value || '';
+    };
+    setText('heroName', char.name);
+    setText('heroTag', card.tag);
+    // F09.4: stats como chips escaneables (HP/SPD/ARM). Progresivo: si el
+    // statLine cambia o el DOM no está listo, cae al texto plano original.
+    // Se usa innerHTML (valores ya validados por regex) para ser compatible
+    // con el arnés headless de tests.
+    (function renderHeroStatChips() {
+      const el = document.getElementById('heroStats');
+      if (!el) return;
+      const line = card.statLine || '';
+      const m = line.match(/HP\s*([^\s·]+)\s*·\s*SPD\s*([^\s·]+)\s*·\s*ARM\s*([^\s·]+)/);
+      if (!m) { el.textContent = line; return; }
+      const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+      el.innerHTML =
+        '<span class="stat-chip"><b>HP</b> ' + esc(m[1]) + '</span>' +
+        '<span class="stat-chip"><b>SPD</b> ' + esc(m[2]) + '</span>' +
+        '<span class="stat-chip"><b>ARM</b> ' + esc(m[3]) + '</span>';
+    })();
+    setText('heroPassive', char.passive);
+    setText('heroSkillName', char.skillName);
+    setText('heroSkillDesc', char.skillDesc);
+    setText('heroIdentity', card.identity);
+    const info = document.querySelector('.lobby-hero-info');
+    if (info && info.style && typeof info.style.setProperty === 'function') info.style.setProperty('--pilot-accent', char.color);
+    const icon = document.getElementById('heroSkillIcon');
+    if (icon && typeof NV.drawMetaSkillIcon === 'function') {
+      const iconCtx = icon.getContext('2d');
+      if (iconCtx) {
+        iconCtx.clearRect(0, 0, icon.width, icon.height);
+        NV.drawMetaSkillIcon(iconCtx, char.special, icon.width / 2, icon.height / 2, 14, { glow: 2 });
+      }
+    }
+  }
+
+  function syncPilotCards() {
+    if (typeof document === 'undefined') return;
+    document.querySelectorAll('.char-card').forEach((card) => {
+      const selected = card.getAttribute('data-char') === player.character;
+      card.classList.toggle('selected', selected);
+      card.setAttribute('aria-pressed', selected ? 'true' : 'false');
+    });
+  }
+
+  function selectPilot(id) {
+    const char = CHARACTERS[id];
+    if (!char) return false;
+    player.character = id;
+    player.color = char.color;
+    player.maxHp = (char.stats ? char.stats.hp : 100) + (permUpgrades.hp || 0) * 20;
+    player.hp = player.maxHp;
+    if (NV.configurePlayerMovement) NV.configurePlayerMovement(player, char.stats ? char.stats.speed : 195, permUpgrades.speed || 0);
+    if (NV.configurePlayerDash) NV.configurePlayerDash(player);
+    player.armor = (char.stats ? char.stats.armor : 0) + (permUpgrades.armor || 0);
+    player.luck = (char.stats ? char.stats.luck : 0) + (permUpgrades.luck || 0) * 10;
+    player.permCrit = permUpgrades.crit || 0;
+    player.permDodge = permUpgrades.dodge || 0;
+    player.permRegen = permUpgrades.regen || 0;
+    player.permGreed = permUpgrades.greed || 0;
+    player.maxCd = char.maxCd;
+    syncPilotCards();
+    renderMenuSkillIcons();
+    updateLobbyHeroInfo();
+    syncSoundUI();
+    return true;
+  }
+
+  NV.initializeRunPlayer = function (target, characterId, options) {
+    const opts = options || {};
+    const char = CHARACTERS[characterId];
+    if (!target || !char) return false;
+    const upgrades = opts.permUpgrades || NV.defaultPermUpgrades();
+    target.character = characterId;
+    target.color = char.color;
+    target.maxCd = char.maxCd;
+    target.x = opts.x == null ? arenaW() / 2 : opts.x;
+    target.y = opts.y == null ? arenaH() - 100 : opts.y;
+    target.maxHp = char.stats.hp + (upgrades.hp || 0) * 20;
+    target.hp = target.maxHp;
+    NV.configurePlayerMovement(target, char.stats.speed, upgrades.speed || 0);
+    NV.configurePlayerDash(target);
+    target.armor = (char.stats.armor || 0) + (upgrades.armor || 0);
+    target.luck = (char.stats.luck || 0) + (upgrades.luck || 0) * 10;
+    target.permCrit = upgrades.crit || 0;
+    target.permDodge = upgrades.dodge || 0;
+    target.permRegen = upgrades.regen || 0;
+    target.permGreed = upgrades.greed || 0;
+    target.specialCd = 0;
+    target.invuln = 0;
+    target.overdrive = 0;
+    target.phase = 0;
+    if (NV.clearSpecialVisual) NV.clearSpecialVisual(target);
+    target.bulwark = 0;
+    target.shield = 0;
+    target.bounty = 0;
+    target.regenTimer = 0;
+    target.stun = 0;
+    target.stunReapplyLockout = 0;
+    target.phantomPossession = null;
+    target.moveVx = 0;
+    target.moveVy = 0;
+    target.agility = 1;
+    target.xp = 0;
+    target.level = 1;
+    target.xpToNext = 100;
+    combatIntent.dashIntent = false;
+    NV.resetDashPauseLatch(target, false);
+    return true;
+  };
+
+  function changePilot(direction) {
+    const order = NV.CHARACTER_ORDER || [];
+    if (!order.length) return false;
+    const current = Math.max(0, order.indexOf(player.character));
+    return selectPilot(order[(current + direction + order.length) % order.length]);
+  }
+
+  NV.selectPilot = selectPilot;
+
+  // === INICIALIZACIÓN ===
+  function init() {
+    console.log('[INIT] Iniciando...');
+    if (/[?&]fresh=1/.test((window.location && window.location.search) || '')) {
+      metaFrozen = true;
+      metaShards = 0;
+      permUpgrades = NV.defaultPermUpgrades();
+      console.log('[META] Modo ?fresh=1: mejoras permanentes y meta-shards en cero (no se guarda progreso).');
+    } else {
+      loadMeta();
+    }
+    if (typeof window !== 'undefined' && window.location && window.location.search) {
+      const m = /[?&]forceSpecter=([^&]+)/.exec(window.location.search);
+      if (m && m[1]) forceSpecterType = m[1];
+    }
+
+    if (NV.rhythmRestorePref) NV.rhythmRestorePref();
+    resizeCanvas(true);
+    syncGameState();
+    NV.renderCharacterCards(dom.charGrid, CHARACTERS, player.character);
+    renderMenuSkillIcons();
+    document.querySelectorAll('.char-card').forEach((card) => {
+      card.addEventListener('click', () => selectPilot(card.getAttribute('data-char')));
+    });
+
+    const heroPrev = document.getElementById('hero-prev');
+    const heroNext = document.getElementById('hero-next');
+    if (heroPrev) heroPrev.addEventListener('click', () => changePilot(-1));
+    if (heroNext) heroNext.addEventListener('click', () => changePilot(1));
+
+    if (dom.lobbyPlayBtn) dom.lobbyPlayBtn.addEventListener('click', () => {
+      initAudio();
+      startGame();
+    });
+    if (dom.pilotsBtn) dom.pilotsBtn.addEventListener('click', showCharacterSelect);
+    dom.startBtn.addEventListener('click', showLobby);
+    dom.restartBtn.addEventListener('click', showLobby);
+    dom.skipWave.addEventListener('click', skipShop);
+    if (dom.permBtn) dom.permBtn.addEventListener('click', openPermShop);
+    if (dom.permBack) dom.permBack.addEventListener('click', closePermShop);
+    let observedArenaW = arenaW(), observedArenaH = arenaH();
+    const requestCanvasResize = () => {
+      markCanvasResizeDirty(); resizeCanvas();
+      if (observedArenaW !== arenaW() || observedArenaH !== arenaH()) {
+        observedArenaW = arenaW(); observedArenaH = arenaH();
+        if (NV.reconcileArenaAfterResize) NV.reconcileArenaAfterResize({
+          W:arenaW(),H:arenaH(),player,enemies,boss,pickups,weaponPickups,bossChests,hazards,
+        });
+        followPlayerCamera();
+      }
+    };
+    window.addEventListener('resize', requestCanvasResize);
+    if (NV.viewport && typeof NV.viewport.onChange === 'function') NV.viewport.onChange(requestCanvasResize);
+    if (typeof ResizeObserver === 'function') {
+      const canvasResizeObserver = new ResizeObserver(requestCanvasResize);
+      canvasResizeObserver.observe(canvas);
+    }
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        NV.input.setFire(false);
+        combatIntent.dashIntent = false;
+        if (NV.audio && typeof NV.audio.stopAllWeapons === 'function') NV.audio.stopAllWeapons();
+      }
+    });
+    // Rueda del mouse: arma anterior/siguiente (también funciona para todos los personajes,
+    // el inventario es compartido). passive:false para poder cancelar el scroll.
+    window.addEventListener('wheel', (e) => {
+      if (state !== 'playing' || paused) return;
+      cycleWeapon(e.deltaY > 0 ? 1 : -1);
+      e.preventDefault();
+    }, { passive: false });
+    // Click sobre un slot de consumible (HUD): lo selecciona como activo.
+    canvas.addEventListener('click', (e) => {
+      if (state !== 'playing' || paused || !NV.consumSlotRects) return;
+      // Conversión centralizada screen→game: escritorio usa la misma fórmula
+      // legacy; móvil aplica escala uniforme + letterbox/pillarbox + DPR.
+      let mx, my;
+      if (NV.screenToGame) {
+        const pt = NV.screenToGame(e.clientX, e.clientY);
+        mx = pt.x - viewX(); my = pt.y - viewY();
+      } else {
+        const rect = canvas.getBoundingClientRect();
+        mx = (e.clientX - rect.left) / scaleX; my = (e.clientY - rect.top) / scaleY;
+      }
+            for (let i = 0; i < NV.consumSlotRects.length; i++) {
+        const r = NV.consumSlotRects[i];
+        if (mx >= r.x && mx <= r.x + r.w && my >= r.y && my <= r.y + r.h) {
+          // El HUD dibuja hasta 6 slots visuales, pero solo los grupos reales son
+          // válidos. Mapear el slot visual al índice real del grupo para evitar que
+          // consumSel apunte a un slot vacío/inexistente.
+          const groups = NV.groupConsumables(consumableItems);
+          const validIdx = i < groups.length ? i : -1;
+          if (validIdx >= 0 && consumSel !== validIdx) { consumSel = validIdx; sfx.wheelSelect(); }
+          return;
+        }
+      }
+    });
+
+    function eventHitsConsumableSlot(e) {
+      if (!NV.consumSlotRects || !NV.screenToGame) return false;
+      const pt = NV.screenToGame(e.clientX, e.clientY);
+      const x = pt.x - viewX(), y = pt.y - viewY();
+      return NV.consumSlotRects.some((r) => x >= r.x && x <= r.x + r.w && y >= r.y && y <= r.y + r.h);
+    }
+    // Desktop manual: mouse client -> mundo mediante la autoridad de viewport.
+    canvas.addEventListener('mousemove', (e) => {
+      if (NV.capabilities && NV.capabilities.isMobile) return;
+      const pt = NV.screenToGame(e.clientX, e.clientY);
+      NV.input.setAimWorld(pt.x, pt.y);
+      aimPointerClient = { x: e.clientX, y: e.clientY };
+    });
+    canvas.addEventListener('mousedown', (e) => {
+      if (e.button !== 0 || state !== 'playing' || paused || NV.input.getEffectiveFirePolicy() !== 'manual') return;
+      // LMB conserva la selección de consumibles del HUD Canvas.
+      if (eventHitsConsumableSlot(e)) return;
+      const pt = NV.screenToGame(e.clientX, e.clientY);
+      NV.input.setAimWorld(pt.x, pt.y);
+      aimPointerClient = { x: e.clientX, y: e.clientY };
+      NV.input.setFire(true);
+      e.preventDefault();
+    });
+    window.addEventListener('mouseup', (e) => { if (e.button === 0) NV.input.setFire(false); });
+    window.addEventListener('blur', () => { NV.input.setFire(false); combatIntent.dashIntent = false; });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'ArrowLeft' || e.code === 'KeyA') NV.input.setMoveLeft(true);
+      if (e.code === 'ArrowRight' || e.code === 'KeyD') NV.input.setMoveRight(true);
+      if (e.code === 'ArrowUp' || e.code === 'KeyW') NV.input.setMoveUp(true);
+      if (e.code === 'ArrowDown' || e.code === 'KeyS') NV.input.setMoveDown(true);
+      if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') { NV.input.setSlide(true); e.preventDefault(); }
+      if (e.code === 'Space' || e.code === 'KeyZ' || e.code === 'KeyX') {
+        NV.input.setSpecial(true); e.preventDefault();
+      }
+      if (e.code === 'Tab') { showStats = !showStats; e.preventDefault(); }
+      if (e.code === 'KeyP') togglePause();
+      if (e.code === 'KeyF' && state === 'playing' && !paused) {
+        useConsumable();
+        e.preventDefault();
+      }
+      if (e.code === 'KeyQ' && state === 'playing' && !paused) {
+        // Cicla el consumible seleccionado (el resaltado en el HUD muestra cuál se usa con F).
+        const groups = NV.groupConsumables(consumableItems);
+        if (groups.length) { consumSel = NV.cycleIndex(consumSel, groups.length, -1); sfx.wheelSelect(); }
+        e.preventDefault();
+      }
+      if (e.code === 'KeyE' && state === 'playing' && !paused) {
+        // Cicla en sentido inverso al Q para poder movernos en ambos sentidos entre tipos.
+        const groups = NV.groupConsumables(consumableItems);
+        if (groups.length) { consumSel = NV.cycleIndex(consumSel, groups.length, +1); sfx.wheelSelect(); }
+        e.preventDefault();
+      }
+      const digit = /^Digit([1-6])$/.exec(e.code);
+      if (digit && state === 'playing' && !paused) {
+        equipFromInventory(parseInt(digit[1], 10) - 1);
+        e.preventDefault();
+      }
+    });
+    window.addEventListener('keyup', (e) => {
+      if (e.code === 'ArrowLeft' || e.code === 'KeyA') NV.input.setMoveLeft(false);
+      if (e.code === 'ArrowRight' || e.code === 'KeyD') NV.input.setMoveRight(false);
+      if (e.code === 'ArrowUp' || e.code === 'KeyW') NV.input.setMoveUp(false);
+      if (e.code === 'ArrowDown' || e.code === 'KeyS') NV.input.setMoveDown(false);
+      if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') NV.input.setSlide(false);
+      if (e.code === 'Space' || e.code === 'KeyZ' || e.code === 'KeyX') NV.input.setSpecial(false);
+    });
+
+    // === PAUSA (tecla P) ===
+    function togglePause() {
+      if (state !== 'playing') return;
+      paused = !paused;
+      if (combatLabMode && (combatLabState.status === 'RUNNING' || combatLabState.status === 'PAUSED')) {
+        combatLabState.status = paused ? 'PAUSED' : 'RUNNING';
+      }
+      NV.input.setFire(false);
+      combatIntent.dashIntent = false;
+      // Marcamos la intención actual como consumida por el motor para que
+      // mantener Shift durante la pausa no genere un dash diferido al reanudar.
+      NV.resetDashPauseLatch(player, false);
+      if (paused && NV.audio && typeof NV.audio.stopAllWeapons === 'function') NV.audio.stopAllWeapons();
+      syncGameState();
+      if (paused) dom.startScreen.classList.add('hidden');
+    }
+    NV.input.togglePause = togglePause;
+
+    // === CAMBIO DE ARMA (teclas 1-6 entre las recogidas) ===
+    function equipFromInventory(index) {
+      if (index < 0 || !inventory[index] || inventory[index] === currentWeapon) return;
+      stopCurrentWeaponAudio();
+      if (NV.playtest) NV.playtest.weaponSwitch(currentWeapon.id, inventory[index].id);
+      currentWeapon = inventory[index];
+      addFloatText(arenaW() / 2, arenaH() / 2 - 40, 'EQUIPADO: ' + currentWeapon.name, RARITY_COLORS[currentWeapon.rarity]);
+      updateHUD();
+      sfx.wheelSelect();
+      notifyMobileWeapon();
+    }
+
+    // === CAMBIO DE ARMA CON LA RUEDA DEL MOUSE (loadout completo, circular) ===
+    // La pistola inicial es un arma normal del inventario: ningún slot está reservado.
+    function cycleWeapon(dir) {
+      if (state !== 'playing' || paused) return;
+      const list = inventory.slice();
+      if (!list.length) return;
+      const ci = list.indexOf(currentWeapon);
+      const base = ci < 0 ? 0 : ci;
+      const next = NV.cycleWeapon(list[base], list, dir);
+      if (!next || next === list[base]) return;
+      stopCurrentWeaponAudio();
+      if (NV.playtest) NV.playtest.weaponSwitch(currentWeapon.id, next.id);
+      currentWeapon = next;
+      addFloatText(arenaW() / 2, arenaH() / 2 - 40, 'EQUIPADO: ' + currentWeapon.name, RARITY_COLORS[currentWeapon.rarity]);
+      updateHUD();
+      sfx.wheelSelect();
+      notifyMobileWeapon();
+    }
+    NV.input.cycleWeapon = cycleWeapon;
+
+    dom.sound.addEventListener('click', () => {
+      NV.input.toggleSound();
+    });
+    syncSoundUI();
+
+    setupRhythmUI();
+
+        if (dom.hudToggle) {
+      dom.hudToggle.addEventListener('click', () => {
+        showHUD = !showHUD;
+        dom.hudToggle.classList.toggle('active', showHUD);
+        dom.hudToggle.textContent = showHUD ? 'HUD' : 'NO HUD';
+        if (NV.tutorial && NV.tutorial.setHUDVisible) NV.tutorial.setHUDVisible(showHUD);
+      });
+    }
+    if (dom.charBtn) {
+      dom.charBtn.addEventListener('click', () => {
+        showStats = !showStats;
+      });
+    }
+
+    if (combatLabMode) {
+      enterCombatLabIdle();
+      installCombatLabRuntime();
+    } else {
+      showMenu();
+    }
+    // Telemetría opt-in F08: se activa con ?playtest=1 (o manualmente en consola
+    // con NV.playtest.enable()); snapshot con NV.playtest.snapshot().
+    try {
+      if (NV.playtest && typeof URLSearchParams === 'function'
+        && window.location && window.location.search
+        && new URLSearchParams(window.location.search).has('playtest')) {
+        NV.playtest.enable();
+      }
+    } catch (_) { /* entornos sin location: la telemetría queda manual */ }
+    requestAnimationFrame(loop);
+  }
+
+    function setupRhythmUI() {
+    if (!NV.externalAudio) return;
+    const widget = dom.rwAddMusicBtn ? dom.rwAddMusicBtn.parentElement : null;
+    if (!widget) return;
+
+    // Posiciona el widget (absolute dentro de .hud relative) justo en el hueco
+    // entre .logo y .stats (.stat-wave), calculado dinámicamente para que no se
+    // rompa si cambia el ancho del logo ni desplace a ningún otro elemento.
+    function positionRhythmWidget() {
+      const hud = widget.parentElement;
+      if (!hud) return;
+      const logo = hud.querySelector('.logo');
+      const stats = hud.querySelector('.stats');
+      if (!logo || !stats || !hud.getBoundingClientRect) return;
+      const hudRect = hud.getBoundingClientRect();
+      const logoRect = logo.getBoundingClientRect();
+      const statsRect = stats.getBoundingClientRect();
+      // hueco izquierdo (borde der del logo) y derecho (arranque de .stats)
+      const gapL = logoRect.right - hudRect.left;
+      const gapR = statsRect.left - hudRect.left;
+      if (gapR <= gapL + 20) return; // poco espacio: evitar sobre-escrituras
+      // Anclar pegado al borde derecho del logo con un margen pequeño
+      // (no centrar en el hueco completo). Margen de 36px de separación visual.
+      const w = widget.offsetWidth || 0;
+      const MARGIN = 36;
+      // Clamp para que nunca invada el arranque de .stats
+      const left = Math.min(gapL + MARGIN, gapR - w - 6);
+      widget.style.left = left + 'px';
+      widget.style.top = '50%';
+      widget.style.transform = 'translateY(-50%)';
+    }
+    positionRhythmWidget();
+    if (typeof window !== 'undefined' && window.addEventListener) {
+      window.addEventListener('resize', positionRhythmWidget);
+    }
+
+    const statusText = (r) => {
+      r = r || NV.rhythm;
+      if (!NV.rhythmSupported || !NV.rhythmSupported()) return 'Captura no soportada. Probá el micrófono si está disponible.';
+      if (r.state === 'starting') return 'Esperando permiso del navegador… elegí una pestaña/ventana con audio y activá “compartir audio” si aparece.';
+      if (r.state === 'listening' && r.mode === 'tab') return 'Captura de pestaña activa: los fondos reaccionan de forma sutil. La música no se reamplifica.';
+      if (r.state === 'listening' && r.mode === 'mic') return 'Micrófono activo: los fondos reaccionan de forma sutil.';
+      if (r.state === 'denied') return 'Permiso cancelado o denegado. Podés intentarlo de nuevo cuando quieras.';
+      if (r.error === 'no-audio-track') return 'La captura no incluyó audio. Volvé a intentar y marcá “compartir audio”.';
+      if (r.streamEnded) return 'Captura finalizada. Podés volver a activarla desde el menú.';
+      return 'Opcional: compartí una pestaña/ventana con audio. Solo se analiza el volumen/frecuencias para fondos sutiles.';
+    };
+    const refresh = (r) => {
+      r = r || NV.rhythm;
+      const active = (r.state === 'listening' || r.state === 'starting');
+      if (dom.rwAddMusicBtn) {
+        dom.rwAddMusicBtn.disabled = !!active;
+        dom.rwAddMusicBtn.title = active ? 'Música ya capturada' : 'Agregar música (capturar pestaña/ventana)';
+        widget.title = statusText(r);
+      }
+      if (dom.rwStopBtn) {
+        dom.rwStopBtn.disabled = !active;
+        dom.rwStopBtn.title = 'Detener captura';
+      }
+    };
+    NV.rhythmNotifier(refresh);
+    if (dom.rwAddMusicBtn) dom.rwAddMusicBtn.addEventListener('click', () => { NV.rhythmToggleEnabled(true); NV.externalAudio.startDisplayCapture(); });
+    if (dom.rwStopBtn) dom.rwStopBtn.addEventListener('click', () => { NV.rhythmToggleEnabled(false); NV.externalAudio.stop(); });
+    refresh(NV.rhythm);
+
+    // Anima el ícono SVG del widget (pulso de beat, color por hue, glow por
+    // energía) reutilizando NV.rhythm, actualizado una vez por frame desde el
+    // loop del juego. Sin captura activa queda estático (es la señal visual).
+    const rhythmWidgetGlyph = dom.rwIcon ? (dom.rwIcon.querySelector('svg.mn') || dom.rwIcon) : null;
+    function setWidgetStyle(node, key, value) {
+      if (node && node.style && node.style[key] !== value) node.style[key] = value;
+    }
+    function updateRhythmWidgetIcon() {
+      const icon = dom.rwIcon;
+      if (!icon) return;
+      const glyph = rhythmWidgetGlyph || icon;
+      const r = NV.rhythm;
+      if (!r || r.state !== 'listening' || !r.enabled) {
+        setWidgetStyle(glyph, 'transform', '');
+        icon._smoothScale = 1;
+        icon._smoothSkew = 0;
+        icon._pulseEnv = 0;
+        icon._energyEnv = 0;
+        icon._breathPhase = 0;
+        icon._smoothT = 0;
+        setWidgetStyle(icon, 'color', '');
+        setWidgetStyle(icon, 'opacity', '');
+        setWidgetStyle(icon, 'filter', '');
+        return;
+      }
+      const hue = (r.hue == null) ? 200 : r.hue;
+      const nowMs = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
+      const prevMs = icon._smoothT || nowMs;
+      const dtMs = Math.max(0, Math.min(80, nowMs - prevMs));
+      icon._smoothT = nowMs;
+      // La matemática de envelope/respiración/attack-release vive en rhythm.js y
+      // también alimenta Speaker Mines. Aquí solo se hace el mapping DOM del SVG.
+      const groove = NV.computeRhythmGroove(icon, r, dtMs / 1000, { connected: true });
+      const beat = groove.beat;
+      const energy = groove.energy;
+      const transform = 'scale(' + groove.smoothScale.toFixed(4) + ') skewX(' + groove.smoothSkew.toFixed(2) + 'deg)';
+      setWidgetStyle(glyph, 'transform', transform);
+      // Color dinámico por hue calculado (mismo que tiñe el fondo)
+      setWidgetStyle(icon, 'color', 'hsl(' + Math.round(hue) + ',75%,62%)');
+      // Brillo/glow fade en función de la energía detectada
+      setWidgetStyle(icon, 'opacity', (0.65 + energy * 0.35).toFixed(3));
+      setWidgetStyle(icon, 'filter', 'drop-shadow(0 0 ' + (2 + energy * 6).toFixed(1) + 'px hsl(' + Math.round(hue) + ',80%,60%))');
+      // Diagnóstico opt-in del widget de ritmo: activar con ?rhythmdebug=1.
+      if (typeof NV._rhythmDbg === 'undefined') {
+        NV._rhythmDbg = (typeof location !== 'undefined') && /[?&]rhythmdebug=1/.test(location.search || '');
+        NV._rhythmDbgLast = 0; NV._rhythmDbgSumT = 0; NV._rhythmDbgMaxBeat = 0; NV._rhythmDbgLastTr = '';
+      }
+      if (NV._rhythmDbg) {
+        NV._rhythmDbgMaxBeat = Math.max(NV._rhythmDbgMaxBeat, beat);
+        NV._rhythmDbgLastTr = transform;
+        const dnow = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
+        if (beat > 0.3 && dnow - NV._rhythmDbgLast > 120) {
+          NV._rhythmDbgLast = dnow;
+          console.log('[rhythm-icon] KICK beat=' + beat.toFixed(3) + ' hue=' + Math.round(hue) + ' energy=' + energy.toFixed(3) + ' transform="' + transform + '"');
+        }
+        if (dnow - NV._rhythmDbgSumT >= 1000) {
+          NV._rhythmDbgSumT = dnow;
+          let mn = 255, mx = 0, sum = 0, n = 0;
+          if (r.data) for (let i = 0; i < r.data.length; i++) { const v = r.data[i]; if (v < mn) mn = v; if (v > mx) mx = v; sum += v; n++; }
+          console.log('[rhythm-icon] 1s maxBeat=' + NV._rhythmDbgMaxBeat.toFixed(3) + ' energy=' + energy.toFixed(3) + ' bass=' + (r.bass || 0).toFixed(3) + ' hue=' + Math.round(hue) + ' rawBytes=' + (n ? (mn + '/' + Math.round(sum / n) + '/' + mx) : 'n/a') + ' state=' + r.state + ' lastTransform="' + NV._rhythmDbgLastTr + '"');
+          NV._rhythmDbgMaxBeat = 0;
+        }
+      }
+    }
+    NV.updateRhythmWidgetIcon = updateRhythmWidgetIcon;
+
+    // En modo ?rhythmdebug=1, T fuerza un pulso para aislar captura vs. render.
+    // Prueba binaria: si el ícono se mueve con T => el problema es la detección de
+    // audio real (r.beat nunca sube). Si no se mueve ni con T => render/CSS/JS.
+    const dbgKey = (typeof location !== 'undefined') && /[?&]rhythmdebug=1/.test(location.search || '');
+    if (dbgKey) {
+      console.log('[rhythm-icon] debug ACTIVO: apretá T para pulso forzado (sin música)');
+      window.addEventListener('keydown', (e) => {
+        if (e.code !== 'KeyT') return;
+        const r = NV.rhythm;
+        const prev = { state: r.state, enabled: r.enabled };
+        r.enabled = true;
+        r.state = 'listening';
+        r.beat = 1; r.hue = 180; r.energy = 1;
+        console.log('[rhythm-icon] PULSO FORZADO: beat=1 hue=180 energy=1 state=listening');
+        if (r._dbgRestore) clearTimeout(r._dbgRestore);
+        r._dbgRestore = setTimeout(() => {
+          r.beat = 0; r.energy = 0;
+          r.state = prev.state; r.enabled = prev.enabled;
+          console.log('[rhythm-icon] pulso forzado finalizado (estado restaurado)');
+        }, 350);
+      });
+    }
+  }
+
+  function loadMeta() {
+    try {
+      const saved = JSON.parse(localStorage.getItem('neonVoidMeta') || '{}');
+      metaShards = Number.isFinite(saved.metaShards) ? Math.max(0, Math.min(1e9, saved.metaShards)) : 0;
+      permUpgrades = NV.normalizePermUpgrades(saved.permUpgrades);
+    } catch (e) { console.warn('[META] Error:', e); }
+  }
+  // Modo testing (?fresh=1): empieza sin permanentes ni meta-shards y NO guarda,
+  // para tunear balance desde cero sin pisar el progreso real.
+  let metaFrozen = false;
+  function saveMeta() {
+    if (metaFrozen) return;
+    try { localStorage.setItem('neonVoidMeta', JSON.stringify({ metaShards, permUpgrades })); } catch (e) { console.warn('[META] Error:', e); }
+  }
+  // Consola: NV.resetMeta() borra el progreso persistente al instante.
+  NV.resetMeta = function () {
+    try { localStorage.removeItem('neonVoidMeta'); console.log('[META] Progreso borrado. Recargá para empezar de cero.'); }
+    catch (e) { console.warn('[META] Error:', e); }
+  };
+
+  function prepareMenuState() {
+    if (NV.clearPhantomPossession) NV.clearPhantomPossession(player, true);
+    if (NV.audio && typeof NV.audio.stopAllWeapons === 'function') NV.audio.stopAllWeapons();
+    NV.input.setFire(false);
+    combatIntent.dashIntent = false;
+    NV.resetDashPauseLatch(player, false);
+    paused = false;
+    state = 'menu';
+    resetPresentation();
+    if (NV.clearHazards) NV.clearHazards(hazards, minefieldState, sectorEncounterState); else hazards = [];
+    syncGameState();
+    dom.shop.classList.add('hidden');
+    dom.gameOver.classList.add('hidden');
+    dom.permScreen.classList.add('hidden');
+  }
+
+  function showLobby() {
+    prepareMenuState();
+    updateLobbyHeroInfo();
+    dom.startScreen.classList.remove('hidden');
+    if (dom.characterSelectScreen) dom.characterSelectScreen.classList.add('hidden');
+    if (typeof NV.renderLobbyDifficultySelection === 'function') NV.renderLobbyDifficultySelection();
+  }
+
+  function showCharacterSelect() {
+    prepareMenuState();
+    syncPilotCards();
+    renderMenuSkillIcons();
+    dom.startScreen.classList.add('hidden');
+    if (dom.characterSelectScreen) dom.characterSelectScreen.classList.remove('hidden');
+  }
+
+  function showMenu() { showLobby(); }
+
+  function hideCombatLabOverlays() {
+    dom.startScreen.classList.add('hidden');
+    if (dom.characterSelectScreen) dom.characterSelectScreen.classList.add('hidden');
+    dom.shop.classList.add('hidden');
+    dom.gameOver.classList.add('hidden');
+    dom.permScreen.classList.add('hidden');
+  }
+
+  function clearCombatLabTransientState() {
+    clearCombatIntent();
+    if (NV.clearPhantomPossession) NV.clearPhantomPossession(player, true);
+    if (hookSystem && typeof NV.resetHookSystem === 'function') NV.resetHookSystem(hookSystem);
+    if (NV.clearHazards) NV.clearHazards(hazards, minefieldState,
+      typeof sectorEncounterState === 'undefined' ? null : sectorEncounterState);
+    if (NV.clearMusicalNotes) NV.clearMusicalNotes();
+    if (NV.audio && typeof NV.audio.stopAllWeapons === 'function') NV.audio.stopAllWeapons();
+    enemies = [];
+    bullets = [];
+    particles = [];
+    pickups = [];
+    floatTexts = [];
+    shockwaves = [];
+    trails = [];
+    weaponPickups = [];
+    drones = [];
+    meteors = [];
+    bossChests = [];
+    hazards = [];
+    flameZones = [];
+    consumableVfx = [];
+    pendingBombImpacts = [];
+    boss = null;
+    hookSystem = NV.createHookSystem ? NV.createHookSystem() : null;
+    minefieldState = NV.createMinefieldState ? NV.createMinefieldState() : minefieldState;
+    // El Combat Lab también ejecuta esta rutina en un sandbox mínimo para sus
+    // pruebas; allí el módulo ambiental puede no estar cargado deliberadamente.
+    if (typeof sectorEncounterState !== 'undefined' && NV.createSectorEncounterState) {
+      sectorEncounterState = NV.createSectorEncounterState();
+    }
+    currentAutoTarget = null;
+    specialVFX = null;
+    fireTimer = 0;
+    shake = 0;
+    hitstop = 0;
+    flashAlpha = 0;
+    transition = 0;
+    heartbeatTimer = 0;
+    heartbeatWasCritical = false;
+    countdownLastSecond = 0;
+    resetPresentation();
+    clearEspectroBridge();
+  }
+
+  function restoreCombatLabTelemetry() {
+    if (!NV.playtest || combatLabState.telemetryWasEnabled === null) return;
+    const shouldEnable = combatLabState.telemetryWasEnabled;
+    NV.playtest.reset();
+    if (shouldEnable) NV.playtest.enable(); else NV.playtest.disable();
+    combatLabState.telemetryWasEnabled = null;
+  }
+
+  function enterCombatLabIdle() {
+    clearCombatLabTransientState();
+    restoreCombatLabTelemetry();
+    paused = false;
+    state = 'menu';
+    waveEvent = null;
+    waveTimer = 0;
+    spawnTimer = 0;
+    combatLabState.status = 'IDLE';
+    combatLabState.elapsed = 0;
+    combatLabState.duration = null;
+    combatLabState.encounterMode = 'enemies';
+    combatLabState.requestedComposition = [];
+    combatLabState.selectedBossIndex = null;
+    combatLabState.loadout = null;
+    combatLabState.error = null;
+    hideCombatLabOverlays();
+    syncGameState();
+    updateHUD();
+  }
+
+  function combatLabCatalog() {
+    return NV.getProductionEnemyDefinitions().map((entry) => ({
+      id: entry.id,
+      name: entry.name,
+      spawnKind: entry.spawnKind,
+      hostileClass: entry.hostileClass,
+      spectral: entry.spectral,
+    }));
+  }
+
+  function combatLabCharacters() {
+    return NV.characterList().map((entry) => ({ id: entry.id, name: entry.data.name }));
+  }
+
+  function combatLabDifficulties() {
+    const selectedId = NV.settings && NV.settings.gameplay ? NV.settings.gameplay.difficulty : null;
+    return (NV.DIFFICULTY_ORDER || []).map((id) => {
+      const data = NV.difficultyGet(id);
+      return { id: data.id, label: data.label || data.id.toUpperCase(), selected: data.id === selectedId };
+    });
+  }
+
+  function combatLabBosses() {
+    return (NV.BOSS_TYPES || []).map((entry, index) => ({
+      index,
+      name: entry.name,
+      pattern: entry.pattern,
+      attack: entry.attack,
+      canonicalWave: (index + 1) * 5,
+    }));
+  }
+
+  function combatLabWeapons() {
+    return WEAPONS.map((weapon) => ({
+      id: weapon.id,
+      name: weapon.name,
+      rarity: weapon.rarity,
+      maxLevel: NV.BALANCE.WEAPON_MAX_LEVEL,
+      maxFusion: NV.BALANCE.MAX_WEAPON_FUSION,
+    }));
+  }
+
+  function combatLabPlacementCandidates(radius) {
+    const margin = Math.max(24, radius + 8);
+    const candidates = [];
+    const steps = [0, 48, 96, 144];
+    for (const inset of steps) {
+      const left = margin + inset;
+      const right = arenaW() - margin - inset;
+      const top = margin + inset;
+      const bottom = arenaH() - margin - inset;
+      if (left > right || top > bottom) continue;
+      const horizontalSlots = Math.max(2, Math.floor((right - left) / 56));
+      const verticalSlots = Math.max(2, Math.floor((bottom - top) / 56));
+      for (let i = 0; i <= horizontalSlots; i++) {
+        const x = left + (right - left) * (i / horizontalSlots);
+        candidates.push({ x, y: top }, { x: right - (x - left), y: bottom });
+      }
+      for (let i = 1; i < verticalSlots; i++) {
+        const y = top + (bottom - top) * (i / verticalSlots);
+        candidates.push({ x: right, y }, { x: left, y: bottom - (y - top) });
+      }
+    }
+    return candidates;
+  }
+
+  function buildCombatLabPositions(requests, characterId) {
+    const placed = [];
+    const character = CHARACTERS[characterId];
+    const playerX = arenaW() / 2;
+    const playerY = arenaH() - 100;
+    const playerRadius = ((character && character.size) || 20) * 0.45;
+    for (const request of requests) {
+      const radius = Math.max(1, NV.productionEnemySpawnRadius(request.descriptor));
+      const candidates = combatLabPlacementCandidates(radius);
+      const position = candidates.find((candidate) => {
+        if (Math.hypot(candidate.x - playerX, candidate.y - playerY) < Math.max(180, radius + playerRadius + 24)) return false;
+        return placed.every((other) => Math.hypot(candidate.x - other.x, candidate.y - other.y) >= radius + other.radius + 12);
+      });
+      if (!position) return null;
+      placed.push({ x: position.x, y: position.y, radius, enemyId: request.enemyId, descriptor: request.descriptor });
+    }
+    return placed;
+  }
+
+  function validateCombatLabConfig(rawConfig) {
+    const config = rawConfig || {};
+    const errors = [];
+    const encounterMode = config.encounterMode == null ? 'enemies' : config.encounterMode;
+    const character = NV.characterList().find((entry) => entry.id === config.characterId);
+    const difficulty = (NV.DIFFICULTY_ORDER || []).indexOf(config.difficultyId) >= 0 ? config.difficultyId : null;
+    const durationMode = config.durationMode === 'infinite' ? 'infinite' : (config.durationMode === 'timed' ? 'timed' : null);
+    const durationValue = Number(config.durationSeconds);
+    if (encounterMode !== 'enemies' && encounterMode !== 'boss') errors.push('Encounter mode must be enemies or boss.');
+    if (!character) errors.push('Unknown production character: ' + String(config.characterId || ''));
+    if (!difficulty) errors.push('Difficulty must be one of the production difficulty IDs.');
+    if (!durationMode) errors.push('Duration mode must be timed or infinite.');
+    if (durationMode === 'timed' && (!Number.isFinite(durationValue) || durationValue <= 0)) errors.push('Timed duration must be greater than zero seconds.');
+
+    if (encounterMode === 'boss') {
+      const bossIndex = Number(config.bossIndex);
+      const weapon = WEAPONS.find((entry) => entry.id === config.weaponId);
+      const weaponLevel = Number(config.weaponLevel);
+      const weaponFusion = Number(config.weaponFusion == null ? 0 : config.weaponFusion);
+      const firePolicy = (NV.inputIntent.FIRE_POLICIES || []).indexOf(config.firePolicy) >= 0 ? config.firePolicy : null;
+      if (!Number.isInteger(bossIndex) || bossIndex < 0 || bossIndex >= BOSS_TYPES.length) errors.push('Unknown production boss index.');
+      if (!weapon) errors.push('Unknown production weapon: ' + String(config.weaponId || ''));
+      if (!Number.isInteger(weaponLevel) || weaponLevel < 1 || weaponLevel > NV.BALANCE.WEAPON_MAX_LEVEL) errors.push('Weapon level is outside the production range.');
+      if (!Number.isInteger(weaponFusion) || weaponFusion < 0 || weaponFusion > NV.BALANCE.MAX_WEAPON_FUSION) errors.push('Weapon fusion is outside the production range.');
+      if (!firePolicy) errors.push('Unknown fire policy.');
+      if (Array.isArray(config.composition) && config.composition.length) errors.push('Boss encounters cannot include an arbitrary starting composition.');
+      if (errors.length) return { ok: false, errors };
+      return {
+        ok: true,
+        config: {
+          encounterMode: 'boss', bossIndex, characterId: character.id, difficultyId: difficulty,
+          weaponId: weapon.id, weaponLevel, weaponFusion, firePolicy,
+          durationMode, durationSeconds: durationMode === 'timed' ? durationValue : null,
+        },
+        positions: [],
+      };
+    }
+
+    const waveValue = Number(config.wave);
+    const waveNumber = Number.isInteger(waveValue) && waveValue >= 1 && waveValue <= 999 ? waveValue : null;
+    if (waveNumber == null) errors.push('Wave must be an integer from 1 to 999.');
+
+    const requested = [];
+    const normalizedComposition = [];
+    const byId = new Map();
+    for (const row of Array.isArray(config.composition) ? config.composition : []) {
+      const descriptor = NV.getProductionEnemyDefinition(row && row.enemyId);
+      const quantity = Number(row && row.quantity);
+      if (!descriptor) {
+        errors.push('Unknown production enemy: ' + String(row && row.enemyId || ''));
+        continue;
+      }
+      if (!Number.isInteger(quantity) || quantity <= 0) {
+        errors.push(descriptor.name + ' quantity must be a positive integer.');
+        continue;
+      }
+      byId.set(descriptor.id, (byId.get(descriptor.id) || 0) + quantity);
+    }
+    for (const [enemyId, quantity] of byId) {
+      const descriptor = NV.getProductionEnemyDefinition(enemyId);
+      normalizedComposition.push({ enemyId, quantity });
+      for (let i = 0; i < quantity; i++) requested.push({ enemyId, descriptor });
+    }
+    if (!requested.length) errors.push('Add at least one enemy to the composition.');
+    const heavy = requested.filter((request) => request.descriptor.hostileClass === 'heavy').length;
+    if (requested.length > MAX_HOSTILES) errors.push('Requested ' + requested.length + ' hostiles; production limit is ' + MAX_HOSTILES + '.');
+    if (heavy > MAX_HEAVY_HOSTILES) errors.push('Requested ' + heavy + ' HEAVY hostiles; production limit is ' + MAX_HEAVY_HOSTILES + '.');
+    if (errors.length) return { ok: false, errors };
+
+    const cleanConfig = {
+      encounterMode: 'enemies',
+      characterId: character.id,
+      wave: waveNumber,
+      difficultyId: difficulty,
+      durationMode,
+      durationSeconds: durationMode === 'timed' ? durationValue : null,
+      composition: normalizedComposition,
+    };
+    const positions = buildCombatLabPositions(requested, cleanConfig.characterId);
+    if (!positions) return { ok: false, errors: ['Not enough valid non-overlapping perimeter positions for this composition.'] };
+    return { ok: true, config: cleanConfig, positions };
+  }
+
+  function startCombatLab(rawConfig) {
+    const validation = validateCombatLabConfig(rawConfig);
+    if (!validation.ok) {
+      combatLabState.error = validation.errors.slice();
+      return validation;
+    }
+    initAudio();
+    const bossEncounter = validation.config.encounterMode === 'boss';
+    if (bossEncounter) {
+      if (NV.playtest && combatLabState.telemetryWasEnabled === null) combatLabState.telemetryWasEnabled = NV.playtest.enabled;
+    } else {
+      restoreCombatLabTelemetry();
+    }
+    clearCombatLabTransientState();
+    permUpgrades = NV.defaultPermUpgrades();
+    metaShards = 0;
+    NV.runDifficulty = validation.config.difficultyId;
+    wave = bossEncounter ? (validation.config.bossIndex + 1) * 5 : validation.config.wave;
+    waveEvent = null;
+    score = 0;
+    shards = 0;
+    NV.initializeRunPlayer(player, validation.config.characterId, { permUpgrades });
+    const selectedWeapon = bossEncounter ? WEAPONS.find((entry) => entry.id === validation.config.weaponId) : NV.starterWeapon();
+    inventory = [selectedWeapon];
+    currentWeapon = inventory[0];
+    consumableItems = [];
+    consumSel = 0;
+    weaponLevels = bossEncounter ? { [selectedWeapon.id]: validation.config.weaponLevel } : {};
+    weaponKills = {};
+    weaponFus = bossEncounter && validation.config.weaponFusion > 0 ? { [selectedWeapon.id]: validation.config.weaponFusion } : {};
+    shopBought = {};
+    upgradeSlots = [];
+    killCombo = { count: 0, timer: 0 };
+    combatIntent.firePolicy = bossEncounter ? validation.config.firePolicy : (NV.settings.controls.firePolicy || 'manual');
+    if (bossEncounter) {
+      boss = buildBossForWave(wave, validation.config.bossIndex, validation.config.difficultyId);
+      if (!boss || !NV.canSpawnBoss({ enemies, boss: null, MAX_HOSTILES, MAX_HEAVY_HOSTILES })) {
+        clearCombatLabTransientState();
+        state = 'menu';
+        combatLabState.status = 'ERROR';
+        combatLabState.error = ['Boss could not be created within the production hostile budget.'];
+        syncGameState();
+        return { ok: false, errors: combatLabState.error.slice() };
+      }
+      if (NV.playtest) {
+        NV.playtest.reset();
+        NV.playtest.enable();
+        NV.playtest.startRun(player.character, validation.config.difficultyId, currentWeapon.id);
+        NV.playtest.weaponProgression(currentWeapon.id, currentWeaponLevel(), currentWeaponFusion());
+        NV.playtest.bossStart(wave, boss.name, boss.pattern, boss.maxHp, playtestWeaponStates());
+      }
+    } else {
+      const spawnState = { enemies, boss: null, MAX_HOSTILES, MAX_HEAVY_HOSTILES, wave, W: arenaW(), H: arenaH() };
+      for (const placement of validation.positions) {
+        const result = NV.spawnProductionEnemy(spawnState, placement.enemyId, { position: placement });
+        if (!result.ok) {
+          clearCombatLabTransientState();
+          state = 'menu';
+          combatLabState.status = 'ERROR';
+          combatLabState.error = ['Spawn failed for ' + placement.enemyId + ': ' + result.code];
+          syncGameState();
+          return { ok: false, errors: combatLabState.error.slice() };
+        }
+      }
+    }
+    combatLabState.lastConfig = JSON.parse(JSON.stringify(validation.config));
+    combatLabState.encounterMode = validation.config.encounterMode;
+    combatLabState.requestedComposition = bossEncounter ? [] : validation.config.composition.map((row) => ({ enemyId: row.enemyId, quantity: row.quantity }));
+    combatLabState.selectedBossIndex = bossEncounter ? validation.config.bossIndex : null;
+    combatLabState.loadout = bossEncounter ? { weaponId: currentWeapon.id, weaponLevel: currentWeaponLevel(), weaponFusion: currentWeaponFusion(), firePolicy: validation.config.firePolicy } : null;
+    combatLabState.elapsed = 0;
+    combatLabState.duration = validation.config.durationMode === 'timed' ? validation.config.durationSeconds : null;
+    combatLabState.status = 'RUNNING';
+    combatLabState.error = null;
+    waveTimer = combatLabState.duration;
+    spawnTimer = Infinity;
+    paused = false;
+    state = 'playing';
+    hideCombatLabOverlays();
+    syncGameState();
+    updateHUD();
+    notifyMobileWeapon();
+    notifyMobileConsumable();
+    return { ok: true, config: JSON.parse(JSON.stringify(validation.config)) };
+  }
+
+  function completeCombatLabBoss() {
+    if (!combatLabMode || combatLabState.status !== 'RUNNING') return false;
+    if (NV.playtest) NV.playtest.bossEnd(playtestWeaponStates());
+    combatLabState.status = 'COMPLETE';
+    paused = true;
+    clearCombatIntent();
+    if (NV.audio && typeof NV.audio.stopAllWeapons === 'function') NV.audio.stopAllWeapons();
+    syncGameState();
+    return true;
+  }
+
+  function combatLabSnapshot() {
+    const activeById = Object.create(null);
+    let activeEnemies = 0;
+    for (const enemy of enemies) {
+      if (enemy.dead) continue;
+      activeEnemies++;
+      const id = enemy.enemyTypeId || enemy.visualId || 'unknown';
+      activeById[id] = (activeById[id] || 0) + 1;
+    }
+    const perf = NV.performanceMonitor && NV.performanceMonitor.getSnapshot ? NV.performanceMonitor.getSnapshot() : null;
+    const bossSnapshot = {
+      index: combatLabState.selectedBossIndex,
+      present: !!boss,
+      active: !!boss && !boss.dead,
+      name: boss ? boss.name : null,
+      hp: boss ? boss.hp : 0,
+      maxHp: boss ? boss.maxHp : 0,
+      attack: boss ? boss.attack : null,
+      phase2: !!(boss && boss.phase2),
+    };
+    return {
+      status: combatLabState.status,
+      encounterMode: combatLabState.encounterMode,
+      paused,
+      wave,
+      difficulty: NV.runDifficulty || 'normal',
+      elapsed: combatLabState.elapsed,
+      remaining: combatLabState.duration == null ? null : Math.max(0, combatLabState.duration - combatLabState.elapsed),
+      duration: combatLabState.duration,
+      activeEnemies,
+      activeById,
+      requestedComposition: combatLabState.requestedComposition.map((row) => ({ enemyId: row.enemyId, quantity: row.quantity })),
+      boss: bossSnapshot,
+      loadout: combatLabState.loadout ? Object.assign({}, combatLabState.loadout) : null,
+      telemetry: combatLabState.encounterMode === 'boss' && NV.playtest ? NV.playtest.snapshot() : null,
+      player: { characterId: player.character, hp: player.hp, maxHp: player.maxHp },
+      fps: perf && perf.frame && perf.frame.p50 > 0 ? 1000 / perf.frame.p50 : null,
+      error: combatLabState.error ? combatLabState.error.slice() : null,
+    };
+  }
+
+  function installCombatLabRuntime() {
+    NV.combatLabRuntime = Object.freeze({
+      ready: true,
+      getCatalog: combatLabCatalog,
+      getCharacters: combatLabCharacters,
+      getDifficulties: combatLabDifficulties,
+      getBosses: combatLabBosses,
+      getWeapons: combatLabWeapons,
+      start: startCombatLab,
+      reset() { enterCombatLabIdle(); return { ok: true }; },
+      restart() {
+        if (!combatLabState.lastConfig) return { ok: false, errors: ['No validated test has been started yet.'] };
+        return startCombatLab(combatLabState.lastConfig);
+      },
+      pause() {
+        if (state !== 'playing' || combatLabState.status !== 'RUNNING' || paused) return false;
+        NV.input.togglePause();
+        combatLabState.status = 'PAUSED';
+        return true;
+      },
+      resume() {
+        if (state !== 'playing' || combatLabState.status !== 'PAUSED' || !paused) return false;
+        NV.input.togglePause();
+        combatLabState.status = 'RUNNING';
+        return true;
+      },
+      snapshot: combatLabSnapshot,
+    });
+    if (typeof window.dispatchEvent === 'function' && typeof CustomEvent === 'function') {
+      window.dispatchEvent(new CustomEvent('nv-combat-lab-ready'));
+    }
+  }
+
+  function startGame() {
+    console.log('[START] Iniciando partida...');
+    NV.runDifficulty = NV.settings && NV.settings.gameplay && NV.settings.gameplay.difficulty || 'normal';
+    paused = false;
+    state = 'playing';
+    resetPresentation();
+    syncGameState();
+    dom.startScreen.classList.add('hidden');
+    if (dom.characterSelectScreen) dom.characterSelectScreen.classList.add('hidden');
+    dom.shop.classList.add('hidden');
+    dom.gameOver.classList.add('hidden');
+    dom.permScreen.classList.add('hidden');
+
+    NV.initializeRunPlayer(player, player.character, { permUpgrades });
+    // Contrato explícito de restart: además del inicializador compartido, la ruta
+    // productiva deja visible que ningún stun/lockout sobrevive a una run nueva.
+    player.stun = 0; player.stunReapplyLockout = 0;
+
+    wave = 1; score = 0; shards = 0;
+    if (NV.expedition && !combatLabMode) {
+      expeditionRun = NV.expedition.create(expeditionMode, NV.expedition.profile().seed);
+      if (!metaFrozen) NV.expedition.clear();
+    }
+    waveEvent = null;
+    hookSystem = NV.createHookSystem ? NV.createHookSystem() : null; // F3: hookSystem fresco por run (restart/new run)
+    if (NV.clearHazards) NV.clearHazards(hazards, minefieldState, sectorEncounterState); else hazards = [];
+    shopBought = {};
+    upgradeSlots = []; // los slots de mejoras se reinician por partida, igual que shopBought
+    killCombo = { count: 0, timer: 0 };
+    heartbeatTimer = 0; heartbeatWasCritical = false; countdownLastSecond = 0;
+    enemies = []; bullets = []; particles = []; pickups = [];
+    flameZones = [];
+    clearEspectroBridge();
+    floatTexts = []; trails = []; weaponPickups = []; bossChests = [];
+    shockwaves = []; drones = []; meteors = []; hazards = [];
+    minefieldState = NV.createMinefieldState ? NV.createMinefieldState() : minefieldState;
+    sectorEncounterState = NV.createSectorEncounterState ? NV.createSectorEncounterState() : sectorEncounterState;
+    inventory = [NV.starterWeapon()]; currentWeapon = inventory[0]; consumableItems = [];
+    consumSel = 0;
+    weaponLevels = {}; weaponKills = {}; weaponFus = {}; fireTimer = 0;
+    if (NV.playtest) NV.playtest.reset(); // telemetría opt-in F08: agregados por partida
+        boss = null; shake = 0; hitstop = 0; flashAlpha = 0;
+    transition = 0; paused = false; showStats = false;
+    resetPresentation();
+    specialVFX = null; consumableVfx = []; pendingBombImpacts = []; NV.musicTime = 0;
+    NV.musicState.step = 0; NV.musicState.lastBeat = 0; NV.musicState.intensity = 0;
+    NV.musicState.phase = 'normal'; NV.musicState.combo = 0; // reset de identidad sonora (Tarea 3)
+
+    if (NV.playtest) NV.playtest.startRun(player.character, NV.runDifficulty, currentWeapon.id);
+
+    resizeCanvas();
+    nextWave();
+    updateHUD();
+    notifyMobileWeapon();
+    notifyMobileConsumable();
+    console.log('[START] Partida iniciada correctamente');
+  }
+
+  function buildBossForWave(wave, bossIndex, difficultyId) {
+    const index = Number.isInteger(bossIndex)
+      ? bossIndex
+      : ((wave / 5 - 1) % BOSS_TYPES.length + BOSS_TYPES.length) % BOSS_TYPES.length;
+    const bt = BOSS_TYPES[index];
+    if (!bt) return null;
+    const difficultyMult = typeof NV.difficultySafeMult === 'function'
+      ? NV.difficultySafeMult('hp', difficultyId)
+      : 1;
+    const hp = NV.bossEncounterHp ? NV.bossEncounterHp(bt, wave, difficultyMult)
+      : Math.round((bt.hp + wave * wave * 12 + wave * 40) * 1.8 * difficultyMult);
+    const bossCandidate = { x: arenaW()/2, y: 100,
+      hp, maxHp: hp,
+      radius: bt.radius, color: bt.color, timer: 0, atkTimer: 0,
+      hitFlash: 0, hitSlowUntil: 0, hitSlowImmunity: 0,
+      name: bt.name, pattern: bt.pattern, attack: bt.attack, shape: bt.shape,
+      isBoss: true, hostileClass: 'heavy', stunChance: bt.stunChance || 0,
+    };
+    return bossCandidate;
+  }
+
+  function nextWave() {
+    console.log('[WAVE] Oleada ' + wave);
+    // Elegir evento ANTES de calcular duración: la duración depende de si hay evento.
+    const bossWave = NV.expedition && !combatLabMode && expeditionRun
+      ? NV.expedition.isBossWave(expeditionRun, wave) : wave % 5 === 0;
+    waveEvent = (!bossWave && wave % 3 === 0) ? pickWaveEvent() : null;
+    if (NV.expedition && !combatLabMode && expeditionRun) {
+      if (waveEvent && expeditionRun.event) waveEvent = expeditionRun.event;
+      expeditionRun.event = null;
+      NV.expedition.beginWave(expeditionRun);
+      NV.expedition.syncArsenal(inventory, weaponLevels, weaponKills);
+    }
+    waveTimer = NV.waveDuration(wave, waveEvent);
+    waveDefeats = 0;
+    waveSpawned = 0;
+    waveGoal = bossWave ? null : NV.waveClearObjective(wave, NV.runDifficulty);
+    wavePressure = NV.createWavePressure ? NV.createWavePressure() : null;
+    waveGoalNudgeShown = false;
+    spawnTimer = 0;
+    waveDirectorCycle = 0;
+    if (NV.clearHazards) NV.clearHazards(hazards, minefieldState, sectorEncounterState); else hazards = [];
+    // Limpieza completa de entidades por oleada (rendimiento): no dejar restos de
+    // partículas, drones, meteoros, estelas, textos/cofres/armas del suelo de la
+    // oleada anterior acumulándose entre oleadas (deuda técnica de rendimiento).
+    enemies = []; bullets = []; particles = []; pickups = [];
+    flameZones = [];
+    clearEspectroBridge();
+    floatTexts = []; trails = []; shockwaves = []; weaponPickups = [];
+    drones = []; meteors = []; bossChests = []; hazards = [];
+    consumableVfx = []; // #11: los VFX instantáneos no sobreviven al cambio de oleada
+    pendingBombImpacts = []; // #11: sin impactos de bomba huérfanos entre oleadas
+
+    if (bossWave) {
+      const bossIndex = NV.expedition && !combatLabMode && expeditionRun
+        ? NV.expedition.bossIndex(expeditionRun, wave)
+        : ((wave / 5 - 1) % BOSS_TYPES.length + BOSS_TYPES.length) % BOSS_TYPES.length;
+      const bt = BOSS_TYPES[bossIndex];
+      const difficultyId = NV.settings && NV.settings.gameplay ? NV.settings.gameplay.difficulty : 'normal';
+      const bossCandidate = buildBossForWave(wave, bossIndex, difficultyId);
+      boss = NV.canSpawnBoss({ enemies, boss: null, MAX_HOSTILES, MAX_HEAVY_HOSTILES }) ? bossCandidate : null;
+      if (!boss) return;
+      if (NV.playtest) NV.playtest.bossStart(wave, boss.name, boss.pattern, boss.maxHp, playtestWeaponStates());
+      showBanner('¡' + bt.name + '!', bt.color);
+      triggerFlash(bt.color);
+      spawnExplosion(boss.x, boss.y, 40, boss.color, 1);
+      // Identidad sonora de jefe (Tarea 3): SFX de entrada + música cambia a la capa 'boss'
+      // en el próximo step de updateMusic (sin corte audible, ver synth.js updateMusic).
+      sfx.bossEnter();
+    } else {
+      boss = null;
+      // waveEvent ya calculado antes de la duración (ver arriba); el banner lo lee aquí.
+      const ev = waveEvent ? WAVE_EVENTS[waveEvent] : null;
+      if (ev) {
+        showBanner('⚠ ' + ev.name + ' · ' + ev.desc, ev.color);
+        triggerFlash(ev.color);
+        sfx.waveEvent(waveEvent);
+      } else {
+        const sectorIntro = NV.sectorEncounterForWave && (wave === 1 || wave === 6 || wave === 11 || wave === 16)
+          ? NV.sectorEncounterForWave(wave) : null;
+        if (sectorIntro) showBanner(sectorIntro.name + ' · ' + sectorIntro.cue, sectorIntro.color);
+        else showBanner('OLEADA ' + wave, '#7cf8ff');
+        triggerFlash(sectorIntro ? sectorIntro.color : '#7cf8ff');
+      }
+    }
+    countdownLastSecond = 0;
+    sfx.wave();
+    updateHUD();
+  }
+
+  // Elige un evento de oleada al azar (sin repetir el de la oleada anterior).
+  function pickWaveEvent() {
+    const keys = Object.keys(WAVE_EVENTS);
+    let ev;
+    do { ev = keys[Math.floor(Math.random() * keys.length)]; } while (ev === waveEvent && keys.length > 1);
+    return ev;
+  }
+
+  function showBanner(text, color) {
+    dom.waveBanner.textContent = text;
+    dom.waveBanner.style.color = color;
+    // Los avisos tácticos largos informan sin cubrir al jefe ni la mira.
+    dom.waveBanner.classList.toggle('compact', String(text).length > 20);
+    dom.waveBanner.classList.remove('hidden');
+    setTimeout(() => dom.waveBanner.classList.add('hidden'), 1500);
+  }
+
+  // === CELEBRACIÓN DE VICTORIA DE OLEADA (más épica para jefes) ===
+  function triggerWaveVictory(isBoss, bossName, bossColor) {
+    if (state === 'player_dying' || state === 'gameover' || state === 'wave_end' || state === 'shop_enter' || state === 'shop') return false;
+    if (player.hp <= 0) { gameOver(); return false; }
+    if (isBoss && NV.playtest) NV.playtest.bossEnd(playtestWeaponStates());
+    if (NV.expedition && !combatLabMode && expeditionRun) shards += NV.expedition.finishWave(expeditionRun, wave, isBoss);
+    // Hazards no bloquean ni dañan durante la transición a tienda.
+    if (NV.clearHazards) NV.clearHazards(hazards, minefieldState, sectorEncounterState); else hazards = [];
+    if (NV.clearPhantomPossession) NV.clearPhantomPossession(player, true);
+        clearCombatIntent();
+    bullets = [];
+    flameZones = [];
+    if (hookSystem && typeof NV.resetHookSystem === 'function') NV.resetHookSystem(hookSystem); // F3: cleanup hook en wave_end
+    player.stun = 0; player.stunReapplyLockout = 0; // F4: sin stun residual entre oleadas
+    state = 'wave_end';
+    NV.activateNormalShardMagnetPull(pickups, player);
+    // #10: restos visuales, no derribos. El boss conserva su transición propia.
+    if (!isBoss) {
+      for (const e of enemies) {
+        if (e.dead || e.isBoss) continue;
+        e.waveCleanup = true;
+        e.waveCleanupT = 0;
+      }
+    }
+    presentation.kind = 'wave_end';
+    presentation.elapsed = 0;
+    presentation.duration = isBoss ? BOSS_WAVE_END_DURATION : WAVE_END_DURATION;
+    presentation.targetX = player.x;
+    presentation.targetY = player.y;
+    presentation.isBoss = !!isBoss;
+    presentation.pilot = player.character;
+    presentation.finalized = false;
+    presentation.hold = 0; // Tarea #8: margen del cofre de jefe desde cero
+    transition = presentation.duration;
+    player.invuln = Math.max(player.invuln, presentation.duration + (isBoss ? BOSS_CHEST_HOLD : 0) + SHOP_ENTER_DURATION + 0.2);
+    syncGameState();
+    if (isBoss) {
+      shake = 1;
+      triggerFlash(bossColor || '#ffd700');
+      spawnExplosion(arenaW() / 2, arenaH() / 2, 90, bossColor || '#ffd700', 1.5);
+      spawnExplosion(arenaW() / 2, arenaH() / 2, 60, '#fff', 1.1);
+      spawnExplosion(arenaW() / 2, arenaH() / 2, 40, '#ff5f9b', 0.9);
+      showBanner('¡' + (bossName || 'BOSS') + ' DERROTADO!', '#ffd700');
+    } else {
+      shake = 0.4;
+      triggerFlash('#7cf8ff');
+      spawnExplosion(arenaW() / 2, arenaH() / 2, 55, '#7cf8ff', 1);
+      spawnExplosion(arenaW() / 2, arenaH() / 2, 35, '#caa7ff', 0.8);
+      showBanner('Oleada ' + wave + ' completa! ◆', '#7cf8ff');
+    }
+    sfx.victory(wave, { milestone: isBoss || wave % 5 === 0 || wave % 10 === 0 || wave % 25 === 0 });
+    const victoryStyle = NV.PILOT_TRANSITIONS && NV.PILOT_TRANSITIONS[player.character];
+    if (NV.spawnPlayerStabilize) NV.spawnPlayerStabilize(particles, MAX_PARTICLES, player.x, player.y, {
+      count: isBoss ? 8 : 7, radius: isBoss ? 42 : 34, life: isBoss ? 0.68 : 0.55,
+      colors: victoryStyle ? victoryStyle.colors : [player.color],
+      color: victoryStyle ? victoryStyle.accent : player.color,
+      spiral: victoryStyle && victoryStyle.flourish === 'orbit-sync' ? 0.75 : 0
+    });
+    if (sfx.stabilizeTone) sfx.stabilizeTone(player.character, !!isBoss);
+    return true;
+  }
+
+  function triggerFlash(color, intensity) {
+    if (NV.settings && NV.settings.gameplay && NV.settings.gameplay.reducedEffects) return;
+    flashColor = color;
+    flashAlpha = Math.max(flashAlpha, intensity == null ? 0.3 : intensity);
+  }
+
+  function spawnExplosion(x, y, count, color, speedMult) {
+    NV.spawnExplosion(particles, MAX_PARTICLES, x, y, count, color, speedMult);
+  }
+  function spawnShockwave(x, y, opts) { NV.spawnShockwave(shockwaves, x, y, opts); }
+
+  // P2: paso de la estela del jugador según trailDensity del visual budget (decorativo).
+  function trailStep() {
+    if (!NV.getVisualBudget) return 3;
+    const d = NV.getVisualBudget().trailDensity;
+    return d >= 1 ? 3 : d >= 0.5 ? 6 : 12;
+  }
+
+
+  function skipShop() {
+    if (state !== 'shop') return false;
+    saveExpeditionCheckpoint();
+    wave++; // la oleada siguiente "arranca" recién al salir de la tienda
+    state = 'playing';
+    resetPresentation();
+    syncGameState();
+    dom.shop.classList.add('hidden');
+    NV.resetDashPauseLatch(player, false);
+    nextWave();
+  }
+
+  function prepareShopContent() {
+    if (NV.expedition && !combatLabMode) NV.expedition.syncArsenal(inventory, weaponLevels, weaponKills);
+    consumableBought = {}; // el tope de consumibles es por visita a la tienda
+    invSwapSel = -1;
+    updateHUD(); // La habilidad no debe seguir pulsando fuera del combate.
+    clearShopBalanceFeedback();
+    dom.shopShards.textContent = shards;
+    if (dom.shopWave) dom.shopWave.textContent = wave + 1;
+    if (dom.shopNextWave) dom.shopNextWave.textContent = wave + 1;
+    generateOffers();
+    renderInventory();
+  }
+
+  function showShop() {
+    if (state !== 'shop_enter') return false;
+    dom.shop.setAttribute('aria-hidden', 'true');
+    dom.shop.classList.remove('hidden');
+    return true;
+  }
+    // === CONSUMIBLES (se usan con la tecla F en partida) ===
+  // Reconcilia la selección tras mutar consumableItems: 0 tipos -> 0; índice fuera
+  // de rango -> wrap al primero. Si se pasa preserveType (identidad del consumible
+  // seleccionado), se prioriza mantenerlo en su nuevo índice tras un splice —
+  // así HUD y gameplay siempre apuntan al mismo tipo y no "salta" a otro stack.
+  function reconcileConsumSel(preserveType) {
+    const groups = NV.groupConsumables(consumableItems);
+    const n = groups.length;
+    if (n === 0) { consumSel = 0; return; }
+    if (preserveType !== undefined) {
+      const idx = groups.findIndex((g) => g.type === preserveType);
+      if (idx >= 0) { consumSel = idx; return; }
+    }
+    // Tipo no existe o no se solicitó preservación: wrap determinista al primero válido.
+    consumSel = consumSel >= n ? 0 : Math.max(0, consumSel);
+  }
+  function useConsumable() {
+    if (state !== 'playing' || paused || consumableItems.length === 0) return;
+    // Usa el TIPO seleccionado (elegido con Q / click en el HUD), no siempre el primero.
+    const groups = NV.groupConsumables(consumableItems);
+    consumSel = Math.min(consumSel, groups.length - 1);
+    if (consumSel < 0) return;
+    const selectedType = groups[consumSel].type;
+    const usable = NV.canUseConsumable(selectedType, { player, enemies, boss, pickups, weaponPickups });
+    if (!usable.ok) { addFloatText(player.x, player.y - 34, usable.reason, '#bce9ef'); return; }
+    const item = NV.consumeByType(consumableItems, selectedType);
+    if (!item) { reconcileConsumSel(); return; }
+    NV.applyConsumable(item, { player, enemies, boss, pickups, weaponPickups, addFloatText, triggerFlash, spawnExplosion, spawnShockwave, spawnConsumableVfx, killEnemy, registerBombImpact });
+    triggerFlash('#7cf8ff');
+    sfx.consume(selectedType);
+    // Preservar selección POR IDENTIDAD de tipo, no por índice posicional: el splice
+    // de consumeByType reordena items y puede desplazar el grupo a otro slot. Si el
+    // tipo aún tiene unidades, se mantiene seleccionado; si no, wrap al primero válido.
+    reconcileConsumSel(selectedType);
+    updateHUD();
+    notifyMobileConsumable();
+  }
+
+  // === TIENDA DE MEJORAS PERMANENTES (gasta metaShards) ===
+  function permCost(u) { return Math.round(u.base * (1 + (permUpgrades[u.key] || 0))); }
+  function renderPermOffers() {
+    if (!dom.permOffers) return;
+    dom.permShards.textContent = metaShards;
+    dom.permOffers.innerHTML = '';
+    PERM_UPGRADES.forEach(u => {
+      const lvl = permUpgrades[u.key] || 0;
+      const maxed = lvl >= MAX_PERM_LEVEL;
+      const cost = permCost(u);
+      const el = document.createElement('div');
+      el.className = 'offer' + (maxed ? ' offer-maxed' : '');
+      el.innerHTML = '<div class="offer-icon"><canvas></canvas></div>' +
+        '<div class="offer-name">' + u.name + ' Nv ' + lvl + (maxed ? ' (MÁX)' : '') + '</div>' +
+        '<div class="offer-desc">' + u.desc + '</div>' +
+        "<div class='offer-price'>" + (maxed ? 'MÁX' : '◆ ' + cost) + '</div>';
+      el.addEventListener('click', () => {
+        if (maxed) { if(sfx.ui)sfx.ui('error');showBanner(u.name + ' al máximo', '#aaa'); return; }
+        if (metaShards >= cost) {
+          metaShards -= cost;
+          permUpgrades[u.key] = lvl + 1;
+          saveMeta();
+          showBanner(u.name + ' → Nv ' + (lvl + 1), '#ffd700');
+          if(sfx.shopBuy)sfx.shopBuy();
+          renderPermOffers();
+        } else {
+          showBanner('Fragmentos insuficientes', '#ff5f9b');
+          if(sfx.ui)sfx.ui('error');
+        }
+      });
+      dom.permOffers.appendChild(el);
+      drawMetaSkillCanvas(el.querySelector('canvas'), u.key, 64, 48);
+    });
+  }
+  function openPermShop() {
+    dom.startScreen.classList.add('hidden');
+    if (dom.characterSelectScreen) dom.characterSelectScreen.classList.add('hidden');
+    dom.shop.classList.add('hidden');
+    dom.gameOver.classList.add('hidden');
+    dom.permScreen.classList.remove('hidden');
+    renderPermOffers();
+  }
+  function closePermShop() {
+    dom.permScreen.classList.add('hidden');
+    showLobby();
+  }
+
+  function renderInventory() {
+    if (NV.expedition && !combatLabMode) NV.expedition.syncArsenal(inventory, weaponLevels, weaponKills);
+    if (!dom.invSlots) return;
+    dom.invSlots.innerHTML = '';
+
+    for (let i = 0; i < INVENTORY_SLOTS; i++) {
+      const slot = document.createElement('div');
+      slot.className = 'inv-slot';
+
+      if (i < inventory.length) {
+        const weapon = inventory[i];
+        const fusLevel = weaponFusionLevel(weapon.id);
+        slot.classList.add('rarity-' + visualRarity(weapon.rarity, 25));
+        slot.innerHTML = `
+          <div class="inv-icon"><canvas width="32" height="32" aria-label="${weapon.name}"></canvas></div>
+          <div class="inv-name">${weapon.name}</div>
+          ${fusLevel > 0 ? `<div class="inv-fuse">Fusión Nv${fusLevel}</div>` : ''}
+        `;
+        drawWeaponCanvas(slot.querySelector('canvas'), weapon, 32, 26);
+        if (weapon === currentWeapon) {
+          slot.classList.add('equipped');
+          slot.title = weapon.name + ' (equipada)';
+        } else {
+          slot.title = weapon.name + ' - click para equipar';
+        }
+        if (invSwapSel === i) {
+          slot.style.outline = '2px solid #ffd700';
+          slot.title = 'Origen del intercambio (click en otra arma para intercambiar)';
+        }
+        slot.title += ' · Nivel ' + (weaponLevels[weapon.id] || 1) + ' · ' + weapon.pro;
+        if (fusLevel >= 2 && NV.WEAPON_EVOLUTIONS) slot.title += ' · ' + NV.WEAPON_EVOLUTIONS[weapon.id];
+
+        // Click = seleccionar para intercambiar / equipar
+        slot.addEventListener('click', () => {
+          if (invSwapSel >= 0 && invSwapSel !== i) {
+            const tmp = inventory[invSwapSel];
+            inventory[invSwapSel] = inventory[i];
+            inventory[i] = tmp;
+            invSwapSel = -1;
+            sfx.wheelSelect();
+            renderInventory();
+            return;
+          }
+          if (weapon === currentWeapon) {
+            // Equipada: permitir elegirla como origen de intercambio.
+            invSwapSel = (invSwapSel === i) ? -1 : i;
+            renderInventory();
+            return;
+          }
+          invSwapSel = -1;
+          stopCurrentWeaponAudio();
+          if (NV.playtest) NV.playtest.weaponSwitch(currentWeapon.id, weapon.id);
+          currentWeapon = weapon;
+          addFloatText(arenaW()/2, arenaH()/2, 'EQUIPADO: ' + weapon.name, RARITY_COLORS[weapon.rarity]);
+          renderInventory();
+        });
+
+        // Botón vender: da shards según rareza (coherente con la economía; < compra siempre).
+        const sellBtn = document.createElement('button');
+        sellBtn.className = 'inv-remove';
+        sellBtn.textContent = 'VENDER';
+        sellBtn.title = 'Vender por ' + NV.weaponSellValue(weapon, WEAPON_SELL_PRICES) + ' shards';
+        sellBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          // Nunca quedarse sin armas: el engine presupone currentWeapon válido.
+          if (inventory.length <= 1) {
+            showBanner('NECESITÁS AL MENOS UN ARMA', '#ff5f9b');
+            return;
+          }
+          const val = NV.weaponSellValue(weapon, WEAPON_SELL_PRICES);
+          shards += val;
+          if (dom.shopShards) dom.shopShards.textContent = shards;
+          inventory.splice(i, 1);
+          if (currentWeapon === weapon) {
+            // Fallback a la siguiente arma válida en el orden visible del loadout.
+            stopCurrentWeaponAudio();
+            const fallbackWeapon = inventory[Math.min(i, inventory.length - 1)] || inventory[0];
+            if (fallbackWeapon && NV.playtest) NV.playtest.weaponSwitch(currentWeapon.id, fallbackWeapon.id);
+            currentWeapon = fallbackWeapon;
+          }
+          invSwapSel = -1;
+          addFloatText(arenaW() / 2, arenaH() / 2, '+◆ ' + val, '#7cf8ff');
+          updateHUD();
+          renderInventory();
+          sfx.shopSell();
+        });
+        slot.appendChild(sellBtn);
+      } else {
+        // Slot vacío: SOLO representación visual de capacidad disponible.
+        // Loadout compacto (modelo único): slot visual N == inventory[N-1];
+        // no existen huecos internos persistentes ni moves a vacío.
+        slot.classList.add('empty');
+        slot.style.cursor = 'default';
+      }
+      dom.invSlots.appendChild(slot);
+    }
+  }
+
+  function renderShopConsumableLoadout() {
+    if (!dom.shopConsumableLoadout) return;
+    dom.shopConsumableLoadout.innerHTML = '';
+    const groups = NV.groupConsumables(consumableItems);
+    const hint = dom.shopConsumableLoadout.parentElement && dom.shopConsumableLoadout.parentElement.querySelector('.inv-hint');
+    if (hint) hint.textContent = 'tipos ' + groups.length + '/' + CONSUMABLE_TYPE_SLOT_CAP + ' · stack máx ' + CONSUMABLE_STACK_CAP;
+    for (let i = 0; i < CONSUMABLE_TYPE_SLOT_CAP; i++) {
+      const g = groups[i];
+      const slot = document.createElement('div');
+      slot.className = 'loadout-slot' + (g ? '' : ' empty');
+      if (g) {
+        const canvas = document.createElement('canvas');
+        canvas.width = 32; canvas.height = 32;
+        slot.appendChild(canvas);
+        drawConsumableCanvas(canvas, g.type, 32, 24);
+        slot.insertAdjacentHTML('beforeend', '<span class="slot-index">' + (i + 1) + '</span><span class="slot-badge">x' + g.count + '</span>');
+        slot.title = g.name + ' x' + g.count + '/' + CONSUMABLE_STACK_CAP;
+      } else {
+        slot.title = 'Slot de protocolo vacío';
+      }
+      dom.shopConsumableLoadout.appendChild(slot);
+    }
+  }
+
+  // Nivel actual de una mejora (compras agrupadas por tipo dentro de la partida).
+  function upgradeLevel(icon) {
+    let n = 0;
+    for (const u of upgradeSlots) if (u.icon === icon) n++;
+    return n;
+  }
+
+  // Slots de mejoras de la partida (panel MEJORAS): misma estética que el dock de armas
+  // y los consumibles equipados. Cada mejora ocupa UN slot con su nivel; al llegar al
+  // máximo se bloquea con el estilo rojo/diagonal. Vacíos = contorno punteado.
+  function renderUpgradeSlots() {
+    if (!dom.upgradeSlots) return;
+    dom.upgradeSlots.innerHTML = '';
+    const groups = [];
+    const byIcon = {};
+    for (const u of upgradeSlots) {
+      if (!byIcon[u.icon]) { byIcon[u.icon] = { icon: u.icon, name: u.name, level: 0 }; groups.push(byIcon[u.icon]); }
+      byIcon[u.icon].level++;
+    }
+    const hint = dom.upgradeSlots.parentElement && dom.upgradeSlots.parentElement.querySelector('.inv-hint');
+    if (hint) hint.textContent = 'tipos ' + groups.length + '/' + UPGRADE_SLOT_CAP + ' · nivel máx ' + UPGRADE_LEVEL_CAP;
+    for (let i = 0; i < UPGRADE_SLOT_CAP; i++) {
+      const g = groups[i];
+      const slot = document.createElement('div');
+      const maxLvl = g ? (UPGRADE_LEVELS[g.icon] || UPGRADE_LEVEL_CAP) : 0;
+      const blocked = !!g && (g.level >= maxLvl || (g.icon === 'speed' && player.agility >= MAX_AGILITY));
+      slot.className = 'loadout-slot' + (g ? (blocked ? ' blocked' : '') : ' empty');
+      if (g) {
+        const canvas = document.createElement('canvas');
+        canvas.width = 32; canvas.height = 32;
+        slot.appendChild(canvas);
+        drawMetaSkillCanvas(canvas, g.icon, 32, 24);
+        slot.insertAdjacentHTML('beforeend', '<span class="slot-index">' + (i + 1) + '</span><span class="slot-badge">Nv' + g.level + '</span>');
+        slot.title = g.name + ' Nv' + g.level + (blocked ? ' (máximo)' : '');
+      } else {
+        slot.title = 'Slot de mejora vacío';
+      }
+      dom.upgradeSlots.appendChild(slot);
+    }
+  }
+
+  function visualRarity(rarity, price) {
+    if (rarity === 'legendary') return 'legendary';
+    if (rarity === 'epic') return 'epic';
+    if (rarity === 'rare') return 'rare';
+    if (price >= 30) return 'rare';
+    return 'common';
+  }
+
+  function generateOffers() {
+    const upgrades = [];
+    const weapons = [];
+    const consumables = [];
+    // Cada mejora ocupa UN slot y sube de nivel; al llegar a su nivel máximo la oferta se bloquea.
+    const hpLvl = upgradeLevel('hp');
+    const speedLvl = upgradeLevel('speed');
+    const armorLvl = upgradeLevel('armor');
+    const luckLvl = upgradeLevel('luck');
+
+    if ((shopBought.hp || 0) < SHOP_CAPS.hp) {
+      upgrades.push({
+        kind: 'upgrade', metaIcon: 'hp', name: '+25 HP', desc: 'Vida máxima +25 (' + (shopBought.hp || 0) + '/' + SHOP_CAPS.hp + ')', rarity: 'common',
+        disabled: hpLvl >= UPGRADE_LEVELS.hp, disabledReason: 'Nivel ' + UPGRADE_LEVELS.hp + '/' + UPGRADE_LEVELS.hp,
+        price: NV.runUpgradePrice ? NV.runUpgradePrice('hp', hpLvl) : 15, buy: () => { player.maxHp += 25; player.hp += 25; shopBought.hp = (shopBought.hp || 0) + 1; upgradeSlots.push({ icon: 'hp', name: '+25 HP' }); },
+      });
+    }
+    if (player.agility < MAX_AGILITY) {
+      upgrades.push({
+        kind: 'upgrade', metaIcon: 'speed', name: 'Agilidad', desc: 'Acelera y frena mejor (máx +100%)', rarity: 'rare',
+        disabled: speedLvl >= UPGRADE_LEVELS.speed, disabledReason: 'Nivel ' + UPGRADE_LEVELS.speed + '/' + UPGRADE_LEVELS.speed,
+        price: NV.runUpgradePrice ? NV.runUpgradePrice('speed', speedLvl) : 15, buy: () => { player.agility = Math.min(MAX_AGILITY, player.agility + AGILITY_PER_UPGRADE); upgradeSlots.push({ icon: 'speed', name: 'Agilidad' }); },
+      });
+    }
+    if ((shopBought.armor || 0) < SHOP_CAPS.armor) {
+      upgrades.push({
+        kind: 'upgrade', metaIcon: 'armor', name: 'Armadura', desc: '+3 armadura (' + (shopBought.armor || 0) + '/' + SHOP_CAPS.armor + ')', rarity: 'epic',
+        disabled: armorLvl >= UPGRADE_LEVELS.armor, disabledReason: 'Nivel ' + UPGRADE_LEVELS.armor + '/' + UPGRADE_LEVELS.armor,
+        price: NV.runUpgradePrice ? NV.runUpgradePrice('armor', armorLvl) : 20, buy: () => { player.armor += 3; shopBought.armor = (shopBought.armor || 0) + 1; upgradeSlots.push({ icon: 'armor', name: 'Armadura' }); },
+      });
+    }
+    if ((shopBought.luck || 0) < SHOP_CAPS.luck) {
+      upgrades.push({
+        kind: 'upgrade', metaIcon: 'luck', name: 'Suerte', desc: '+2 suerte (' + (shopBought.luck || 0) + '/' + SHOP_CAPS.luck + ')', rarity: 'rare',
+        disabled: luckLvl >= UPGRADE_LEVELS.luck, disabledReason: 'Nivel ' + UPGRADE_LEVELS.luck + '/' + UPGRADE_LEVELS.luck,
+        price: NV.runUpgradePrice ? NV.runUpgradePrice('luck', luckLvl) : 20, buy: () => { player.luck += 2; shopBought.luck = (shopBought.luck || 0) + 1; upgradeSlots.push({ icon: 'luck', name: 'Suerte' }); },
+      });
+    }
+
+    WEAPONS.forEach(w => {
+      const owned = inventory.some((iw) => iw.id === w.id);
+      const fus = weaponFusionLevel(w.id);
+      // La equipada también se puede fusionar: no exigir desequipar para mejorar.
+      // Poseída al tope de fusión: no se ofrece.
+      if (owned && fus >= MAX_WEAPON_FUSION) return;
+      const canFuse = owned && fus < MAX_WEAPON_FUSION;
+      const invFull = !canFuse && inventory.length >= INVENTORY_SLOTS;
+      weapons.push({
+        kind: 'weapon', name: w.name, weapon: w, rarity: w.rarity,
+        desc: canFuse
+          ? ('FUSIÓN ' + (fus + 1) + '/' + MAX_WEAPON_FUSION + ' · +' + Math.round(WEAPON_FUSION_DMG * 100) + '% daño' + (fus === 1 && NV.WEAPON_EVOLUTIONS ? ' · ' + NV.WEAPON_EVOLUTIONS[w.id] : ''))
+          : ((w.pro || '') + ' · ' + (w.con || '')),
+        price: canFuse && NV.weaponFusionShopPrice ? NV.weaponFusionShopPrice(fus) : (canFuse ? WEAPON_FUSE_PRICE : 25),
+        // Inventario lleno: oferta bloqueada (misma regla que los pickups: sin auto-equipar).
+        disabled: invFull,
+        disabledReason: invFull ? 'INVENTARIO LLENO' : undefined,
+        buy: () => {
+          if (canFuse) {
+            weaponFus[w.id] = fus + 1;
+            addFloatText(arenaW() / 2, arenaH() / 2, w.name + ' FUSIONADO → Nv' + (fus + 1), '#ffd700');
+            sfx.fuse(fus + 1);
+          } else if (inventory.length < INVENTORY_SLOTS) {
+            inventory.push(w);
+            addFloatText(arenaW()/2, arenaH()/2, '¡' + w.name + '!', RARITY_COLORS[w.rarity]);
+            sfx.shopBuy();
+          } else {
+            // Guardia defensiva: nunca arma fantasma equipada fuera del loadout.
+            return false;
+          }
+          return true;
+        },
+      });
+    });
+
+    NV.consumableList().forEach((c) => {
+      const bought = consumableBought[c.key] || 0;
+      const typeCount = NV.consumableTypeCount(consumableItems);
+      const stacked = NV.consumableCountByType(consumableItems, c.key);
+      const stackFull = stacked >= CONSUMABLE_STACK_CAP;
+      const typeSlotsFull = stacked === 0 && typeCount >= CONSUMABLE_TYPE_SLOT_CAP;
+      const visitFull = bought >= CONSUMABLE_CAP;
+      // Los dos topes (global por tipo y por visita) comparten el MISMO estado visual:
+      // la tarjeta nunca desaparece, sólo queda `disabled` con su badge "BLOQUEADO".
+      // Prioridad determinística del motivo cuando coinciden: 1) global 10/10,
+      // 2) visita 3/3, 3) slots de tipos 6/6.
+      consumables.push({
+        kind: 'consumable', consumableType: c.key, name: c.name,
+        desc: c.desc,
+        badge: (stacked > 0 ? ('Equipado x' + stacked) : 'Nuevo') + ' · ' + bought + '/' + CONSUMABLE_CAP,
+        price: c.price,
+        disabled: stackFull || visitFull || typeSlotsFull,
+        disabledReason: stackFull ? ('Límite ' + CONSUMABLE_STACK_CAP + '/' + CONSUMABLE_STACK_CAP)
+          : visitFull ? ('Visita ' + CONSUMABLE_CAP + '/' + CONSUMABLE_CAP)
+          : ('Slots ' + CONSUMABLE_TYPE_SLOT_CAP + '/' + CONSUMABLE_TYPE_SLOT_CAP),
+        buy: () => {
+          // Guardia defensiva: aunque la UI quedara desincronizada, la 4ta compra del
+          // mismo tipo en la misma visita nunca se efectúa (no cobra ni agrega stock).
+          if ((consumableBought[c.key] || 0) >= CONSUMABLE_CAP) {
+            showBanner(c.name + ': tope de visita ' + CONSUMABLE_CAP + '/' + CONSUMABLE_CAP, '#ff5f9b');
+            return false;
+          }
+          if (!NV.addConsumable(consumableItems, { type: c.key, name: c.name }, CONSUMABLE_STACK_CAP, CONSUMABLE_TYPE_SLOT_CAP)) {
+            const reason = NV.consumableCountByType(consumableItems, c.key) >= CONSUMABLE_STACK_CAP
+              ? ('límite ' + CONSUMABLE_STACK_CAP + '/' + CONSUMABLE_STACK_CAP)
+              : ('slots ' + CONSUMABLE_TYPE_SLOT_CAP + '/' + CONSUMABLE_TYPE_SLOT_CAP);
+            showBanner(c.name + ': ' + reason, '#ff5f9b');
+            return false;
+          }
+          consumableBought[c.key] = (consumableBought[c.key] || 0) + 1;
+          showBanner(c.banner, c.color);
+          return true;
+        },
+      });
+    });
+
+    renderOffers(dom.upgradesOffers, upgrades);
+    renderOffers(dom.weaponOffers, weapons);
+    renderOffers(dom.consumableOffers, consumables);
+    renderShopConsumableLoadout();
+    renderUpgradeSlots();
+  }
+
+  function drawWeaponCanvas(canvas, weapon, canvasSize, iconSize) {
+    if (!canvas || !weapon) return;
+    canvasSize = canvasSize || 64;
+    iconSize = iconSize || Math.floor(canvasSize * 0.76);
+    canvas.width = canvasSize; canvas.height = canvasSize;
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvasSize, canvasSize);
+    if (typeof NV.drawWeaponIcon === 'function') NV.drawWeaponIcon(ctx, weapon, canvasSize / 2, canvasSize / 2, iconSize, { glow: 2 });
+  }
+
+  function drawConsumableCanvas(canvas, type, canvasSize, iconSize) {
+    if (!canvas || !type) return;
+    canvasSize = canvasSize || 64;
+    iconSize = iconSize || Math.floor(canvasSize * 0.76);
+    canvas.width = canvasSize; canvas.height = canvasSize;
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvasSize, canvasSize);
+    if (typeof NV.drawConsumableIcon === 'function') NV.drawConsumableIcon(ctx, type, canvasSize / 2, canvasSize / 2, iconSize, { glow: 2 });
+  }
+
+  function drawMetaSkillCanvas(canvas, id, canvasSize, iconSize) {
+    if (!canvas || !id) return;
+    canvasSize = canvasSize || 64;
+    iconSize = iconSize || Math.floor(canvasSize * 0.76);
+    canvas.width = canvasSize; canvas.height = canvasSize;
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvasSize, canvasSize);
+    if (typeof NV.drawMetaSkillIcon === 'function') NV.drawMetaSkillIcon(ctx, id, canvasSize / 2, canvasSize / 2, iconSize, { glow: 2 });
+  }
+
+  function renderMenuSkillIcons() {
+    if (typeof document === 'undefined') return;
+    const icons = document.querySelectorAll('.char-skill-icon[data-skill-icon]');
+    icons.forEach(canvas => drawMetaSkillCanvas(canvas, canvas.getAttribute('data-skill-icon'), 36, 24));
+  }
+
+  function renderOffers(container, items) {
+    if (!container) return;
+    container.innerHTML = "";
+    items.forEach(item => {
+      const el = document.createElement("div");
+      el.setAttribute('role', 'button');
+      el.tabIndex = item.disabled ? -1 : 0;
+      el.setAttribute('aria-disabled', String(!!item.disabled));
+      const kind = item.kind || (item.weapon ? 'weapon' : item.consumableType ? 'consumable' : 'upgrade');
+      el.className = "offer offer-" + kind + " rarity-" + visualRarity(item.rarity, item.price) + (item.disabled ? " disabled" : "");
+      const iconHtml = item.weapon || item.consumableType || item.metaIcon ? '<div class="offer-icon"><canvas></canvas></div>' : '<div class="offer-icon">•</div>';
+      const priceHtml = item.disabled ? item.disabledReason : ('◆ ' + item.price);
+      const badgeHtml = item.badge ? '<div class="offer-badge">' + item.badge + '</div>' : '';
+      el.innerHTML = iconHtml + '<div class="offer-name">' + item.name + "</div><div class=\"offer-desc\">" + item.desc + "</div>" + badgeHtml + "<div class='offer-price'>" + priceHtml + "</div>";
+      el.addEventListener("click", () => handleShopPurchase(item, el));
+      el.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); handleShopPurchase(item, el); }
+      });
+      container.appendChild(el);
+      const c = el.querySelector("canvas");
+      if (c && item.weapon) drawWeaponCanvas(c, item.weapon, 64, 50);
+      if (c && item.consumableType) drawConsumableCanvas(c, item.consumableType, 64, 48);
+      if (c && item.metaIcon) drawMetaSkillCanvas(c, item.metaIcon, 64, 48);
+    });
+  }
+
+  function handleShopPurchase(item, el) {
+    // Evita la doble compra con una tarjeta vieja durante su animación de salida.
+    if (el.dataset && el.dataset.purchased === 'true') return false;
+    if (item.disabled) {
+      if(sfx.ui)sfx.ui('error');
+      addFloatText(arenaW()/2, arenaH()/2, item.disabledReason || 'Límite alcanzado', '#ff5f9b');
+      return false;
+    }
+    if (shards < item.price) {
+      if(sfx.ui)sfx.ui('error');
+      restartShopBalanceFeedback();
+      return false;
+    }
+    clearShopBalanceFeedback();
+    shards -= item.price;
+    const ok = item.buy();
+    if (ok === false) {
+      if(sfx.ui)sfx.ui('error');
+      // Invariante: una compra inválida NUNCA cobra ni muta estado.
+      shards += item.price;
+      addFloatText(arenaW()/2, arenaH()/2, item.disabledReason || 'Compra no completada', '#ff5f9b');
+      return false;
+    }
+    el.classList.add('just-bought');
+    if (el.dataset) el.dataset.purchased = 'true';
+    if (typeof NV !== 'undefined' && NV.expedition && !combatLabMode) {
+      NV.expedition.syncArsenal(inventory, weaponLevels, weaponKills);
+      saveExpeditionCheckpoint();
+    }
+    dom.shopShards.textContent = shards;
+    setTimeout(() => { generateOffers(); updateHUD(); renderInventory(); }, 180);
+    if (!item.weapon) sfx.shopBuy();
+    return true;
+  }
+
+  function gameOver() {
+    if (state === 'player_dying' || state === 'gameover') return false;
+    if (NV.expedition && !combatLabMode && !metaFrozen) NV.expedition.clear();
+    clearCombatIntent();
+    if (NV.clearPhantomPossession) NV.clearPhantomPossession(player, true);
+    if (hookSystem && typeof NV.resetHookSystem === 'function') NV.resetHookSystem(hookSystem); // F3: cleanup hook en gameover
+    player.stun = 0; player.stunReapplyLockout = 0; // F4: la muerte no deja stun residual
+    state = 'player_dying';
+    if (combatLabMode) combatLabState.status = 'PLAYER_DEAD';
+    if (NV.clearHazards) NV.clearHazards(hazards, minefieldState, sectorEncounterState); else hazards = [];
+    bullets = [];
+    flameZones = [];
+    drones = [];
+    meteors = [];
+    consumableVfx = []; // #11: sin VFX de consumibles huérfanos tras la muerte
+    if (NV.clearSpecialVisual) NV.clearSpecialVisual(player);
+    pendingBombImpacts = []; // #11: la carga de la bomba no sobrevive a la muerte
+    presentation.kind = 'player_dying';
+    presentation.elapsed = 0;
+    presentation.duration = DEATH_TRANSITION_DURATION;
+    presentation.targetX = player.x;
+    presentation.targetY = player.y;
+    presentation.isBoss = false;
+    presentation.pilot = player.character;
+    presentation.finalized = false;
+    syncGameState();
+    // Impacto mortal claro pero breve: reutiliza flash/shake existentes, sin hitstop.
+    shake = Math.max(shake, 0.26);
+    triggerFlash(player.color || '#7cf8ff', 0.18);
+    const deathStyle = NV.PILOT_TRANSITIONS && NV.PILOT_TRANSITIONS[player.character];
+    // El dissolve conserva la firma del piloto y se reescala proporcionalmente
+    // para seguir vivo durante la disipación, pero terminar antes de VISUAL_END.
+    const baseLife = deathStyle && deathStyle.life ? deathStyle.life : [1.05, 1.30];
+    const baseLifeMax = Math.max(baseLife[0], baseLife[1]);
+    const dissolveScale = PLAYER_DEATH_DISSOLVE_END / baseLifeMax;
+    const scaleLife = [baseLife[0] * dissolveScale, baseLife[1] * dissolveScale];
+    if (NV.spawnPlayerDissolve) NV.spawnPlayerDissolve(particles, MAX_PARTICLES, player.x, player.y, player.color, deathStyle ? {
+      colors: deathStyle.colors, speed: deathStyle.speed, life: scaleLife,
+      size: deathStyle.size, spiral: deathStyle.spiral,
+      downwardDrift: deathStyle.downwardDrift, originRadius: (CHARACTERS[player.character].size || 18) * 0.8,
+      angular: deathStyle.deathMotion === 'angular-fracture'
+    } : null);
+    if (sfx.deathTone) sfx.deathTone(player.character); else sfx.damage();
+    return true;
+  }
+
+  function finishPlayerDeath() {
+    if (presentation.finalized || state !== 'player_dying') return;
+    presentation.finalized = true;
+    state = 'gameover';
+    syncGameState();
+    dom.gameOver.classList.remove('hidden');
+    dom.goTitle.textContent = 'FIN';
+    dom.goText.textContent = 'Llegaste a la oleada ' + wave;
+    dom.goScore.textContent = formatPoints(score);
+    dom.goWave.textContent = wave;
+    metaShards += Math.floor(shards / 2) + Math.floor(score / 100);
+    saveMeta();
+    if (NV.expedition && !combatLabMode && expeditionRun && !metaFrozen) NV.expedition.complete(expeditionRun, wave, score, false);
+  }
+
+  function beginShopEntrance() {
+    if (state !== 'wave_end') return;
+    if (NV.clearPhantomPossession) NV.clearPhantomPossession(player, true);
+    const result = NV.collectRemainingNormalShards(pickups);
+    pickups = result.pickups;
+    shards += result.shards;
+    if (result.shards > 0) updateHUD();
+    if (NV.expedition && !combatLabMode && expeditionRun && expeditionRun.mode === 'expedition' && wave >= 20) {
+      finishExpedition();
+      return;
+    }
+    // Tarea #8: la recompensa pendiente del cofre de jefe ya se resolvió ANTES de
+    // llegar acá (updatePresentation auto-recoge al vencer el margen).
+    if (NV.audio && typeof NV.audio.stopAllWeapons === 'function') NV.audio.stopAllWeapons();
+    NV.input.setFire(false);
+    combatIntent.dashIntent = false;
+    if (hookSystem && typeof NV.resetHookSystem === 'function') NV.resetHookSystem(hookSystem); // F3: cleanup hook en shop_enter
+    player.stun = 0; player.stunReapplyLockout = 0; // F4: sin stun residual al entrar a la tienda
+    if (NV.clearHazards) NV.clearHazards(hazards, minefieldState, sectorEncounterState); else hazards = [];
+    state = 'shop_enter';
+    presentation.kind = 'shop_enter';
+    presentation.elapsed = 0;
+    presentation.duration = SHOP_ENTER_DURATION;
+    presentation.finalized = false;
+    transition = SHOP_ENTER_DURATION;
+    particles = [];
+    trails = [];
+    shockwaves = [];
+    floatTexts = [];
+    meteors = [];
+    specialVFX = null;
+    consumableVfx = [];
+    pendingBombImpacts = [];
+    prepareShopContent();
+    if (NV.clearSpecialVisual) NV.clearSpecialVisual(player);
+    showShop();
+    syncGameState();
+  }
+
+  function finishShopEntrance() {
+    if (presentation.finalized || state !== 'shop_enter') return;
+    presentation.finalized = true;
+    state = 'shop';
+    transition = 0;
+    dom.shop.setAttribute('aria-hidden', 'false');
+    syncGameState();
+    saveExpeditionCheckpoint();
+  }
+
+  function updatePresentation(dt) {
+    frame++;
+    presentation.elapsed = Math.min(presentation.duration, presentation.elapsed + dt);
+    transition = Math.max(0, presentation.duration - presentation.elapsed);
+    if (shake > 0) shake = Math.max(0, shake - dt * 1.8);
+    if (flashAlpha > 0) flashAlpha = Math.max(0, flashAlpha - dt);
+    if (player.invuln > 0) player.invuln = Math.max(0, player.invuln - dt);
+    if (specialVFX) {
+      specialVFX.life -= dt;
+      if (specialVFX.life <= 0) specialVFX = null;
+    }
+    if (NV.updateSpecialVisual) NV.updateSpecialVisual(player, dt, meteors, drones);
+    // Guard defensivo: los harnesses que extraen esta función a un sandbox no
+    // definen el helper local; en producción siempre existe.
+    if (typeof updateConsumableVfx === 'function') updateConsumableVfx(dt);
+    updateBombImpacts(dt);
+    updateParticles(dt);
+    updateFloatTexts(dt);
+    updateTrails(dt);
+    shockwaves = NV.updateShockwaves(dt, shockwaves);
+
+    if (state === 'wave_end') {
+      if (!presentation.isBoss) {
+        // Sólo tiempo visual: no AI, colisiones, burns ni lógica de muerte.
+        for (const e of enemies) {
+          if (e.waveCleanup) e.waveCleanupT = Math.min(WAVE_CLEANUP_DURATION, e.waveCleanupT + dt);
+        }
+        enemies = enemies.filter((e) => !e.waveCleanup || e.waveCleanupT < WAVE_CLEANUP_DURATION);
+      }
+      NV.updatePlayerMovement(player, combatIntent.moveX, combatIntent.moveY, dt);
+      player.x = Math.max(20, Math.min(arenaW() - 20, player.x));
+      player.y = Math.max(30, Math.min(arenaH() - 20, player.y));
+      presentation.targetX = player.x;
+      presentation.targetY = player.y;
+      updatePickups(dt);
+      updateWeaponPickups(dt);
+      updateBossChests(dt);
+      const meteorResult = NV.updateMeteors(dt, meteors, {
+        W: arenaW(), H: arenaH(), enemies: [], boss: null, shake, visualOnly: true,
+      }, { killEnemy() {}, applyKnockback() {}, spawnExplosion() {} });
+      meteors = meteorResult.meteors;
+      // #8d FIX (causa raíz): esta rama debe atender SOLO la fase de settle
+      // (chestAnim.collected). Antes bastaba con que chestAnim existiera, así que
+      // interceptaba el vuelo en el mismo `else if`-chain: el vuelo se ejecutaba un
+      // único frame (creación + primer paso) y después el settle corría a.t con
+      // dur=BOSS_CHEST_ANIM hasta llamar a beginShopEntrance SIN acreditar nada.
+      if (presentation.chestAnim && presentation.chestAnim.collected) {
+        // Fase 3 (Tarea #8c): settle post-recogida — feedback perceptible, y
+        // recién después entra la tienda (aunque bossChests ya esté vacío).
+        const a = presentation.chestAnim;
+        a.t += dt;
+        if (a.t >= a.dur) {
+          presentation.chestAnim = null;
+          beginShopEntrance();
+        }
+      } else if (presentation.elapsed >= presentation.duration) {
+        // Tarea #8: margen real para recoger el cofre del jefe antes de la tienda.
+        // 1) Hold: margen manual (~BOSS_CHEST_HOLD). Si el jugador abre el cofre,
+        //    bossChests queda vacío y se continúa sin auto-recogida ni animación.
+        // 2) Animación de auto-pickup: si al vencer el margen sigue habiendo cofre,
+        //    éste VUELA hacia el jugador (feedback visible) sin generar recompensa
+        //    nueva; al llegar se auto-recoge (misma autoCollectBossRewards) y tras
+        //    una pausa corta entra la tienda.
+        const cofrePendiente = presentation.isBoss && bossChests.length > 0;
+        if (cofrePendiente && (presentation.hold || 0) < BOSS_CHEST_HOLD) {
+          presentation.hold = (presentation.hold || 0) + dt; // mantiene wave_end: margen del cofre
+        } else if (cofrePendiente) {
+          // Fase 1: animación de vuelo del cofre hacia el jugador.
+          const c = bossChests[0];
+          if (!presentation.chestAnim) {
+            presentation.chestAnim = { t: 0, dur: BOSS_CHEST_ANIM, fromX: c.x, fromY: c.y, collected: false, prog: 0, scale: 1 };
+            c.autoCollect = true; // control exclusivo de la animación (updateBossChests lo ignora)
+            c.autoScale = 1;
+          }
+          const a = presentation.chestAnim;
+          a.t = Math.min(a.dur, a.t + dt);
+          const prog = a.dur > 0 ? a.t / a.dur : 1;
+          // Easing visible desde el primer frame (ease-out cúbico): arranca en
+          // movimiento y frena al llegar; no hay tramo "quieto" inicial.
+          const ease = 1 - Math.pow(1 - prog, 3);
+          // Tarea #8c: destino = posición ACTUAL del jugador en cada frame,
+          // así el cofre lo sigue si se mueve durante el vuelo.
+          c.x = a.fromX + (player.x - a.fromX) * ease;
+          c.y = a.fromY + (player.y - a.fromY) * ease;
+          a.prog = prog;
+          // Escala: durante el primer 65% del vuelo se mantiene COMPLETA (se ve
+          // primero movimiento); la reducción sólo ocurre en el tramo final.
+          a.scale = prog < 0.65 ? 1 : 1 - ((prog - 0.65) / 0.35) * 0.4;
+          c.autoScale = a.scale;
+          if (a.t >= a.dur && !a.collected) {
+            // Fase 2: llegó al jugador -> auto-recogida (misma ruta existente, sin RNG nuevo).
+            c.x = player.x; c.y = player.y;
+            autoCollectBossRewards();
+            a.collected = true;
+            a.t = 0; // pasa a fase de settle
+            a.dur = BOSS_CHEST_SETTLE;
+          }
+        } else {
+          beginShopEntrance();
+        }
+      }
+    } else if (state === 'player_dying') {
+      if (presentation.elapsed >= presentation.duration) finishPlayerDeath();
+    } else if (state === 'shop_enter') {
+      if (presentation.elapsed >= presentation.duration) finishShopEntrance();
+    }
+  }
+
+  // === UPDATE ===
+  function update(dt) {
+    if (paused) return;
+    if (state === 'player_dying' || state === 'wave_end' || state === 'shop_enter') {
+      updatePresentation(dt);
+      return;
+    }
+    if (state !== 'playing') return;
+    let completeCombatLabAfterUpdate = false;
+    if (combatLabMode && combatLabState.status === 'RUNNING' && combatLabState.duration != null) {
+      const remaining = Math.max(0, combatLabState.duration - combatLabState.elapsed);
+      dt = Math.min(dt, remaining);
+      combatLabState.elapsed = Math.min(combatLabState.duration, combatLabState.elapsed + dt);
+      completeCombatLabAfterUpdate = combatLabState.elapsed >= combatLabState.duration - 1e-9;
+    } else if (combatLabMode && combatLabState.status === 'RUNNING') {
+      combatLabState.elapsed += dt;
+    }
+    if (NV.expedition && !combatLabMode && expeditionRun) expeditionRun.seconds += dt;
+    if (NV.playtest && NV.playtest.enabled) {
+      NV.playtest.frame(dt, currentWeapon.id);
+      NV.playtest.weaponProgression(currentWeapon.id, currentWeaponLevel(), currentWeaponFusion());
+    }
+    if (NV.SPECTER_ENABLED === false) {
+      enemies = enemies.filter((e) => e.shape !== 'specter');
+    }
+    frame++;
+
+    if (shake > 0) shake -= dt;
+    if (hitstop > 0) hitstop = Math.max(0, hitstop - dt);
+    if (flashAlpha > 0) flashAlpha = Math.max(0, flashAlpha - dt);
+    if (specialVFX) {
+      specialVFX.x = player.x; specialVFX.y = player.y;
+      specialVFX.life -= dt;
+      if (specialVFX.life <= 0) specialVFX = null;
+    }
+    if (typeof updateConsumableVfx === 'function') updateConsumableVfx(dt);
+    updateBombImpacts(dt);
+
+    updateMusic(dt);
+
+    // Heartbeat crítico: pulso grave solo mientras el HP está bajo; al recuperarse
+    // se resetea el timer para que no quede sonando de fondo ni encadene pulsos.
+    const hpRatio = player.maxHp > 0 ? player.hp / player.maxHp : 1;
+    if (hpRatio > 0 && hpRatio <= 0.3 && state === 'playing') {
+      heartbeatTimer -= dt;
+      if (!heartbeatWasCritical || heartbeatTimer <= 0) {
+        heartbeatWasCritical = true;
+        heartbeatTimer = 1.15;
+        if (sfx.heartbeat) sfx.heartbeat(1 - hpRatio / 0.3);
+      }
+    } else {
+      heartbeatWasCritical = false;
+      heartbeatTimer = 0;
+    }
+
+    const wasDashing = !!player.dashActive;
+    const trailStartX = player.x, trailStartY = player.y;
+    const hookPullActive = !!(hookSystem && hookSystem.phase === 'tether' && hookSystem.srcEnemy && !player.dashActive);
+    const effectiveMoveIntent = NV.phantomPossessionIntent
+      ? NV.phantomPossessionIntent(player, combatIntent.moveX, combatIntent.moveY, hookPullActive)
+      : { x: combatIntent.moveX, y: combatIntent.moveY };
+    const dashing = NV.updatePlayerDash(
+      player, combatIntent.dashIntent,
+      combatIntent.moveX, combatIntent.moveY,
+      combatIntent.aimX, combatIntent.aimY, combatIntent.aimActive,
+      dt
+    );
+    if (dashing && !wasDashing && sfx.dash) sfx.dash({ x: player.x, worldWidth: arenaW() });
+    if (!dashing) NV.updatePlayerMovement(player, effectiveMoveIntent.x, effectiveMoveIntent.y, dt);
+    // ===== F3: Hook/Pull =====
+    // Orden contractual: dash update -> normal movement -> Hook external
+    // pull -> arena clamp. El pull vive en NV.applyHookPull (engine testeable);
+    // aca solo se preserva el orden (no se muta moveVx/moveVy ni movement.js).
+    if (hookSystem && typeof NV.applyHookPull === 'function') NV.applyHookPull(dt, hookSystem, player, wasDashing);
+    player.x = Math.max(20, Math.min(arenaW() - 20, player.x));
+    player.y = Math.max(30, Math.min(arenaH() - 20, player.y));
+    followPlayerCamera();
+    // El cursor vive en mundo: si el jugador se mueve, recalcular la dirección
+    // sin exigir otro mousemove mantiene aim y movimiento realmente independientes.
+    if (combatIntent.aimActive) {
+      NV.inputIntent.setAimWorld(combatIntent, combatIntent.aimWorldX, combatIntent.aimWorldY, player.x, player.y);
+    }
+    // Estela del jugador: densidad decorativa adaptable (visual budget P2).
+    if (!dashing && frame % trailStep() === 0) {
+      const char = CHARACTERS[player.character];
+      trails.push({ x: player.x, y: player.y, life: 0.3, color: player.color, size: char.size * 0.6 });
+    }
+    // Solo VFX: el retorno de dash incluye su último frame de desplazamiento.
+    NV.emitDashTrail(trails, dashing, trailStartX, trailStartY, player.x, player.y, player.color);
+
+    // Regeneración pasiva BOTI
+    const char = CHARACTERS[player.character];
+    NV.applyBotiPassiveRegen(char, player, frame, addFloatText);
+
+    // Regeneración permanente (+0.2 HP/s por nivel, solo fuera de peligro)
+    if ((player.permRegen || 0) > 0 && player.hp < player.maxHp && state !== 'gameover') {
+      let inDanger = false;
+      for (const e of enemies) {
+        if (!e.dead && Math.hypot(e.x - player.x, e.y - player.y) < 170) { inDanger = true; break; }
+      }
+      if (!inDanger) {
+        player.regenAcc = (player.regenAcc || 0) + NV.BALANCE.REGEN_PERM_HPSEC * player.permRegen * dt;
+        if (player.regenAcc >= 1) {
+          const heal = Math.floor(player.regenAcc);
+          player.hp = Math.min(player.maxHp, player.hp + heal);
+          player.regenAcc -= heal;
+          addFloatText(player.x, player.y - 40, '+' + heal, '#7cf8ff');
+        }
+      } else {
+        player.regenAcc = 0; // el peligro corta la regeneración
+      }
+    }
+
+    if (player.invuln > 0) { player.invuln -= dt; if (player.invuln < 0) player.invuln = 0; }
+    updateDamageReadability(dt);
+    if (player.stun > 0) { player.stun = Math.max(0, player.stun - dt); }
+    // F4: el lockout anti-stunlock ticlea por dt igual que el stun (pausa lo congela).
+    if (player.stunReapplyLockout > 0) { player.stunReapplyLockout = Math.max(0, player.stunReapplyLockout - dt); }
+    if (player.phase) { player.phase -= dt; if (player.phase <= 0) { player.phase = 0; player.invuln = 0; detonatePhase(); } }
+    if (player.bulwark > 0) { player.bulwark -= dt; if (player.bulwark < 0) player.bulwark = 0; }
+    if (player.shield > 0) { player.shield -= dt; if (player.shield < 0) player.shield = 0; }
+    if (player.overdrive > 0) {
+      player.overdrive -= dt;
+      if (player.overdrive <= 0) { player.overdrive = 0; triggerFlash('#caa7ff'); }
+    }
+    if (player.bounty > 0) { player.bounty -= dt; if (player.bounty <= 0) player.bounty = 0; }
+    NV.comboTick(killCombo, dt);
+    NV.musicState.combo = killCombo.count;
+    if (player.specialCd > 0) player.specialCd -= dt;
+
+    const firePolicy = NV.input.getEffectiveFirePolicy();
+    const fireActive = firePolicy === 'legacy-auto' || combatIntent.fireIntent;
+    if (currentAutoTarget && ((NV.isEnemyTargetable && !NV.isEnemyTargetable(currentAutoTarget)) || currentAutoTarget.dead || Math.hypot(currentAutoTarget.x - player.x, currentAutoTarget.y - player.y) > (currentWeapon.range || Infinity))) currentAutoTarget = null;
+    const cadence = NV.inputIntent.advanceFireCadence(
+      fireTimer, dt, fireActive, hitstop > 0,
+      () => currentWeapon.id === 'flamethrower' || playerBulletCount() < MAX_PLAYER_BULLETS ? shoot(firePolicy) : false,
+      weaponFireInterval(), MIN_FIRE_INTERVAL
+    );
+    fireTimer = cadence.timer;
+
+    if (combatIntent.abilityIntent && player.specialCd <= 0) useSpecial();
+
+    // Spawns y progreso de oleada SOLO fuera de la transición de victoria: durante la
+    // celebración no arranca la oleada siguiente (nada de spawns ni countdown visible).
+    if (!combatLabMode && transition <= 0) {
+        spawnTimer -= dt;
+    if (spawnTimer <= 0) {
+      // Curva de amenaza: el refill normal se DETIENE al alcanzar el objetivo
+      // creciente de la oleada (NV.softHostileTarget); MAX_HOSTILES queda como techo
+      // duro de emergencia. Lote con techo 5 + piso de reposición 0.35s:
+      // matar crea una reducción real y temporal de la presión del enjambre.
+      const perWave = boss ? (NV.runDifficulty === 'hard' ? 2 : 1) : NV.spawnBatchForWave(wave);
+      const budget = NV.getHostileBudget({ enemies, boss, MAX_HOSTILES, MAX_HEAVY_HOSTILES });
+      const softTarget = boss ? NV.bossSupportTarget(wave, NV.runDifficulty) : NV.softHostileTarget(wave, NV.runDifficulty, NV.worldMetrics);
+      if (budget.remainingHostiles > 0 && budget.hostiles < softTarget && (boss || !waveGoal || waveSpawned < waveGoal.total)) {
+        // Top-up HASTA el objetivo blando (nunca por encima del soft target).
+        const remainingWave = !boss && waveGoal ? Math.max(0, waveGoal.total - waveSpawned) : Infinity;
+        const normalAttempts = Math.min(perWave, budget.remainingHostiles, Math.max(0, softTarget - budget.hostiles), remainingWave);
+        const composition = NV.planWaveSpawnBatch
+          ? NV.planWaveSpawnBatch(wave, normalAttempts, waveDirectorCycle++, ENEMY_TYPES, NV.runDifficulty)
+          : [];
+        const squadPositions = composition.length > 1 && NV.waveSquadPositions
+          ? NV.waveSquadPositions(composition, {player,enemies,W:arenaW(),H:arenaH(),ENEMY_TYPES,cycle:waveDirectorCycle}) : [];
+        for (let i = 0; i < normalAttempts; i++) spawnEnemy(composition[i], squadPositions[i]);
+        // F1: élites controladas — dejan de rellenar al llegar al objetivo heavy
+        // blando (SOFT_HEAVY_TARGET); MAX_HEAVY_HOSTILES sigue siendo el techo duro.
+        if (!boss && budget.heavy < NV.BALANCE.SOFT_HEAVY_TARGET && (!waveGoal || waveSpawned < waveGoal.total)) {
+          const filled = NV.getHostileBudget({ enemies, boss, MAX_HOSTILES, MAX_HEAVY_HOSTILES });
+          spawnElite(Math.max(0, softTarget - filled.hostiles));
+        }
+      }
+      if (Math.random() < 0.03 + wave * 0.002) spawnWeaponPickup();
+      // Eventos compensan sólo parte del tiempo extra y conservan actividad adicional.
+      spawnTimer = NV.spawnRefillInterval(wave, waveEvent, !!boss, NV.runDifficulty, NV.worldMetrics);
+    }
+
+        waveTimer -= dt;
+        if (!boss && waveTimer > 0 && waveTimer <= 3.1) {
+          const sec = Math.ceil(waveTimer);
+          if (sec !== countdownLastSecond && sec >= 1 && sec <= 3) {
+            countdownLastSecond = sec;
+            sfx.countdown(sec);
+          }
+        } else if (waveTimer > 3.1 || boss) {
+          countdownLastSecond = 0;
+        }
+    }
+    updateHazards(dt);
+    if (state !== 'playing') return;
+    updateEnemies(dt); // F3: NV.updateEnemies ya ejecuta la state machine del hook
+    if (state !== 'playing') return;
+    if (!combatLabMode && NV.updateWavePressure) NV.updateWavePressure(dt, {
+      state: wavePressure, wave, boss, active: true, difficulty: NV.runDifficulty,
+      player, enemies, applyPlayerDamage,
+      onPlayerKilled: () => { if (state === 'playing') gameOver(); },
+    });
+    if (state !== 'playing') return;
+    updateBoss(dt);
+    if (state !== 'playing') return;
+    updateBullets(dt);
+    updateFlameZones(dt, firePolicy === 'manual' && combatIntent.aimActive ? Math.atan2(combatIntent.aimY, combatIntent.aimX) : null);
+    NV.updateBurns(dt, { enemies, boss, killEnemy });
+    if (state !== 'playing') return;
+    // La muerte resuelta por hazards/enemigos/proyectiles tiene prioridad sobre el
+    // fin de oleada cuando ambos eventos caen en el mismo frame.
+    if (transition <= 0 && waveTimer <= 0 && !boss) {
+      if (!combatLabMode) {
+        if (player.hp <= 0) { gameOver(); return; }
+        const remainingHostiles = enemies.reduce((count, enemy) => count + (!enemy.dead ? 1 : 0), 0);
+        if (NV.waveClearReady(waveTimer, waveSpawned, remainingHostiles, waveGoal)) {
+          shards += 8 + wave * 2;
+          triggerWaveVictory(false, null, null);
+          return;
+        }
+        // La siguiente escuadra entra cuando hay espacio; una especial no salta
+        // las escuadras pendientes ni borra por reloj a los hostiles vivos.
+        if (!waveGoalNudgeShown) {
+          waveGoalNudgeShown = true;
+          showBanner('¡LIMPIÁ LA ZONA PARA AVANZAR!', '#f5d67c');
+        }
+      }
+    }
+    updateParticles(dt);
+    updatePickups(dt);
+    updateWeaponPickups(dt);
+    updateBossChests(dt);
+    updateFloatTexts(dt);
+    updateTrails(dt);
+    shockwaves = NV.updateShockwaves(dt, shockwaves);
+    updateDrones(dt);
+    updateMeteors(dt);
+    if (NV.updateSpecialVisual) NV.updateSpecialVisual(player, dt, meteors, drones);
+
+    // Aura de daño de Fase Fantasma (NOVA): zona visible que daña enemigos cercanos y al jefe
+    if (player.phase > 0) {
+      const R = NV.BALANCE.PHASE_AURA_RADIUS, DPS = NV.BALANCE.PHASE_AURA_DPS;
+      for (const e of enemies) {
+        if (NV.isEnemyDamageable ? !NV.isEnemyDamageable(e) : e.dead) continue;
+        if (Math.hypot(e.x - player.x, e.y - player.y) < R) {
+          const rawDamage = DPS * dt;
+          const dealt = NV.guardProtectedDamage ? NV.guardProtectedDamage(e, rawDamage) : rawDamage;
+          e.hp -= dealt;
+          e.hitFlash = Math.max(e.hitFlash || 0, 0.10);
+          e.phaseAcc = (e.phaseAcc || 0) + DPS * dt; // acumulado para la Detonación Espectral
+          if (NV.specialVisualEvent) NV.specialVisualEvent(player, 'contact', e.x, e.y, Math.atan2(e.y-player.y,e.x-player.x), e);
+          if (e.hp <= 0) killEnemy(e);
+        }
+      }
+      if (boss && !boss.dead && Math.hypot(boss.x - player.x, boss.y - player.y) < R + 40) {
+        boss.hp -= DPS * NV.BALANCE.PHASE_AURA_BOSS_MULT * dt;
+        boss.hitFlash = Math.max(boss.hitFlash || 0, 0.10);
+        boss.phaseAcc = (boss.phaseAcc || 0) + DPS * dt; // sin mult: la detonación ya aplica el suyo
+        if (NV.specialVisualEvent) NV.specialVisualEvent(player, 'contact', boss.x, boss.y, Math.atan2(boss.y-player.y,boss.x-player.x), boss);
+      }
+    }
+
+    if (completeCombatLabAfterUpdate && state === 'playing') {
+      paused = true;
+      combatLabState.status = 'COMPLETE';
+      clearCombatIntent();
+      if (NV.audio && typeof NV.audio.stopAllWeapons === 'function') NV.audio.stopAllWeapons();
+      syncGameState();
+    }
+    updateHUD();
+  }
+
+  function shoot(firePolicy) {
+    const fireInterval = weaponFireInterval();
+    const res = NV.shoot({
+      player, enemies, boss, bullets, currentWeapon,
+      currentWeaponLevel, weaponVisualTier, BULLET_TIER_COLORS, MAX_BULLETS,
+      permDamageBonus: permUpgrades.damage, playWeaponSound,
+      audioPosition: { x: player.x, worldWidth: arenaW() },
+      fireInterval,
+      aimVector: firePolicy === 'manual' ? { x: combatIntent.aimX, y: combatIntent.aimY } : null,
+      currentWeaponFusion: currentWeaponFusion(), fusionStep: WEAPON_FUSION_DMG,
+      onTarget: (target) => { currentAutoTarget = target; },
+      onFlame: (config) => {
+        const life = Math.max(0.24, fireInterval * 1.35);
+        let zone = flameZones[0];
+        if (!zone || zone.dead) {
+          zone = NV.createFlameZone({
+            x: config.x, y: config.y, angle: config.angle, range: config.range,
+            halfAngle: 0.22, damage: config.damage,
+            tickRate: NV.BALANCE.FLAME_TICK_RATE || 6,
+            life, maxLife: life,
+            burnDamage: NV.BALANCE.FLAME_BURN_DPS || 2,
+            burnDuration: NV.BALANCE.FLAME_BURN_DURATION || 0.6,
+            color: config.color,
+            seed: ((frame * 0.61803398875) % 1),
+          });
+          flameZones.length = 0;
+          flameZones.push(zone);
+        } else {
+          zone.x = config.x; zone.y = config.y; zone.angle = config.angle;
+          zone.range = config.range; zone.damage = config.damage;
+          zone.life = life; zone.maxLife = life; zone.dead = false;
+        }
+      },
+    });
+    // Telemetría opt-in F08: solo dispara reales (NV.shoot devuelve false fuera de rango).
+    if (res && NV.playtest) { NV.playtest.shot(currentWeapon.id); NV.playtest.setFireMode(firePolicy); }
+    return res;
+  }
+
+  function applyKnockback(e, bx, by, strength) {
+    return NV.applyKnockback(e, bx, by, strength);
+  }
+
+  function useSpecial() {
+    const res = NV.useSpecial({
+      player, CHARACTERS, meteors, particles, drones, W: arenaW(), H: arenaH(), shake, specialVFX,
+      enemies, shockwaves,
+      cbs: { showBanner, triggerFlash, spawnExplosion, sfx, applyKnockback, addFloatText },
+    });
+    drones = res.drones; shake = res.shake; specialVFX = res.specialVFX;
+  }
+
+  function updateDrones(dt) {
+    drones = NV.updateDrones(dt, drones, player, bullets, MAX_BULLETS, enemies, boss, 300);
+  }
+
+  // Detonación Espectral: golpe final al terminar la Fase Fantasma.
+  function detonatePhase() {
+    NV.detonatePhase(player, enemies, boss, shockwaves, { addFloatText, spawnExplosion, triggerFlash, killEnemy });
+  }
+
+  function updateMeteors(dt) {
+    const res = NV.updateMeteors(dt, meteors, { W: arenaW(), H: arenaH(), enemies, boss, shake, player }, { killEnemy, applyKnockback, spawnExplosion });
+    meteors = res.meteors;
+    shake = res.shake;
+  }
+
+  function updateHazards(dt) {
+    const char = CHARACTERS[player.character];
+    const playerRadius = ((char && char.size) || 20) * 0.45;
+    const hazardContext = {
+      waveEvent, wave, boss, combatLabMode, transitioning: transition > 0,
+      player, playerRadius, W: arenaW(), H: arenaH(), rhythm: NV.rhythm,
+      // P3.1: notas musicales + política visual en tiempo real.
+      musicalNotes: NV.MUSICAL_NOTES,
+      visualPolicy: NV.getVisualBudget ? NV.getVisualBudget() : null,
+      spawnMusicalNotes: (x, y, o) => NV.spawnMusicalNotes(x, y, Object.assign({}, o, { notes: NV.MUSICAL_NOTES })),
+      clearMusicalNotes: () => { NV.clearMusicalNotes(); },
+      applyPlayerDamage, spawnExplosion, spawnShockwave, triggerFlash, sfx, shake,
+      onPlayerKilled: () => { if (state === 'playing') gameOver(); },
+    };
+    if (NV.updateSpeakerMines) {
+      const res = NV.updateSpeakerMines(dt, hazards, minefieldState, hazardContext);
+      hazards = res.hazards; minefieldState = res.state; shake = res.shake;
+    }
+    if (NV.updateSectorEncounter) {
+      hazardContext.shake = shake;
+      const res = NV.updateSectorEncounter(dt, hazards, sectorEncounterState, hazardContext);
+      hazards = res.hazards; sectorEncounterState = res.state; shake = res.shake;
+    }
+  }
+
+  function spawnEnemy(plannedTypeId, spawnPosition) {
+    if (NV.spawnEnemy({ enemies, player, boss, MAX_HOSTILES, MAX_HEAVY_HOSTILES, wave, ENEMY_TYPES, W: arenaW(), H: arenaH(), waveEvent, allowBossSupport: !!boss && !combatLabMode, announceSpawn: !combatLabMode, spawnPosition, forceTypeId: plannedTypeId || forceSpecterType })) {
+      if (!combatLabMode && !boss) waveSpawned++;
+    }
+  }
+
+  function spawnElite(remainingSoftSlots) {
+    const before = enemies.length;
+    NV.spawnElite({ enemies, player, boss, MAX_HOSTILES, MAX_HEAVY_HOSTILES, wave, ELITE_TYPES, W: arenaW(), H: arenaH(), waveEvent,
+      announceSpawn: !combatLabMode,
+      maxCount: Math.min(remainingSoftSlots == null ? Infinity : remainingSoftSlots,
+        waveGoal ? Math.max(0, waveGoal.total - waveSpawned) : Infinity) });
+    if (!combatLabMode && !boss) waveSpawned += Math.max(0, enemies.length - before);
+  }
+
+  // Elegibilidad para NUEVOS drops de arma: una arma poseída que ya alcanzó el tope
+  // de fusión (MAX_WEAPON_FUSION, fuente de verdad en balance.js) deja de ser
+  // candidata. No poseída sigue elegible (incluida vendida tras maxear: weaponFus
+  // no se resetea al vender, por eso se exige poseída). Mismo "owned" que tryWeaponFusion.
+  function isWeaponDropEligible(w) {
+    const maxed = (weaponFus[w.id] || 0) >= MAX_WEAPON_FUSION;
+    return !(maxed && inventory.some((iw) => iw.id === w.id));
+  }
+  function spawnWeaponPickup() {
+    NV.spawnWeaponPickup(WEAPONS, weaponPickups, arenaW(), arenaH(), showBanner, RARITY_COLORS, isWeaponDropEligible);
+  }
+
+  function killEnemy(e, damageSource) {
+    if (e.killResolved || e.waveCleanup) return;
+    if (!combatLabMode && !boss) waveDefeats++;
+    if (NV.expedition && !combatLabMode && expeditionRun) NV.expedition.kill(expeditionRun, damageSource);
+    // F3: cleanup Hook si muere el source (muerte/fusion/removal invalida el hook).
+    if (hookSystem && hookSystem.srcEnemy === e && typeof NV.resetHookState === 'function') NV.resetHookState(hookSystem);
+    score = NV.killEnemy({
+      e, score, player, weaponLevels, weaponKills, currentWeapon,
+      damageSource,
+      WEAPON_KILLS_PER_LEVEL, addFloatText, spawnExplosion, triggerFlash, sfx, pickups, weaponKillProgress,
+      waveEvent, applyPlayerDamage, onPlayerKilled: () => { if (state === 'playing') gameOver(); }, W: arenaW(),
+    });
+    // Combo de kills: bonus escalable por encadenar derribos (<2s entre ellos).
+    const cb = NV.comboOnKill(killCombo);
+    score += cb.bonusScore;
+    if (cb.gemBonus) shards += cb.gemBonus;
+    if (cb.count >= 3) sfx.combo(cb.count);
+    // Sin texto flotante de combo sobre los enemigos: el contador ya vive en el
+    // HUD (esquina superior izquierda) con su barra de caducidad.
+  }
+
+  function updateEnemies(dt) {
+    const res = NV.updateEnemies(dt, {
+      enemies, player, bullets, MAX_BULLETS, MAX_ENEMY_BULLETS, shake,
+      enemyBulletCount, applyPlayerDamage, addFloatText, spawnExplosion, waveEvent, sfx,
+      wave, hookSystem, hazards, W: arenaW(), H: arenaH(), gameState: state,
+      keepInsideArena: !combatLabMode,
+      onKill: (e) => killEnemy(e), // autodestrucción de kamikazes: mismo camino que un kill normal
+      onPlayerDamaged: recordPlayerDamage,
+    });
+    // F3: cleanup hook en source death/removal/fusion. updateEnemies ejecuta la
+    // state machine ANTES del fusion; este guarda valida el post-fusion filtrado.
+    if (hookSystem && hookSystem.srcEnemy && hookSystem.srcEnemy.dead) {
+      if (typeof NV.resetHookState === 'function') NV.resetHookState(hookSystem);
+      else if (typeof NV.resetHookSystem === 'function') NV.resetHookSystem(hookSystem);
+    }
+    enemies = res.enemies; shake = res.shake;
+    if (NV.observeEnemyAudio) NV.observeEnemyAudio(enemies, arenaW());
+    if (NV.updateFusionThreats && state === 'playing' && player.hp > 0) NV.updateFusionThreats(dt, {
+      enemies, player, applyPlayerDamage, addFloatText, spawnExplosion, onPlayerKilled: gameOver,
+    });
+    // Telemetría opt-in F08: muestreo agregado de intents Runner/Spitter (sin mutar entidades).
+    if (NV.playtest && NV.playtest.enabled) {
+      for (const e of enemies) NV.playtest.observeEnemy(e, dt);
+    }
+    if (res.gameOver) { gameOver(); return; }
+  }
+
+  function updateBoss(dt) {
+    const res = NV.updateBoss(dt, {
+      boss, player, enemies, bullets, W: arenaW(), H: arenaH(),
+      sectorPressureActive: hazards.some(h => h.type === 'sectorHazard' && (h.state === 'telegraph' || h.state === 'active')),
+      score, shards, wave, shake, run: combatLabMode ? null : expeditionRun,
+      MAX_BULLETS, MAX_ENEMY_BULLETS, enemyBulletCount, ENEMY_TYPES, MAX_HOSTILES, MAX_HEAVY_HOSTILES,
+      spawnExplosion, showBanner, triggerFlash,
+      triggerWaveVictory: combatLabMode ? completeCombatLabBoss : triggerWaveVictory,
+      addFloatText, sfx, applyPlayerDamage,
+      onPlayerKilled: () => { if (state === 'playing') gameOver(); },
+      spawnBossProj, spawnMinion, runBossAttack, spawnBossChest,
+    });
+    score = res.score; shards = res.shards; wave = res.wave; shake = res.shake; boss = res.boss;
+  }
+
+  // Cofre de jefe: queda en el campo hasta que el jugador lo toque.
+  function spawnBossChest(x, y) {
+    bossChests.push({ x, y, dead: false, timer: 0 });
+  }
+  function updateBossChests(dt) {
+    bossChests = NV.updateBossChests(dt, bossChests, player, pickups, weaponPickups, WEAPONS, addFloatText, sfx.chest || sfx.pickup, isWeaponDropEligible);
+  }
+
+  // Tarea #8: red de seguridad del botín de jefe. Antes de la transición que
+  // descartaría el botín (wave_end -> shop_enter), se auto-recogen SOLO las
+  // recompensas de boss pendientes (cofre sin abrir + drops de cofre en el suelo).
+  // El pickup manual sigue intacto y los drops normales no se tocan.
+  function autoCollectBossRewards() {
+    const res = NV.autoCollectBossRewards({
+      bossChests, pickups, weaponPickups, WEAPONS,
+      isEligible: isWeaponDropEligible,
+      addFloatText,
+      pickupSfx: sfx.pickup,
+      collectShard(value, x, y) {
+        shards += value;
+        addFloatText(x, y - 10, '+' + value, '#7cf8ff');
+        sfx.pickup();
+      },
+      // Mismas reglas que el pickup manual de updateWeaponPickups (sin proximidad):
+      // poseída -> fusión; max fusión -> no se consume; si no -> guardar si hay slot.
+      collectWeapon(weapon, x, y) {
+        const r = tryWeaponFusion(weapon);
+        if (r && r.fused) {
+          addFloatText(x, y - 10, 'FUSIÓN Nv' + r.level, '#ffd700');
+          if (sfx.fuse) sfx.fuse(r.level); else sfx.pickup();
+          return true;
+        }
+        if (r && r.maxed) {
+          addFloatText(x, y - 10, 'FUSIÓN MÁX', '#ff5f9b');
+          return false;
+        }
+        if (inventory.length < INVENTORY_SLOTS) {
+          inventory.push(weapon);
+          addFloatText(x, y - 10, 'GUARDADO', '#ffcf76');
+          sfx.pickup();
+          return true;
+        }
+        addFloatText(x, y - 10, 'INVENTARIO LLENO', '#ff5f9b');
+        return false;
+      },
+    });
+    bossChests = bossChests.filter((c) => !c.dead);
+    pickups = pickups.filter((p) => !p.dead);
+    weaponPickups = weaponPickups.filter((w) => !w.dead);
+    if (res.chestsOpened > 0 || res.shards > 0 || res.weapons > 0) updateHUD();
+    return res;
+  }
+
+    // === DIFICULTAD PROGRESIVA: críticos escalables con la oleada (PvE) ===
+  // La "suerte" del jugador reduce la chance de crítico enemigo.
+  function enemyCritChance() { return NV.enemyCritChance(wave, player); }
+  function calcEnemyDamage(base) { return NV.calcEnemyDamage(base, enemyCritChance); }
+  function computePlayerHit(base) {
+    const r = NV.computePlayerHit(base, { player, CHARACTERS, calcEnemyDamage });
+    if (!r.dodged) { killCombo.count = 0; killCombo.timer = 0; } // recibir daño corta el combo
+    return r;
+  }
+
+  function applyPlayerDamage(base, opts) {
+    opts = opts || {};
+    const event = {};
+    if (opts.enemy) event.enemy = opts.enemy;
+    if (opts.projectile) event.projectile = opts.projectile;
+    if (opts.hazard) event.hazard = opts.hazard;
+    const r = NV.applyPlayerDamage(base, {
+      player, CHARACTERS, calcEnemyDamage, addFloatText, sfx,
+      cause: opts.cause, allowCrit: opts.allowCrit, allowDodge: opts.allowDodge,
+      respectInvulnerability: opts.respectInvulnerability,
+      postHitInvuln: opts.postHitInvuln,
+      onPlayerDamaged: recordPlayerDamage, event,
+    });
+    if (r.applied) { killCombo.count = 0; killCombo.timer = 0; }
+    return r;
+  }
+
+  // === PROYECTILES Y ATAQUES DISTINTOS POR JEFE ===
+  // F4: forward de stun/stunDuration (antes se descartaban y el stun de jefes
+  // nunca llegaba a producción). El roll sigue en tryApplyPlayerStun (impacto).
+  function spawnBossProj(b, speed, damage, count, spread, color, radius, _stArg, stun, stunDuration, projectileStyle) {
+    return NV.spawnBossProj(b, speed, damage, count, spread, color, radius, { player, bullets, MAX_BULLETS, enemyBulletCount, MAX_ENEMY_BULLETS }, stun, stunDuration, projectileStyle);
+  }
+
+  // Esbirros invocados (funciona incluso durante la pelea con un jefe)
+  function spawnMinion(x, y, summonVariant) {
+    return NV.spawnMinion(x, y, { enemies, player, boss, wave, W: arenaW(), H: arenaH(), ENEMY_TYPES, MAX_HOSTILES, MAX_HEAVY_HOSTILES, announceSpawn: !combatLabMode }, summonVariant);
+  }
+
+  function runBossAttack(b, dt) {
+    return NV.runBossAttack(b, dt, {
+      player, enemies, bullets, sfx, triggerFlash, addFloatText,
+      boss, MAX_HOSTILES, MAX_HEAVY_HOSTILES, MAX_BULLETS, MAX_ENEMY_BULLETS, enemyBulletCount,
+      spawnBossProj, spawnMinion,
+    });
+  }
+
+  function updateBullets(dt) {
+    const res = NV.updateBullets(dt, {
+      bullets, W: arenaW(), H: arenaH(), player, enemies, boss, shake, hitstop,
+      MAX_BULLETS, CHARACTERS, SHIELD_COOLDOWN,
+      applyPlayerDamage, addFloatText, killEnemy, applyKnockback, spawnExplosion,
+      sfx, onPlayerDamaged: recordPlayerDamage,
+    });
+    bullets = res.bullets; shake = res.shake; hitstop = res.hitstop;
+    if (res.gameOver) { gameOver(); return; }
+  }
+
+  function updateFlameZones(dt, aimAngle) {
+    flameZones = NV.updateFlameZones(dt, flameZones, {
+      player, enemies, boss, currentAutoTarget, aimAngle,
+      killEnemy, addFloatText, applyKnockback,
+    });
+  }
+
+  function recordPlayerDamage(hit) {
+    if (NV.expedition && !combatLabMode && expeditionRun && hit.applied) { expeditionRun.hits++; expeditionRun.waveHits++; }
+    const e = hit.enemy || (hit.projectile && hit.projectile.sourceEnemy) || null;
+    const hazard = hit.hazard || null;
+    damageFeedback = { life: 0.55, critical: !!hit.crit, flash: 0.05 };
+    if (!NV.META_DEBUG || !NV.recordMetaDamage) return;
+    let within50 = 0, within100 = 0, within170 = 0, aliveEnemies = 0, overlap = 0;
+    for (const enemy of enemies) {
+      if (enemy.dead) continue;
+      aliveEnemies++;
+      const d = Math.hypot(enemy.x - player.x, enemy.y - player.y);
+      if (d <= 50) within50++;
+      if (d <= 100) {
+        within100++;
+        const density = densityField && densityField.info.get(enemy);
+        if (density) overlap += density.overlap;
+      }
+      if (d <= 170) within170++;
+    }
+    NV.recordMetaDamage({
+      cause: hit.cause, enemy: e, hazard,
+      enemyType: (hit.projectile && hit.projectile.sourceType) || (e && (e.enemyTypeId || e.behavior || e.shape)) || (hazard && hazard.type),
+      hpBefore: hit.hpBefore, hpAfter: hit.hpAfter, critical: !!hit.crit, wave,
+      playerX: player.x, playerY: player.y,
+      speed: Math.hypot(player.moveVx || 0, player.moveVy || 0),
+      moveVx: player.moveVx || 0, moveVy: player.moveVy || 0,
+      shift: !!combatIntent.dashIntent, invulnerability: player.invuln || 0,
+      within50, within100, within170, nearbyDensity: within100,
+      overlap, aliveEnemies, autofireTarget: currentAutoTarget,
+    });
+  }
+
+  function updateMetaDiagnostics() {
+    if (!NV.META_DEBUG || !NV.updateMetaSnapshot) return;
+    let within50 = 0, within100 = 0, within170 = 0, alive = 0;
+    for (const e of enemies) {
+      if (e.dead) continue;
+      alive++;
+      const d = Math.hypot(e.x - player.x, e.y - player.y);
+      if (d <= 50) within50++;
+      if (d <= 100) within100++;
+      if (d <= 170) within170++;
+    }
+    NV.updateMetaSnapshot({
+      wave, playerX: player.x, playerY: player.y,
+      speed: Math.hypot(player.moveVx || 0, player.moveVy || 0),
+      moveVx: player.moveVx || 0, moveVy: player.moveVy || 0,
+      shift: !!combatIntent.dashIntent, invulnerability: player.invuln || 0,
+      within50, within100, within170, nearbyDensity: within100,
+      overlap: densityField ? densityField.playerOverlap || 0 : 0, aliveEnemies: alive, autofireTarget: currentAutoTarget,
+    });
+  }
+
+  function updateDamageReadability(dt) {
+    if (damageFeedback) { damageFeedback.life -= dt; if (damageFeedback.life <= 0) damageFeedback = null; }
+  }
+
+  function prepareDensityReadability() {
+    if (!NV.buildDensityField) return;
+    densityField = NV.buildDensityField(enemies);
+    NV.metaDensityInfo = densityField.info;
+    let playerOverlap = 0;
+    for (const e of enemies) {
+      if (e.dead) continue;
+      const visual = densityField.info.get(e);
+      if (Math.hypot(e.x - player.x, e.y - player.y) <= 100 && visual) playerOverlap += visual.overlap;
+    }
+    densityField.playerOverlap = playerOverlap;
+  }
+
+  function updateParticles(dt) {
+    particles = NV.updateParticles(dt, particles);
+  }
+
+
+  function updatePickups(dt) {
+    const r = NV.updatePickups(dt, pickups, player, addFloatText, sfx.pickup);
+    pickups = r.pickups; shards += r.shards;
+  }
+
+  // Fusión de arma recogida: si ya la poseés, sube su nivel de fusión en vez de
+  // ocupar un slot. Devuelve {fused,level} | {maxed} | {fused:false,owned:false}.
+  function tryWeaponFusion(weapon) {
+    if (!inventory.some((w) => w.id === weapon.id)) return { fused: false, owned: false };
+    const cur = weaponFus[weapon.id] || 0;
+    if (cur >= MAX_WEAPON_FUSION) return { fused: false, maxed: true };
+    weaponFus[weapon.id] = cur + 1;
+    if (currentWeapon.id === weapon.id) updateHUD();
+    return { fused: true, level: cur + 1 };
+  }
+
+  function updateWeaponPickups(dt) {
+    const r = NV.updateWeaponPickups(dt, weaponPickups, player, inventory, INVENTORY_SLOTS, currentWeapon, addFloatText, RARITY_COLORS, sfx, tryWeaponFusion);
+    weaponPickups = r.weaponPickups;
+    if (currentWeapon !== r.currentWeapon) {
+      stopCurrentWeaponAudio();
+      if (NV.playtest) NV.playtest.weaponSwitch(currentWeapon.id, r.currentWeapon.id);
+      currentWeapon = r.currentWeapon;
+    }
+  }
+
+  function updateFloatTexts(dt) {
+    floatTexts = NV.updateFloatTexts(dt, floatTexts);
+  }
+
+
+  function addFloatText(x, y, text, color, size, metadata) {
+    NV.addFloatText(floatTexts, x, y, text, color, size, metadata);
+  }
+
+
+  function updateTrails(dt) {
+    trails = NV.updateTrails(dt, trails);
+  }
+
+
+  function updateHUD() {
+    const waveText = 'Oleada ' + wave;
+    const scoreText = formatPoints(score);
+    const shardsText = String(shards);
+    const hpText = Math.max(0, Math.round(player.hp)) + '/' + player.maxHp;
+    const hpWidth = Math.max(0, (player.hp / player.maxHp) * 100) + '%';
+    if (dom.wave.textContent !== waveText) dom.wave.textContent = waveText;
+    if (dom.score.textContent !== scoreText) dom.score.textContent = scoreText;
+    if (dom.shards.textContent !== shardsText) dom.shards.textContent = shardsText;
+    if (dom.hpText.textContent !== hpText) dom.hpText.textContent = hpText;
+    if (dom.hpFill.style.width !== hpWidth) dom.hpFill.style.width = hpWidth;
+    const criticalHealth = player.hp > 0 && player.hp / player.maxHp <= 0.25;
+    if (dom.hpBar.classList.contains('critical') !== criticalHealth) dom.hpBar.classList.toggle('critical', criticalHealth);
+    if (dom.hpFill.classList.contains('critical') !== criticalHealth) dom.hpFill.classList.toggle('critical', criticalHealth);
+    notifyMobileSpecial();
+  }
+
+  // Dibuja el proyectil del jugador según su forma (identidad visual por arma),
+  // orientado a la dirección de vuelo. "g" es el factor de crecimiento por tier (sutil,
+  // solo en niveles altos). No participa en colisiones.
+  function drawBulletShape(b, def, g) {
+    NV.drawBulletShape(ctx, b, def, g);
+  }
+
+
+
+  // === RENDER ===
+  const RENDER_DIAGNOSTIC_MODES = {
+    full: { backgroundEffects: true, starfield: true, metaOverlays: true, decorativeVfx: true },
+    'no-background-effects': { backgroundEffects: false, starfield: false, metaOverlays: true, decorativeVfx: true },
+    'no-starfield': { backgroundEffects: true, starfield: false, metaOverlays: true, decorativeVfx: true },
+    'no-meta-overlays': { backgroundEffects: true, starfield: true, metaOverlays: false, decorativeVfx: true },
+    'core-gameplay-only': { backgroundEffects: false, starfield: false, metaOverlays: false, decorativeVfx: false },
+  };
+  let renderDiagnosticMode = 'full';
+  NV.setRenderDiagnosticMode = function (mode) {
+    if (!Object.prototype.hasOwnProperty.call(RENDER_DIAGNOSTIC_MODES, mode)) {
+      throw new Error('Modo de diagnóstico de render inválido: ' + mode);
+    }
+    renderDiagnosticMode = mode;
+    return NV.getRenderDiagnostics();
+  };
+  NV.getRenderDiagnostics = function () {
+    return Object.assign({ mode: renderDiagnosticMode }, RENDER_DIAGNOSTIC_MODES[renderDiagnosticMode]);
+  };
+  let frameVisualRhythm = NV.rhythm;
+  function draw() {
+    resizeCanvas();
+    followPlayerCamera();
+    if (NV.proto3d) NV.proto3d.begin({ frame, state, player, bullets });
+    // P2: política visual runtime (solo decorativa; sin visualBudget => todo full).
+    const vbp = NV.getVisualBudget ? NV.getVisualBudget() : null;
+    const rhythmVisualDiag = NV.rhythmVisualDiagnostics;
+    const renderDiag = RENDER_DIAGNOSTIC_MODES[renderDiagnosticMode];
+    const drawBackgroundEffects = renderDiag.backgroundEffects;
+    const drawStarfield = drawBackgroundEffects && renderDiag.starfield;
+    const drawMetaOverlays = renderDiag.metaOverlays;
+    const drawDecorativeVfx = renderDiag.decorativeVfx;
+    const drawRhythmBackground = drawBackgroundEffects && (!rhythmVisualDiag || rhythmVisualDiag.background !== false);
+    frameVisualRhythm = (!rhythmVisualDiag || rhythmVisualDiag.auxiliary !== false) ? NV.rhythm : null;
+    const heavyShadowOk = vbp ? vbp.heavyShadow : true;
+    const meteorTrailAlpha = vbp ? Math.max(0, Math.min(1, vbp.trailDensity)) * 0.4 : 0.4;
+    const vw = viewW(), vh = viewH(), vx = viewX(), vy = viewY();
+    const cinematic = cinematicView(vx, vy, vw, vh);
+    const worldScaleX = scaleX * cinematic.zoom;
+    const worldScaleY = scaleY * cinematic.zoom;
+    const worldOffsetX = scaleX * (vw / 2 - cinematic.centerX * cinematic.zoom);
+    const worldOffsetY = scaleY * (vh / 2 - cinematic.centerY * cinematic.zoom);
+    const cameraW = vw / cinematic.zoom;
+    const cameraH = vh / cinematic.zoom;
+    const cameraLeft = cinematic.centerX - cameraW / 2;
+    const cameraTop = cinematic.centerY - cameraH / 2;
+    ctx.setTransform(worldScaleX, 0, 0, worldScaleY, worldOffsetX, worldOffsetY);
+
+    // META-VIS: contexto compartido de render (t, saturación, urgencia, gain).
+    const hostileBudget = NV.getHostileBudget({ enemies, boss, MAX_HOSTILES, MAX_HEAVY_HOSTILES });
+    const hostileSaturation = Math.min(1, hostileBudget.hostiles / hostileBudget.maxHostiles);
+    const metaRenderEnv = {
+      t: (typeof performance !== 'undefined' && typeof performance.now === 'function') ? performance.now() / 1000 : frame / 60,
+      saturation: hostileSaturation,
+      urgency: (player.hp > 0 && player.hp / player.maxHp <= 0.3) ? 1 : 0,
+      gain: 1,
+    };
+    if (drawMetaOverlays) prepareDensityReadability();
+
+    // Base oscura + identidad del sector. La capa sectorial es decorativa y
+    // hereda el presupuesto visual; nunca altera gameplay ni world metrics.
+    const sectorVisual = NV.sectorVisualForWave ? NV.sectorVisualForWave(wave) : null;
+    ctx.fillStyle = sectorVisual ? sectorVisual.background : '#01030d';
+    ctx.fillRect(cameraLeft, cameraTop, cameraW, cameraH);
+    if (drawBackgroundEffects) {
+      ctx.save();
+      ctx.translate(cameraLeft, cameraTop);
+      // El arte de bordes pertenece a la arena, no al rectángulo de la cámara.
+      ctx.save(); ctx.translate(-cameraLeft, -cameraTop);
+      if (NV.drawSectorBackdrop) NV.drawSectorBackdrop(ctx, arenaW(), arenaH(), frame, wave, {
+        tier: vbp ? vbp.tier : 'full',
+      });
+      ctx.restore();
+      if (drawStarfield) NV.drawStarfield(ctx, cameraW, cameraH, frame, player.x - cameraLeft, player.y - cameraTop, frameVisualRhythm);
+      if (drawRhythmBackground && NV.drawRhythmLayer) {
+        // P2: capa rítmica de fondo es decorativa — se throttlea por tier.
+        const rbDetail = vbp ? vbp.rhythmBackgroundDetail : 1;
+        const rbStep = rbDetail >= 1 ? 1 : rbDetail >= 0.5 ? 2 : 4;
+        if (frame % rbStep === 0) NV.drawRhythmLayer(ctx, cameraW, cameraH, frame);
+      }
+      ctx.restore();
+    }
+
+    if (flashAlpha > 0 && flashColor) {
+      ctx.fillStyle = flashColor;
+      ctx.globalAlpha = flashAlpha;
+      ctx.fillRect(cameraLeft, cameraTop, cameraW, cameraH);
+      ctx.globalAlpha = 1;
+    }
+
+    // META-VIS-02b: neblina de densidad (capa 1, bajo entidades). Contexto
+    // compartido de render: t, saturación por cantidad viva, urgencia por HP.
+    if (drawMetaOverlays && NV.drawDensityFog && densityField) {
+      NV.drawDensityFog(ctx, enemies, densityField.info, {
+        t: performance.now() / 1000,
+        saturation: hostileSaturation,
+        urgency: (player.hp > 0 && player.hp / player.maxHp <= 0.3) ? 1 : 0,
+      });
+    }
+
+    // Límites físicos: silueta y exterior EN MUNDO, siempre legibles (NO HUD).
+    // Nunca desplaza bounds de gameplay ni emisores asociados al borde real.
+    if (NV.drawSectorPerimeter) NV.drawSectorPerimeter(ctx, arenaW(), arenaH(), wave, {
+      tier: vbp ? vbp.tier : 'full',
+    });
+
+    if (drawDecorativeVfx && specialVFX) drawSpecialVFX(specialVFX);
+    if (drawDecorativeVfx) NV.drawShockwaves(ctx, shockwaves);
+
+    if (drawDecorativeVfx) {
+      NV.drawTrails(ctx, trails, vbp);
+    }
+    if (NV.drawSpecialWorldEffects) NV.drawSpecialWorldEffects(ctx, player);
+
+    for (const wp of weaponPickups) {
+      if (wp.dead) continue;
+      if (typeof NV.drawWeaponIcon === 'function') {
+        NV.drawWeaponIcon(ctx, wp.weapon, wp.x, wp.y - 2, 24, { glow: 5 });
+      }
+      ctx.fillStyle = RARITY_COLORS[wp.weapon.rarity];
+      ctx.textAlign = 'center';
+      ctx.font = '10px system-ui';
+      ctx.fillText(wp.weapon.name, wp.x, wp.y + 15);
+    }
+
+    // Cofres de jefe: cofre dorado pulsante. En auto-pickup (autoCollect) vuela
+    // hacia el jugador y se achica levemente; es el MISMO objeto/render de siempre.
+    for (const c of bossChests) {
+      if (c.dead) continue;
+      const pulse = 0.6 + Math.sin(frame * 0.15) * 0.4;
+      // Tarea #8c: la escala la calcula la animación (completa al inicio,
+      // reducción sólo en el tramo final del vuelo). Sin animación: escala 1.
+      const scale = c.autoCollect ? (c.autoScale != null ? c.autoScale : 1) : 1;
+      ctx.save();
+      ctx.translate(c.x, c.y);
+      ctx.scale(scale, scale);
+      ctx.shadowBlur = 14;
+      ctx.shadowColor = '#ffd700';
+      ctx.fillStyle = '#ffcf76';
+      ctx.fillRect(-14, -11, 28, 22);
+      ctx.fillStyle = '#a06b18';
+      ctx.fillRect(-14, -11, 28, 4);
+      ctx.globalAlpha = 0.5 + pulse * 0.4;
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(-15, -12, 30, 24);
+      ctx.globalAlpha = 1;
+      ctx.restore();
+    }
+
+    for (const p of pickups) {
+      ctx.fillStyle = '#7cf8ff';
+      ctx.font = '16px system-ui';
+      ctx.textAlign = 'center';
+      ctx.fillText('◆', p.x, p.y);
+    }
+
+    // Drones de combate
+    for (const d of drones) {
+      if (NV.drawSpecialOrbitant) { NV.drawSpecialOrbitant(ctx, d, player); continue; }
+      const dx = Math.cos(d.angle) * d.orbitRadius;
+      const dy = Math.sin(d.angle) * d.orbitRadius;
+      // Línea de puntería: muestra a qué objetivo apunta cada dron (se desvanece)
+      if (d.aimLife > 0 && d.tx != null) {
+        ctx.strokeStyle = d.color || '#7cf8ff';
+        ctx.globalAlpha = (d.aimLife / 0.3) * 0.45;
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([6, 6]);
+        ctx.beginPath();
+        ctx.moveTo(player.x + dx, player.y + dy);
+        ctx.lineTo(d.tx, d.ty);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        // Marca en el punto del objetivo
+        ctx.globalAlpha = (d.aimLife / 0.3) * 0.7;
+        ctx.beginPath(); ctx.arc(d.tx, d.ty, 4, 0, Math.PI * 2); ctx.stroke();
+        ctx.globalAlpha = 1;
+      }
+      ctx.fillStyle = d.color;
+      // P2: glow del dron es decorativo; el cuerpo y su silueta siempre se dibujan.
+      if (heavyShadowOk) { ctx.shadowBlur = 10; ctx.shadowColor = d.color; }
+      ctx.beginPath(); ctx.arc(player.x + dx, player.y + dy, 5, 0, Math.PI * 2); ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+
+    // Meteoritos (el count de gameplay NUNCA cambia: solo trail/glow decorativos)
+    for (const m of meteors) {
+      if (NV.drawSpecialMeteor) { NV.drawSpecialMeteor(ctx, m); continue; }
+      ctx.fillStyle = m.color;
+      if (heavyShadowOk) { ctx.shadowBlur = 15; ctx.shadowColor = m.color; }
+      ctx.beginPath(); ctx.arc(m.x, m.y, m.radius, 0, Math.PI * 2); ctx.fill();
+      ctx.shadowBlur = 0;
+      // Estela
+      ctx.globalAlpha = meteorTrailAlpha;
+      ctx.fillStyle = m.color;
+      ctx.fillRect(m.x - 2, m.y - m.radius * 2, 4, m.radius * 2);
+      ctx.globalAlpha = 1;
+    }
+
+    // Legibilidad del golpe: dibujar PRIMERO a los no-atacantes y DESPUÉS a los
+    // atacantes (atkFlash activo) => el enemigo que golpea queda por encima
+    // visualmente y no es tapado por los superpuestos. Solo orden de dibujo.
+    if (NV.prepareEnemyVisualBudget) NV.prepareEnemyVisualBudget(enemies, player);
+    for (const e of enemies) if (!(e.atkFlash > 0)) drawEnemy(e);
+    for (const e of enemies) if (e.atkFlash > 0) drawEnemy(e);
+    const autoTargetInRange = currentAutoTarget ? (Math.hypot(currentAutoTarget.x - player.x, currentAutoTarget.y - player.y) <= (currentWeapon.range || Infinity)) : false;
+    if (drawMetaOverlays && NV.drawAutofireTarget) NV.drawAutofireTarget(ctx, currentAutoTarget, frame, player, autoTargetInRange, NV.META_DEBUG, metaRenderEnv);
+    if (drawMetaOverlays) for (const e of enemies) if (!e.arrival && !e.waveCleanup && NV.drawContactReadability) NV.drawContactReadability(ctx, e, player, NV.META_DEBUG, metaRenderEnv);
+    if (drawMetaOverlays) for (const e of enemies) if (!e.arrival && !e.waveCleanup && NV.drawEnemyIntent) NV.drawEnemyIntent(ctx, e, player, metaRenderEnv);
+    if (boss && !boss.dead) drawBoss();
+    if (NV.drawEncounterWarnings && state === 'playing') NV.drawEncounterWarnings(ctx, boss, enemies);
+
+    // Partículas decorativas quedan detrás de hazards/proyectiles: un telegraph
+    // peligroso nunca debe desaparecer bajo VFX pesado.
+    if (drawDecorativeVfx) {
+      for (const p of particles) {
+        ctx.globalAlpha = Math.max(0, p.life / (p.fade || 0.5));
+        ctx.fillStyle = p.color;
+        const psz = p.size || 4;
+        if(p.specialEnergy){ctx.beginPath();ctx.arc(p.x,p.y,psz*.35,0,Math.PI*2);ctx.fill();}
+        else ctx.fillRect(p.x - psz / 2, p.y - psz / 2, psz, psz);
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    // Hazards sobre partículas y debajo de proyectiles: las minas conservan
+    // warning/telegraph legibles y las balas enemigas siguen siendo prioritarias.
+    if (NV.drawSectorEmitters && state === 'playing' && !combatLabMode)
+      NV.drawSectorEmitters(ctx, arenaW(), arenaH(), wave, hazards, sectorEncounterState.active);
+    if (NV.drawHazards) NV.drawHazards(ctx, hazards, frameVisualRhythm, vbp, !!NV.META_DEBUG, NV.MUSICAL_NOTES, frameVisualRhythm ? minefieldState.groove : null);
+    if (state === 'playing' && NV.drawWavePressure) NV.drawWavePressure(ctx, wavePressure);
+
+    for (const b of bullets) {
+      if (b.isEnemy) {
+        // Balas enemigas: renderer hostil canonico (COLOR = efecto via
+        // stunChance, SHAPE = familia via projectileStyle). Fallback rojo seguro
+        // si el modulo de render no esta disponible (sandbox/headless).
+        if (NV.drawHostileProjectile) {
+          NV.drawHostileProjectile(ctx, b);
+        } else {
+          ctx.fillStyle = '#ff3b4f';
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = '#ff3b4f';
+          ctx.beginPath();
+          ctx.arc(b.x, b.y, b.radius || 5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        }
+        continue;
+      }
+      if (!b.wid) {
+        if (NV.drawSpecialProjectile && NV.drawSpecialProjectile(ctx, b)) continue;
+        // Balas sin forma definida (p. ej. de drones): círculo pequeño como antes.
+        ctx.fillStyle = b.color;
+        ctx.shadowBlur = 4;
+        ctx.shadowColor = b.color;
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, b.size || 3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        continue;
+      }
+      // Proyectil del jugador con identidad por arma.
+      const def = BULLET_DEFS[b.wid] || BULLET_DEFS.pistol;
+      // Crecimiento visual: nivel/fusión del arma + tier alto (nivel 30+), solo estético.
+      const g = (b.growth || 0) + Math.max(0, (b.tier || 0) - 2) * 0.05;
+      if (b.tier > 0) {
+        ctx.shadowColor = b.glowColor || b.color;
+        ctx.shadowBlur = 8 + b.tier; // glow compacto, no infla tanto
+      } else {
+        ctx.shadowColor = b.color;
+        ctx.shadowBlur = 4;
+      }
+      drawBulletShape(b, def, g);
+      ctx.shadowBlur = 0;
+    }
+
+    for (const zone of flameZones) {
+      if (!zone.dead && NV.drawFlameZone) NV.drawFlameZone(ctx, zone, !!(vbp && vbp.tier === 'minimal'));
+    }
+
+    for (const ft of floatTexts) {
+      if (ft.bossReaction && NV.drawBossReactionText) {
+        NV.drawBossReactionText(ctx, ft, vx, vy, vw, vh, !!(NV.capabilities && NV.capabilities.isMobile));
+        continue;
+      }
+      ctx.globalAlpha = Math.max(0, ft.life / 0.8);
+      ctx.fillStyle = ft.color;
+      ctx.font = 'bold ' + (ft.size || 14) + 'px system-ui';
+      ctx.textAlign = 'center';
+      ctx.fillText(ft.text, ft.x, ft.y);
+    }
+    ctx.globalAlpha = 1;
+
+    // #2: el poof sustituye al cuerpo sin crossfade; residuos terminan antes de FIN.
+    if (state === 'gameover') { /* cuerpo fuera: solo overlay FIN */ }
+    else if (state === 'player_dying') {
+      if (presentation.elapsed < PLAYER_DEATH_POOF_T) drawPlayer();
+      if (presentation.elapsed >= PLAYER_DEATH_POOF_T) drawPlayerDeathPuff(ctx);
+    } else drawPlayer();
+    // F3: Hook visuals (world transform activo) — tras enemigos/jugador, ANTES del restore.
+    if (NV.drawHookEffects && hookSystem) NV.drawHookEffects(ctx, hookSystem, player);
+    // El feedback de daño usa coordenadas de mundo y la cámara cinematográfica.
+    if (drawMetaOverlays && NV.drawDamageFeedback) NV.drawDamageFeedback(ctx, player, damageFeedback, metaRenderEnv);
+    ctx.setTransform(scaleX, 0, 0, scaleY, -vx * scaleX, -vy * scaleY);
+    // Retícula Canvas barata: geometría fija, sin glow, partículas ni DOM por frame.
+    if (state === 'playing' && !paused && NV.input.getEffectiveFirePolicy() === 'manual' && combatIntent.aimActive) {
+      const ax = combatIntent.aimWorldX, ay = combatIntent.aimWorldY;
+      ctx.save();
+      ctx.strokeStyle = 'rgba(124, 248, 255, 0.9)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.arc(ax, ay, 7, 0, Math.PI * 2);
+      ctx.moveTo(ax - 11, ay); ctx.lineTo(ax - 4, ay);
+      ctx.moveTo(ax + 4, ay); ctx.lineTo(ax + 11, ay);
+      ctx.moveTo(ax, ay - 11); ctx.lineTo(ax, ay - 4);
+      ctx.moveTo(ax, ay + 4); ctx.lineTo(ax, ay + 11);
+      ctx.stroke();
+      ctx.restore();
+    }
+    // Prototype-only bridge: world raster -> 3D, native HUD stays in screen space.
+    if (NV.proto3d) NV.proto3d.compose(canvas, { centerX: cinematic.centerX, centerY: cinematic.centerY, cameraW, cameraH, bullets });
+    ctx.setTransform(scaleX, 0, 0, scaleY, -vx * scaleX, -vy * scaleY);
+
+    // HUD anclado a la vista, nunca al centro del mapa ni al zoom cinemático.
+    ctx.save(); ctx.setTransform(scaleX, 0, 0, scaleY, -vx * scaleX, -vy * scaleY);
+    // Barra de progreso de oleada — con contador de enemigos vivos y élites
+    if (showHUD && state === 'playing' && !boss) {
+            const maxWaveTimer = NV.waveDuration(wave, waveEvent);
+      const timeProgress = Math.max(0, Math.min(1, 1 - (waveTimer / maxWaveTimer)));
+      const barW = 220, barH = 7;
+      const barX = vx + (vw - barW) / 2, barY = vy + 9;
+
+      // Contador de enemigos vivos + heavy hostiles (misma clasificación que
+      // el presupuesto autoritativo; el boss se renderiza por una ruta separada).
+      const alive = enemies.reduce((count, enemy) => count + (!enemy.dead ? 1 : 0), 0);
+      const heavy = NV.heavyHostileCount(enemies);
+      const cleared = Math.max(0, waveSpawned - alive);
+      // Una barra llena significa victoria posible: tiempo y asalto despejado.
+      const progress = waveGoal ? Math.min(timeProgress, cleared / waveGoal.total) : timeProgress;
+
+      // Cápsula compacta: mejora la lectura sin sumar otra pieza al HUD.
+      ctx.save();
+      ctx.shadowColor = 'rgba(124,248,255,0.18)';
+      ctx.shadowBlur = 9;
+      ctx.fillStyle = 'rgba(3,8,24,0.82)';
+      ctx.beginPath();
+      ctx.roundRect(barX - 5, barY - 4, barW + 10, 29, 7);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      ctx.fillStyle = 'rgba(124,248,255,0.10)';
+      ctx.beginPath();
+      ctx.roundRect(barX, barY, barW, barH, barH / 2);
+      ctx.fill();
+
+      // --- Barra de progreso con degradado (Pilar 3: progreso oleada) ---
+      const grad = ctx.createLinearGradient(barX, 0, barX + barW, 0);
+      grad.addColorStop(0, '#4a90d9');    // azul inicio
+      grad.addColorStop(0.5, '#b534e6');  // púrpura centro
+      grad.addColorStop(1, '#e94850');    // rojo final
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.roundRect(barX, barY, Math.max(barH, barW * progress), barH, barH / 2);
+      ctx.fill();
+
+      // Reflejo tenue para que el progreso conserve volumen sobre fondos oscuros.
+      ctx.fillStyle = 'rgba(255,255,255,0.22)';
+      ctx.beginPath();
+      ctx.roundRect(barX + 2, barY + 1, Math.max(0, barW * progress - 4), 2, 1);
+      ctx.fill();
+
+      // --- Borde de la barra ---
+      ctx.strokeStyle = 'rgba(124,248,255,0.42)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.roundRect(barX, barY, barW, barH, barH / 2);
+      ctx.stroke();
+
+      // --- Texto de la oleada centrado y contador apilado en upper-left ---
+      ctx.fillStyle = '#dffcff';
+      ctx.font = '800 10px system-ui';
+      ctx.textAlign = 'center';
+      ctx.fillText('OLEADA ' + wave + (waveTimer <= 0 ? ' · LIMPIEZA' : ' · ' + Math.ceil(waveTimer) + 's'), vx + vw / 2, barY + 18);
+      ctx.restore();
+      const countText = 'ENEMIGOS: ' + alive + ' (' + heavy + ')';
+      const mobilePresentation = !!(NV.capabilities && NV.capabilities.isMobile);
+      ctx.fillStyle = '#9bb0ff';
+      ctx.font = 'bold 9px system-ui';
+      ctx.textAlign = 'left';
+      const arriving = enemies.reduce((count, enemy) => count + (!enemy.dead && enemy.arrival ? 1 : 0), 0);
+      const bossProgress = expeditionRun && expeditionRun.mode === 'expedition'
+        ? ' · JEFES ' + expeditionRun.bosses + '/' + (expeditionRun.bossProgression === 'full-roster' ? 10 : 4) : '';
+      const activeHeavy = arriving ? NV.heavyHostileCount(enemies.filter(enemy => !enemy.arrival)) : heavy;
+      ctx.fillText((arriving ? 'ENEMIGOS: ' + (alive - arriving) + ' (' + activeHeavy + ')' : countText) + bossProgress, viewX() + 12, viewY() + (mobilePresentation ? 58 : 43));
+      // El objetivo vive fuera del centro: el tutorial no puede taparlo.
+      if (waveGoal) {
+        ctx.fillStyle = waveTimer <= 0 ? '#f5d67c' : '#a9dce8';
+        ctx.font = '700 9px system-ui';
+        ctx.fillText('BAJAS ' + waveDefeats,
+          viewX() + 12, viewY() + (mobilePresentation ? 72 : 57));
+        ctx.fillText('FALTAN APARECER ' + Math.max(0, waveGoal.total - waveSpawned + arriving), viewX() + 12,
+          viewY() + (mobilePresentation ? 86 : 71));
+      }
+    }
+
+    if (showHUD && state === 'playing' && boss && expeditionRun && expeditionRun.mode === 'expedition') {
+      ctx.save(); ctx.fillStyle = '#a9dce8'; ctx.font = 'bold 9px system-ui'; ctx.textAlign = 'left';
+      ctx.fillText('JEFES ' + expeditionRun.bosses + '/' + (expeditionRun.bossProgression === 'full-roster' ? 10 : 4), viewX() + 12,
+        viewY() + (NV.capabilities && NV.capabilities.isMobile ? 58 : 43)); ctx.restore();
+    }
+    ctx.restore();
+    // Evento NEBLINA: velo oscuro con viñeta que reduce la visibilidad periférica.
+    if (waveEvent === 'fog' && state === 'playing') {
+      ctx.save();
+      ctx.fillStyle = 'rgba(8, 10, 22, 0.35)';
+      ctx.fillRect(0, 0, arenaW(), arenaH());
+      const rx = vw * 0.3, ry = vh * 0.35; // visibilidad ligada a vista, no al tamaño del mapa
+      const g = ctx.createRadialGradient(player.x, player.y, Math.min(rx, ry) * 0.4, player.x, player.y, Math.max(vw, vh) * 0.75);
+      g.addColorStop(0, 'rgba(8, 10, 22, 0)');
+      g.addColorStop(1, 'rgba(8, 10, 22, 0.85)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, arenaW(), arenaH());
+      ctx.restore();
+    }
+
+    ctx.setTransform(scaleX, 0, 0, scaleY, -vx * scaleX, -vy * scaleY);
+
+    if (state === 'player_dying' || state === 'gameover' || state === 'wave_end' || state === 'shop_enter' || state === 'shop') {
+      const progress = presentationProgress();
+      const isDeath = state === 'player_dying' || state === 'gameover';
+      const settled = state === 'gameover' || state === 'shop_enter' || state === 'shop';
+      const dimStart = isDeath ? 0.42 : 0.62;
+      const dim = settled ? 1 : easeInOutCubic(Math.max(0, Math.min(1, (progress - dimStart) / (1 - dimStart))));
+      ctx.save();
+      ctx.fillStyle = isDeath
+        ? 'rgba(2, 4, 12, ' + (dim * 0.58).toFixed(3) + ')'
+        : 'rgba(2, 5, 14, ' + (dim * 0.34).toFixed(3) + ')';
+      ctx.fillRect(vx, vy, vw, vh);
+      ctx.restore();
+    }
+
+    if (showHUD && (state === 'playing' || state === 'wave_end')) {
+      drawSpecialCooldown();
+      const mobilePresentation = !!(NV.capabilities && NV.capabilities.isMobile);
+      ctx.save(); ctx.translate(vx, vy);
+      NV.drawCombo(ctx, vw, vh, killCombo, mobilePresentation ? { x: 12, y: 83 } : null);
+      ctx.restore();
+      NV.drawBossHUD(ctx, viewX(), viewY(), viewW(), viewH(), boss, mobilePresentation);
+      NV.drawDashStamina(ctx, viewX(), viewY(), viewW(), viewH(), player, mobilePresentation);
+      if (!mobilePresentation) drawWeaponHUD();
+      else NV.consumSlotRects = [];
+    }
+
+    if (showStats) { ctx.save(); ctx.translate(vx, vy); drawStats(); ctx.restore(); }
+
+    // Pantalla de pausa (tecla P)
+    if (paused) {
+      ctx.fillStyle = 'rgba(5, 7, 20, 0.68)';
+      ctx.fillRect(vx, vy, vw, vh);
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#7cf8ff';
+      ctx.shadowBlur = 30; ctx.shadowColor = '#7cf8ff';
+      ctx.font = 'bold 56px system-ui';
+      ctx.fillText('⏸ PAUSA', vx + vw / 2, vy + vh / 2 - 20);
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = '#aaa';
+      ctx.font = '18px system-ui';
+      ctx.fillText('Pulsa P para continuar', vx + vw / 2, vy + vh / 2 + 24);
+      ctx.fillStyle = '#666';
+      ctx.font = '12px system-ui';
+      ctx.fillText('Oleada ' + wave + ' · Puntos ' + score, vx + vw / 2, vy + vh / 2 + 54);
+    }
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+  }
+
+  function drawSpecialVFX(vfx) {
+    NV.drawSpecialVFX(ctx, vfx);
+  }
+
+
+
+  // F09.4: anillo/contorno de cooldown alrededor del jugador ELIMINADO.
+  // Era redundante: la disponibilidad de la habilidad ya se comunica con
+  // (1) el botón ESPECIAL móvil (anillo de progreso, segundos y LISTO) y
+  // (2) el slot de habilidad del panel canvas (drawWeaponHUD).
+  // Se conserva este stub como no-op para no romper llamadas externas.
+  function drawSpecialCooldown() { return; }
+
+
+
+    function drawWeaponHUD() {
+    // Resolvedor de nivel por arma: cada slot muestra SU nivel (badge + tinte).
+    const weaponLevelFor = (id) => weaponLevels[id] || 1;
+    // Nivel de fusión desde el estado central (weaponFus[id]), NO de la instancia:
+    // las armas recogidas del mapa comparten referencia con WEAPONS y no llevan
+    // `fuseLevel` de instancia sincronizado. El HUD consume el estado canonical.
+    const weaponFusionLevelFor = (id) => weaponFus[id] || 0;
+    ctx.save(); ctx.translate(viewX(), viewY());
+    NV.drawWeaponHUD(ctx, viewW(), viewH(), CHARACTERS, RARITY_COLORS, player, currentWeapon, currentWeaponLevel, inventory, NV.groupConsumables(consumableItems), consumSel, showHUD, weaponLevelFor, weaponFusionLevelFor);
+    ctx.restore();
+  }
+
+
+
+  function drawStats() {
+    NV.drawStats(ctx, CHARACTERS, RARITY_COLORS, player, currentWeapon, currentWeaponLevel, weaponVisualTier, BULLET_TIER_COLORS, permUpgrades, inventory, INVENTORY_SLOTS, consumableItems);
+  }
+
+
+
+  // #10: puff cartoon render-only y determinista. Un centro denso + 6 lóbulos
+  // redondeados forman una nube compacta; sólo depende del timer del cleanup.
+  // #2 lo reutiliza para la muerte del jugador SIN duplicar su geometría:
+  // drawPlayerDeathPuff() mapea el tiempo absoluto de player_dying al mismo
+  // helper aprobado. No toca #10 (drawEnemy sigue con su propia ruta).
+  function drawCleanupPuff(c2, e, progress, puffAlpha, puffScale) {
+    if (puffAlpha <= 0 || progress >= 1) return;
+    const disperse = Math.max(0, (progress - 0.575) / 0.425);
+    const centerR = e.radius * (0.58 + puffScale * 0.34);
+    const orbitR = e.radius * (0.36 + puffScale * 0.28 + disperse * 0.22);
+
+    c2.globalAlpha = puffAlpha * 0.95;
+    c2.fillStyle = '#f4f1e8';
+    c2.beginPath();
+    c2.arc(e.x, e.y, centerR, 0, Math.PI * 2);
+    c2.fill();
+
+    for (let i = 0; i < 6; i++) {
+      const seed = Math.sin((e.x || 0) * 12.9898 + (e.y || 0) * 78.233 + i * 37.719) * 43758.5453;
+      const frac = seed - Math.floor(seed);
+      const ang = i * (Math.PI / 3) + (frac - 0.5) * 0.32;
+      const lobeR = e.radius * (0.3 + frac * 0.13) * (0.72 + puffScale * 0.38);
+      c2.globalAlpha = puffAlpha * (0.72 + frac * 0.2);
+      c2.fillStyle = i % 2 === 0 ? '#fffaf0' : '#e8edf2';
+      c2.beginPath();
+      c2.arc(e.x + Math.cos(ang) * orbitR, e.y + Math.sin(ang) * orbitR, lobeR, 0, Math.PI * 2);
+      c2.fill();
+    }
+
+    // Tres mini-puffs efímeros dan impulso al poof sin crear partículas.
+    const miniP = Math.max(0, Math.min(1, (progress - 0.25) / 0.35));
+    if (miniP > 0 && miniP < 1) {
+      const miniAlpha = puffAlpha * (1 - miniP) * (1 - miniP) * 0.62;
+      for (let i = 0; i < 3; i++) {
+        const seed = Math.sin((e.x || 0) * 31.177 + (e.y || 0) * 17.913 + i * 53.481) * 43758.5453;
+        const frac = seed - Math.floor(seed);
+        const ang = i * (Math.PI * 2 / 3) + (frac - 0.5) * 0.5;
+        const dist = e.radius * (0.72 + miniP * 1.45);
+        const miniR = e.radius * (0.11 + frac * 0.07) * (1 - miniP * 0.28);
+        c2.globalAlpha = miniAlpha * (0.72 + frac * 0.28);
+        c2.fillStyle = i === 1 ? '#e8edf2' : '#fffaf0';
+        c2.beginPath();
+        c2.arc(e.x + Math.cos(ang) * dist, e.y + Math.sin(ang) * dist, miniR, 0, Math.PI * 2);
+        c2.fill();
+      }
+    }
+  }
+
+  // #2: timeline visual de la muerte en tiempo absoluto (segundos).
+  // Reutiliza drawCleanupPuff (#10) sin duplicar geometría. Devuelve el
+  // estado render-only para tests: body visible / body fuera / puff activo.
+  function playerDeathVisualAt(t) {
+    const clamped = Math.max(0, t);
+    const bodyVisible = clamped < PLAYER_DEATH_POOF_T;
+    let bodyAlpha = 0;
+    let bodyScaleX = 0.82;
+    let bodyScaleY = 0.78;
+    if (bodyVisible) {
+      if (clamped < PLAYER_DEATH_IMPACT_END) {
+        const impactP = clamped / PLAYER_DEATH_IMPACT_END;
+        bodyAlpha = 1;
+        bodyScaleX = 1 + Math.sin(impactP * Math.PI) * 0.018;
+        bodyScaleY = bodyScaleX;
+      } else if (clamped < PLAYER_DEATH_POP_END) {
+        const popP = (clamped - PLAYER_DEATH_IMPACT_END) / (PLAYER_DEATH_POP_END - PLAYER_DEATH_IMPACT_END);
+        const eased = popP * popP * (3 - 2 * popP);
+        bodyAlpha = 1;
+        bodyScaleX = 1 + 0.09 * eased;
+        bodyScaleY = 1 + 0.075 * eased;
+      } else {
+        const collapseP = (clamped - PLAYER_DEATH_POP_END) / (PLAYER_DEATH_POOF_T - PLAYER_DEATH_POP_END);
+        const eased = collapseP * collapseP * (3 - 2 * collapseP);
+        bodyAlpha = 1 - eased * 0.18;
+        bodyScaleX = 1.09 - 0.21 * eased;
+        bodyScaleY = 1.075 - 0.295 * eased;
+      }
+    }
+    const puffT = Math.max(0, clamped - PLAYER_DEATH_POOF_T);
+    const puffDur = PLAYER_DEATH_VISUAL_END - PLAYER_DEATH_POOF_T;
+    const puffDone = clamped >= PLAYER_DEATH_VISUAL_END;
+    const puffOutP = Math.max(0, Math.min(1, (PLAYER_DEATH_VISUAL_END - clamped) / 0.30));
+    const smooth = (p) => p * p * (3 - 2 * p);
+    // Sustitución real: el núcleo nace compacto y opaco exactamente en POOF.
+    const puffAlpha = bodyVisible || puffDone ? 0 : 0.98 * smooth(puffOutP);
+    const mainP = Math.max(0, Math.min(1, puffT / (PLAYER_DEATH_MAIN_PUFF_END - PLAYER_DEATH_POOF_T)));
+    const tailP = Math.max(0, Math.min(1, (clamped - PLAYER_DEATH_MAIN_PUFF_END) / (PLAYER_DEATH_VISUAL_END - PLAYER_DEATH_MAIN_PUFF_END)));
+    const puffScale = 0.74 + 0.48 * easeOutCubic(mainP) + 0.18 * tailP;
+    const shockP = Math.max(0, Math.min(1, puffT / 0.14));
+    const shockAlpha = bodyVisible || shockP >= 1 ? 0 : (1 - smooth(shockP)) * 0.72;
+    const miniPuffAlpha = bodyVisible ? 0 : puffAlpha * Math.max(0, 1 - puffT / 0.30);
+    const accentAlpha = bodyVisible || puffDone ? 0 : Math.max(0, 1 - puffT / 0.34) * 0.88;
+    return {
+      bodyVisible,
+      bodyAlpha,
+      bodyScale: (bodyScaleX + bodyScaleY) * 0.5,
+      bodyScaleX,
+      bodyScaleY,
+      puffActive: puffAlpha > 0,
+      puffAlpha,
+      puffScale,
+      shockAlpha,
+      shockScale: 0.72 + shockP * 1.35,
+      miniPuffAlpha,
+      accentAlpha,
+      dissolveActive: clamped < PLAYER_DEATH_DISSOLVE_END,
+      visualActive: clamped < PLAYER_DEATH_VISUAL_END,
+      finVisible: clamped >= DEATH_TRANSITION_DURATION,
+      progress: Math.max(0, Math.min(1, puffT / puffDur)),
+    };
+  }
+
+  // #2: dibuja el puff de muerte del jugador reutilizando drawCleanupPuff.
+  // Render-only y determinista: usa la posición del jugador y su radio
+  // (CHARACTERS) como "entidad" efímera; no crea partículas ni toca gameplay.
+  function drawPlayerDeathPuff(c2) {
+    const vis = playerDeathVisualAt(presentation.elapsed);
+    if (!vis.puffActive) return vis;
+    const radius = (CHARACTERS[player.character] && CHARACTERS[player.character].size) || 18;
+    const signature = NV.PILOT_TRANSITIONS && NV.PILOT_TRANSITIONS[player.character];
+    const accent = signature ? signature.accent : (player.color || '#7cf8ff');
+    const x = player.x, y = player.y;
+    c2.save();
+    if (vis.shockAlpha > 0) {
+      c2.globalAlpha = vis.shockAlpha;
+      c2.strokeStyle = accent;
+      c2.lineWidth = Math.max(0.8, 2.2 * (1 - vis.progress));
+      c2.beginPath();
+      c2.arc(x, y, radius * vis.shockScale, 0, Math.PI * 2);
+      c2.stroke();
+    }
+    drawCleanupPuff(c2, { x, y, radius: radius * 1.08 }, vis.progress, vis.puffAlpha, vis.puffScale);
+    if (vis.miniPuffAlpha > 0) {
+      const miniP = Math.max(0, Math.min(1, (presentation.elapsed - PLAYER_DEATH_POOF_T) / 0.30));
+      for (let i = 0; i < 4; i++) {
+        const ang = -0.35 + i * 1.72;
+        const dist = radius * (0.75 + miniP * 1.85);
+        c2.globalAlpha = vis.miniPuffAlpha * (0.62 + i * 0.07);
+        c2.fillStyle = i % 2 ? '#e8edf2' : '#fffaf0';
+        c2.beginPath();
+        c2.arc(x + Math.cos(ang) * dist, y + Math.sin(ang) * dist, radius * (0.10 + i * 0.018) * (1 - miniP * 0.25), 0, Math.PI * 2);
+        c2.fill();
+      }
+    }
+    if (vis.accentAlpha > 0) {
+      const accentP = Math.max(0, Math.min(1, (presentation.elapsed - PLAYER_DEATH_POOF_T) / 0.34));
+      c2.strokeStyle = accent;
+      c2.lineWidth = 1.6;
+      c2.lineCap = 'round';
+      for (let i = 0; i < 4; i++) {
+        const ang = 0.38 + i * Math.PI * 0.5;
+        const inner = radius * (0.48 + accentP * 0.8);
+        const outer = inner + radius * (0.28 - accentP * 0.08);
+        c2.globalAlpha = vis.accentAlpha * (0.72 + (i % 2) * 0.2);
+        c2.beginPath();
+        c2.moveTo(x + Math.cos(ang) * inner, y + Math.sin(ang) * inner);
+        c2.lineTo(x + Math.cos(ang) * outer, y + Math.sin(ang) * outer);
+        c2.stroke();
+      }
+    }
+    c2.restore();
+    return vis;
+  }
+
+  function drawEnemy(e) {
+    if (e.arrival && (state !== 'playing' || e.waveCleanup)) return;
+    if (NV.drawEnemyArrival && NV.drawEnemyArrival(ctx, e)) return;
+    // Solo ocultar Canvas2D cuando el mesh WebGL de ESTE enemigo ya existe.
+    // Durante carga, fallo o flag apagado, el render original sigue intacto.
+    if ((NV.SPECTER_ENABLED === false && e.shape === 'specter') || isEnemyRenderedByLite(e)) return;
+    let renderCtx = ctx;
+    let cleanupProgress = 0;
+    let cleanupPuffAlpha = 0;
+    let cleanupPuffScale = 0.55;
+    let drawCleanupBody = true;
+    if (e.waveCleanup) {
+      const progress = Math.max(0, Math.min(1, e.waveCleanupT / WAVE_CLEANUP_DURATION));
+      if (progress >= 1) return;
+      // #10: sustitución cartoon a 0.105 s; el cleanup funcional sigue en 0.4 s.
+      const poofT = 0.105;
+      const popT = 0.06;
+      const popP = Math.max(0, Math.min(1, e.waveCleanupT / popT));
+      const bodyCollapseP = Math.max(0, Math.min(1, (e.waveCleanupT - popT) / (poofT - popT)));
+      const bodyScale = e.waveCleanupT < popT
+        ? 1 + (WAVE_CLEANUP_POP_SCALE - 1) * popP
+        : WAVE_CLEANUP_POP_SCALE - (WAVE_CLEANUP_POP_SCALE - 0.82) * bodyCollapseP;
+      const bodyDimP = Math.max(0, Math.min(1, (e.waveCleanupT - popT) / (poofT - popT)));
+      const bodyAlpha = e.waveCleanupT >= poofT ? 0 : ctx.globalAlpha * (1 - bodyDimP * 0.22);
+      const puffInP = Math.max(0, Math.min(1, (e.waveCleanupT - 0.09) / (poofT - 0.09)));
+      const puffOutP = Math.max(0, Math.min(1, (WAVE_CLEANUP_DURATION - e.waveCleanupT) / 0.18));
+      const puffIn = puffInP * puffInP * (3 - 2 * puffInP);
+      const puffOut = puffOutP * puffOutP * (3 - 2 * puffOutP);
+      cleanupPuffAlpha = ctx.globalAlpha * 0.96 * puffIn * puffOut;
+      cleanupPuffScale = e.waveCleanupT <= 0.23
+        ? 0.72 + 0.43 * Math.max(0, Math.min(1, (e.waveCleanupT - poofT) / (0.23 - poofT)))
+        : 1.15 + 0.1 * Math.min(1, (e.waveCleanupT - 0.23) / 0.17);
+      cleanupProgress = progress;
+      drawCleanupBody = bodyAlpha > 0;
+      ctx.save();
+      ctx.translate(e.x, e.y);
+      ctx.scale(bodyScale, bodyScale);
+      ctx.translate(-e.x, -e.y);
+      ctx.globalAlpha = bodyAlpha;
+      // Los renderizadores reasignan globalAlpha (ojos, halos, status).
+      // Multiplicar TODAS sus escrituras mantiene el fade del objeto completo,
+      // sin modificar sus modelos ni el renderer del boss. Métodos ligados al
+      // contexto nativo: Canvas2D exige su receiver real.
+      renderCtx = new Proxy(ctx, {
+        get(target, key) {
+          if (key === 'globalAlpha') return bodyAlpha > 0 ? target.globalAlpha / bodyAlpha : 0;
+          const value = target[key];
+          return typeof value === 'function' ? value.bind(target) : value;
+        },
+        set(target, key, value) {
+          target[key] = key === 'globalAlpha' ? value * bodyAlpha : value;
+          return true;
+        }
+      });
+    }
+    try {
+      if (drawCleanupBody) {
+        const ctx = renderCtx;
+        if (typeof NV.hasCommonEnemyVisual === 'function' && NV.hasCommonEnemyVisual(e.enemyTypeId)) {
+          NV.drawEnemy(ctx, e, frame, player, frameVisualRhythm, visualTimeSeconds);
+        } else if (NV.SPECTRAL_ENEMY_MODE && typeof NV.drawSpectralEnemy2D === 'function') {
+          NV.drawSpectralEnemy2D(ctx, e, frame, player, frameVisualRhythm);
+        } else {
+          NV.drawEnemy(ctx, e, frame, player, frameVisualRhythm, visualTimeSeconds);
+        }
+      }
+    } finally {
+      if (e.waveCleanup) {
+        // Restaurar primero desacopla el puff del alpha y la escala del cuerpo.
+        ctx.restore();
+        ctx.save();
+        drawCleanupPuff(ctx, e, cleanupProgress, cleanupPuffAlpha, cleanupPuffScale);
+        ctx.restore();
+      }
+    }
+  }
+
+
+
+  function drawBoss() {
+    if (NV.SPECTRAL_ENEMY_MODE && typeof NV.drawSpectralBoss2D === 'function') {
+      NV.drawSpectralBoss2D(ctx, boss, frame, player, NV.rhythm);
+      return;
+    }
+    NV.drawBoss(ctx, boss, frame);
+  }
+
+
+  function drawPlayer() {
+    NV.drawPlayer(ctx, player, CHARACTERS, frame, playerPresentationStyle());
+    if (typeof NV.drawConsumableActivation === 'function') {
+      const char = CHARACTERS[player.character];
+      for (const e of consumableVfx) NV.drawConsumableActivation(ctx, e, player, char, frame);
+    }
+  }
+
+  // === LOBBY PREVIEW: render real del personaje seleccionado en el lobby ===
+  // Reutiliza NV.drawPlayer con un estado limpio de presentación. El renderer
+  // canónico ya contiene respiración, bobbing y movimiento específico por piloto.
+  let lobbyPreviewCanvas = null, lobbyPreviewCtx = null;
+  function getLobbyPreviewCanvas() {
+    if (lobbyPreviewCanvas) return lobbyPreviewCanvas;
+    lobbyPreviewCanvas = document.getElementById('lobbyPreview');
+    if (lobbyPreviewCanvas) lobbyPreviewCtx = lobbyPreviewCanvas.getContext('2d');
+    return lobbyPreviewCanvas;
+  }
+  function resizeLobbyPreview() {
+    const c = getLobbyPreviewCanvas();
+    if (!c) return;
+    const rect = c.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return;
+    const dpr = (NV.viewport && typeof NV.viewport.getEffectiveDpr === 'function')
+      ? NV.viewport.getEffectiveDpr() : 1;
+    const bw = Math.round(rect.width * dpr), bh = Math.round(rect.height * dpr);
+    if (c.width !== bw || c.height !== bh) { c.width = bw; c.height = bh; }
+  }
+  function isLobbyPreviewActive() {
+    const root = document.documentElement;
+    const settingsOpen = root && root.getAttribute && root.getAttribute('data-settings-open') === 'true';
+    return state === 'menu' && !settingsOpen && dom.startScreen && !dom.startScreen.classList.contains('hidden');
+  }
+  function lobbyPreviewPlayer() {
+    return Object.assign({}, player, {
+      x: 0,
+      y: 0,
+      hp: Math.max(1, player.maxHp || 1),
+      maxHp: Math.max(1, player.maxHp || 1),
+      // F09.4: el preview nunca muestra contorno de cooldown (ya eliminado
+      // globalmente); se fija estado limpio de presentación.
+      specialCd: 0,
+      invuln: 0,
+      stun: 0,
+      phase: 0,
+      bulwark: 0,
+      shield: 0,
+      overdrive: 0,
+      specialVisual: null, // el preview no hereda una manifestación de combate.
+    });
+  }
+  function lobbyPreviewVisualRadius(char, characterId) {
+    const base = char.size || 20;
+    return base * (characterId === 'swarm' ? 2.65 : 1.65) + 12;
+  }
+  function drawLobbyPreview() {
+    if (!isLobbyPreviewActive()) return;
+    const c = getLobbyPreviewCanvas();
+    if (!c || !lobbyPreviewCtx) return;
+    const char = CHARACTERS[player.character];
+    if (!char) return;
+    resizeLobbyPreview();
+    const w = c.width, h = c.height;
+    lobbyPreviewCtx.setTransform(1, 0, 0, 1, 0, 0);
+    lobbyPreviewCtx.clearRect(0, 0, w, h);
+    const safeWidth = Math.max(1, w * 0.82);
+    const safeHeight = Math.max(1, h * 0.78);
+    const radius = lobbyPreviewVisualRadius(char, player.character);
+    const scale = Math.max(1, Math.min(4.25, safeWidth / (radius * 2), safeHeight / (radius * 2)));
+    const previewPlayer = lobbyPreviewPlayer();
+    lobbyPreviewCtx.save();
+    lobbyPreviewCtx.translate(w / 2, h / 2);
+    lobbyPreviewCtx.scale(scale, scale);
+    NV.drawPlayer(lobbyPreviewCtx, previewPlayer, CHARACTERS, frame);
+    lobbyPreviewCtx.restore();
+  }
+
+
+  // === LOOP ===
+  // P2: instrumentación del loop. frameMs = intervalo real entre rAF;
+  // updateMs/drawMs = coste de cada fase. El monitor SOLO observa.
+  let perfPrevNow = 0, vbEvalTimer = 0;
+  function applyScreenShake() {
+    if (shake > 0 && (state === 'playing' || state === 'player_dying' || state === 'wave_end')) {
+      const deathMult = state === 'player_dying' ? 0.7 : 1;
+      const comfort = NV.settings && NV.settings.gameplay && NV.settings.gameplay.reducedEffects ? 0 : 1;
+      const sx = (Math.random() - 0.5) * 8 * shake * deathMult * comfort;
+      const sy = (Math.random() - 0.5) * 4 * shake * deathMult * comfort;
+      canvas.style.transform = `translate(${sx}px, ${sy}px)`;
+      if (specterCanvas) specterCanvas.style.transform = `translate(${sx}px, ${sy}px)`;
+    } else {
+      canvas.style.transform = '';
+      if (specterCanvas) specterCanvas.style.transform = '';
+    }
+  }
+  function loop(now) {
+    if (NV.gamepad && typeof NV.gamepad.poll === 'function') NV.gamepad.poll();
+    if (NV.tutorial && typeof NV.tutorial.poll === 'function') NV.tutorial.poll(now);
+    if (!lastTime) lastTime = now;
+    perfPrevNow = lastTime;
+    let dt = Math.min(0.03, (now - lastTime) / 1000);
+    lastTime = now;
+
+    if (NV.audio && typeof NV.audio.update === 'function') {
+      if (NV.updateAudioLifecycle) NV.updateAudioLifecycle({ state, paused, hidden: !!document.hidden });
+      if (NV.syncSectorLaserSound) NV.syncSectorLaserSound(hazards, { state, paused, hidden: !!document.hidden });
+      NV.audio.update({ state, paused, hidden: !!document.hidden });
+    }
+
+    if (hitstop > 0) { hitstop = Math.max(0, hitstop - dt); dt = 0; }
+    if (!paused) visualTimeSeconds += dt;
+    if (NV.rhythmTick) {
+      const rhythmNow = now / 1000;
+      NV.rhythmTick(rhythmNow);
+      const rhythmVisualDiag = NV.rhythmVisualDiagnostics;
+      if ((!rhythmVisualDiag || rhythmVisualDiag.auxiliary !== false) && NV.rhythmShakeBoost) {
+        shake = Math.max(shake, NV.rhythmShakeBoost(NV.rhythm, rhythmNow));
+      }
+      if (NV.updateRhythmWidgetIcon) NV.updateRhythmWidgetIcon();
+    }
+
+    if ((state === 'menu' || state === 'shop' || state === 'shop_enter') && !paused) updateMusic(dt);
+    // El tiempo visual del piloto avanza solo mientras el lobby es la vista activa.
+    if (isLobbyPreviewActive()) {
+      frame++;
+      drawLobbyPreview();
+    }
+    const perfUpdateStart = performance.now();
+    update(dt);
+    // Resolver el desplazamiento físico antes de reproyectar cursor y dibujar.
+    // Después de draw provocaba un frame de desalineación cursor/retícula.
+    applyScreenShake();
+    const perfDrawStart = performance.now();
+    draw();
+    const perfDrawEnd = performance.now();
+    if (NV.performanceMonitor) {
+      NV.performanceMonitor.record(now - perfPrevNow, perfDrawStart - perfUpdateStart, perfDrawEnd - perfDrawStart);
+    }
+    // Visual budget: evaluación de baja frecuencia (~2 Hz) con el p95 real.
+    vbEvalTimer += now - perfPrevNow;
+    if (vbEvalTimer >= 500) {
+      vbEvalTimer = 0;
+      if (NV.updateVisualBudget) {
+        const perfSnapshot = NV.performanceMonitor ? NV.performanceMonitor.getSnapshot() : null;
+        // El primer arranque de Chromium/Electron incluye compilación y carga de
+        // recursos. Esperar 120 frames evita confundir ese warm-up con presión
+        // sostenida; luego la misma histéresis sigue protegiendo la partida.
+        if (!perfSnapshot || perfSnapshot.frames >= 120) {
+          NV.updateVisualBudget(perfSnapshot ? perfSnapshot.frame.p95 : NaN);
+        }
+      }
+    }
+    updateMetaDiagnostics();
+    updateEspectroBridge(dt);
+
+    requestAnimationFrame(loop);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else { init(); }
+
+  // === Accesores de estado para módulos externos (audio, render, ui…)
+  NV.getFrame = () => frame;
+  // P2: telemetría de entidades para el monitor (solo lectura, nunca muta).
+  if (NV.performanceMonitor) {
+    NV.performanceMonitor.setTelemetryProvider(() => {
+      let light = 0, medium = 0, heavy = 0;
+      let hydraFamily = 0, specializedCommon = 0, otherSpectral = 0;
+      const byEnemyTypeId = Object.create(null);
+      for (const e of enemies) {
+        if (e.dead) continue;
+        const typeId = e.enemyTypeId || 'unknown';
+        byEnemyTypeId[typeId] = (byEnemyTypeId[typeId] || 0) + 1;
+        if (typeof NV.isHydraEnemyFamily === 'function' && NV.isHydraEnemyFamily(e)) hydraFamily++;
+        else if (typeof NV.hasCommonEnemyVisual === 'function' && NV.hasCommonEnemyVisual(e.enemyTypeId)) specializedCommon++;
+        else otherSpectral++;
+        const c = e.hostileClass || 'light';
+        if (c === 'heavy') heavy++;
+        else if (c === 'medium') medium++;
+        else light++;
+      }
+      if (boss && !boss.dead) { heavy++; otherSpectral++; } // el jefe consume un slot heavy
+      let playerBullets = 0, enemyBullets = 0;
+      for (const b of bullets) {
+        if (b.dead) continue;
+        if (b.isEnemy) enemyBullets++; else playerBullets++;
+      }
+      const vbp = NV.getVisualBudget ? NV.getVisualBudget() : null;
+      return {
+        hostiles: light + medium + heavy,
+        lightHostiles: light,
+        mediumHostiles: medium,
+        heavyHostiles: heavy,
+        hydraFamilyHostiles: hydraFamily,
+        specializedCommonHostiles: specializedCommon,
+        otherSpectralHostiles: otherSpectral,
+        byEnemyTypeId,
+        playerBullets,
+        enemyBullets,
+        particles: particles.length,
+        shockwaves: shockwaves.length,
+        trails: trails.length,
+        meteors: meteors.length,
+        drones: drones.length,
+        hazards: hazards.length,
+        graphicsQuality: (NV.settings && NV.settings.graphics && NV.settings.graphics.quality) || 'high',
+        effectiveVisualTier: vbp ? vbp.tier : 'unknown',
+        effectiveDpr: (NV.viewport && typeof NV.viewport.getEffectiveDpr === 'function') ? NV.viewport.getEffectiveDpr() : 1,
+        mobile: !!(NV.capabilities && NV.capabilities.isMobile),
+      };
+    });
+  }
+  // Puente reducido de producto. La UI no toca entidades ni simula el combate.
+  function saveExpeditionCheckpoint() {
+    if (!NV.expedition || combatLabMode || metaFrozen || !expeditionRun || (state !== 'shop' && state !== 'shop_enter')) return false;
+    return NV.expedition.save({ version: 1, character: player.character, wave, run: expeditionRun,
+      player, inventory: inventory.map(w => w.id), currentWeapon: currentWeapon.id,
+      levels: weaponLevels, kills: weaponKills, fus: weaponFus, consumables: consumableItems,
+      shopBought, upgradeSlots, score, shards, difficulty: NV.runDifficulty, savedAt: Date.now() });
+  }
+  function resumeExpedition() {
+    if (!NV.expedition || state !== 'menu' || combatLabMode) return false;
+    const saved = NV.expedition.load();
+    if (!saved) return false;
+    // Validar primero. startGame limpia TODO transitorio y el checkpoint aporta sólo datos.
+    selectPilot(saved.character);
+    initAudio();
+    startGame();
+    expeditionRun = saved.run;
+    NV.runDifficulty = saved.difficulty;
+    if (NV.settings && NV.settings.gameplay) NV.settings.gameplay.difficulty = saved.difficulty;
+    Object.assign(player, saved.player);
+    inventory = saved.inventory.map(id => NV.weaponById(id));
+    currentWeapon = NV.weaponById(saved.currentWeapon);
+    weaponLevels = saved.levels; weaponKills = saved.kills; weaponFus = saved.fus;
+    consumableItems = saved.consumables; consumSel = 0;
+    shopBought = saved.shopBought; upgradeSlots = saved.upgradeSlots;
+    score = saved.score; shards = saved.shards; wave = saved.wave + 1;
+    // Mantener el último checkpoint si se cierra durante esta oleada.
+    if (!metaFrozen) NV.expedition.save(saved);
+    nextWave(); updateHUD(); notifyMobileWeapon(); notifyMobileConsumable();
+    return true;
+  }
+  function finishExpedition() {
+    expeditionRun.completed = true;
+    clearCombatIntent();
+    state = 'gameover'; paused = false;
+    resetPresentation();
+    bullets = []; enemies = []; flameZones = [];
+    if (NV.audio && NV.audio.stopAllWeapons) NV.audio.stopAllWeapons();
+    dom.shop.classList.add('hidden');
+    dom.gameOver.classList.remove('hidden');
+    dom.goTitle.textContent = 'VACÍO SELLADO';
+    dom.goText.textContent = 'HISTORIA COMPLETADA · ' + expeditionRun.bosses + ' jefes vencidos, cuatro sectores conquistados. Esta misión terminó. NUEVA HISTORIA empieza desde cero; INFINITO sigue sin final. Tus mejoras permanentes y récords se conservan.';
+    dom.goScore.textContent = formatPoints(score); dom.goWave.textContent = wave;
+    metaShards += Math.floor(shards / 2) + Math.floor(score / 100) + 100;
+    saveMeta();
+    if (!metaFrozen) { NV.expedition.clear(); NV.expedition.complete(expeditionRun, wave, score, true); }
+    syncGameState();
+    sfx.victory(wave, { milestone: true });
+  }
+  NV.alpha = Object.freeze({
+    version: '0.10.0-alpha',
+    snapshot: () => ({ state, paused, showHUD, combatLab: combatLabMode, saveDisabled: metaFrozen, wave, score, shards,
+      run: expeditionRun ? JSON.parse(JSON.stringify(expeditionRun)) : null,
+      mode: expeditionMode, hp: player.hp, maxHp: player.maxHp,
+      inventory: inventory.map(w => ({ id: w.id, name: w.name, level: weaponLevels[w.id] || 1, role: w.pro })),
+      weapon: currentWeapon && currentWeapon.id, character: player.character, event: waveEvent }),
+    setMode: mode => { if (state === 'menu') expeditionMode = mode === 'endless' ? 'endless' : 'expedition'; },
+    resume: resumeExpedition,
+    save: saveExpeditionCheckpoint,
+    dockAndQuit: () => {
+      if (state !== 'shop') return false;
+      // ?fresh=1 es un modo de prueba sin persistencia: salir funciona, pero
+      // jamás promete guardar ni pisa la partida real del navegador.
+      if (!metaFrozen && !saveExpeditionCheckpoint()) return false;
+      showLobby(); return true;
+    },
+    prepare: kind => {
+      if (state !== 'shop' || !expeditionRun) return false;
+      const r = NV.expedition.prepare(kind, { run: expeditionRun, wave, player, shards, inventory, levels: weaponLevels, kills: weaponKills });
+      if (!r.ok) return false;
+      shards = r.shards; dom.shopShards.textContent = shards;
+      renderInventory(); updateHUD(); saveExpeditionCheckpoint(); sfx.shopBuy(); return true;
+    },
+    route: event => {
+      if (state !== 'shop' || !expeditionRun || (wave + 1) % 3 !== 0 || NV.expedition.isBossWave(expeditionRun, wave + 1) || !WAVE_EVENTS[event]) return false;
+      expeditionRun.event = event; saveExpeditionCheckpoint(); return true;
+    },
+  });
+  NV.getState = () => state;
+  NV.getBoss = () => boss;
+  NV.getWave = () => wave;
+  NV.getRuntimeSnapshot = () => ({
+    state,
+    paused,
+    frame,
+    wave,
+    waveTimer,
+    objective: waveGoal ? {
+      defeats: waveDefeats, spawned: waveSpawned,
+      cleared: Math.max(0, waveSpawned - enemies.filter(enemy => !enemy.dead).length),
+      required: waveGoal.total,
+    } : null,
+    wavePressure: wavePressure && wavePressure.mark ? {
+      x: wavePressure.mark.x, y: wavePressure.mark.y,
+      remaining: wavePressure.mark.t, radius: wavePressure.mark.radius,
+    } : null,
+    transition,
+    presentation: {
+      kind: presentation.kind,
+      elapsed: presentation.elapsed,
+      duration: presentation.duration,
+      isBoss: presentation.isBoss,
+      zoom: presentationZoom(),
+    },
+    enemies: enemies.filter((enemy) => !enemy.dead).length,
+    arrivals: enemies.reduce((count, enemy) => count + (!enemy.dead && enemy.arrival ? 1 : 0), 0),
+    arrivalPuffs: enemies.reduce((count, enemy) => count + (!enemy.dead && enemy.arrival && enemy.arrival.stage === 'puff' ? 1 : 0), 0),
+    outsideEnemies: enemies.reduce((count, enemy) => count + (!enemy.dead &&
+      (!Number.isFinite(enemy.x) || !Number.isFinite(enemy.y) || enemy.x < 0 || enemy.y < 0 || enemy.x > arenaW() || enemy.y > arenaH()) ? 1 : 0), 0),
+    hostileBudget: NV.getHostileBudget({ enemies, boss, MAX_HOSTILES, MAX_HEAVY_HOSTILES }),
+    softHostileTarget: boss ? NV.bossSupportTarget(wave, NV.runDifficulty) : NV.softHostileTarget(wave, NV.runDifficulty, NV.worldMetrics),
+    sectorHazards: hazards.filter(h => h.type === 'sectorHazard' && h.state !== 'dead').map(h => ({
+      kind:h.kind, state:h.state, x:h.x, y:h.y, width:h.width, W:h.W, H:h.H, laserHead:!!h.laserHead, side:h.side, stateTime:h.stateTime,
+    })),
+    player: {
+      character: player.character,
+      x: player.x,
+      y: player.y,
+      hp: player.hp,
+      maxHp: player.maxHp,
+    },
+    dashTrail: NV.getDashTrailStats(trails),
+    special: {
+      phase: player.phase, bulwark: player.bulwark, invuln: player.invuln, cooldown: player.specialCd,
+      meteors: meteors.length, orbitants: drones.length,
+      visual: player.specialVisual ? { type: player.specialVisual.type, age: player.specialVisual.age,
+        end: player.specialVisual.end, events: player.specialVisual.events.length } : null,
+    },
+  });
+})();

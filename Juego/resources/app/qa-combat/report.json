@@ -1,0 +1,736 @@
+{
+  "pass": true,
+  "cases": [
+    "Scene initialized",
+    "Diagonal movement does not gain speed",
+    "Fast shots cannot cross cover",
+    "Acceleration moves player",
+    "Jump + directional dash combine",
+    "Gravity returns to terrain",
+    "Dash cannot repeat during cooldown",
+    "Swept projectile damages enemy",
+    "Enemy dies and kill count advances",
+    "Enemy telegraph leads to damage",
+    "Enemy/player remain separated",
+    "Ranged enemy fires",
+    "Hostile projectile can damage player",
+    "Cursor aim hits actual target",
+    "Pause freezes simulation",
+    "Death stops combat",
+    "Restart restores life and enemies",
+    "Camera mode free",
+    "Camera mode fixed",
+    "Camera mode auto",
+    "Camera avoids cover",
+    "Dash respects solid obstacles",
+    "Space key triggers jump",
+    "Losing focus pauses and clears controls",
+    "Large terrain remains traversable",
+    "A live impact cannot stop the animation frame chain",
+    "Zero-length impact direction keeps position and speed finite",
+    "No console errors"
+  ],
+  "combo": {
+    "ready": true,
+    "characters": {
+      "style": "doll-porcelain-v1",
+      "faceTextures": 6,
+      "bodyTextures": 1
+    },
+    "position": [
+      0,
+      42.364230281281664,
+      -70.66666666666666
+    ],
+    "speed": 530,
+    "travelled": 70.66666666666666,
+    "worldSize": 7200,
+    "projectiles": 0,
+    "targets": 34,
+    "cameraDistance": 184.10155365303214,
+    "state": {
+      "hp": 100,
+      "kills": 0,
+      "grounded": false,
+      "coyote": 0,
+      "jumpBuffer": 0,
+      "dashBuffer": 0,
+      "dash": 0.09500000000000003,
+      "cooldown": 1.1250000000000004,
+      "invincible": 0.8666666666666671,
+      "fireCooldown": 0,
+      "shotVisual": 0,
+      "hurt": 0,
+      "hit": 0,
+      "time": 1.2083333333333315,
+      "paused": false,
+      "dead": false,
+      "won": false,
+      "cameraMode": "free",
+      "lastMouse": -10,
+      "matchMode": false,
+      "dimension": 0
+    },
+    "height": 24.231268451853467,
+    "world": {
+      "trees": 620,
+      "reeds": 9000,
+      "fungi": 750,
+      "shrubs": 960,
+      "mysteries": 3,
+      "waterPockets": 32,
+      "landmarks": 33,
+      "covers": 0,
+      "routes": 0,
+      "colliders": 731,
+      "fauna": 24,
+      "rainDrops": 260,
+      "region": "umbral",
+      "weather": 0.5151018695702048
+    },
+    "expedition": {
+      "relays": [
+        false,
+        false,
+        false
+      ],
+      "phase": "relays",
+      "extract": 0,
+      "xp": 25,
+      "level": 1,
+      "shards": 0,
+      "upgrades": 0,
+      "visited": [
+        "umbral"
+      ],
+      "notice": "UMBRAL · MARISMA VIVA · región descubierta",
+      "noticeUntil": 6.083333333333332
+    },
+    "audio": {
+      "started": false,
+      "running": false,
+      "voices": 0,
+      "voiceLimit": 32,
+      "peakVoices": 0,
+      "played": 0,
+      "dropped": 0,
+      "stolen": 0,
+      "volume": 0.65,
+      "mute": false,
+      "region": 0,
+      "paused": false,
+      "peak": 0,
+      "rms": 0,
+      "buses": [],
+      "mixes": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "threat": 0,
+      "duck": 1,
+      "atmosphere": {
+        "hush": 0,
+        "uneaseCalls": 0,
+        "wonderCalls": 0,
+        "nextUnease": 13.220832678768783,
+        "nextWonder": 5.074999999999998
+      },
+      "growth": {
+        "source": "original-voiced-granular",
+        "grains": 0,
+        "touches": 0,
+        "focus": null,
+        "level": 0,
+        "pad": false,
+        "soundscape": "natural-marsh"
+      },
+      "emitters": 0,
+      "emitterLimit": 12,
+      "panners": 0,
+      "spatialEvents": 0,
+      "flybys": 0,
+      "occlusionQueries": 0,
+      "events": {},
+      "listener": {
+        "x": 0,
+        "y": 56.364230281281664,
+        "z": -70.66666666666666,
+        "forward": {
+          "x": 0.000003841296546456064,
+          "y": -0.16428271262322966,
+          "z": -0.9864132958949804
+        },
+        "up": {
+          "x": 6.397507203759824e-7,
+          "y": 0.9864132959024596,
+          "z": -0.16428271262198396
+        }
+      },
+      "sources": [],
+      "latency": 0
+    },
+    "survival": {
+      "fuel": 239.8463333333332,
+      "emergency": 0,
+      "matches": 3,
+      "lit": true,
+      "fear": 0.01957856283603975,
+      "darkness": 0.3019634937336129,
+      "flicker": 0.8496553290419836,
+      "movementMultiplier": 1,
+      "aggressionMultiplier": 1,
+      "stage": "calm",
+      "fragments": 3,
+      "lightRadius": 380,
+      "fuelRatio": 0.9993597222222217,
+      "eventsPending": 0
+    },
+    "lighting": {
+      "intensity": 8496.553290419835,
+      "radius": 380
+    },
+    "shelters": {
+      "elapsed": 0.13333333333333333,
+      "guards": [],
+      "kits": [],
+      "anchors": [],
+      "echoes": [],
+      "collected": []
+    },
+    "shelterViews": {
+      "slots": 0,
+      "max": 24,
+      "decoys": 0
+    },
+    "terrorAudio": {
+      "started": false,
+      "wind": 0,
+      "metal": 0,
+      "voices": 0,
+      "voiceLimit": 8,
+      "sharedContext": false,
+      "permanentNodes": 0
+    },
+    "post": {
+      "enabled": true,
+      "width": 1088,
+      "height": 672,
+      "scale": 0.8,
+      "fear": 0.01957856283603975,
+      "darkness": 0.3019634937336129,
+      "chromatic": true,
+      "grain": true,
+      "vignette": true,
+      "lens": true,
+      "lensAmount": 0.3829962988210982,
+      "lensRadius": 0.03422599048646535,
+      "lensDepth": 0.999471467803944,
+      "depthOcclusion": true,
+      "accretionArcs": true,
+      "colorCorrect": false,
+      "legacyDarkTone": true,
+      "transitFade": 0,
+      "lightPower": 0.65
+    },
+    "weapon": {
+      "name": "Pistola",
+      "ammo": 14,
+      "reserve": 28,
+      "reload": 0
+    },
+    "loadout": {
+      "ammo": [
+        14,
+        28,
+        6,
+        3
+      ],
+      "reserve": [
+        28,
+        56,
+        12,
+        3
+      ],
+      "items": {
+        "medkit": 1,
+        "shield": 1,
+        "antidote": 1
+      }
+    },
+    "supplies": {
+      "lastTarget": null,
+      "crates": []
+    },
+    "commentary": {
+      "current": null,
+      "history": []
+    },
+    "strategy": {
+      "enabled": false,
+      "elapsed": 0,
+      "turn": 0,
+      "serial": 0,
+      "channel": null,
+      "goals": [],
+      "fields": [],
+      "couriers": [],
+      "stocks": [],
+      "contracts": [],
+      "cargo": [],
+      "reveals": [],
+      "logs": [],
+      "damageLog": []
+    },
+    "strategyViews": {
+      "goals": 12,
+      "effects": 40,
+      "objects": 0
+    },
+    "render": {
+      "triangles": 675239,
+      "calls": 450,
+      "frameSerial": 15,
+      "frameFaults": 0,
+      "contextLost": false,
+      "lastFrameError": null
+    }
+  },
+  "final": {
+    "ready": true,
+    "characters": {
+      "style": "doll-porcelain-v1",
+      "faceTextures": 6,
+      "bodyTextures": 1
+    },
+    "position": [
+      0,
+      15.836452503503875,
+      0
+    ],
+    "speed": 0,
+    "travelled": 0,
+    "worldSize": 7200,
+    "projectiles": 1,
+    "targets": 34,
+    "cameraDistance": 184.09912836449692,
+    "state": {
+      "hp": 86,
+      "kills": 0,
+      "grounded": true,
+      "coyote": 0.1,
+      "jumpBuffer": 0,
+      "dashBuffer": 0,
+      "dash": 0,
+      "cooldown": 0,
+      "invincible": 0.2666666666666665,
+      "fireCooldown": 0,
+      "shotVisual": 0,
+      "hurt": 0,
+      "hit": 0,
+      "time": 11.808333333333303,
+      "paused": false,
+      "dead": false,
+      "won": false,
+      "cameraMode": "free",
+      "lastMouse": 8.758333333333477,
+      "matchMode": false,
+      "dimension": 0
+    },
+    "height": 0,
+    "world": {
+      "trees": 620,
+      "reeds": 9000,
+      "fungi": 750,
+      "shrubs": 960,
+      "mysteries": 3,
+      "waterPockets": 32,
+      "landmarks": 33,
+      "covers": 0,
+      "routes": 0,
+      "colliders": 731,
+      "fauna": 24,
+      "rainDrops": 260,
+      "region": "umbral",
+      "weather": 0.6454695887961959
+    },
+    "expedition": {
+      "relays": [
+        false,
+        false,
+        false
+      ],
+      "phase": "relays",
+      "extract": 0,
+      "xp": 25,
+      "level": 1,
+      "shards": 0,
+      "upgrades": 0,
+      "visited": [
+        "umbral"
+      ],
+      "notice": "UMBRAL · MARISMA VIVA · región descubierta",
+      "noticeUntil": 15.258333333333391
+    },
+    "audio": {
+      "started": true,
+      "running": true,
+      "voices": 1,
+      "voiceLimit": 32,
+      "peakVoices": 8,
+      "played": 13,
+      "dropped": 0,
+      "stolen": 0,
+      "volume": 0.65,
+      "mute": false,
+      "region": 0,
+      "paused": false,
+      "peak": 0.06076810881495476,
+      "rms": 0.019764126201609857,
+      "buses": [
+        "master",
+        "ambient",
+        "weather",
+        "biome",
+        "combat",
+        "weapons",
+        "enemies",
+        "boss",
+        "signals",
+        "growth"
+      ],
+      "mixes": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "threat": 0.3662921026322458,
+      "duck": 1,
+      "atmosphere": {
+        "hush": 0.006992004222693561,
+        "uneaseCalls": 0,
+        "wonderCalls": 0,
+        "nextUnease": 22.06786268879665,
+        "nextWonder": 14.250000000000059
+      },
+      "growth": {
+        "source": "original-voiced-granular",
+        "grains": 1,
+        "touches": 0,
+        "focus": null,
+        "level": 0.3263764153616171,
+        "pad": false,
+        "soundscape": "natural-marsh"
+      },
+      "emitters": 10,
+      "emitterLimit": 12,
+      "panners": 19,
+      "spatialEvents": 11,
+      "flybys": 0,
+      "occlusionQueries": 140,
+      "events": {
+        "growth-air": 3,
+        "jump": 1,
+        "warning": 1,
+        "hurt": 1,
+        "enemy-shot": 1
+      },
+      "listener": {
+        "x": 0,
+        "y": 29.836452503503875,
+        "z": 0,
+        "forward": {
+          "x": 4.5543572753017005e-8,
+          "y": -0.1642863976692289,
+          "z": -0.9864126821674923
+        },
+        "up": {
+          "x": 7.585252744458454e-9,
+          "y": 0.9864126821674932,
+          "z": -0.1642863976692287
+        }
+      },
+      "sources": [
+        {
+          "id": "body-roll",
+          "kind": "roll-earth",
+          "position": {
+            "x": 0,
+            "y": 15.836452503503875,
+            "z": 0
+          },
+          "category": "combat",
+          "distance": 1.4,
+          "occlusion": 0,
+          "cutoff": 15890.74678762257,
+          "gain": 1,
+          "audibility": 1
+        },
+        {
+          "id": "enemy-0",
+          "kind": "enemy",
+          "position": {
+            "x": -193.96913325651616,
+            "y": 17.871629040225688,
+            "z": -266.97560814373264
+          },
+          "category": "enemies",
+          "distance": 33.02168333088236,
+          "occlusion": 1,
+          "cutoff": 389.3341483446853,
+          "gain": 0.21999999999999997,
+          "audibility": 0.026649156288680503
+        },
+        {
+          "id": "enemy-1",
+          "kind": "enemy",
+          "position": {
+            "x": -144.51885799720392,
+            "y": 12.500686070011175,
+            "z": -361.5012027293424
+          },
+          "category": "enemies",
+          "distance": 38.970418100068386,
+          "occlusion": 0,
+          "cutoff": 5992.182946329481,
+          "gain": 1,
+          "audibility": 0.1026419575414558
+        },
+        {
+          "id": "enemy-2",
+          "kind": "enemy",
+          "position": {
+            "x": -57.585005676020316,
+            "y": 20.6524899200598,
+            "z": -446.3003104651538
+          },
+          "category": "enemies",
+          "distance": 45.009370709745994,
+          "occlusion": 0,
+          "cutoff": 5105.894960239663,
+          "gain": 1,
+          "audibility": 0.08887038269863813
+        },
+        {
+          "id": "enemy-3",
+          "kind": "enemy",
+          "position": {
+            "x": 27.821708098977208,
+            "y": 27.707966079142846,
+            "z": -537.7721956050299
+          },
+          "category": "enemies",
+          "distance": 53.84956009679725,
+          "occlusion": 0.3333333333333333,
+          "cutoff": 1562.5472863079603,
+          "gain": 0.74,
+          "audibility": 0.05496795135706316
+        },
+        {
+          "id": "goal",
+          "kind": "signal",
+          "position": {
+            "x": -520,
+            "y": 39.62688503381671,
+            "z": -700
+          },
+          "category": "signals",
+          "distance": 87.20641332890206,
+          "occlusion": 1,
+          "cutoff": 260,
+          "gain": 0.16988371927252538,
+          "audibility": 0.012003349508478907
+        },
+        {
+          "id": "reeds-936",
+          "kind": "reeds",
+          "position": {
+            "x": 31.295379638671875,
+            "y": 14.882697105407715,
+            "z": -15.80318546295166
+          },
+          "category": "biome",
+          "distance": 3.811503978761055,
+          "occlusion": 0,
+          "cutoff": 15309.011267501384,
+          "gain": 1,
+          "audibility": 1
+        },
+        {
+          "id": "tree-133",
+          "kind": "tree",
+          "position": {
+            "x": -150.87644958496094,
+            "y": 51.26210983329136,
+            "z": 145.27915954589844
+          },
+          "category": "biome",
+          "distance": 21.05440477186172,
+          "occlusion": 0,
+          "cutoff": 8768.135507430183,
+          "gain": 1,
+          "audibility": 0.25708309832050164
+        },
+        {
+          "id": "water-0",
+          "kind": "water",
+          "position": {
+            "x": -80,
+            "y": 3.236025214513462,
+            "z": -260
+          },
+          "category": "biome",
+          "distance": 27.332687890501525,
+          "occlusion": 0,
+          "cutoff": 7001.1288482279915,
+          "gain": 1,
+          "audibility": 0.19920779759045798
+        },
+        {
+          "id": "flock",
+          "kind": "fauna",
+          "position": {
+            "x": -458.75923880127607,
+            "y": 137.4387002820181,
+            "z": -292.9705873199843
+          },
+          "category": "biome",
+          "distance": 55.48603859955507,
+          "occlusion": 0,
+          "cutoff": 3028.4452594988766,
+          "gain": 1,
+          "audibility": 0.09913271810539538
+        }
+      ],
+      "latency": 0.01
+    },
+    "survival": {
+      "fuel": 238.37933333333268,
+      "emergency": 0,
+      "matches": 3,
+      "lit": true,
+      "fear": 0.22037941317620335,
+      "darkness": 0.23716367413760725,
+      "flicker": 0.959411121040638,
+      "movementMultiplier": 1,
+      "aggressionMultiplier": 1,
+      "stage": "calm",
+      "fragments": 3,
+      "lightRadius": 380,
+      "fuelRatio": 0.9932472222222195,
+      "eventsPending": 0
+    },
+    "lighting": {
+      "intensity": 9594.11121040638,
+      "radius": 380
+    },
+    "shelters": {
+      "elapsed": 1.5583333333333302,
+      "guards": [],
+      "kits": [],
+      "anchors": [],
+      "echoes": [],
+      "collected": []
+    },
+    "shelterViews": {
+      "slots": 0,
+      "max": 24,
+      "decoys": 0
+    },
+    "terrorAudio": {
+      "started": true,
+      "wind": 0.025605740025639534,
+      "metal": 0.0007389544043689966,
+      "voices": 0,
+      "voiceLimit": 8,
+      "sharedContext": true,
+      "permanentNodes": 7
+    },
+    "post": {
+      "enabled": true,
+      "width": 768,
+      "height": 496,
+      "scale": 0.8,
+      "fear": 0.22037941317620335,
+      "darkness": 0.23716367413760725,
+      "chromatic": true,
+      "grain": true,
+      "vignette": true,
+      "lens": true,
+      "lensAmount": 0.3801258384948549,
+      "lensRadius": 0.030611664916275774,
+      "lensDepth": 0.9995324425376775,
+      "depthOcclusion": true,
+      "accretionArcs": true,
+      "colorCorrect": false,
+      "legacyDarkTone": true,
+      "transitFade": 0,
+      "lightPower": 0.65
+    },
+    "weapon": {
+      "name": "Pistola",
+      "ammo": 14,
+      "reserve": 28,
+      "reload": 0
+    },
+    "loadout": {
+      "ammo": [
+        14,
+        28,
+        6,
+        3
+      ],
+      "reserve": [
+        28,
+        56,
+        12,
+        3
+      ],
+      "items": {
+        "medkit": 1,
+        "shield": 1,
+        "antidote": 1
+      }
+    },
+    "supplies": {
+      "lastTarget": null,
+      "crates": []
+    },
+    "commentary": {
+      "current": null,
+      "history": []
+    },
+    "strategy": {
+      "enabled": false,
+      "elapsed": 0,
+      "turn": 0,
+      "serial": 0,
+      "channel": null,
+      "goals": [],
+      "fields": [],
+      "couriers": [],
+      "stocks": [],
+      "contracts": [],
+      "cargo": [],
+      "reveals": [],
+      "logs": [],
+      "damageLog": []
+    },
+    "strategyViews": {
+      "goals": 12,
+      "effects": 40,
+      "objects": 0
+    },
+    "render": {
+      "triangles": 677827,
+      "calls": 456,
+      "frameSerial": 178,
+      "frameFaults": 0,
+      "contextLost": false,
+      "lastFrameError": null
+    }
+  },
+  "errors": []
+}

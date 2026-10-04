@@ -1,0 +1,29 @@
+{
+  "pass": true,
+  "cases": [
+    "Desktop host opens actual TCP room",
+    "Wrong room code is rejected",
+    "Both windows connected through preload and TCP",
+    "Both peers render Umbral II with its actual terrain and cover",
+    "Guest receives persistent profile identity and emoji",
+    "Guest observes authoritative active actor",
+    "Shots and personal magazine replicate",
+    "Supply phase and falling crate replicate before control transfer",
+    "Guest receives its own team turn",
+    "Guest input moves actor on host",
+    "Authoritative position converges on guest",
+    "Guest medkit is consumed by authority and replicated",
+    "Personal reserves synchronize",
+    "Contextual dialogue is identical on both PCs",
+    "Stale and wrong actor commands rejected",
+    "Guest shooting executes authoritative ammo rules",
+    "Compact explosion visual replicates without local damage",
+    "Two-second relay objective executes on host and score replicates",
+    "Guest can voluntarily end its turn",
+    "Authoritative last-team victory replicates to guest with 1 HP",
+    "Guest sees its winning team, Julian and emoji",
+    "Disconnect safely pauses host",
+    "No renderer frame errors"
+  ],
+  "errors": []
+}

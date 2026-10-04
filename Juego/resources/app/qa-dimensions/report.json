@@ -1,0 +1,1037 @@
+{
+  "pass": true,
+  "cases": [
+    "Origin has full-size playable terrain and an explicit destination",
+    "E away from a portal cannot change dimensions",
+    "Portal presents its interaction and destination",
+    "Actual E input crosses to a second equally sized map",
+    "Second map has distinct terrain, forest and collision data",
+    "Only the active dimension is rendered",
+    "Growth aesthetics are isolated to the second dimension",
+    "Updated terrain and structural collisions coexist with cosmetic Growth geometry",
+    "Arrival is grounded and preserves health, weapon and spent magazine",
+    "Collected mortar survives the dimensional crossing",
+    "Crossing clears live projectiles and mortar effects",
+    "Second dimension starts independent contracts and enemies",
+    "Arrival cooldown prevents accidental immediate return",
+    "Alternate contract never overwrites the origin checkpoint",
+    "Pause blocks portal activation",
+    "Return restores original contract and defeated enemies",
+    "Portal changes the sustained soundtrack and return removes it",
+    "Returning keeps the original scenario free of Growth geometry",
+    "Revisiting restores alternate-map progress",
+    "Pause holds cosmetic animation on simulation time",
+    "New expedition returns to origin and resets cached progress",
+    "Dimension integration creates no renderer errors"
+  ],
+  "original": {
+    "id": 0,
+    "name": "UMBRAL I",
+    "size": 7200,
+    "portal": {
+      "x": -260,
+      "z": -450,
+      "radius": 82,
+      "destination": "UMBRAL II",
+      "kind": "black-hole",
+      "visualRadius": 21
+    },
+    "content": {
+      "covers": 0,
+      "routes": 0,
+      "points": []
+    },
+    "transit": {
+      "active": false,
+      "elapsed": 0,
+      "committed": false,
+      "duration": 3.05,
+      "intensity": 0,
+      "proxyPosition": [
+        0,
+        0,
+        0
+      ],
+      "proxyScale": [
+        1,
+        1,
+        1
+      ],
+      "horizon": [
+        0,
+        0,
+        0
+      ],
+      "fade": 0,
+      "preservesAppearance": true
+    },
+    "terrainSample": [
+      41.87233349529623,
+      -9.096715943413507
+    ],
+    "loaded": 1,
+    "visible": 1,
+    "trees": 620,
+    "boxes": 1129,
+    "aesthetic": {
+      "style": "original-marsh",
+      "sculptures": 0,
+      "stems": 0,
+      "orbs": 0,
+      "particles": 0,
+      "cosmetic": true
+    },
+    "grounded": true
+  },
+  "other": {
+    "id": 1,
+    "name": "UMBRAL II",
+    "size": 7200,
+    "portal": {
+      "x": -260,
+      "z": -450,
+      "radius": 82,
+      "destination": "UMBRAL I",
+      "kind": "black-hole",
+      "visualRadius": 21
+    },
+    "content": {
+      "covers": 16,
+      "routes": 3,
+      "points": [
+        {
+          "x": -375,
+          "z": -700,
+          "name": "Receptor ahogado"
+        },
+        {
+          "x": 1595,
+          "z": -900,
+          "name": "Horno de la emisión"
+        },
+        {
+          "x": 795,
+          "z": -2250,
+          "name": "Antena del coro"
+        },
+        {
+          "x": -1605,
+          "z": -1400,
+          "name": "Archivo sin audiencia"
+        }
+      ]
+    },
+    "transit": {
+      "active": false,
+      "elapsed": 3.058333333333325,
+      "committed": true,
+      "duration": 3.05,
+      "intensity": 0,
+      "proxyPosition": [
+        -260,
+        44.23814637164128,
+        -450
+      ],
+      "proxyScale": [
+        1,
+        1,
+        1
+      ],
+      "horizon": [
+        -260,
+        44.23814637164128,
+        -450
+      ],
+      "fade": 0,
+      "preservesAppearance": true
+    },
+    "terrainSample": [
+      46.49910204788118,
+      -6.220035503217505
+    ],
+    "loaded": 2,
+    "visible": 1,
+    "trees": 620,
+    "boxes": 1153,
+    "aesthetic": {
+      "style": "growth-marsh",
+      "sculptures": 12,
+      "stems": 1560,
+      "orbs": 6,
+      "particles": 1600,
+      "cosmetic": true
+    },
+    "grounded": true
+  },
+  "arrived": {
+    "ready": true,
+    "characters": {
+      "style": "doll-porcelain-v1",
+      "faceTextures": 6,
+      "bodyTextures": 1
+    },
+    "position": [
+      -260,
+      21.356304205950625,
+      -385
+    ],
+    "speed": 0,
+    "travelled": 0,
+    "worldSize": 7200,
+    "projectiles": 0,
+    "targets": 34,
+    "cameraDistance": 184.0991304064541,
+    "state": {
+      "hp": 100,
+      "kills": 0,
+      "grounded": true,
+      "coyote": 0.1,
+      "jumpBuffer": 0,
+      "dashBuffer": 0,
+      "dash": 0,
+      "cooldown": 0,
+      "invincible": 1.35,
+      "fireCooldown": 0,
+      "shotVisual": 0,
+      "hurt": 0,
+      "hit": 0,
+      "time": 45.483333333331394,
+      "paused": false,
+      "dead": false,
+      "won": false,
+      "cameraMode": "free",
+      "lastMouse": 8.758333333333477,
+      "matchMode": false,
+      "dimension": 1
+    },
+    "height": 0,
+    "world": {
+      "trees": 620,
+      "reeds": 9000,
+      "fungi": 750,
+      "shrubs": 960,
+      "mysteries": 3,
+      "waterPockets": 32,
+      "landmarks": 37,
+      "covers": 16,
+      "routes": 3,
+      "colliders": 751,
+      "fauna": 24,
+      "rainDrops": 260,
+      "region": "umbral",
+      "weather": 0.9537058245141372
+    },
+    "expedition": {
+      "relays": [
+        false,
+        false,
+        false
+      ],
+      "phase": "relays",
+      "extract": 0,
+      "xp": 25,
+      "level": 1,
+      "shards": 0,
+      "upgrades": 0,
+      "visited": [
+        "umbral"
+      ],
+      "notice": "JARDÍN DE ANTENAS · región descubierta",
+      "noticeUntil": 50.44166666666473
+    },
+    "audio": {
+      "started": true,
+      "running": true,
+      "voices": 2,
+      "voiceLimit": 32,
+      "peakVoices": 32,
+      "played": 321,
+      "dropped": 325,
+      "stolen": 41,
+      "volume": 0.65,
+      "mute": false,
+      "region": 0,
+      "paused": false,
+      "peak": 0.11683294922113419,
+      "rms": 0.04393517632558711,
+      "buses": [
+        "master",
+        "ambient",
+        "weather",
+        "biome",
+        "combat",
+        "weapons",
+        "enemies",
+        "boss",
+        "signals",
+        "growth"
+      ],
+      "mixes": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "threat": 0.17032749254851381,
+      "duck": 1,
+      "atmosphere": {
+        "hush": 0.0017333485859572883,
+        "uneaseCalls": 0,
+        "wonderCalls": 0,
+        "nextUnease": 53.46549069712059,
+        "nextWonder": 48.73333333333144
+      },
+      "growth": {
+        "source": "original-voiced-granular",
+        "grains": 2,
+        "touches": 0,
+        "focus": null,
+        "level": 0.828641661559184,
+        "pad": true,
+        "soundscape": "resonant-growth"
+      },
+      "emitters": 12,
+      "emitterLimit": 12,
+      "panners": 44,
+      "spatialEvents": 270,
+      "flybys": 1,
+      "occlusionQueries": 2540,
+      "events": {
+        "growth-air": 30,
+        "jump": 1,
+        "warning": 3,
+        "hurt": 1,
+        "enemy-shot": 19,
+        "shot": 13,
+        "reload": 2,
+        "impact": 11,
+        "growth-hover": 3,
+        "relay": 7,
+        "growth-touch": 10,
+        "boss": 203,
+        "hit": 3,
+        "reward": 5,
+        "flyby": 1,
+        "mortar-shot": 1,
+        "explosion": 13,
+        "growth-bloom": 2
+      },
+      "listener": {
+        "x": -260,
+        "y": 35.35630420595062,
+        "z": -385,
+        "forward": {
+          "x": 1.9799773823433886e-10,
+          "y": -0.1642863843292777,
+          "z": -0.9864126843892534
+        },
+        "up": {
+          "x": 3.2976393181758946e-11,
+          "y": 0.9864126843892534,
+          "z": -0.1642863843292777
+        }
+      },
+      "sources": [
+        {
+          "id": "body-roll",
+          "kind": "roll-earth",
+          "position": {
+            "x": -260,
+            "y": 21.356304205950625,
+            "z": -385
+          },
+          "category": "combat",
+          "distance": 1.3999999999999997,
+          "occlusion": 0,
+          "cutoff": 15890.74678762257,
+          "gain": 1,
+          "audibility": 1
+        },
+        {
+          "id": "enemy-0",
+          "kind": "enemy",
+          "position": {
+            "x": -194.3271831598215,
+            "y": 29.60173407356521,
+            "z": -267.61559099078465
+          },
+          "category": "enemies",
+          "distance": 13.462961571502362,
+          "occlusion": 0,
+          "cutoff": 12557.046137299754,
+          "gain": 1,
+          "audibility": 0.2971114474891598
+        },
+        {
+          "id": "enemy-2",
+          "kind": "enemy",
+          "position": {
+            "x": -57.585005676020316,
+            "y": 27.357129082236526,
+            "z": -446.3003104651538
+          },
+          "category": "enemies",
+          "distance": 21.164485534253085,
+          "occlusion": 0,
+          "cutoff": 10052.694183678803,
+          "gain": 1,
+          "audibility": 0.1889958531487245
+        },
+        {
+          "id": "enemy-1",
+          "kind": "enemy",
+          "position": {
+            "x": -30,
+            "y": 24.76156107004516,
+            "z": -362.42193539505485
+          },
+          "category": "enemies",
+          "distance": 23.13482603855514,
+          "occlusion": 0,
+          "cutoff": 9477.170902570024,
+          "gain": 1,
+          "audibility": 0.17289950628259904
+        },
+        {
+          "id": "enemy-6",
+          "kind": "enemy",
+          "position": {
+            "x": -468.83931008665036,
+            "y": 22.614533014235352,
+            "z": -579.7619165218972
+          },
+          "category": "enemies",
+          "distance": 28.58468371310982,
+          "occlusion": 0.3333333333333333,
+          "cutoff": 3063.617629914333,
+          "gain": 0.74,
+          "audibility": 0.1035519591438562
+        },
+        {
+          "id": "goal",
+          "kind": "signal",
+          "position": {
+            "x": -520,
+            "y": 50.71971581433714,
+            "z": -700
+          },
+          "category": "signals",
+          "distance": 40.87310049607794,
+          "occlusion": 1,
+          "cutoff": 425.3346984073211,
+          "gain": 0.21999999999999997,
+          "audibility": 0.03264242146961678
+        },
+        {
+          "id": "reeds-324",
+          "kind": "reeds",
+          "position": {
+            "x": -230.5287628173828,
+            "y": 18.69251251220703,
+            "z": -361.9075927734375
+          },
+          "category": "biome",
+          "distance": 4.098164279532913,
+          "occlusion": 0,
+          "cutoff": 15222.759733147865,
+          "gain": 1,
+          "audibility": 1
+        },
+        {
+          "id": "dimension-gate",
+          "kind": "crystal",
+          "position": {
+            "x": -260,
+            "y": 70.61521383361999,
+            "z": -450
+          },
+          "category": "biome",
+          "distance": 7.394721568884224,
+          "occlusion": 0,
+          "cutoff": 14044.201384638574,
+          "gain": 1,
+          "audibility": 0.6987876609328925
+        },
+        {
+          "id": "tree-219",
+          "kind": "tree",
+          "position": {
+            "x": -395.1529846191406,
+            "y": 49.22884944609597,
+            "z": -313.31488037109375
+          },
+          "category": "biome",
+          "distance": 15.361488579923542,
+          "occlusion": 0,
+          "cutoff": 10791.777107526139,
+          "gain": 1,
+          "audibility": 0.3490318622144309
+        },
+        {
+          "id": "water-0",
+          "kind": "water",
+          "position": {
+            "x": -80,
+            "y": 10.340081579702602,
+            "z": -260
+          },
+          "category": "biome",
+          "distance": 22.05692893276079,
+          "occlusion": 0,
+          "cutoff": 8453.706230958534,
+          "gain": 1,
+          "audibility": 0.245685323009334
+        },
+        {
+          "id": "flock",
+          "kind": "fauna",
+          "position": {
+            "x": -170.10705252202354,
+            "y": 173.8205562629957,
+            "z": -689.3884673932919
+          },
+          "category": "biome",
+          "distance": 34.62736348410492,
+          "occlusion": 0,
+          "cutoff": 5476.3681963432,
+          "gain": 1,
+          "audibility": 0.1579049069036305
+        },
+        {
+          "id": "landmark-0",
+          "kind": "ruin",
+          "position": {
+            "x": -375,
+            "y": 69.49415800226208,
+            "z": -700
+          },
+          "category": "biome",
+          "distance": 33.70688254078362,
+          "occlusion": 0.6666666666666666,
+          "cutoff": 816.0457776710675,
+          "gain": 0.48,
+          "audibility": 0.07783061611577463
+        }
+      ],
+      "latency": 0.01
+    },
+    "survival": {
+      "fuel": 239.08999999999963,
+      "emergency": 0,
+      "matches": 3,
+      "lit": true,
+      "fear": 0.010598568089065147,
+      "darkness": 0.3493168474130105,
+      "flicker": 0.8449810174157647,
+      "movementMultiplier": 1,
+      "aggressionMultiplier": 1,
+      "stage": "calm",
+      "fragments": 3,
+      "lightRadius": 380,
+      "fuelRatio": 0.9962083333333318,
+      "eventsPending": 0
+    },
+    "lighting": {
+      "intensity": 8449.810174157647,
+      "radius": 380
+    },
+    "shelters": {
+      "elapsed": 0.8749999999999993,
+      "guards": [],
+      "kits": [],
+      "anchors": [],
+      "echoes": [],
+      "collected": []
+    },
+    "shelterViews": {
+      "slots": 0,
+      "max": 24,
+      "decoys": 0
+    },
+    "terrorAudio": {
+      "started": true,
+      "wind": 0.034875333309173584,
+      "metal": 0.0000020891209260298638,
+      "voices": 0,
+      "voiceLimit": 8,
+      "sharedContext": true,
+      "permanentNodes": 7
+    },
+    "post": {
+      "enabled": true,
+      "width": 1088,
+      "height": 672,
+      "scale": 0.8,
+      "fear": 0.010598568089065147,
+      "darkness": 0.3493168474130105,
+      "chromatic": true,
+      "grain": true,
+      "vignette": true,
+      "lens": true,
+      "lensAmount": 0.4,
+      "lensRadius": 0.07973234777585377,
+      "lensDepth": 0.9986429388212283,
+      "depthOcclusion": true,
+      "accretionArcs": true,
+      "colorCorrect": false,
+      "legacyDarkTone": true,
+      "transitFade": 0,
+      "lightPower": 0.65
+    },
+    "weapon": {
+      "name": "Rifle",
+      "ammo": 27,
+      "reserve": 56,
+      "reload": 0
+    },
+    "loadout": {
+      "ammo": [
+        14,
+        27,
+        6,
+        3
+      ],
+      "reserve": [
+        28,
+        56,
+        12,
+        3
+      ],
+      "items": {
+        "medkit": 1,
+        "shield": 1,
+        "antidote": 1
+      }
+    },
+    "supplies": {
+      "lastTarget": null,
+      "crates": []
+    },
+    "commentary": {
+      "current": null,
+      "history": []
+    },
+    "strategy": {
+      "enabled": false,
+      "elapsed": 0,
+      "turn": 0,
+      "serial": 0,
+      "channel": null,
+      "goals": [],
+      "fields": [],
+      "couriers": [],
+      "stocks": [],
+      "contracts": [],
+      "cargo": [],
+      "reveals": [],
+      "logs": [],
+      "damageLog": []
+    },
+    "strategyViews": {
+      "goals": 12,
+      "effects": 40,
+      "objects": 0
+    },
+    "render": {
+      "triangles": 717956,
+      "calls": 403,
+      "frameSerial": 1506,
+      "frameFaults": 0,
+      "contextLost": false,
+      "lastFrameError": null
+    }
+  },
+  "returned": {
+    "ready": true,
+    "characters": {
+      "style": "doll-porcelain-v1",
+      "faceTextures": 6,
+      "bodyTextures": 1
+    },
+    "position": [
+      -260,
+      6.409237015961002,
+      -385
+    ],
+    "speed": 0,
+    "travelled": 0,
+    "worldSize": 7200,
+    "projectiles": 0,
+    "targets": 0,
+    "cameraDistance": 184.0991304064541,
+    "state": {
+      "hp": 100,
+      "kills": 0,
+      "grounded": true,
+      "coyote": 0.1,
+      "jumpBuffer": 0,
+      "dashBuffer": 0,
+      "dash": 0,
+      "cooldown": 0,
+      "invincible": 1.35,
+      "fireCooldown": 0,
+      "shotVisual": 0,
+      "hurt": 0,
+      "hit": 0,
+      "time": 49.89999999999781,
+      "paused": false,
+      "dead": false,
+      "won": false,
+      "cameraMode": "free",
+      "lastMouse": 8.758333333333477,
+      "matchMode": false,
+      "dimension": 0
+    },
+    "height": 0,
+    "world": {
+      "trees": 620,
+      "reeds": 9000,
+      "fungi": 750,
+      "shrubs": 960,
+      "mysteries": 3,
+      "waterPockets": 32,
+      "landmarks": 33,
+      "covers": 0,
+      "routes": 0,
+      "colliders": 731,
+      "fauna": 24,
+      "rainDrops": 260,
+      "region": "umbral",
+      "weather": 0.9740966743476708
+    },
+    "expedition": {
+      "relays": [
+        true,
+        false,
+        false
+      ],
+      "phase": "relays",
+      "extract": 0,
+      "xp": 65,
+      "level": 1,
+      "shards": 0,
+      "upgrades": 0,
+      "visited": [
+        "umbral"
+      ],
+      "notice": "UMBRAL · MARISMA VIVA · región descubierta",
+      "noticeUntil": 46.55833333333162
+    },
+    "audio": {
+      "started": true,
+      "running": true,
+      "voices": 2,
+      "voiceLimit": 32,
+      "peakVoices": 32,
+      "played": 328,
+      "dropped": 325,
+      "stolen": 41,
+      "volume": 0.65,
+      "mute": false,
+      "region": 0,
+      "paused": false,
+      "peak": 0.09064434468746185,
+      "rms": 0.027724237561335015,
+      "buses": [
+        "master",
+        "ambient",
+        "weather",
+        "biome",
+        "combat",
+        "weapons",
+        "enemies",
+        "boss",
+        "signals",
+        "growth"
+      ],
+      "mixes": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "threat": 0,
+      "duck": 1,
+      "atmosphere": {
+        "hush": 0.00012783837558145807,
+        "uneaseCalls": 0,
+        "wonderCalls": 0,
+        "nextUnease": 63.453622447883426,
+        "nextWonder": 53.14999999999785
+      },
+      "growth": {
+        "source": "original-voiced-granular",
+        "grains": 2,
+        "touches": 0,
+        "focus": null,
+        "level": 0.45,
+        "pad": false,
+        "soundscape": "natural-marsh"
+      },
+      "emitters": 6,
+      "emitterLimit": 12,
+      "panners": 44,
+      "spatialEvents": 277,
+      "flybys": 1,
+      "occlusionQueries": 2552,
+      "events": {
+        "growth-air": 31,
+        "jump": 1,
+        "warning": 3,
+        "hurt": 1,
+        "enemy-shot": 19,
+        "shot": 13,
+        "reload": 2,
+        "impact": 11,
+        "growth-hover": 3,
+        "relay": 8,
+        "growth-touch": 11,
+        "boss": 203,
+        "hit": 3,
+        "reward": 5,
+        "flyby": 1,
+        "mortar-shot": 1,
+        "explosion": 13,
+        "growth-bloom": 4
+      },
+      "listener": {
+        "x": -260,
+        "y": 20.409237015961004,
+        "z": -385,
+        "forward": {
+          "x": 1.9799773823433886e-10,
+          "y": -0.1642863843292777,
+          "z": -0.9864126843892534
+        },
+        "up": {
+          "x": 3.2976393181758946e-11,
+          "y": 0.9864126843892534,
+          "z": -0.1642863843292777
+        }
+      },
+      "sources": [
+        {
+          "id": "body-roll",
+          "kind": "roll-earth",
+          "position": {
+            "x": -260,
+            "y": 6.409237015961002,
+            "z": -385
+          },
+          "category": "combat",
+          "distance": 1.4000000000000001,
+          "occlusion": 0,
+          "cutoff": 15890.74678762257,
+          "gain": 1,
+          "audibility": 1
+        },
+        {
+          "id": "reeds-1476",
+          "kind": "reeds",
+          "position": {
+            "x": -232.23048400878906,
+            "y": 5.819852292537689,
+            "z": -397.0628662109375
+          },
+          "category": "biome",
+          "distance": 3.360816725465933,
+          "occlusion": 0,
+          "cutoff": 15437.4117218339,
+          "gain": 1,
+          "audibility": 1
+        },
+        {
+          "id": "dimension-gate",
+          "kind": "crystal",
+          "position": {
+            "x": -260,
+            "y": 56.23814637164128,
+            "z": -450
+          },
+          "category": "biome",
+          "distance": 7.422068947145097,
+          "occlusion": 0,
+          "cutoff": 14033.40268396664,
+          "gain": 1,
+          "audibility": 0.6963922096953601
+        },
+        {
+          "id": "tree-265",
+          "kind": "tree",
+          "position": {
+            "x": -144.42750549316406,
+            "y": 41.45008518546511,
+            "z": -208.09494018554688
+          },
+          "category": "biome",
+          "distance": 21.235611355969947,
+          "occlusion": 0,
+          "cutoff": 8710.358982056967,
+          "gain": 1,
+          "audibility": 0.2549452986208454
+        },
+        {
+          "id": "water-0",
+          "kind": "water",
+          "position": {
+            "x": -80,
+            "y": 3.236025214513462,
+            "z": -260
+          },
+          "category": "biome",
+          "distance": 21.981792284428803,
+          "occlusion": 0,
+          "cutoff": 8476.831387612505,
+          "gain": 1,
+          "audibility": 0.24650440659655767
+        },
+        {
+          "id": "flock",
+          "kind": "fauna",
+          "position": {
+            "x": -175.3507652349311,
+            "y": 164.21731153255828,
+            "z": -748.0803121516356
+          },
+          "category": "biome",
+          "distance": 39.95917520602897,
+          "occlusion": 0,
+          "cutoff": 4635.84639690281,
+          "gain": 1,
+          "audibility": 0.13712433604083707
+        }
+      ],
+      "latency": 0.01
+    },
+    "survival": {
+      "fuel": 237.6773333333324,
+      "emergency": 0,
+      "matches": 3,
+      "lit": true,
+      "fear": 0.005544404934910298,
+      "darkness": 0.22253120573953472,
+      "flicker": 0.9841951122297853,
+      "movementMultiplier": 1,
+      "aggressionMultiplier": 1,
+      "stage": "calm",
+      "fragments": 3,
+      "lightRadius": 380,
+      "fuelRatio": 0.9903222222222183,
+      "eventsPending": 0
+    },
+    "lighting": {
+      "intensity": 9841.951122297853,
+      "radius": 380
+    },
+    "shelters": {
+      "elapsed": 2.233333333333328,
+      "guards": [],
+      "kits": [],
+      "anchors": [],
+      "echoes": [],
+      "collected": []
+    },
+    "shelterViews": {
+      "slots": 0,
+      "max": 24,
+      "decoys": 0
+    },
+    "terrorAudio": {
+      "started": true,
+      "wind": 0.03333624452352524,
+      "metal": 7.325966056015432e-9,
+      "voices": 0,
+      "voiceLimit": 8,
+      "sharedContext": true,
+      "permanentNodes": 7
+    },
+    "post": {
+      "enabled": true,
+      "width": 1088,
+      "height": 672,
+      "scale": 0.8,
+      "fear": 0.005544404934910298,
+      "darkness": 0.22253120573953472,
+      "chromatic": true,
+      "grain": true,
+      "vignette": true,
+      "lens": true,
+      "lensAmount": 0.4,
+      "lensRadius": 0.07976378753510138,
+      "lensDepth": 0.9986423601835721,
+      "depthOcclusion": true,
+      "accretionArcs": true,
+      "colorCorrect": false,
+      "legacyDarkTone": true,
+      "transitFade": 0,
+      "lightPower": 0.65
+    },
+    "weapon": {
+      "name": "Rifle",
+      "ammo": 27,
+      "reserve": 56,
+      "reload": 0
+    },
+    "loadout": {
+      "ammo": [
+        14,
+        27,
+        6,
+        3
+      ],
+      "reserve": [
+        28,
+        56,
+        12,
+        3
+      ],
+      "items": {
+        "medkit": 1,
+        "shield": 1,
+        "antidote": 1
+      }
+    },
+    "supplies": {
+      "lastTarget": null,
+      "crates": []
+    },
+    "commentary": {
+      "current": null,
+      "history": []
+    },
+    "strategy": {
+      "enabled": false,
+      "elapsed": 0,
+      "turn": 0,
+      "serial": 0,
+      "channel": null,
+      "goals": [],
+      "fields": [],
+      "couriers": [],
+      "stocks": [],
+      "contracts": [],
+      "cargo": [],
+      "reveals": [],
+      "logs": [],
+      "damageLog": []
+    },
+    "strategyViews": {
+      "goals": 12,
+      "effects": 40,
+      "objects": 0
+    },
+    "render": {
+      "triangles": 545388,
+      "calls": 225,
+      "frameSerial": 1511,
+      "frameFaults": 0,
+      "contextLost": false,
+      "lastFrameError": null
+    }
+  },
+  "frames": {
+    "frames": 60,
+    "seconds": 0.9923999999761581
+  },
+  "errors": []
+}

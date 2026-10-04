@@ -1,0 +1,531 @@
+﻿// ===== RENDER: HUD en canvas (cooldown especial, panel de arma, stats) =====
+// Funciones de dibujo PUROS. game.js aporta ctx y los valores de su closure al llamarlas.
+(() => {
+  'use strict';
+  const NV = window.NV;
+
+  // F09.4 — ELIMINADO: anillo/contorno de cooldown alrededor del jugador.
+  // Era redundante: el estado de la habilidad vive en el botón ESPECIAL
+  // móvil (progreso, segundos y LISTO) y en el slot de habilidad del panel
+  // canvas. Se mantiene como no-op para no romper llamadas existentes.
+  NV.drawSpecialCooldown = function () { return; };
+
+  NV.getBottomCombatHudLayout = function (viewX, viewY, viewW, viewH, mobile) {
+    const segmentW = mobile ? 28 : 34;
+    const segmentH = mobile ? 5 : 6;
+    const dashGap = 4;
+    const dashW = segmentW * 2 + dashGap;
+    const dashY = viewY + viewH - (mobile ? 58 : 18);
+    const safeSide = 12;
+    const bossBarW = Math.max(0, Math.min(260, viewW - safeSide * 2));
+    const bossBarH = mobile ? 14 : 16;
+    const bossDashGap = mobile ? 9 : 10;
+    const dashLabelTop = dashY - (mobile ? 11 : 12);
+    const bossBarY = dashLabelTop - bossDashGap - bossBarH;
+    return {
+      dashX: viewX + viewW / 2 - dashW / 2,
+      dashY,
+      dashW,
+      dashSegmentW: segmentW,
+      dashSegmentH: segmentH,
+      dashGap,
+      bossBarX: viewX + viewW / 2 - bossBarW / 2,
+      bossBarY,
+      bossBarW,
+      bossBarH,
+      bossDashGap,
+      safeSide
+    };
+  };
+
+  NV.drawDashStamina = function (ctx, viewX, viewY, viewW, viewH, player, mobile) {
+    if (!player || !(player.dashStaminaMax > 0) || !(player.dashCost > 0)) return false;
+    const stamina = Math.max(0, Math.min(player.dashStaminaMax, player.dashStamina || 0));
+    const uses = Math.floor((stamina + 0.0001) / player.dashCost);
+    const layout = NV.getBottomCombatHudLayout(viewX, viewY, viewW, viewH, mobile);
+    const segmentW = layout.dashSegmentW, segmentH = layout.dashSegmentH, gap = layout.dashGap;
+    const totalW = layout.dashW;
+    const x = layout.dashX;
+    const y = layout.dashY;
+    ctx.save();
+    ctx.font = 'bold ' + (mobile ? 7 : 8) + 'px system-ui';
+    ctx.textAlign = 'center';
+    ctx.fillStyle = uses > 0 ? '#7cf8ff' : '#7c8399';
+    ctx.fillText('DASH ' + uses, x + totalW / 2, y - 4);
+    for (let i = 0; i < 2; i++) {
+      const sx = x + i * (segmentW + gap);
+      const fill = Math.max(0, Math.min(1, (stamina - i * player.dashCost) / player.dashCost));
+      ctx.fillStyle = 'rgba(124, 248, 255, 0.14)';
+      ctx.fillRect(sx, y, segmentW, segmentH);
+      if (fill > 0) {
+        ctx.fillStyle = player.dashActive ? '#ffffff' : '#7cf8ff';
+        ctx.fillRect(sx, y, segmentW * fill, segmentH);
+      }
+      ctx.strokeStyle = 'rgba(124, 248, 255, 0.55)';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(sx, y, segmentW, segmentH);
+    }
+    ctx.restore();
+    return true;
+  };
+
+  NV.drawBossHUD = function (ctx, viewX, viewY, viewW, viewH, boss, mobile) {
+    if (!boss || boss.dead || !(boss.maxHp > 0)) return false;
+    const layout = NV.getBottomCombatHudLayout(viewX, viewY, viewW, viewH, mobile);
+    if (!(layout.bossBarW > 0)) return false;
+    const hpPct = Math.max(0, Math.min(1, boss.hp / boss.maxHp));
+    const hpColor = hpPct > 0.4 ? '#7cf8ff' : (hpPct > 0.2 ? '#ffcf76' : '#ff5f9b');
+    const x = layout.bossBarX, y = layout.bossBarY, w = layout.bossBarW, h = layout.bossBarH;
+    ctx.save();
+    ctx.textAlign = 'center';
+    ctx.shadowBlur = 0;
+    ctx.font = 'bold ' + (mobile ? 9 : 11) + 'px system-ui';
+    ctx.fillStyle = '#fff';
+    ctx.fillText(boss.name || 'JEFE', x + w / 2, y - 5);
+    ctx.fillStyle = 'rgba(10, 12, 22, 0.88)';
+    ctx.fillRect(x, y, w, h);
+    ctx.fillStyle = hpColor;
+    ctx.fillRect(x, y, w * hpPct, h);
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(x, y, w, h);
+    ctx.font = 'bold ' + (mobile ? 9 : 11) + 'px system-ui';
+    ctx.fillStyle = '#fff';
+    ctx.fillText(Math.ceil(Math.max(0, boss.hp)) + ' / ' + boss.maxHp, x + w / 2, y + h - (mobile ? 3 : 3));
+    ctx.restore();
+    return true;
+  };
+
+  function bossReactionLines(ctx, text, maxWidth, fontSize) {
+    ctx.font = 'bold ' + fontSize + 'px system-ui';
+    if (ctx.measureText(text).width <= maxWidth) return [text];
+    const words = String(text).split(/\s+/);
+    if (words.length < 2) return [text];
+    let best = null;
+    for (let i = 1; i < words.length; i++) {
+      const lines = [words.slice(0, i).join(' '), words.slice(i).join(' ')];
+      const width = Math.max(ctx.measureText(lines[0]).width, ctx.measureText(lines[1]).width);
+      if (!best || width < best.width) best = { lines, width };
+    }
+    return best ? best.lines : [text];
+  }
+
+  NV.getBossReactionLayout = function (ctx, ft, viewX, viewY, viewW, viewH, mobile) {
+    const safe = mobile ? 10 : 9;
+    const maxWidth = Math.max(1, viewW - safe * 2);
+    let fontSize = ft.size || 14;
+    const minFontSize = mobile ? 10 : 11;
+    ctx.save();
+    while (fontSize > minFontSize) {
+      ctx.font = 'bold ' + fontSize + 'px system-ui';
+      if (ctx.measureText(ft.text).width <= maxWidth) break;
+      fontSize--;
+    }
+    let lines = bossReactionLines(ctx, ft.text, maxWidth, fontSize);
+    ctx.font = 'bold ' + fontSize + 'px system-ui';
+    let textW = 0;
+    for (const line of lines) textW = Math.max(textW, ctx.measureText(line).width);
+    if (textW > maxWidth && fontSize > minFontSize) {
+      fontSize = minFontSize;
+      lines = bossReactionLines(ctx, ft.text, maxWidth, fontSize);
+      ctx.font = 'bold ' + fontSize + 'px system-ui';
+      textW = 0;
+      for (const line of lines) textW = Math.max(textW, ctx.measureText(line).width);
+    }
+    const boss = ft.boss && !ft.boss.dead ? ft.boss : null;
+    const anchorX = boss ? boss.x : (ft.bossX == null ? ft.x : ft.bossX);
+    const anchorY = boss ? boss.y : (ft.bossY == null ? ft.y : ft.bossY);
+    const radius = boss ? boss.radius : (ft.bossRadius || 0);
+    const lineH = fontSize + 2;
+    const blockH = lines.length * lineH;
+    const drift = ft.bossReactionDrift || 0;
+    let baseline = anchorY - radius - 14 - drift;
+    let flipped = false;
+    if (baseline - fontSize < viewY + safe) {
+      baseline = anchorY + radius + fontSize + 8 - drift;
+      flipped = true;
+    }
+    const minBaseline = viewY + safe + fontSize;
+    const maxBaseline = viewY + viewH - safe - blockH + lineH;
+    baseline = Math.max(minBaseline, Math.min(maxBaseline, baseline));
+    const halfW = Math.min(maxWidth, textW) / 2;
+    const x = Math.max(viewX + safe + halfW, Math.min(viewX + viewW - safe - halfW, anchorX));
+    ctx.restore();
+    return { x, baseline, lines, fontSize, lineH, width: Math.min(maxWidth, textW), flipped, safe };
+  };
+
+  NV.drawBossReactionText = function (ctx, ft, viewX, viewY, viewW, viewH, mobile) {
+    if (!ft || !ft.bossReaction) return false;
+    const layout = NV.getBossReactionLayout(ctx, ft, viewX, viewY, viewW, viewH, mobile);
+    ctx.save();
+    ctx.globalAlpha = NV.getBossReactionAlpha ? NV.getBossReactionAlpha(ft) : Math.max(0, Math.min(1, ft.life / 0.8));
+    ctx.fillStyle = ft.color || '#ff5f5f';
+    ctx.strokeStyle = 'rgba(0, 0, 0, 0.82)';
+    ctx.lineWidth = 3;
+    ctx.lineJoin = 'round';
+    ctx.font = 'bold ' + layout.fontSize + 'px system-ui';
+    ctx.textAlign = 'center';
+    for (let i = 0; i < layout.lines.length; i++) {
+      const y = layout.baseline + i * layout.lineH;
+      if (typeof ctx.strokeText === 'function') ctx.strokeText(layout.lines[i], layout.x, y);
+      ctx.fillText(layout.lines[i], layout.x, y);
+    }
+    ctx.restore();
+    return true;
+  };
+
+    
+  var ANIM = {
+    lastSel: {},
+    lastFill: {},
+    lastFuse: {},
+    selPulse: {},
+    fillFlash: {},
+    fuseFlash: {},
+    lastCd: null,
+    readyPulse: 0,
+    lastWeaponText: null,
+    weaponFadeAt: 0
+  };
+  function nowMs() {
+    if (typeof performance !== 'undefined' && typeof performance.now === 'function') return performance.now();
+    return Date.now();
+  }
+  function easeOut(t) { return 1 - (1 - t) * (1 - t); }
+
+  var GLOW_BY_RARITY = { common: 0.32, uncommon: 0.42, rare: 0.52, epic: 0.76, legendary: 1 };
+
+  function roundedFill(ctx, x, y, w, h, r) {
+    if (typeof ctx.roundRect === 'function') { ctx.beginPath(); ctx.roundRect(x, y, w, h, r); ctx.fill(); return; }
+    ctx.fillRect(x, y, w, h);
+  }
+  function roundedStroke(ctx, x, y, w, h, r) {
+    if (typeof ctx.roundRect === 'function') { ctx.beginPath(); ctx.roundRect(x, y, w, h, r); ctx.stroke(); return; }
+    ctx.strokeRect(x, y, w, h);
+  }
+  function slotGradient(ctx, x, y, w, h, c) {
+    if (typeof ctx.createLinearGradient === 'function') {
+      var g = ctx.createLinearGradient(x, y, x + w, y + h);
+      g.addColorStop(0, 'rgba(' + c + ',0.16)');
+      g.addColorStop(1, 'rgba(' + c + ',0.02)');
+      return g;
+    }
+    return null;
+  }
+  function rgbaNum(hex, a) {
+    var h = hex.replace('#', '');
+    if (h.length === 6) { return parseInt(h.substr(0, 2), 16) + ',' + parseInt(h.substr(2, 2), 16) + ',' + parseInt(h.substr(4, 2), 16); }
+    return '124,248,255';
+  }
+
+  function truncateToWidth(ctx, text, font, maxW) {
+    ctx.font = font;
+    if (typeof ctx.measureText === 'function' && ctx.measureText(text).width <= maxW) return text;
+    var approx = function (t) { if (typeof ctx.measureText === 'function') return ctx.measureText(t).width; return t.length * 4.5; };
+    if (approx(text) <= maxW) return text;
+    var out = text;
+    while (out.length > 1 && approx(out + '\u2026') > maxW) { out = out.slice(0, -1); }
+    return out + '\u2026';
+  }
+  function vyBaseline(ctx, font, yTop, h) {
+    ctx.font = font;
+    var m = null;
+    try { if (typeof ctx.measureText === 'function') m = ctx.measureText('Mg'); } catch (e) { m = null; }
+    if (m && typeof m.actualBoundingBoxAscent === 'number') {
+      var asc = m.actualBoundingBoxAscent, desc = m.actualBoundingBoxDescent;
+      return yTop + (h - (asc + desc)) / 2 + asc;
+    }
+    return yTop + h / 2 + 1;
+  }
+  // ---- Niveles de arma en el HUD: badge + tinte de borde por tier ----
+  // Común/Base (1-9) → sin tinte · Rara (10-29) cian · Épica (30-59) violeta ·
+  // Legendaria (60-99) dorada · MAX Nv100 → rojo intenso con glow pulsante.
+  var WEAPON_LEVEL_TIERS = [
+    { min: 100, color: '#ff2a4b', max: true },
+    { min: 60, color: '#ffd700' },
+    { min: 30, color: '#b388ff' },
+    { min: 10, color: '#7cf8ff' },
+  ];
+  function weaponLevelTier(level) {
+    if (!level || level < 10) return null;
+    for (var i = 0; i < WEAPON_LEVEL_TIERS.length; i++) {
+      if (level >= WEAPON_LEVEL_TIERS[i].min) return WEAPON_LEVEL_TIERS[i];
+    }
+    return null;
+  }
+  NV.weaponLevelTier = weaponLevelTier;
+  function drawSlotRow(ctx, gx, gy, entries, selIdx, equippedIdx, eqColor, cw, ch, gap, key) {
+    var RAD = 5;
+    var now = nowMs();
+    var filled = entries.map(function (e) { return !!e; });
+    var fuses = entries.map(function (e) { return e && e.fuse ? e.fuse : 0; });
+    if (ANIM.lastFill[key]) {
+      for (var i = 0; i < 6; i++) {
+        if (!ANIM.lastFill[key][i] && filled[i]) { ANIM.fillFlash[key + ':' + i] = now; }
+      }
+    }
+    ANIM.lastFill[key] = filled;
+    if (ANIM.lastFuse[key]) {
+      for (var j = 0; j < 6; j++) {
+        if ((ANIM.lastFuse[key][j] || 0) < fuses[j]) { ANIM.fuseFlash[key + ':' + j] = now; }
+      }
+    }
+    ANIM.lastFuse[key] = fuses;
+    if (ANIM.lastSel[key] !== undefined && ANIM.lastSel[key] !== selIdx && selIdx >= 0 && entries[selIdx]) {
+      ANIM.selPulse[key] = now;
+    }
+    ANIM.lastSel[key] = selIdx;
+
+    var selectionPulseT = 1;
+    if (ANIM.selPulse[key]) { selectionPulseT = Math.max(0, 1 - (now - ANIM.selPulse[key]) / 320); }
+
+    for (var k = 0; k < 6; k++) {
+      var e = entries[k];
+      var x = gx + k * (cw + gap), y = gy;
+      var selected = k === selIdx && !!e;
+      var equipped = k === equippedIdx;
+      var glow = e ? (e.glow !== undefined ? e.glow : 0.3) : 0;
+      var cnum = rgbaNum(e ? e.color : '#7cf8ff');
+      var pulseA = selected ? easeOut(selectionPulseT) : 0;
+      var scale = 1 + 0.13 * pulseA;
+      var ccx = x + cw / 2, ccy = y + ch / 2;
+      var usedGlow = (equipped ? glow + 0.3 : selected ? glow + 0.35 : glow);
+      var grad = slotGradient(ctx, x, y, cw, ch, cnum);
+      ctx.save();
+      if (scale > 1.01) { ctx.translate(ccx, ccy); ctx.scale(scale, scale); ctx.translate(-ccx, -ccy); }
+      ctx.globalAlpha = 0.92;
+      ctx.fillStyle = grad || (e ? 'rgba(' + cnum + ',0.10)' : 'rgba(255,255,255,0.03)');
+      roundedFill(ctx, x, y, cw, ch, RAD);
+      ctx.globalAlpha = 1;
+      var wTier = e && e.level ? weaponLevelTier(e.level) : null;
+      ctx.lineWidth = (selected || equipped) ? 2 : 1;
+      ctx.strokeStyle = selected || equipped
+        ? (equipped && eqColor ? eqColor : '#7cf8ff')
+        : (e ? (wTier ? wTier.color : 'rgba(' + cnum + ',' + (0.28 + glow * 0.35).toFixed(2) + ')') : 'rgba(255,255,255,0.08)');
+      ctx.shadowColor = selected || equipped ? (equipped && eqColor ? eqColor : '#7cf8ff') : (wTier ? wTier.color : '#7cf8ff');
+      ctx.shadowBlur = selected || equipped ? 6 + 12 * (usedGlow * pulseA + glow * 0.4) * 2 : 3 + usedGlow * 6;
+      if (wTier && wTier.max) {
+        // Tier MAX (Nv100): glow pulsante adicional sobre el borde del slot.
+        ctx.shadowBlur += 6 + 5 * Math.abs(Math.sin(now / 240));
+      }
+      roundedStroke(ctx, x, y, cw, ch, RAD);
+      ctx.shadowBlur = 0;
+      if (e && typeof ctx.roundRect === 'function') {
+        ctx.fillStyle = 'rgba(255,255,255,0.05)';
+        ctx.beginPath(); ctx.roundRect(x, y, cw, 3, RAD); ctx.fill();
+      }
+      if (e) {
+        if (e.weapon && typeof NV.drawWeaponIcon === 'function') {
+          NV.drawWeaponIcon(ctx, e.weapon, x + cw / 2, y + ch / 2, 18, { glow: selected || equipped ? 5 : 2 });
+        } else if (e.consumable && typeof NV.drawConsumableIcon === 'function') {
+          NV.drawConsumableIcon(ctx, e.consumable, x + cw / 2, y + ch / 2, 18, { glow: selected || equipped ? 5 : 2 });
+        } else {
+          ctx.font = 'bold 14px system-ui';
+          ctx.fillStyle = e.color || '#fff';
+          ctx.textAlign = 'center';
+          ctx.shadowColor = e.color || '#7cf8ff';
+          ctx.shadowBlur = selected || equipped ? 10 + 10 * (glow * pulseA) : 5 + glow * 6;
+          ctx.fillText(e.icon || '', x + cw / 2, y + ch / 2 + 4);
+          ctx.shadowBlur = 0;
+        }
+        if (e.level) {
+          // Nivel del arma en la esquina del slot: píldora oscura + número con
+          // el color del tier (legible sobre cualquier icono de arma).
+          var ltier = weaponLevelTier(e.level);
+          var ltxt = e.level >= 100 ? 'MAX' : '' + e.level;
+          ctx.font = 'bold 7px system-ui';
+          var lw = (typeof ctx.measureText === 'function' ? ctx.measureText(ltxt).width : ltxt.length * 4) + 4;
+          var lx = x + cw - lw - 1, ly = y + ch - 9;
+          ctx.fillStyle = 'rgba(0,0,0,0.78)';
+          roundedFill(ctx, lx, ly, lw, 8, 3);
+          ctx.fillStyle = ltier ? ltier.color : '#ffffff';
+          ctx.textAlign = 'center';
+          ctx.fillText(ltxt, lx + lw / 2, ly + 6.5);
+        } else if (e.badge !== undefined && e.badge !== '') {
+          ctx.font = 'bold 8px system-ui';
+          ctx.textAlign = 'right';
+          ctx.fillStyle = '#fff';
+          ctx.fillText(e.badge, x + cw - 3, y + ch - 3);
+        }
+        ctx.textAlign = 'left';
+      }
+      ctx.restore();
+      var flT = 0;
+      if (ANIM.fillFlash[key + ':' + k]) {
+        flT = Math.max(0, 1 - (now - ANIM.fillFlash[key + ':' + k]) / 260);
+        if (flT === 0) delete ANIM.fillFlash[key + ':' + k];
+      }
+      var fuT = 0;
+      if (ANIM.fuseFlash[key + ':' + k]) {
+        fuT = Math.max(0, 1 - (now - ANIM.fuseFlash[key + ':' + k]) / 300);
+        if (fuT === 0) delete ANIM.fuseFlash[key + ':' + k];
+      }
+      if (flT > 0) {
+        ctx.fillStyle = 'rgba(255,255,255,' + (flT * 0.45).toFixed(2) + ')';
+        roundedFill(ctx, x, y, cw, ch, RAD);
+      }
+      if (fuT > 0) {
+        ctx.fillStyle = 'rgba(255,207,118,' + (fuT * 0.5).toFixed(2) + ')';
+        roundedFill(ctx, x, y, cw, ch, RAD);
+      }
+    }
+  }
+
+
+    NV.drawWeaponHUD = function (ctx, W, H, CHARACTERS, RARITY_COLORS, player, currentWeapon, currentWeaponLevel, inventory, consumGroups, consumSel, showHUD, weaponLevelFor, weaponFusionLevelFor) {
+    if (!showHUD) return;
+    var lvlFor = weaponLevelFor || function () { return 1; };
+    var fusionFor = weaponFusionLevelFor || function () { return 0; };
+    var char = CHARACTERS[player.character];
+    var weapon = currentWeapon;
+    var iconColor = RARITY_COLORS[weapon.rarity];
+    var cw = 22, ch = 22, gap = 5;
+    var pw = 6 * (cw + gap) - gap;
+    var bx = W - pw - 10;
+    var by = 10;
+    ctx.textAlign = 'left';
+    // Loadout real: los slots visuales son exactamente las posiciones del inventario
+    // (hotkeys 1-6 y dock de la tienda comparten este mismo orden).
+        var wEntries = inventory.slice(0, 6).map(function (wItem) { return { weapon: wItem, color: RARITY_COLORS[wItem.rarity], glow: GLOW_BY_RARITY[wItem.rarity] || 0.3, fuse: fusionFor(wItem.id) || 0, level: lvlFor(wItem.id) }; });
+    var equippedIdx = inventory.indexOf(weapon);
+    if (equippedIdx < 0 || equippedIdx > 5) equippedIdx = -1;
+    var hCnum = rgbaNum(iconColor);
+    ctx.fillStyle = 'rgba(0,0,0,0.62)';
+    ctx.strokeStyle = 'rgba(' + hCnum + ',0.45)'; ctx.lineWidth = 1.5;
+    var hh = 16;
+    var htxt = weapon.name + ' Nv' + currentWeaponLevel();
+    if (ANIM.lastWeaponText !== htxt) { ANIM.lastWeaponText = htxt; ANIM.weaponFadeAt = nowMs(); }
+    var wf = ANIM.weaponFadeAt ? Math.max(0, 1 - (nowMs() - ANIM.weaponFadeAt) / 300) : 1;
+    ctx.shadowColor = iconColor; ctx.shadowBlur = 3 + 6 * wf;
+    roundedFill(ctx, bx, by, pw, hh, 5);
+    roundedStroke(ctx, bx, by, pw, hh, 5);
+    ctx.shadowBlur = 0;
+    var hfont = 'bold 8px system-ui';
+    ctx.fillStyle = iconColor; ctx.globalAlpha = 0.5 + 0.5 * wf;
+    var fitted = truncateToWidth(ctx, htxt, hfont, pw - 27);
+    ctx.font = hfont; ctx.textAlign = 'left';
+    if (typeof NV.drawWeaponIcon === 'function') NV.drawWeaponIcon(ctx, weapon, bx + 13, by + hh / 2, 12, { glow: 2 });
+    ctx.fillText(fitted, bx + 23, vyBaseline(ctx, hfont, by + 2, hh - 4));
+    ctx.globalAlpha = 1; ctx.shadowBlur = 0;
+    drawSlotRow(ctx, bx, by + hh + 3, wEntries, -1, equippedIdx, iconColor, cw, ch, gap, 'w');
+
+    by += 16 + 3 + ch + gap + 3;
+
+  var consY = by; // fila de consumibles
+  if (consumGroups.length) {
+    var cEntries = consumGroups.slice(0, 6).map(function (g) { return { consumable: g.type, color: (NV.consumableIconColors && NV.consumableIconColors[g.type] && NV.consumableIconColors[g.type].c) || '#7cf8ff', glow: 0.5, badge: 'x' + g.count }; });
+    drawSlotRow(ctx, bx, consY, cEntries, consumGroups.length ? consumSel : -1, -1, null, cw, ch, gap, 'c');
+    NV.consumSlotRects = consumGroups.slice(0, 6).map(function (g, i) { return { type: g.type, x: bx + i * (cw + gap), y: consY, w: cw, h: ch }; });
+    ctx.font = 'bold 7px system-ui'; ctx.fillStyle = '#7cf8ff'; ctx.shadowColor = '#7cf8ff'; ctx.shadowBlur = 3;
+    ctx.fillText('F usar - Q/E elegir', bx, consY + 36);
+    ctx.shadowBlur = 0;
+  } else {
+    NV.consumSlotRects = [];
+    drawSlotRow(ctx, bx, consY, [], -1, -1, null, cw, ch, gap, 'c');
+    ctx.font = 'bold 7px system-ui'; ctx.fillStyle = '#555'; ctx.textAlign = 'center';
+    ctx.fillText('SIN CONSUMIBLES', bx + pw / 2, consY + ch / 2 + 3); ctx.textAlign = 'left';
+  }
+
+  // === HABILIDAD: slot cuadrado 22x22 (mismo tam que un slot) + anillo de cooldown ===
+  var ssy = consY + 46;         // bajo el hint, con separacion (offset +8)
+  var sl = 22;                  // igual a un slot de armas/consumibles
+  var cd = player.specialCd > 0 ? 1 - player.specialCd / char.maxCd : 1;
+  if (ANIM.lastCd !== null && ANIM.lastCd > 0 && player.specialCd <= 0) { ANIM.readyPulse = nowMs(); }
+  ANIM.lastCd = player.specialCd;
+  var rt = ANIM.readyPulse ? Math.max(0, 1 - (nowMs() - ANIM.readyPulse) / 500) : 0;
+  var skillColor = char.skillColor || char.color;
+  var sCnum = rgbaNum(skillColor);
+  var skillGrad = slotGradient(ctx, bx, ssy, sl, sl, sCnum);
+  ctx.fillStyle = skillGrad || 'rgba(' + sCnum + ',0.12)';
+  roundedFill(ctx, bx, ssy, sl, sl, 5);
+  // icono centrado
+  if (typeof NV.drawMetaSkillIcon === 'function') {
+    NV.drawMetaSkillIcon(ctx, char.special, bx + sl / 2, ssy + sl / 2, 18, { glow: (cd >= 1) ? (5 + 8 * rt) : 0 });
+  }
+  ctx.shadowBlur = 0; ctx.textAlign = 'left';
+  // anillo de progreso (se completa con el cooldown): base atenuada + aro de avance
+  var rcx = bx + sl / 2, rcy = ssy + sl / 2, rrad = sl / 2 + 1, rstart = -Math.PI / 2;
+  ctx.globalAlpha = 0.9; ctx.lineCap = 'round';
+  ctx.strokeStyle = 'rgba(' + sCnum + ',0.18)'; ctx.lineWidth = 2.5;
+  ctx.beginPath(); ctx.arc(rcx, rcy, rrad, 0, Math.PI * 2); ctx.stroke();
+  // glow atenuado mientras carga, pleno + pulso al listo
+  var ren = rstart + (cd >= 1 ? Math.PI * 2 : Math.max(0.06, cd * Math.PI * 2));
+  ctx.strokeStyle = cd >= 1 ? skillColor : 'rgba(' + sCnum + ',' + (0.4 + rt * 0.4).toFixed(2) + ')';
+  ctx.lineWidth = cd >= 1 ? 3 : 2.5;
+  ctx.shadowColor = skillColor; ctx.shadowBlur = cd >= 1 ? (8 + 14 * rt) : 2.5;
+  ctx.beginPath(); ctx.arc(rcx, rcy, rrad, rstart, ren); ctx.stroke();
+  ctx.shadowBlur = 0; ctx.globalAlpha = 1; ctx.lineCap = 'butt';
+  // texto a la derecha (aprovecha el ancho sobrante): CD/LISTO + nombre truncado
+  var tx = bx + sl + 8;
+  var maxTxt = pw - (sl + 14);
+  ctx.font = 'bold 8px system-ui';
+  ctx.fillStyle = cd >= 1 ? skillColor : '#aaa';
+  ctx.fillText(cd >= 1 ? 'LISTO' : 'CD ' + Math.ceil(player.specialCd) + 's', tx, ssy + 8);
+  ctx.font = 'bold 7px system-ui';
+  ctx.fillStyle = cd >= 1 ? skillColor : '#ddd';
+  var fitted = truncateToWidth(ctx, char.skillName, 'bold 7px system-ui', maxTxt);
+  ctx.fillText(fitted, tx, ssy + 16);
+  ctx.shadowBlur = 0;
+
+  };
+
+  NV.drawSlotRow = drawSlotRow;
+
+NV.drawCombo = function (ctx, W, H, combo, opts) {
+    if (!combo || combo.count < 2) return;
+    opts = opts || {};
+    const x = opts.x == null ? 10 : opts.x, y = opts.y == null ? 20 : opts.y;
+    const heat = Math.min(1, combo.count / 15);
+    const col = heat > 0.66 ? '#ff5f5f' : heat > 0.33 ? '#ffd700' : '#7cf8ff';
+    const pulse = 1 + Math.min(0.35, combo.timer * 0.12);
+    ctx.save();
+    ctx.textAlign = 'left';
+    ctx.font = 'bold ' + Math.round(18 * pulse) + "px 'Courier New', monospace";
+    ctx.globalAlpha = 0.95;
+    ctx.fillStyle = col;
+    ctx.shadowColor = col; ctx.shadowBlur = 10;
+    ctx.fillText('x' + combo.count, x, y);
+    ctx.shadowBlur = 0;
+    const barW = 36;
+    ctx.fillStyle = 'rgba(255,255,255,0.25)';
+    ctx.fillRect(x, y + 5, barW, 2);
+    ctx.fillStyle = col;
+    ctx.fillRect(x, y + 5, barW * Math.max(0, combo.timer / 2), 2);
+    ctx.restore();
+  };
+  // Panel TAB de estadÃ­sticas.
+  NV.drawStats = function (ctx, CHARACTERS, RARITY_COLORS, player, currentWeapon, currentWeaponLevel, weaponVisualTier, BULLET_TIER_COLORS, permUpgrades, inventory, INVENTORY_SLOTS, consumableItems) {
+    const char = CHARACTERS[player.character];
+    const weapon = currentWeapon;
+    const panelX = 10, panelY = 60, panelW = 260, panelH = 250;
+
+    ctx.fillStyle = 'rgba(0,0,0,0.9)';
+    ctx.fillRect(panelX, panelY, panelW, panelH);
+    ctx.strokeStyle = RARITY_COLORS[weapon.rarity];
+    ctx.lineWidth = 2;
+    ctx.strokeRect(panelX, panelY, panelW, panelH);
+
+    ctx.fillStyle = '#fff';
+    ctx.font = 'bold 14px system-ui';
+    ctx.textAlign = 'left';
+    ctx.fillText('ESTADÃSTICAS', panelX + 10, panelY + 20);
+
+    ctx.font = '12px system-ui';
+    ctx.fillStyle = '#aaa';
+    const lines = [
+      `Personaje: ${char.name}`,
+      `Pasiva: ${char.passive}`,
+      `Habilidad: ${char.skillName} (CD: ${char.maxCd}s)`,
+      `Nivel: ${player.level}  |  XP: ${player.xp}/${player.xpToNext}`,
+      `HP: ${Math.round(player.hp)}/${player.maxHp}  |  Armadura: ${player.armor}`,
+      `Velocidad: ${Math.round(player.effectiveMoveSpeed || player.speed)} (base ${Math.round(player.baseMoveSpeed || player.speed)})  |  Suerte: ${player.luck}`,
+      `Control: ${player.agility.toFixed(2)}x · permanente ${((player.moveControlPermanentMult || 1) * 100).toFixed(0)}%`,
+      `Dash: ${Math.floor(((player.dashStamina || 0) + 0.0001) / (player.dashCost || 50))}/2 · stamina ${Math.round(player.dashStamina || 0)}`,
+      `Arma: ${weapon.name} (${weapon.rarity}) | Nv ${currentWeaponLevel()}` + (weaponVisualTier() > 0 ? ` | Tier ${weaponVisualTier()} (${BULLET_TIER_COLORS[weaponVisualTier()]})` : ''),
+      `DaÃ±o: ${weapon.damage * NV.weaponLevelDamageMultiplier(currentWeaponLevel()) + permUpgrades.damage * 2}`,
+      `Inventario: ${inventory.length}/${INVENTORY_SLOTS}  |  Consumibles: ${consumableItems.length}`,
+    ];
+    lines.forEach((line, i) => ctx.fillText(line, panelX + 10, panelY + 45 + i * 18));
+  };
+})();
+

@@ -1,0 +1,1020 @@
+{
+  "match": {
+    "tactical": true,
+    "enabled": true,
+    "phase": "complete",
+    "activeId": "actor-0-1",
+    "remaining": 0,
+    "turn": 11,
+    "turnSeconds": 45,
+    "elapsed": 85.30000000001395,
+    "matchSeconds": 600,
+    "targetScore": 24,
+    "victoryRules": [
+      "score",
+      "last-team"
+    ],
+    "winner": "team-0",
+    "result": {
+      "winner": "team-0",
+      "reason": "score",
+      "survivors": [
+        {
+          "id": "actor-0-0",
+          "profileId": "player-profile-0-0",
+          "name": "Carlitos",
+          "avatar": "",
+          "hp": 100
+        },
+        {
+          "id": "actor-0-1",
+          "profileId": "player-profile-0-1",
+          "name": "Martín",
+          "avatar": "",
+          "hp": 100
+        }
+      ]
+    },
+    "teams": [
+      {
+        "id": "team-0",
+        "profileId": "team-profile-0",
+        "name": "Equipo de prueba 1",
+        "cursor": 1,
+        "score": 29.6,
+        "captures": []
+      },
+      {
+        "id": "team-1",
+        "profileId": "team-profile-1",
+        "name": "Equipo de prueba 2",
+        "cursor": 0,
+        "score": 0.5,
+        "captures": []
+      }
+    ],
+    "members": [
+      {
+        "id": "actor-0-0",
+        "profileId": "player-profile-0-0",
+        "teamId": "team-0",
+        "name": "Carlitos",
+        "avatar": "",
+        "cosmetics": {
+          "skinId": "default"
+        },
+        "hp": 100,
+        "deaths": 0,
+        "protectedUntil": 0,
+        "statuses": [],
+        "objective": "Último equipo en pie",
+        "gear": {
+          "ammo": [
+            14,
+            28,
+            6,
+            3
+          ],
+          "reserve": [
+            28,
+            56,
+            12,
+            3
+          ],
+          "items": {
+            "medkit": 1,
+            "shield": 1,
+            "antidote": 1
+          },
+          "weapon": "Pistola",
+          "mortar": false,
+          "matches": 3
+        }
+      },
+      {
+        "id": "actor-0-1",
+        "profileId": "player-profile-0-1",
+        "teamId": "team-0",
+        "name": "Martín",
+        "avatar": "",
+        "cosmetics": {
+          "skinId": "default"
+        },
+        "hp": 100,
+        "deaths": 0,
+        "protectedUntil": 0,
+        "statuses": [],
+        "objective": "Último equipo en pie",
+        "gear": {
+          "ammo": [
+            14,
+            28,
+            6,
+            3
+          ],
+          "reserve": [
+            28,
+            56,
+            12,
+            3
+          ],
+          "items": {
+            "medkit": 1,
+            "shield": 1,
+            "antidote": 1
+          },
+          "weapon": "Pistola",
+          "mortar": false,
+          "matches": 3
+        }
+      },
+      {
+        "id": "actor-1-0",
+        "profileId": "player-profile-1-0",
+        "teamId": "team-1",
+        "name": "Julián",
+        "avatar": "",
+        "cosmetics": {
+          "skinId": "default"
+        },
+        "hp": 100,
+        "deaths": 0,
+        "protectedUntil": 0,
+        "statuses": [],
+        "objective": "Último equipo en pie",
+        "gear": {
+          "ammo": [
+            14,
+            28,
+            6,
+            3
+          ],
+          "reserve": [
+            28,
+            56,
+            12,
+            3
+          ],
+          "items": {
+            "medkit": 1,
+            "shield": 1,
+            "antidote": 1
+          },
+          "weapon": "Pistola",
+          "mortar": false,
+          "matches": 3
+        }
+      },
+      {
+        "id": "actor-1-1",
+        "profileId": "player-profile-1-1",
+        "teamId": "team-1",
+        "name": "Eduardo",
+        "avatar": "",
+        "cosmetics": {
+          "skinId": "default"
+        },
+        "hp": 100,
+        "deaths": 0,
+        "protectedUntil": 0,
+        "statuses": [],
+        "objective": "Último equipo en pie",
+        "gear": {
+          "ammo": [
+            14,
+            28,
+            6,
+            3
+          ],
+          "reserve": [
+            28,
+            56,
+            12,
+            3
+          ],
+          "items": {
+            "medkit": 1,
+            "shield": 1,
+            "antidote": 1
+          },
+          "weapon": "Pistola",
+          "mortar": false,
+          "matches": 3
+        }
+      }
+    ],
+    "events": [
+      {
+        "id": 1,
+        "type": "turn-start",
+        "actorId": "actor-0-0",
+        "turn": 1
+      },
+      {
+        "id": 2,
+        "type": "match-start"
+      },
+      {
+        "id": 3,
+        "type": "score",
+        "teamId": "team-0",
+        "points": 8,
+        "reason": "objective-extract"
+      },
+      {
+        "id": 4,
+        "type": "score",
+        "teamId": "team-0",
+        "points": 3,
+        "reason": "contract"
+      },
+      {
+        "id": 5,
+        "type": "score",
+        "teamId": "team-0",
+        "points": 0.1,
+        "reason": "survival"
+      },
+      {
+        "id": 6,
+        "type": "turn-end",
+        "actorId": "actor-0-0",
+        "reason": "manual"
+      },
+      {
+        "id": 7,
+        "type": "supply"
+      },
+      {
+        "id": 8,
+        "type": "turn-start",
+        "actorId": "actor-1-0",
+        "turn": 2
+      },
+      {
+        "id": 9,
+        "type": "score",
+        "teamId": "team-1",
+        "points": 0.1,
+        "reason": "survival"
+      },
+      {
+        "id": 10,
+        "type": "turn-end",
+        "actorId": "actor-1-0",
+        "reason": "manual"
+      },
+      {
+        "id": 11,
+        "type": "supply"
+      },
+      {
+        "id": 12,
+        "type": "turn-start",
+        "actorId": "actor-0-1",
+        "turn": 3
+      },
+      {
+        "id": 13,
+        "type": "score",
+        "teamId": "team-0",
+        "points": 6,
+        "reason": "objective-relay"
+      },
+      {
+        "id": 14,
+        "type": "score",
+        "teamId": "team-0",
+        "points": 0.1,
+        "reason": "survival"
+      },
+      {
+        "id": 15,
+        "type": "turn-end",
+        "actorId": "actor-0-1",
+        "reason": "manual"
+      },
+      {
+        "id": 16,
+        "type": "supply"
+      },
+      {
+        "id": 17,
+        "type": "turn-start",
+        "actorId": "actor-1-1",
+        "turn": 4
+      },
+      {
+        "id": 18,
+        "type": "score",
+        "teamId": "team-1",
+        "points": 0.1,
+        "reason": "survival"
+      },
+      {
+        "id": 19,
+        "type": "turn-end",
+        "actorId": "actor-1-1",
+        "reason": "manual"
+      },
+      {
+        "id": 20,
+        "type": "supply"
+      },
+      {
+        "id": 21,
+        "type": "turn-start",
+        "actorId": "actor-0-0",
+        "turn": 5
+      },
+      {
+        "id": 22,
+        "type": "score",
+        "teamId": "team-0",
+        "points": 0.1,
+        "reason": "survival"
+      },
+      {
+        "id": 23,
+        "type": "turn-end",
+        "actorId": "actor-0-0",
+        "reason": "manual"
+      },
+      {
+        "id": 24,
+        "type": "supply"
+      },
+      {
+        "id": 25,
+        "type": "turn-start",
+        "actorId": "actor-1-0",
+        "turn": 6
+      },
+      {
+        "id": 26,
+        "type": "score",
+        "teamId": "team-1",
+        "points": 0.1,
+        "reason": "survival"
+      },
+      {
+        "id": 27,
+        "type": "turn-end",
+        "actorId": "actor-1-0",
+        "reason": "manual"
+      },
+      {
+        "id": 28,
+        "type": "supply"
+      },
+      {
+        "id": 29,
+        "type": "turn-start",
+        "actorId": "actor-0-1",
+        "turn": 7
+      },
+      {
+        "id": 30,
+        "type": "score",
+        "teamId": "team-0",
+        "points": 6,
+        "reason": "objective-relay"
+      },
+      {
+        "id": 31,
+        "type": "score",
+        "teamId": "team-0",
+        "points": 0.1,
+        "reason": "survival"
+      },
+      {
+        "id": 32,
+        "type": "turn-end",
+        "actorId": "actor-0-1",
+        "reason": "manual"
+      },
+      {
+        "id": 33,
+        "type": "supply"
+      },
+      {
+        "id": 34,
+        "type": "turn-start",
+        "actorId": "actor-1-1",
+        "turn": 8
+      },
+      {
+        "id": 35,
+        "type": "score",
+        "teamId": "team-1",
+        "points": 0.1,
+        "reason": "survival"
+      },
+      {
+        "id": 36,
+        "type": "turn-end",
+        "actorId": "actor-1-1",
+        "reason": "manual"
+      },
+      {
+        "id": 37,
+        "type": "supply"
+      },
+      {
+        "id": 38,
+        "type": "turn-start",
+        "actorId": "actor-0-0",
+        "turn": 9
+      },
+      {
+        "id": 39,
+        "type": "score",
+        "teamId": "team-0",
+        "points": 0.1,
+        "reason": "survival"
+      },
+      {
+        "id": 40,
+        "type": "turn-end",
+        "actorId": "actor-0-0",
+        "reason": "manual"
+      },
+      {
+        "id": 41,
+        "type": "supply"
+      },
+      {
+        "id": 42,
+        "type": "turn-start",
+        "actorId": "actor-1-0",
+        "turn": 10
+      },
+      {
+        "id": 43,
+        "type": "score",
+        "teamId": "team-1",
+        "points": 0.1,
+        "reason": "survival"
+      },
+      {
+        "id": 44,
+        "type": "turn-end",
+        "actorId": "actor-1-0",
+        "reason": "manual"
+      },
+      {
+        "id": 45,
+        "type": "supply"
+      },
+      {
+        "id": 46,
+        "type": "turn-start",
+        "actorId": "actor-0-1",
+        "turn": 11
+      },
+      {
+        "id": 47,
+        "type": "score",
+        "teamId": "team-0",
+        "points": 6,
+        "reason": "objective-relay"
+      },
+      {
+        "id": 48,
+        "type": "score",
+        "teamId": "team-0",
+        "points": 0.1,
+        "reason": "survival"
+      },
+      {
+        "id": 49,
+        "type": "turn-end",
+        "actorId": "actor-0-1",
+        "reason": "manual"
+      },
+      {
+        "id": 50,
+        "type": "match-complete",
+        "winner": "team-0",
+        "reason": "score"
+      }
+    ]
+  },
+  "strategy": {
+    "enabled": true,
+    "elapsed": 85.29166666668061,
+    "turn": 11,
+    "serial": 0,
+    "channel": null,
+    "goals": [
+      {
+        "id": "relay-near",
+        "type": "relay",
+        "name": "Baliza de vigilia",
+        "position": [
+          -330,
+          8.588066551202955,
+          -270
+        ],
+        "radius": 85,
+        "required": 2,
+        "points": 6,
+        "workSeconds": 6,
+        "requires": [],
+        "work": {},
+        "owner": "team-0",
+        "progress": 0,
+        "complete": [
+          "team-0"
+        ],
+        "carrier": null,
+        "available": true,
+        "rewardMode": "stealable"
+      },
+      {
+        "id": "relay-0",
+        "type": "relay",
+        "name": "Relé del Manglar",
+        "position": [
+          -520,
+          12.626885033816714,
+          -700
+        ],
+        "radius": 85,
+        "required": 2,
+        "points": 6,
+        "workSeconds": 6,
+        "requires": [],
+        "work": {},
+        "owner": "team-0",
+        "progress": 0,
+        "complete": [
+          "team-0"
+        ],
+        "carrier": null,
+        "available": true,
+        "rewardMode": "stealable"
+      },
+      {
+        "id": "relay-1",
+        "type": "relay",
+        "name": "Relé de Ceniza",
+        "position": [
+          1450,
+          57.74303092412654,
+          -900
+        ],
+        "radius": 85,
+        "required": 2,
+        "points": 6,
+        "workSeconds": 6,
+        "requires": [],
+        "work": {},
+        "owner": "team-0",
+        "progress": 2,
+        "complete": [
+          "team-0"
+        ],
+        "carrier": null,
+        "available": true,
+        "rewardMode": "stealable"
+      },
+      {
+        "id": "relay-2",
+        "type": "relay",
+        "name": "Relé de la Grieta",
+        "position": [
+          650,
+          21.280754981272022,
+          -2250
+        ],
+        "radius": 85,
+        "required": 2,
+        "points": 6,
+        "workSeconds": 6,
+        "requires": [],
+        "work": {},
+        "owner": null,
+        "progress": 0,
+        "complete": [],
+        "carrier": null,
+        "available": true,
+        "rewardMode": "stealable"
+      },
+      {
+        "id": "zone-near",
+        "type": "zone",
+        "name": "Zona disputada",
+        "position": [
+          320,
+          44.603178628049264,
+          -250
+        ],
+        "radius": 85,
+        "required": 2,
+        "points": 2,
+        "workSeconds": 6,
+        "requires": [],
+        "work": {},
+        "owner": null,
+        "progress": 0,
+        "complete": [],
+        "carrier": null,
+        "available": true,
+        "rewardMode": "stealable"
+      },
+      {
+        "id": "cargo-near",
+        "type": "cargo",
+        "name": "Fragmento errante",
+        "position": [
+          -200,
+          16.703024318308124,
+          -110
+        ],
+        "radius": 45,
+        "required": 2,
+        "points": 8,
+        "workSeconds": 6,
+        "requires": [],
+        "work": {},
+        "owner": null,
+        "progress": 0,
+        "complete": [
+          "team-0"
+        ],
+        "carrier": null,
+        "available": true,
+        "rewardMode": "stealable"
+      },
+      {
+        "id": "extract",
+        "type": "extract",
+        "name": "Extracción",
+        "position": [
+          0,
+          24.07073964490811,
+          110
+        ],
+        "radius": 55,
+        "required": 2,
+        "points": 6,
+        "workSeconds": 6,
+        "requires": [],
+        "work": {},
+        "owner": null,
+        "progress": 0,
+        "complete": [],
+        "carrier": null,
+        "available": true,
+        "rewardMode": "stealable"
+      },
+      {
+        "id": "wave",
+        "type": "pve",
+        "name": "Nido hostil",
+        "position": [
+          -380,
+          12.078985567015932,
+          -700
+        ],
+        "radius": 45,
+        "required": 2,
+        "points": 7,
+        "workSeconds": 6,
+        "requires": [],
+        "work": {},
+        "owner": null,
+        "progress": 0,
+        "complete": [],
+        "carrier": null,
+        "available": true,
+        "rewardMode": "stealable"
+      },
+      {
+        "id": "resonator-0",
+        "type": "resonator",
+        "name": "Resonador Umbrío",
+        "position": [
+          -650,
+          9.53443624394761,
+          -420
+        ],
+        "radius": 55,
+        "required": 2,
+        "points": 2,
+        "workSeconds": 6,
+        "requires": [],
+        "work": {},
+        "owner": null,
+        "progress": 0,
+        "complete": [],
+        "carrier": null,
+        "available": true,
+        "rewardMode": "stealable"
+      },
+      {
+        "id": "resonator-1",
+        "type": "resonator",
+        "name": "Resonador Hueco",
+        "position": [
+          610,
+          49.16453074166244,
+          -520
+        ],
+        "radius": 55,
+        "required": 2,
+        "points": 2,
+        "workSeconds": 6,
+        "requires": [],
+        "work": {},
+        "owner": null,
+        "progress": 0,
+        "complete": [],
+        "carrier": null,
+        "available": true,
+        "rewardMode": "stealable"
+      },
+      {
+        "id": "resonator-2",
+        "type": "resonator",
+        "name": "Resonador Velado",
+        "position": [
+          159.18440237676216,
+          50.25753952280245,
+          642.1731087802709
+        ],
+        "radius": 55,
+        "required": 2,
+        "points": 2,
+        "workSeconds": 6,
+        "requires": [],
+        "work": {},
+        "owner": null,
+        "progress": 0,
+        "complete": [],
+        "carrier": null,
+        "available": true,
+        "rewardMode": "stealable"
+      },
+      {
+        "id": "breach",
+        "type": "breach",
+        "name": "Brecha de retorno",
+        "position": [
+          -452,
+          22.853221488851887,
+          550
+        ],
+        "radius": 55,
+        "required": 2,
+        "points": 18,
+        "workSeconds": 8,
+        "requires": [
+          "resonator-0",
+          "resonator-1",
+          "resonator-2"
+        ],
+        "work": {},
+        "owner": null,
+        "progress": 0,
+        "complete": [],
+        "carrier": null,
+        "available": true,
+        "rewardMode": "stealable"
+      }
+    ],
+    "fields": [],
+    "couriers": [],
+    "stocks": [
+      {
+        "id": "actor-0-0",
+        "items": {
+          "grapple": 2,
+          "blink": 1,
+          "needle": 3,
+          "smoke": 2,
+          "sensor": 2,
+          "quiet": 1,
+          "acid": 2,
+          "messenger": 1,
+          "weapon-0": 3,
+          "weapon-1": 3,
+          "weapon-2": 3,
+          "weapon-3": 3
+        }
+      },
+      {
+        "id": "actor-0-1",
+        "items": {
+          "grapple": 2,
+          "blink": 1,
+          "needle": 3,
+          "smoke": 2,
+          "sensor": 2,
+          "quiet": 1,
+          "acid": 2,
+          "messenger": 1,
+          "weapon-0": 3,
+          "weapon-1": 3,
+          "weapon-2": 3,
+          "weapon-3": 3
+        }
+      },
+      {
+        "id": "actor-1-0",
+        "items": {
+          "grapple": 2,
+          "blink": 1,
+          "needle": 3,
+          "smoke": 2,
+          "sensor": 2,
+          "quiet": 1,
+          "acid": 2,
+          "messenger": 1,
+          "weapon-0": 3,
+          "weapon-1": 3,
+          "weapon-2": 3,
+          "weapon-3": 3
+        }
+      },
+      {
+        "id": "actor-1-1",
+        "items": {
+          "grapple": 2,
+          "blink": 1,
+          "needle": 3,
+          "smoke": 2,
+          "sensor": 2,
+          "quiet": 1,
+          "acid": 2,
+          "messenger": 1,
+          "weapon-0": 3,
+          "weapon-1": 3,
+          "weapon-2": 3,
+          "weapon-3": 3
+        }
+      }
+    ],
+    "contracts": [
+      {
+        "id": "actor-0-0",
+        "kind": "hold",
+        "goalId": "relay-near",
+        "name": "Terminá oculto en Baliza de vigilia",
+        "progress": 1,
+        "required": 1,
+        "done": true
+      },
+      {
+        "id": "actor-0-1",
+        "kind": "cargo",
+        "goalId": "cargo-near",
+        "name": "Entregá Fragmento errante",
+        "progress": 0,
+        "required": 1,
+        "done": false
+      },
+      {
+        "id": "actor-1-0",
+        "kind": "hold",
+        "goalId": "relay-0",
+        "name": "Terminá oculto en Relé del Manglar",
+        "progress": 0,
+        "required": 1,
+        "done": false
+      },
+      {
+        "id": "actor-1-1",
+        "kind": "cargo",
+        "goalId": "wave",
+        "name": "Entregá Nido hostil",
+        "progress": 0,
+        "required": 1,
+        "done": false
+      }
+    ],
+    "cargo": [],
+    "reveals": [
+      {
+        "id": "actor-0-0",
+        "until": 67.29999999999724,
+        "kind": "baliza"
+      }
+    ],
+    "logs": [
+      {
+        "observer": "actor-0-0",
+        "target": "actor-1-0",
+        "seen": false,
+        "reason": "fuera del cono",
+        "time": 0
+      },
+      {
+        "observer": "actor-0-1",
+        "target": "actor-1-0",
+        "seen": false,
+        "reason": "fuera del cono",
+        "time": 0
+      },
+      {
+        "observer": "actor-0-0",
+        "target": "actor-1-1",
+        "seen": false,
+        "reason": "fuera del cono",
+        "time": 0
+      },
+      {
+        "observer": "actor-0-1",
+        "target": "actor-1-1",
+        "seen": false,
+        "reason": "fuera del cono",
+        "time": 0
+      },
+      {
+        "observer": "actor-1-0",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera del cono",
+        "time": 0
+      },
+      {
+        "observer": "actor-1-1",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera del cono",
+        "time": 0
+      },
+      {
+        "observer": "pve-0",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera del cono",
+        "time": 0
+      },
+      {
+        "observer": "pve-1",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "cobertura sólida",
+        "time": 0
+      },
+      {
+        "observer": "pve-2",
+        "target": "actor-0-0",
+        "seen": true,
+        "reason": "visible",
+        "time": 0
+      },
+      {
+        "observer": "actor-0-0",
+        "target": "actor-1-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0.3000000000000001
+      },
+      {
+        "observer": "actor-0-0",
+        "target": "actor-1-1",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0.3000000000000001
+      },
+      {
+        "observer": "actor-1-0",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0.3000000000000001
+      },
+      {
+        "observer": "actor-1-1",
+        "target": "actor-0-0",
+        "seen": false,
+        "reason": "fuera de alcance / niebla",
+        "time": 0.3000000000000001
+      },
+      {
+        "observer": "actor-1-0",
+        "target": "actor-0-1",
+        "seen": false,
+        "reason": "fuera del cono",
+        "time": 8.10000000000018
+      },
+      {
+        "observer": "actor-1-1",
+        "target": "actor-0-1",
+        "seen": false,
+        "reason": "fuera del cono",
+        "time": 8.10000000000018
+      }
+    ],
+    "damageLog": []
+  },
+  "position": [
+    -121.49089670971775,
+    24.93990865635964,
+    150
+  ],
+  "notice": "Fragmento de energía · 6 m · E para recoger"
+}

@@ -1,0 +1,100 @@
+{
+  "pass": true,
+  "cases": [
+    "Dimension 0 has finite bounds for every collider",
+    "Dimension 0 spatial index matches full scan at every collider",
+    "Dimension 0 orbit/camera/terrain sweep is valid",
+    "Dimension 0 camera stays outside every map coverage",
+    "Dimension 0 jump/dash/landing/boundary routes remain stable",
+    "Dimension 1 has finite bounds for every collider",
+    "Dimension 1 spatial index matches full scan at every collider",
+    "Dimension 1 orbit/camera/terrain sweep is valid",
+    "Dimension 1 camera stays outside every map coverage",
+    "Dimension 1 jump/dash/landing/boundary routes remain stable",
+    "Live rendering survives combat without frame faults",
+    "Live perspective verifier reports a valid scene",
+    "Invalid player and camera state automatically recover",
+    "Minimal settings exposes quality, shadows, effects, FPS and FOV",
+    "Performance preset changes render resolution",
+    "No renderer errors"
+  ],
+  "reports": [
+    {
+      "dimension": 0,
+      "audit": {
+        "boxes": 1129,
+        "rays": 2258,
+        "misses": 0,
+        "finite": true
+      },
+      "cameras": {
+        "checks": 324,
+        "failures": []
+      },
+      "coverage": {
+        "checks": 2258,
+        "failures": []
+      },
+      "terrain": {
+        "checks": 504,
+        "failures": []
+      }
+    },
+    {
+      "dimension": 1,
+      "audit": {
+        "boxes": 1153,
+        "rays": 2306,
+        "misses": 0,
+        "finite": true
+      },
+      "cameras": {
+        "checks": 324,
+        "failures": []
+      },
+      "coverage": {
+        "checks": 2306,
+        "failures": []
+      },
+      "terrain": {
+        "checks": 504,
+        "failures": []
+      }
+    }
+  ],
+  "final": {
+    "scene": {
+      "ok": true,
+      "issues": [],
+      "boxes": 1129,
+      "dimension": 0
+    },
+    "performance": {
+      "values": {
+        "quality": "balanced",
+        "shadows": true,
+        "effects": true,
+        "fps": true,
+        "fov": 58
+      },
+      "fps": 11.429333279069462,
+      "p95": 160.3000030517578,
+      "frames": 1880,
+      "violations": 2,
+      "recoveries": 2,
+      "lastIssue": "Perspectiva recuperada"
+    },
+    "collisions": {
+      "boxes": 1129,
+      "cells": 798,
+      "invalid": 0,
+      "queries": 1941247,
+      "contacts": 8677
+    },
+    "camera": {
+      "contractions": 5852,
+      "clear": true,
+      "aboveTerrain": true
+    }
+  }
+}

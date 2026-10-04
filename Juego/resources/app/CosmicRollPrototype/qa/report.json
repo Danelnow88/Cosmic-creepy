@@ -1,0 +1,187 @@
+{
+  "pass": true,
+  "date": "2026-10-03",
+  "platform": "Electron 44.5.0 / Windows",
+  "cases": [
+    {
+      "character": "boti",
+      "moved": 68.52833699999951,
+      "dash": {
+        "count": 10,
+        "cap": 96,
+        "life": 0.42,
+        "pool": 0,
+        "glowCache": 1
+      },
+      "depth": {
+        "ready": true,
+        "active": true,
+        "contextLost": false,
+        "elevation": 43,
+        "entities": 7,
+        "projectiles": 0,
+        "triangles": 5262,
+        "drawCalls": 45,
+        "frame": 171
+      }
+    },
+    {
+      "character": "nova",
+      "moved": 75.34044173076961,
+      "dash": {
+        "count": 10,
+        "cap": 96,
+        "life": 0.42,
+        "pool": 0,
+        "glowCache": 1
+      },
+      "depth": {
+        "ready": true,
+        "active": true,
+        "contextLost": false,
+        "elevation": 43,
+        "entities": 6,
+        "projectiles": 1,
+        "triangles": 4766,
+        "drawCalls": 50,
+        "frame": 172
+      }
+    },
+    {
+      "character": "rook",
+      "moved": 56.921080384615266,
+      "dash": {
+        "count": 12,
+        "cap": 96,
+        "life": 0.42,
+        "pool": 0,
+        "glowCache": 1
+      },
+      "depth": {
+        "ready": true,
+        "active": true,
+        "contextLost": false,
+        "elevation": 43,
+        "entities": 6,
+        "projectiles": 0,
+        "triangles": 7090,
+        "drawCalls": 69,
+        "frame": 178
+      }
+    },
+    {
+      "character": "swarm",
+      "moved": 70.31425961538491,
+      "dash": {
+        "count": 10,
+        "cap": 96,
+        "life": 0.42,
+        "pool": 0,
+        "glowCache": 1
+      },
+      "depth": {
+        "ready": true,
+        "active": true,
+        "contextLost": false,
+        "elevation": 43,
+        "entities": 7,
+        "projectiles": 6,
+        "triangles": 5102,
+        "drawCalls": 40,
+        "frame": 173
+      }
+    },
+    {
+      "boss": {
+        "ready": true,
+        "active": true,
+        "contextLost": false,
+        "elevation": 43,
+        "entities": 3,
+        "projectiles": 3,
+        "triangles": 7626,
+        "drawCalls": 62,
+        "frame": 153
+      },
+      "projection": {
+        "expected": {
+          "x": 765,
+          "y": 443.96842600000014
+        },
+        "actual": {
+          "x": 765.0000000000063,
+          "y": 443.9684260000005
+        },
+        "error": 6.262070816738019e-12
+      },
+      "manualFire": {
+        "hpBefore": 1440,
+        "hpAfter": 1398
+      }
+    },
+    {
+      "viewport": [
+        915,
+        412
+      ],
+      "result": {
+        "depth": {
+          "ready": true,
+          "active": true,
+          "contextLost": false,
+          "elevation": 43,
+          "entities": 3,
+          "projectiles": 6,
+          "triangles": 7834,
+          "drawCalls": 64,
+          "frame": 309
+        },
+        "canvas": {
+          "x": 0,
+          "y": 64,
+          "width": 915,
+          "height": 456,
+          "top": 64,
+          "right": 915,
+          "bottom": 520,
+          "left": 0
+        },
+        "width": 915,
+        "height": 520
+      }
+    },
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "result": {
+        "depth": {
+          "ready": true,
+          "active": true,
+          "contextLost": false,
+          "elevation": 43,
+          "entities": 3,
+          "projectiles": 6,
+          "triangles": 7834,
+          "drawCalls": 64,
+          "frame": 309
+        },
+        "canvas": {
+          "x": 0,
+          "y": 64,
+          "width": 844,
+          "height": 456,
+          "top": 64,
+          "right": 844,
+          "bottom": 520,
+          "left": 0
+        },
+        "width": 844,
+        "height": 520
+      }
+    }
+  ],
+  "errors": [],
+  "limits": "Cuerpos, jefe y proyectiles son geometría 3D real sobre plano 3D. Faltan modelos finales por enemigo, VFX 3D completos y prueba en dispositivos móviles físicos."
+}

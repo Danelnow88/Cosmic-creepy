@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="NEON VOID">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07182b"/>
+      <stop offset="1" stop-color="#09051b"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#6ffaff"/>
+      <stop offset="0.55" stop-color="#00dce8"/>
+      <stop offset="1" stop-color="#a86cff"/>
+    </linearGradient>
+    <radialGradient id="core">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.18" stop-color="#8ffbff"/>
+      <stop offset="0.52" stop-color="#00e4f0"/>
+      <stop offset="1" stop-color="#b23cff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="104" fill="url(#bg)"/>
+  <path d="M78 169 194 74h124l116 95v174l-116 95H194L78 343Z" fill="none" stroke="#123c59" stroke-width="18"/>
+  <path d="M117 188 209 112h94l92 76v136l-92 76h-94l-92-76Z" fill="#07111f" stroke="url(#edge)" stroke-width="14" filter="url(#glow)"/>
+  <path d="M172 177v158h32l104-100v100h32V177h-32L204 278V177Z" fill="none" stroke="url(#edge)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="256" cy="256" r="54" fill="url(#core)" opacity="0.92"/>
+  <circle cx="256" cy="256" r="20" fill="#030817" stroke="#ffffff" stroke-width="6"/>
+</svg>

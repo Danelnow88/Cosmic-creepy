@@ -1,0 +1,9 @@
+{
+  "name": "cosmic-roll-prototype",
+  "productName": "COSMIC ROLL",
+  "version": "0.1.0",
+  "private": true,
+  "main": "desktop/main.cjs",
+  "description": "Estudio independiente de remasterización visual a 3D sobre el motor de NEON VOID",
+  "scripts": { "verify:source": "node prototype/verify-source.cjs" }
+}

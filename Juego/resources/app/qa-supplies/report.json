@@ -1,0 +1,24 @@
+{
+  "pass": true,
+  "cases": [
+    "Partial reload only transfers existing reserve",
+    "No reserve cannot create bullets",
+    "Supply phase happens before next actor",
+    "No firing while crate falls",
+    "Crate lands before next active turn",
+    "Personal reserve survives turn rotation",
+    "E collects landed ammo box into reserve",
+    "Collected box cannot reward twice",
+    "Medkit consumes once and heals 35",
+    "Shield consumable halves incoming damage",
+    "Antidote removes poison",
+    "Removed candle cannot consume or restore resources",
+    "Contextual commentator displays requested player name",
+    "Hostile heavy melee inflicts usable poison state",
+    "Names editor starts local game with custom player name",
+    "Names persist in local profile",
+    "Crate visuals and payloads stay bounded",
+    "No renderer frame faults"
+  ],
+  "errors": []
+}

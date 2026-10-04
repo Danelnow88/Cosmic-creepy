@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>COSMIC ROLL 3D — Tercera persona</title>
+  <link rel="stylesheet" href="thirdperson.css">
+  <link rel="stylesheet" href="combat.css">
+  <link rel="stylesheet" href="world.css">
+  <link rel="stylesheet" href="mortar.css">
+  <link rel="stylesheet" href="terror.css">
+  <link rel="stylesheet" href="settings.css">
+  <link rel="stylesheet" href="turns.css">
+  <link rel="stylesheet" href="online.css">
+  <link rel="stylesheet" href="supplies.css">
+  <link rel="stylesheet" href="shelters.css">
+<link rel="stylesheet" href="strategy.css">
+</head>
+<body>
+  <canvas id="world"></canvas>
+  <div id="dimension-flash" aria-hidden="true" style="position:fixed;inset:0;pointer-events:none;background:#769b9a;opacity:0;z-index:4"></div>
+  <header class="hud">
+    <div class="brand"><b>CR3D</b><span>COSMIC ROLL</span><small>TURNOS · EXPEDICIÓN · HUMANOIDES · LAB</small></div>
+    <div class="readout"><span>VELOCIDAD <b id="speed">0</b></span><span>RECORRIDO <b id="distance">0 m</b></span><span>BAJAS <b id="targets">0</b></span></div>
+  </header>
+  <div class="crosshair" aria-hidden="true"><i></i><i></i></div>
+  <div id="aim-point" aria-hidden="true"></div>
+  <div class="region"><span id="region-name"></span><small id="contract-note"></small></div>
+  <div class="contract"><i id="goal-bearing">↑</i><span id="objective"></span></div>
+  <div id="boss-info" hidden></div>
+  <div id="interact-prompt"></div>
+  <div id="pickup-prompt" hidden></div><div id="mortar-readout" hidden></div>
+  <div class="arsenal"><b id="weapon-name">1 · Pistola</b><span id="ammo"></span><div class="weapon-slots" aria-label="Armas"><button type="button" data-weapon="0" title="1 · Pistola">1</button><button type="button" data-weapon="1" title="2 · Rifle">2</button><button type="button" data-weapon="2" title="3 · Escopeta">3</button><button type="button" data-weapon="3" title="4 · Mortero: recoger con E"><img src="mortar-icon.svg" alt="Mortero"><small>4</small></button></div><small>1–4 · equipar &nbsp; R · recargar</small></div>
+  <section id="map-panel" hidden><h2>EXPEDICIÓN</h2><canvas id="region-map" width="340" height="340"></canvas><p>M · cerrar mapa &nbsp; E · interactuar</p></section>
+  <div class="vitals"><span>NÚCLEO <b id="health">100 / 100</b></span><div class="health-track"><i id="health-fill"></i></div><span>SHIFT · DASH <b id="dash">LISTO</b></span></div>
+  <div class="candle-status"><span>CARGA LUMÍNICA <b id="candle-life">04:00</b></span><i id="candle-flame" class="energy-crystal" aria-hidden="true"></i><small>FRAGMENTOS <b id="match-count">3</b></small><button id="energy-use" class="energy-control" title="Q activa un fragmento: luz durante 22 s">Q · Activar fragmento</button></div>
+  <button id="camera-toggle" type="button">C · Cámara <b id="camera-mode">Libre</b></button>
+  <aside class="help"><b>WASD</b> mover · <b>Espacio</b> saltar · <b>Shift</b> dash · <b>Q</b> fragmento · <b>Clic / F</b> disparar · <b>E</b> interactuar · <b>M</b> mapa · <b>P</b> pausa<br><span id="message"></span></aside>
+  <section id="game-overlay" hidden><h1>PAUSA</h1><p></p><button id="resume">Continuar</button><button id="continue-save">Retomar checkpoint</button><button id="restart">Nueva expedición · N</button><label class="audio-control">Audio envolvente · auriculares recomendados <input id="volume" type="range" min="0" max="100" value="65" aria-label="Volumen general"> V · silencio</label></section>
+  <div class="vignette"></div>
+  <script src="../vendor/three-0.160.0.min.js"></script>
+  <script src="physics.js"></script>
+  <script src="collision-world.js"></script>
+  <script src="camera-rig.js"></script>
+  <script src="settings.js"></script>
+  <script src="vertical-world.js"></script>
+  <script src="loadout.js"></script>
+  <script src="commentator.js"></script>
+  <script src="supplies.js"></script>
+  <script src="profiles.js"></script>
+  <script src="turns.js"></script>
+  <script src="character-style.js"></script>
+  <script src="warrior-web.js"></script>
+  <script src="humanoid.js"></script>
+  <script src="turn-view.js"></script>
+  <script src="dimensions.js"></script>
+  <script src="singularity.js"></script>
+  <script src="shelters.js"></script>
+  <script src="shelter-view.js"></script>
+  <script src="icons.js"></script>
+  <script src="world.js"></script>
+  <script src="growth.js"></script>
+  <script src="sound.js"></script>
+  <script src="survival.js"></script>
+  <script src="terror-audio.js"></script>
+  <script src="terror-visual.js"></script>
+  <script src="expedition.js"></script>
+  <script src="mortar.js"></script>
+  <script src="strategy.js"></script>
+  <script src="strategy-view.js"></script>
+  <script src="thirdperson.js"></script>
+</body>
+</html>

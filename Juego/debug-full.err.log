@@ -1,0 +1,5 @@
+Error occurred in handler for 'cr:join': Error: No se pudo conectar: IP, código, versión o firewall
+    at C:\Users\party\Desktop\COSMIC ROLL 3D - Humanoides\Juego\resources\app\desktop\peer.cjs:11:563
+    at Socket.<anonymous> (C:\Users\party\Desktop\COSMIC ROLL 3D - Humanoides\Juego\resources\app\desktop\peer.cjs:6:285)
+    at Socket.emit (node:events:514:28)
+    at TCP.<anonymous> (node:net:362:12)

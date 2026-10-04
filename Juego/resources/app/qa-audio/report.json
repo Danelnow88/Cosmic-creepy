@@ -1,0 +1,2082 @@
+{
+  "pass": true,
+  "cases": [
+    "Nine mix buses exist in the running production graph",
+    "Environmental anchors create spatial sources",
+    "Starting marsh has actual water and vegetation sound anchors",
+    "Rendered near source is substantially louder than far source",
+    "Rendered obstruction reduces actual RMS",
+    "Rendered obstruction removes high frequency energy",
+    "Right-hand source is measurably localized in stereo",
+    "Turning the listener reverses the perceived side",
+    "Production weapon/boss stress mix has signal and headroom",
+    "All granular gestures render real signal with headroom",
+    "Touch is spectrally brighter than slowed hover",
+    "Portal bloom retains its long acoustic tail",
+    "Granular gestures obey world obstruction",
+    "Gaze triggers one hover gesture and never retriggers each frame",
+    "Resonating responds to focused relics and stops when looking away",
+    "Hostile proximity ducks the new granular layer",
+    "Mute and restart retire granular voices and focus",
+    "Rendered Umbral II has a distinct sustained resonant mix",
+    "twig renders a quiet spatial cue with headroom",
+    "dread renders a quiet spatial cue with headroom",
+    "curiosity renders a quiet spatial cue with headroom",
+    "Quiet exploration produces spaced unease and mystery cues",
+    "Combat and pause suppress decorative suspense cues",
+    "Atmosphere reset clears pacing and transient voices",
+    "Hidden stone site has a real world acoustic position",
+    "Real world cover occludes multiple acoustic rays",
+    "An unobstructed elevated ray remains open",
+    "Listener follows rendered camera yaw and pitch",
+    "Crossing regions crossfades the real ambient mix",
+    "Weapon fire ducks atmosphere",
+    "Ducking releases after the transient",
+    "A real passing hostile projectile triggers a flyby",
+    "Live boss drives proximity tension and a localized persistent layer",
+    "Mute includes reverb and persistent sources",
+    "Pause includes all returns and pressure layers",
+    "Audio resumes after pause",
+    "Transient budget remains bounded under overload",
+    "Natural onended cleanup releases every transient",
+    "Repeated restart reuses a bounded spatial pool",
+    "Spatial occlusion updates run in the actual game",
+    "Audio integration creates no renderer errors"
+  ],
+  "measurements": {
+    "near": {
+      "peak": 0.272169828414917,
+      "channels": [
+        {
+          "rms": 0.004542294570422368,
+          "brightness": 0.23427432480958285
+        },
+        {
+          "rms": 0.017402307990556077,
+          "brightness": 0.9807121823646751
+        }
+      ],
+      "rms": 0.012717561939354973,
+      "tailRms": 0,
+      "voices": 1,
+      "spatialEvents": 1
+    },
+    "far": {
+      "peak": 0.010579178109765053,
+      "channels": [
+        {
+          "rms": 0.0002937760560550926,
+          "brightness": 0.16194701715563065
+        },
+        {
+          "rms": 0.0006466856411344231,
+          "brightness": 0.3434471845975218
+        }
+      ],
+      "rms": 0.0005022482899725616,
+      "tailRms": 0,
+      "voices": 1,
+      "spatialEvents": 1
+    },
+    "clear": {
+      "peak": 0.031044693663716316,
+      "channels": [
+        {
+          "rms": 0.0005368921289771998,
+          "brightness": 0.1962496356322549
+        },
+        {
+          "rms": 0.0017260879432066958,
+          "brightness": 0.6390286204302112
+        }
+      ],
+      "rms": 0.0012782082666453834,
+      "tailRms": 0,
+      "voices": 1,
+      "spatialEvents": 1
+    },
+    "blocked": {
+      "peak": 0.0019553436432033777,
+      "channels": [
+        {
+          "rms": 0.00008708805409007404,
+          "brightness": 0.03974887133379303
+        },
+        {
+          "rms": 0.00012352163910138382,
+          "brightness": 0.04725017395433021
+        }
+      ],
+      "rms": 0.00010686890214531114,
+      "tailRms": 0,
+      "voices": 1,
+      "spatialEvents": 1
+    },
+    "right": {
+      "peak": 0.12484204769134521,
+      "channels": [
+        {
+          "rms": 0.0018649342924892394,
+          "brightness": 0.23566722638486307
+        },
+        {
+          "rms": 0.007273826058766377,
+          "brightness": 0.971133518255292
+        }
+      ],
+      "rms": 0.005309732829836693,
+      "tailRms": 0,
+      "voices": 1,
+      "spatialEvents": 1
+    },
+    "turned": {
+      "peak": 0.1262894570827484,
+      "channels": [
+        {
+          "rms": 0.007269394934700948,
+          "brightness": 0.9711326944652103
+        },
+        {
+          "rms": 0.0018673765759096874,
+          "brightness": 0.23545927836038333
+        }
+      ],
+      "rms": 0.005307127188645095,
+      "tailRms": 0,
+      "voices": 1,
+      "spatialEvents": 1
+    },
+    "stress": {
+      "peak": 0.4801959991455078,
+      "channels": [
+        {
+          "rms": 0.07293728133591129,
+          "brightness": 0.04338819548919458
+        },
+        {
+          "rms": 0.07168561069227528,
+          "brightness": 0.045758876208549105
+        }
+      ],
+      "rms": 0.07231415417813557,
+      "tailRms": 0.000005161307965693359,
+      "voices": 32,
+      "spatialEvents": 45
+    },
+    "growth-hover": {
+      "peak": 0.1112874299287796,
+      "channels": [
+        {
+          "rms": 0.005920431884890068,
+          "brightness": 0.05653706739797328
+        },
+        {
+          "rms": 0.00924901326345148,
+          "brightness": 0.06584936994323859
+        }
+      ],
+      "rms": 0.007765170959197368,
+      "tailRms": 0,
+      "voices": 1,
+      "spatialEvents": 1
+    },
+    "growth-touch": {
+      "peak": 0.10599335283041,
+      "channels": [
+        {
+          "rms": 0.0031453582175807663,
+          "brightness": 0.10402455091578056
+        },
+        {
+          "rms": 0.006176095797517247,
+          "brightness": 0.1163436096222713
+        }
+      ],
+      "rms": 0.004900889593584671,
+      "tailRms": 0,
+      "voices": 1,
+      "spatialEvents": 1
+    },
+    "growth-bloom": {
+      "peak": 0.16087105870246887,
+      "channels": [
+        {
+          "rms": 0.01566358337233563,
+          "brightness": 0.031147927329000406
+        },
+        {
+          "rms": 0.02059544476707146,
+          "brightness": 0.036125487668334684
+        }
+      ],
+      "rms": 0.018296450328077304,
+      "tailRms": 0.000327682182432106,
+      "voices": 1,
+      "spatialEvents": 1
+    },
+    "growthBlocked": {
+      "peak": 0.029156479984521866,
+      "channels": [
+        {
+          "rms": 0.0014037720444824494,
+          "brightness": 0.05306953958820609
+        },
+        {
+          "rms": 0.002188978076973849,
+          "brightness": 0.0600020662537208
+        }
+      ],
+      "rms": 0.0018387768997818314,
+      "tailRms": 0,
+      "voices": 1,
+      "spatialEvents": 1
+    },
+    "growthDirector": {
+      "entry": {
+        "started": true,
+        "running": true,
+        "voices": 2,
+        "voiceLimit": 32,
+        "peakVoices": 2,
+        "played": 2,
+        "dropped": 0,
+        "stolen": 0,
+        "volume": 0.65,
+        "mute": false,
+        "region": 0,
+        "paused": false,
+        "peak": 0,
+        "rms": 0,
+        "buses": [
+          "master",
+          "ambient",
+          "weather",
+          "biome",
+          "combat",
+          "weapons",
+          "enemies",
+          "boss",
+          "signals",
+          "growth"
+        ],
+        "mixes": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "threat": 0,
+        "duck": 1,
+        "atmosphere": {
+          "hush": 0,
+          "uneaseCalls": 0,
+          "wonderCalls": 0,
+          "nextUnease": 13.331557925790548,
+          "nextWonder": 4
+        },
+        "growth": {
+          "source": "original-voiced-granular",
+          "grains": 2,
+          "touches": 0,
+          "focus": "relic",
+          "level": 0.45,
+          "pad": false,
+          "soundscape": "natural-marsh"
+        },
+        "emitters": 1,
+        "emitterLimit": 12,
+        "panners": 3,
+        "spatialEvents": 2,
+        "flybys": 0,
+        "occlusionQueries": 5,
+        "events": {
+          "growth-hover": 1,
+          "growth-air": 1
+        },
+        "listener": {
+          "x": 0,
+          "y": 14,
+          "z": 0,
+          "forward": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "up": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          }
+        },
+        "sources": [
+          {
+            "id": "body-roll",
+            "kind": "roll-earth",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "category": "combat",
+            "distance": 1.4,
+            "occlusion": 0,
+            "cutoff": 15890.74678762257,
+            "gain": 1,
+            "audibility": 1
+          }
+        ],
+        "latency": 0.01
+      },
+      "hold": {
+        "started": true,
+        "running": true,
+        "voices": 2,
+        "voiceLimit": 32,
+        "peakVoices": 2,
+        "played": 2,
+        "dropped": 0,
+        "stolen": 0,
+        "volume": 0.65,
+        "mute": false,
+        "region": 0,
+        "paused": false,
+        "peak": 0,
+        "rms": 0,
+        "buses": [
+          "master",
+          "ambient",
+          "weather",
+          "biome",
+          "combat",
+          "weapons",
+          "enemies",
+          "boss",
+          "signals",
+          "growth"
+        ],
+        "mixes": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "threat": 0,
+        "duck": 1,
+        "atmosphere": {
+          "hush": 4.392901958754431e-12,
+          "uneaseCalls": 0,
+          "wonderCalls": 0,
+          "nextUnease": 13.331557925790548,
+          "nextWonder": 4
+        },
+        "growth": {
+          "source": "original-voiced-granular",
+          "grains": 2,
+          "touches": 0,
+          "focus": "relic",
+          "level": 0.45,
+          "pad": false,
+          "soundscape": "natural-marsh"
+        },
+        "emitters": 1,
+        "emitterLimit": 12,
+        "panners": 3,
+        "spatialEvents": 2,
+        "flybys": 0,
+        "occlusionQueries": 5,
+        "events": {
+          "growth-hover": 1,
+          "growth-air": 1
+        },
+        "listener": {
+          "x": 0,
+          "y": 14,
+          "z": 0,
+          "forward": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "up": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          }
+        },
+        "sources": [
+          {
+            "id": "body-roll",
+            "kind": "roll-earth",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "category": "combat",
+            "distance": 1.4,
+            "occlusion": 0,
+            "cutoff": 15890.74678762257,
+            "gain": 1,
+            "audibility": 1
+          }
+        ],
+        "latency": 0.01
+      },
+      "touched": true,
+      "touch": {
+        "started": true,
+        "running": true,
+        "voices": 3,
+        "voiceLimit": 32,
+        "peakVoices": 3,
+        "played": 3,
+        "dropped": 0,
+        "stolen": 0,
+        "volume": 0.65,
+        "mute": false,
+        "region": 0,
+        "paused": false,
+        "peak": 0,
+        "rms": 0,
+        "buses": [
+          "master",
+          "ambient",
+          "weather",
+          "biome",
+          "combat",
+          "weapons",
+          "enemies",
+          "boss",
+          "signals",
+          "growth"
+        ],
+        "mixes": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "threat": 0,
+        "duck": 1,
+        "atmosphere": {
+          "hush": 4.392901958754431e-12,
+          "uneaseCalls": 0,
+          "wonderCalls": 0,
+          "nextUnease": 13.331557925790548,
+          "nextWonder": 4
+        },
+        "growth": {
+          "source": "original-voiced-granular",
+          "grains": 3,
+          "touches": 1,
+          "focus": "relic",
+          "level": 0.45,
+          "pad": false,
+          "soundscape": "natural-marsh"
+        },
+        "emitters": 1,
+        "emitterLimit": 12,
+        "panners": 4,
+        "spatialEvents": 3,
+        "flybys": 0,
+        "occlusionQueries": 6,
+        "events": {
+          "growth-hover": 1,
+          "growth-air": 1,
+          "growth-touch": 1
+        },
+        "listener": {
+          "x": 0,
+          "y": 14,
+          "z": 0,
+          "forward": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "up": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          }
+        },
+        "sources": [
+          {
+            "id": "body-roll",
+            "kind": "roll-earth",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "category": "combat",
+            "distance": 1.4,
+            "occlusion": 0,
+            "cutoff": 15890.74678762257,
+            "gain": 1,
+            "audibility": 1
+          }
+        ],
+        "latency": 0.01
+      },
+      "away": {
+        "started": true,
+        "running": true,
+        "voices": 3,
+        "voiceLimit": 32,
+        "peakVoices": 3,
+        "played": 3,
+        "dropped": 0,
+        "stolen": 0,
+        "volume": 0.65,
+        "mute": false,
+        "region": 0,
+        "paused": false,
+        "peak": 0,
+        "rms": 0,
+        "buses": [
+          "master",
+          "ambient",
+          "weather",
+          "biome",
+          "combat",
+          "weapons",
+          "enemies",
+          "boss",
+          "signals",
+          "growth"
+        ],
+        "mixes": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "threat": 0,
+        "duck": 1,
+        "atmosphere": {
+          "hush": 1.7979688748850618e-11,
+          "uneaseCalls": 0,
+          "wonderCalls": 0,
+          "nextUnease": 13.331557925790548,
+          "nextWonder": 4
+        },
+        "growth": {
+          "source": "original-voiced-granular",
+          "grains": 3,
+          "touches": 1,
+          "focus": null,
+          "level": 0.45,
+          "pad": false,
+          "soundscape": "natural-marsh"
+        },
+        "emitters": 1,
+        "emitterLimit": 12,
+        "panners": 4,
+        "spatialEvents": 3,
+        "flybys": 0,
+        "occlusionQueries": 6,
+        "events": {
+          "growth-hover": 1,
+          "growth-air": 1,
+          "growth-touch": 1
+        },
+        "listener": {
+          "x": 0,
+          "y": 14,
+          "z": 0,
+          "forward": {
+            "x": -1.2246467991473532e-16,
+            "y": 0,
+            "z": 1
+          },
+          "up": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          }
+        },
+        "sources": [
+          {
+            "id": "body-roll",
+            "kind": "roll-earth",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "category": "combat",
+            "distance": 1.4,
+            "occlusion": 0,
+            "cutoff": 15890.74678762257,
+            "gain": 1,
+            "audibility": 1
+          }
+        ],
+        "latency": 0.01
+      },
+      "miss": false,
+      "danger": {
+        "started": true,
+        "running": true,
+        "voices": 3,
+        "voiceLimit": 32,
+        "peakVoices": 3,
+        "played": 3,
+        "dropped": 0,
+        "stolen": 0,
+        "volume": 0.65,
+        "mute": false,
+        "region": 0,
+        "paused": false,
+        "peak": 0,
+        "rms": 0,
+        "buses": [
+          "master",
+          "ambient",
+          "weather",
+          "biome",
+          "combat",
+          "weapons",
+          "enemies",
+          "boss",
+          "signals",
+          "growth"
+        ],
+        "mixes": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "threat": 0.9850044231795223,
+        "duck": 1,
+        "atmosphere": {
+          "hush": 1.199705288844685e-7,
+          "uneaseCalls": 0,
+          "wonderCalls": 0,
+          "nextUnease": 13.331557925790548,
+          "nextWonder": 4
+        },
+        "growth": {
+          "source": "original-voiced-granular",
+          "grains": 3,
+          "touches": 1,
+          "focus": null,
+          "level": 0.11756100717691124,
+          "pad": false,
+          "soundscape": "natural-marsh"
+        },
+        "emitters": 1,
+        "emitterLimit": 12,
+        "panners": 4,
+        "spatialEvents": 3,
+        "flybys": 0,
+        "occlusionQueries": 6,
+        "events": {
+          "growth-hover": 1,
+          "growth-air": 1,
+          "growth-touch": 1
+        },
+        "listener": {
+          "x": 0,
+          "y": 14,
+          "z": 0,
+          "forward": {
+            "x": -1.2246467991473532e-16,
+            "y": 0,
+            "z": 1
+          },
+          "up": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          }
+        },
+        "sources": [
+          {
+            "id": "body-roll",
+            "kind": "roll-earth",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "category": "combat",
+            "distance": 1.4,
+            "occlusion": 0,
+            "cutoff": 15890.74678762257,
+            "gain": 1,
+            "audibility": 1
+          }
+        ],
+        "latency": 0.01
+      },
+      "muted": {
+        "started": true,
+        "running": true,
+        "voices": 0,
+        "voiceLimit": 32,
+        "peakVoices": 3,
+        "played": 3,
+        "dropped": 0,
+        "stolen": 0,
+        "volume": 0.65,
+        "mute": true,
+        "region": 0,
+        "paused": false,
+        "peak": 0,
+        "rms": 0,
+        "buses": [
+          "master",
+          "ambient",
+          "weather",
+          "biome",
+          "combat",
+          "weapons",
+          "enemies",
+          "boss",
+          "signals",
+          "growth"
+        ],
+        "mixes": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "threat": 0.9850044231795223,
+        "duck": 1,
+        "atmosphere": {
+          "hush": 1.199705288844685e-7,
+          "uneaseCalls": 0,
+          "wonderCalls": 0,
+          "nextUnease": 13.331557925790548,
+          "nextWonder": 4
+        },
+        "growth": {
+          "source": "original-voiced-granular",
+          "grains": 3,
+          "touches": 1,
+          "focus": null,
+          "level": 0.11756100717691124,
+          "pad": false,
+          "soundscape": "natural-marsh"
+        },
+        "emitters": 1,
+        "emitterLimit": 12,
+        "panners": 4,
+        "spatialEvents": 3,
+        "flybys": 0,
+        "occlusionQueries": 6,
+        "events": {
+          "growth-hover": 1,
+          "growth-air": 1,
+          "growth-touch": 1
+        },
+        "listener": {
+          "x": 0,
+          "y": 14,
+          "z": 0,
+          "forward": {
+            "x": -1.2246467991473532e-16,
+            "y": 0,
+            "z": 1
+          },
+          "up": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          }
+        },
+        "sources": [
+          {
+            "id": "body-roll",
+            "kind": "roll-earth",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "category": "combat",
+            "distance": 1.4,
+            "occlusion": 0,
+            "cutoff": 15890.74678762257,
+            "gain": 1,
+            "audibility": 1
+          }
+        ],
+        "latency": 0.01
+      },
+      "reset": {
+        "started": true,
+        "running": true,
+        "voices": 0,
+        "voiceLimit": 32,
+        "peakVoices": 3,
+        "played": 3,
+        "dropped": 0,
+        "stolen": 0,
+        "volume": 0.65,
+        "mute": true,
+        "region": 0,
+        "paused": false,
+        "peak": 0,
+        "rms": 0,
+        "buses": [
+          "master",
+          "ambient",
+          "weather",
+          "biome",
+          "combat",
+          "weapons",
+          "enemies",
+          "boss",
+          "signals",
+          "growth"
+        ],
+        "mixes": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "threat": 0,
+        "duck": 1,
+        "atmosphere": {
+          "hush": 0,
+          "uneaseCalls": 0,
+          "wonderCalls": 0,
+          "nextUnease": 8,
+          "nextWonder": 4
+        },
+        "growth": {
+          "source": "original-voiced-granular",
+          "grains": 0,
+          "touches": 0,
+          "focus": null,
+          "level": 0,
+          "pad": false,
+          "soundscape": "natural-marsh"
+        },
+        "emitters": 0,
+        "emitterLimit": 12,
+        "panners": 4,
+        "spatialEvents": 3,
+        "flybys": 0,
+        "occlusionQueries": 6,
+        "events": {
+          "growth-hover": 1,
+          "growth-air": 1,
+          "growth-touch": 1
+        },
+        "listener": {
+          "x": 0,
+          "y": 14,
+          "z": 0,
+          "forward": {
+            "x": -1.2246467991473532e-16,
+            "y": 0,
+            "z": 1
+          },
+          "up": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          }
+        },
+        "sources": [],
+        "latency": 0.01
+      }
+    },
+    "growthDemo": {
+      "peak": 0.12694786489009857,
+      "channels": [
+        {
+          "rms": 0.015148232462189399,
+          "brightness": 0.0440582198244737
+        },
+        {
+          "rms": 0.015013171645017582,
+          "brightness": 0.04441110304521464
+        }
+      ],
+      "rms": 0.015080853251246903,
+      "tailRms": 5.265297972172627e-7,
+      "voices": 3,
+      "spatialEvents": 3
+    },
+    "soundscapeI": {
+      "peak": 0.10217589139938354,
+      "channels": [
+        {
+          "rms": 0.022254381876103665,
+          "brightness": 0.36034221535926475
+        },
+        {
+          "rms": 0.02215299845362508,
+          "brightness": 0.3617988534152622
+        }
+      ],
+      "rms": 0.02220374803016111,
+      "tailRms": 0.02258739945789549,
+      "voices": 0,
+      "spatialEvents": 0
+    },
+    "soundscapeII": {
+      "peak": 0.26572516560554504,
+      "channels": [
+        {
+          "rms": 0.050741550742860624,
+          "brightness": 0.1363320285256182
+        },
+        {
+          "rms": 0.03930116906271012,
+          "brightness": 0.17810386082591406
+        }
+      ],
+      "rms": 0.04538329462195325,
+      "tailRms": 0.04964841867940027,
+      "voices": 0,
+      "spatialEvents": 0
+    },
+    "twig": {
+      "peak": 0.016839932650327682,
+      "channels": [
+        {
+          "rms": 0.000875367246705835,
+          "brightness": 0.023440686256250457
+        },
+        {
+          "rms": 0.0011245268877197883,
+          "brightness": 0.028778113203352242
+        }
+      ],
+      "rms": 0.001007677661211686,
+      "tailRms": 0,
+      "voices": 2,
+      "spatialEvents": 2
+    },
+    "dread": {
+      "peak": 0.02768721804022789,
+      "channels": [
+        {
+          "rms": 0.004074081684460294,
+          "brightness": 0.011068517734572757
+        },
+        {
+          "rms": 0.005028120173610364,
+          "brightness": 0.011980956741701475
+        }
+      ],
+      "rms": 0.0045760317990548504,
+      "tailRms": 3.759537556956922e-8,
+      "voices": 2,
+      "spatialEvents": 2
+    },
+    "curiosity": {
+      "peak": 0.05263960361480713,
+      "channels": [
+        {
+          "rms": 0.0035945746231438314,
+          "brightness": 0.05270858409336362
+        },
+        {
+          "rms": 0.005560832802198483,
+          "brightness": 0.06139083665689225
+        }
+      ],
+      "rms": 0.0046820843742587685,
+      "tailRms": 1.2872473946993847e-7,
+      "voices": 2,
+      "spatialEvents": 2
+    },
+    "director": {
+      "calm": {
+        "started": true,
+        "running": true,
+        "voices": 32,
+        "voiceLimit": 32,
+        "peakVoices": 32,
+        "played": 32,
+        "dropped": 41,
+        "stolen": 0,
+        "volume": 0.65,
+        "mute": false,
+        "region": 0,
+        "paused": false,
+        "peak": 0.04131253808736801,
+        "rms": 0.01076942132015892,
+        "buses": [
+          "master",
+          "ambient",
+          "weather",
+          "biome",
+          "combat",
+          "weapons",
+          "enemies",
+          "boss",
+          "signals",
+          "growth"
+        ],
+        "mixes": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "threat": 0,
+        "duck": 1,
+        "atmosphere": {
+          "hush": 1.001195199401442e-15,
+          "uneaseCalls": 4,
+          "wonderCalls": 9,
+          "nextUnease": 114.21257776804164,
+          "nextWonder": 115.1430266831057
+        },
+        "growth": {
+          "source": "original-voiced-granular",
+          "grains": 10,
+          "touches": 0,
+          "focus": null,
+          "level": 0.45,
+          "pad": false,
+          "soundscape": "natural-marsh"
+        },
+        "emitters": 2,
+        "emitterLimit": 12,
+        "panners": 34,
+        "spatialEvents": 32,
+        "flybys": 0,
+        "occlusionQueries": 33,
+        "events": {
+          "curiosity": 9,
+          "twig": 4
+        },
+        "listener": {
+          "x": 0,
+          "y": 14,
+          "z": 0,
+          "forward": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "up": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          }
+        },
+        "sources": [
+          {
+            "id": "body-roll",
+            "kind": "roll-earth",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "category": "combat",
+            "distance": 1.4,
+            "occlusion": 0,
+            "cutoff": 15890.74678762257,
+            "gain": 1,
+            "audibility": 1
+          },
+          {
+            "id": "tree-test",
+            "kind": "tree",
+            "position": {
+              "x": 130,
+              "y": 20,
+              "z": -180
+            },
+            "category": "biome",
+            "distance": 22.21170862405682,
+            "occlusion": 0,
+            "cutoff": 8406.292875535322,
+            "gain": 1,
+            "audibility": 0.24401506969513023
+          }
+        ],
+        "latency": 0.01
+      },
+      "combat": {
+        "started": true,
+        "running": true,
+        "voices": 32,
+        "voiceLimit": 32,
+        "peakVoices": 32,
+        "played": 35,
+        "dropped": 46,
+        "stolen": 3,
+        "volume": 0.65,
+        "mute": false,
+        "region": 0,
+        "paused": false,
+        "peak": 0.04131253808736801,
+        "rms": 0.01076942132015892,
+        "buses": [
+          "master",
+          "ambient",
+          "weather",
+          "biome",
+          "combat",
+          "weapons",
+          "enemies",
+          "boss",
+          "signals",
+          "growth"
+        ],
+        "mixes": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "threat": 0.03930207761076597,
+        "duck": 0.62,
+        "atmosphere": {
+          "hush": 0.0235638896915196,
+          "uneaseCalls": 4,
+          "wonderCalls": 9,
+          "nextUnease": 181.75644790101796,
+          "nextWonder": 166.12746669910848
+        },
+        "growth": {
+          "source": "original-voiced-granular",
+          "grains": 10,
+          "touches": 0,
+          "focus": null,
+          "level": 0.4367355488063665,
+          "pad": false,
+          "soundscape": "natural-marsh"
+        },
+        "emitters": 2,
+        "emitterLimit": 12,
+        "panners": 34,
+        "spatialEvents": 35,
+        "flybys": 0,
+        "occlusionQueries": 33,
+        "events": {
+          "curiosity": 9,
+          "twig": 4,
+          "shot": 1
+        },
+        "listener": {
+          "x": 0,
+          "y": 14,
+          "z": 0,
+          "forward": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "up": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          }
+        },
+        "sources": [
+          {
+            "id": "body-roll",
+            "kind": "roll-earth",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "category": "combat",
+            "distance": 1.4,
+            "occlusion": 0,
+            "cutoff": 15890.74678762257,
+            "gain": 1,
+            "audibility": 1
+          },
+          {
+            "id": "tree-test",
+            "kind": "tree",
+            "position": {
+              "x": 130,
+              "y": 20,
+              "z": -180
+            },
+            "category": "biome",
+            "distance": 22.21170862405682,
+            "occlusion": 0,
+            "cutoff": 8406.292875535322,
+            "gain": 1,
+            "audibility": 0.24401506969513023
+          }
+        ],
+        "latency": 0.01
+      },
+      "paused": {
+        "started": true,
+        "running": true,
+        "voices": 0,
+        "voiceLimit": 32,
+        "peakVoices": 32,
+        "played": 35,
+        "dropped": 46,
+        "stolen": 3,
+        "volume": 0.65,
+        "mute": false,
+        "region": 0,
+        "paused": true,
+        "peak": 0.04131253808736801,
+        "rms": 0.01231360541974622,
+        "buses": [
+          "master",
+          "ambient",
+          "weather",
+          "biome",
+          "combat",
+          "weapons",
+          "enemies",
+          "boss",
+          "signals",
+          "growth"
+        ],
+        "mixes": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "threat": 0.03930207761076597,
+        "duck": 0.62,
+        "atmosphere": {
+          "hush": 0.0235638896915196,
+          "uneaseCalls": 4,
+          "wonderCalls": 9,
+          "nextUnease": 181.75644790101796,
+          "nextWonder": 166.12746669910848
+        },
+        "growth": {
+          "source": "original-voiced-granular",
+          "grains": 10,
+          "touches": 0,
+          "focus": null,
+          "level": 0.4367355488063665,
+          "pad": false,
+          "soundscape": "natural-marsh"
+        },
+        "emitters": 2,
+        "emitterLimit": 12,
+        "panners": 34,
+        "spatialEvents": 35,
+        "flybys": 0,
+        "occlusionQueries": 33,
+        "events": {
+          "curiosity": 9,
+          "twig": 4,
+          "shot": 1
+        },
+        "listener": {
+          "x": 0,
+          "y": 14,
+          "z": 0,
+          "forward": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "up": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          }
+        },
+        "sources": [
+          {
+            "id": "body-roll",
+            "kind": "roll-earth",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "category": "combat",
+            "distance": 1.4,
+            "occlusion": 0,
+            "cutoff": 15890.74678762257,
+            "gain": 1,
+            "audibility": 1
+          },
+          {
+            "id": "tree-test",
+            "kind": "tree",
+            "position": {
+              "x": 130,
+              "y": 20,
+              "z": -180
+            },
+            "category": "biome",
+            "distance": 22.21170862405682,
+            "occlusion": 0,
+            "cutoff": 8406.292875535322,
+            "gain": 1,
+            "audibility": 0.24401506969513023
+          }
+        ],
+        "latency": 0.01
+      },
+      "reset": {
+        "started": true,
+        "running": true,
+        "voices": 0,
+        "voiceLimit": 32,
+        "peakVoices": 32,
+        "played": 35,
+        "dropped": 46,
+        "stolen": 3,
+        "volume": 0.65,
+        "mute": false,
+        "region": 0,
+        "paused": true,
+        "peak": 0.04131253808736801,
+        "rms": 0.01231360541974622,
+        "buses": [
+          "master",
+          "ambient",
+          "weather",
+          "biome",
+          "combat",
+          "weapons",
+          "enemies",
+          "boss",
+          "signals",
+          "growth"
+        ],
+        "mixes": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "threat": 0,
+        "duck": 0.62,
+        "atmosphere": {
+          "hush": 0,
+          "uneaseCalls": 0,
+          "wonderCalls": 0,
+          "nextUnease": 8,
+          "nextWonder": 4
+        },
+        "growth": {
+          "source": "original-voiced-granular",
+          "grains": 0,
+          "touches": 0,
+          "focus": null,
+          "level": 0,
+          "pad": false,
+          "soundscape": "natural-marsh"
+        },
+        "emitters": 0,
+        "emitterLimit": 12,
+        "panners": 34,
+        "spatialEvents": 35,
+        "flybys": 0,
+        "occlusionQueries": 33,
+        "events": {
+          "curiosity": 9,
+          "twig": 4,
+          "shot": 1
+        },
+        "listener": {
+          "x": 0,
+          "y": 14,
+          "z": 0,
+          "forward": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "up": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          }
+        },
+        "sources": [],
+        "latency": 0.01
+      }
+    },
+    "cover": 1,
+    "clearRay": 0,
+    "forge": {
+      "started": true,
+      "running": true,
+      "voices": 0,
+      "voiceLimit": 32,
+      "peakVoices": 32,
+      "played": 160,
+      "dropped": 173,
+      "stolen": 24,
+      "volume": 0.65,
+      "mute": false,
+      "region": 1,
+      "paused": false,
+      "peak": 0.04728573560714722,
+      "rms": 0.01601917571963922,
+      "buses": [
+        "master",
+        "ambient",
+        "weather",
+        "biome",
+        "combat",
+        "weapons",
+        "enemies",
+        "boss",
+        "signals",
+        "growth"
+      ],
+      "mixes": [
+        0.006540367615565742,
+        0.9934596323844344,
+        0,
+        0
+      ],
+      "threat": 0,
+      "duck": 1,
+      "atmosphere": {
+        "hush": 0.02521639488562667,
+        "uneaseCalls": 0,
+        "wonderCalls": 0,
+        "nextUnease": 33.49883986573285,
+        "nextWonder": 38.49612681344057
+      },
+      "growth": {
+        "source": "original-voiced-granular",
+        "grains": 1,
+        "touches": 0,
+        "focus": null,
+        "level": 0.45,
+        "pad": false,
+        "soundscape": "natural-marsh"
+      },
+      "emitters": 2,
+      "emitterLimit": 12,
+      "panners": 44,
+      "spatialEvents": 109,
+      "flybys": 0,
+      "occlusionQueries": 1244,
+      "events": {
+        "growth-air": 14,
+        "jump": 1,
+        "warning": 3,
+        "hurt": 1,
+        "enemy-shot": 18,
+        "shot": 7,
+        "reload": 1,
+        "impact": 10,
+        "growth-hover": 2,
+        "relay": 3,
+        "growth-touch": 4,
+        "boss": 102,
+        "hit": 2,
+        "reward": 3
+      },
+      "listener": {
+        "x": 2400,
+        "y": 25.244643447424032,
+        "z": 2000,
+        "forward": {
+          "x": 0,
+          "y": -0.1642863842813559,
+          "z": -0.986412684397235
+        },
+        "up": {
+          "x": 0,
+          "y": 0.9864126843972347,
+          "z": -0.16428638428135586
+        }
+      },
+      "sources": [
+        {
+          "id": "body-roll",
+          "kind": "roll-gravel",
+          "position": {
+            "x": 2400,
+            "y": 11.244643447424032,
+            "z": 2000
+          },
+          "category": "combat",
+          "distance": 1.4,
+          "occlusion": 0,
+          "cutoff": 15890.74678762257,
+          "gain": 1,
+          "audibility": 1
+        },
+        {
+          "id": "water-7",
+          "kind": "water",
+          "position": {
+            "x": 2351.980276835093,
+            "y": -13.956231025587325,
+            "z": 2355.074259066896
+          },
+          "category": "biome",
+          "distance": 36.044463073291624,
+          "occlusion": 1,
+          "cutoff": 287.8410647986543,
+          "gain": 0.21999999999999997,
+          "audibility": 0.03339403279043412
+        }
+      ],
+      "latency": 0.01
+    },
+    "shot": {
+      "started": true,
+      "running": true,
+      "voices": 3,
+      "voiceLimit": 32,
+      "peakVoices": 32,
+      "played": 163,
+      "dropped": 173,
+      "stolen": 24,
+      "volume": 0.65,
+      "mute": false,
+      "region": 1,
+      "paused": false,
+      "peak": 0.06328136473894119,
+      "rms": 0.016253142119872194,
+      "buses": [
+        "master",
+        "ambient",
+        "weather",
+        "biome",
+        "combat",
+        "weapons",
+        "enemies",
+        "boss",
+        "signals",
+        "growth"
+      ],
+      "mixes": [
+        0.006462967724084793,
+        0.9935370322759153,
+        0,
+        0
+      ],
+      "threat": 0.006340174814906832,
+      "duck": 0.62,
+      "atmosphere": {
+        "hush": 0.025065903214244446,
+        "uneaseCalls": 0,
+        "wonderCalls": 0,
+        "nextUnease": 33.49883986573285,
+        "nextWonder": 38.49612681344057
+      },
+      "growth": {
+        "source": "original-voiced-granular",
+        "grains": 1,
+        "touches": 0,
+        "focus": null,
+        "level": 0.447860190999969,
+        "pad": false,
+        "soundscape": "natural-marsh"
+      },
+      "emitters": 2,
+      "emitterLimit": 12,
+      "panners": 44,
+      "spatialEvents": 112,
+      "flybys": 0,
+      "occlusionQueries": 1244,
+      "events": {
+        "growth-air": 14,
+        "jump": 1,
+        "warning": 3,
+        "hurt": 1,
+        "enemy-shot": 18,
+        "shot": 8,
+        "reload": 1,
+        "impact": 10,
+        "growth-hover": 2,
+        "relay": 3,
+        "growth-touch": 4,
+        "boss": 102,
+        "hit": 2,
+        "reward": 3
+      },
+      "listener": {
+        "x": 2400,
+        "y": 25.244643447424032,
+        "z": 2000,
+        "forward": {
+          "x": 0,
+          "y": -0.1575953563608672,
+          "z": -0.9875037739945562
+        },
+        "up": {
+          "x": 0,
+          "y": 0.987503773994556,
+          "z": -0.15759535636086716
+        }
+      },
+      "sources": [
+        {
+          "id": "body-roll",
+          "kind": "roll-gravel",
+          "position": {
+            "x": 2400,
+            "y": 11.244643447424032,
+            "z": 2000
+          },
+          "category": "combat",
+          "distance": 1.4,
+          "occlusion": 0,
+          "cutoff": 15890.74678762257,
+          "gain": 1,
+          "audibility": 1
+        },
+        {
+          "id": "water-7",
+          "kind": "water",
+          "position": {
+            "x": 2351.980276835093,
+            "y": -13.956231025587325,
+            "z": 2355.074259066896
+          },
+          "category": "biome",
+          "distance": 36.044463073291624,
+          "occlusion": 1,
+          "cutoff": 287.8410647986543,
+          "gain": 0.21999999999999997,
+          "audibility": 0.03339403279043412
+        }
+      ],
+      "latency": 0.01
+    },
+    "boss": {
+      "started": true,
+      "running": true,
+      "voices": 3,
+      "voiceLimit": 32,
+      "peakVoices": 32,
+      "played": 180,
+      "dropped": 173,
+      "stolen": 24,
+      "volume": 0.65,
+      "mute": false,
+      "region": 3,
+      "paused": false,
+      "peak": 0.06320632249116898,
+      "rms": 0.020059592994560674,
+      "buses": [
+        "master",
+        "ambient",
+        "weather",
+        "biome",
+        "combat",
+        "weapons",
+        "enemies",
+        "boss",
+        "signals",
+        "growth"
+      ],
+      "mixes": [
+        0.4612525644731436,
+        0,
+        0,
+        0.5387474355268563
+      ],
+      "threat": 0.6400324495317116,
+      "duck": 1,
+      "atmosphere": {
+        "hush": 0,
+        "uneaseCalls": 0,
+        "wonderCalls": 0,
+        "nextUnease": 44.65362922775758,
+        "nextWonder": 35.058333333332214
+      },
+      "growth": {
+        "source": "original-voiced-granular",
+        "grains": 3,
+        "touches": 3,
+        "focus": "relay-resonance-3",
+        "level": 0.23398904828304734,
+        "pad": false,
+        "soundscape": "natural-marsh"
+      },
+      "emitters": 6,
+      "emitterLimit": 12,
+      "panners": 44,
+      "spatialEvents": 129,
+      "flybys": 1,
+      "occlusionQueries": 1351,
+      "events": {
+        "growth-air": 16,
+        "jump": 1,
+        "warning": 3,
+        "hurt": 1,
+        "enemy-shot": 19,
+        "shot": 8,
+        "reload": 1,
+        "impact": 11,
+        "growth-hover": 3,
+        "relay": 6,
+        "growth-touch": 7,
+        "boss": 103,
+        "hit": 2,
+        "reward": 3,
+        "flyby": 1
+      },
+      "listener": {
+        "x": -1750,
+        "y": 29.183074999059563,
+        "z": -950,
+        "forward": {
+          "x": 0,
+          "y": -0.16428638428135575,
+          "z": -0.986412684397235
+        },
+        "up": {
+          "x": 0,
+          "y": 0.9864126843972347,
+          "z": -0.16428638428135572
+        }
+      },
+      "sources": [
+        {
+          "id": "body-roll",
+          "kind": "roll-earth",
+          "position": {
+            "x": -1750,
+            "y": 15.183074999059563,
+            "z": -950
+          },
+          "category": "combat",
+          "distance": 1.4,
+          "occlusion": 0,
+          "cutoff": 15890.74678762257,
+          "gain": 1,
+          "audibility": 1
+        },
+        {
+          "id": "tree-359",
+          "kind": "tree",
+          "position": {
+            "x": -1755.95703125,
+            "y": 43.24194119027406,
+            "z": -887.738037109375
+          },
+          "category": "biome",
+          "distance": 6.410686361763079,
+          "occlusion": 0,
+          "cutoff": 14424.238200927646,
+          "gain": 1,
+          "audibility": 0.79749678829614
+        },
+        {
+          "id": "landmark-2",
+          "kind": "ruin",
+          "position": {
+            "x": -1650,
+            "y": 52.89868958690823,
+            "z": -1200
+          },
+          "category": "biome",
+          "distance": 27.030062962427472,
+          "occlusion": 0,
+          "cutoff": 7075.7433582421445,
+          "gain": 1,
+          "audibility": 0.20139318434835515
+        },
+        {
+          "id": "goal",
+          "kind": "signal",
+          "position": {
+            "x": -1750,
+            "y": 21.479948245292555,
+            "z": -1400
+          },
+          "category": "signals",
+          "distance": 45.006592646165146,
+          "occlusion": 0,
+          "cutoff": 7082.227315510076,
+          "gain": 1,
+          "audibility": 0.13511587521823548
+        },
+        {
+          "id": "boss",
+          "kind": "boss",
+          "position": {
+            "x": -1703.1738018718572,
+            "y": 60.24113694932045,
+            "z": -1363.3807584107174
+          },
+          "category": "boss",
+          "distance": 41.71821514248448,
+          "occlusion": 1,
+          "cutoff": 505.5920383866634,
+          "gain": 0.21999999999999997,
+          "audibility": 0.07379543189470544
+        },
+        {
+          "id": "enemy-17",
+          "kind": "enemy",
+          "position": {
+            "x": -1957.6678756085837,
+            "y": 21.757782716486915,
+            "z": -932.9839789298607
+          },
+          "category": "enemies",
+          "distance": 20.849610667425722,
+          "occlusion": 0,
+          "cutoff": 10147.595426564281,
+          "gain": 1,
+          "audibility": 0.19185010520361317
+        }
+      ],
+      "latency": 0.01
+    }
+  },
+  "final": {
+    "started": true,
+    "running": true,
+    "voices": 1,
+    "voiceLimit": 32,
+    "peakVoices": 32,
+    "played": 246,
+    "dropped": 325,
+    "stolen": 41,
+    "volume": 0.65,
+    "mute": false,
+    "region": 0,
+    "paused": false,
+    "peak": 0.06140679866075516,
+    "rms": 0.020224878268566112,
+    "buses": [
+      "master",
+      "ambient",
+      "weather",
+      "biome",
+      "combat",
+      "weapons",
+      "enemies",
+      "boss",
+      "signals",
+      "growth"
+    ],
+    "mixes": [
+      1,
+      0,
+      0,
+      0
+    ],
+    "threat": 0.2176439488195323,
+    "duck": 1,
+    "atmosphere": {
+      "hush": 0.14775076306569226,
+      "uneaseCalls": 0,
+      "wonderCalls": 0,
+      "nextUnease": 44.5924081036188,
+      "nextWonder": 36.68333333333212
+    },
+    "growth": {
+      "source": "original-voiced-granular",
+      "grains": 1,
+      "touches": 0,
+      "focus": null,
+      "level": 0.3765451672734078,
+      "pad": false,
+      "soundscape": "natural-marsh"
+    },
+    "emitters": 10,
+    "emitterLimit": 12,
+    "panners": 44,
+    "spatialEvents": 195,
+    "flybys": 1,
+    "occlusionQueries": 2130,
+    "events": {
+      "growth-air": 22,
+      "jump": 1,
+      "warning": 3,
+      "hurt": 1,
+      "enemy-shot": 19,
+      "shot": 12,
+      "reload": 1,
+      "impact": 11,
+      "growth-hover": 3,
+      "relay": 6,
+      "growth-touch": 7,
+      "boss": 203,
+      "hit": 2,
+      "reward": 3,
+      "flyby": 1
+    },
+    "listener": {
+      "x": 0,
+      "y": 29.836452503503875,
+      "z": 0,
+      "forward": {
+        "x": 0.00010654511732094246,
+        "y": -0.16436224097903884,
+        "z": -0.9864000417622085
+      },
+      "up": {
+        "x": 0.000017753440191266427,
+        "y": 0.9864000475163961,
+        "z": -0.16436224002022784
+      }
+    },
+    "sources": [
+      {
+        "id": "body-roll",
+        "kind": "roll-earth",
+        "position": {
+          "x": 0,
+          "y": 15.836452503503875,
+          "z": 0
+        },
+        "category": "combat",
+        "distance": 1.4,
+        "occlusion": 0,
+        "cutoff": 15890.74678762257,
+        "gain": 1,
+        "audibility": 1
+      },
+      {
+        "id": "enemy-0",
+        "kind": "enemy",
+        "position": {
+          "x": -193.96913325651616,
+          "y": 17.871629040225688,
+          "z": -266.97560814373264
+        },
+        "category": "enemies",
+        "distance": 33.02168333088236,
+        "occlusion": 1,
+        "cutoff": 389.3341483446853,
+        "gain": 0.21999999999999997,
+        "audibility": 0.026649156288680503
+      },
+      {
+        "id": "enemy-1",
+        "kind": "enemy",
+        "position": {
+          "x": -144.51885799720392,
+          "y": 12.500686070011175,
+          "z": -361.5012027293424
+        },
+        "category": "enemies",
+        "distance": 38.970418100068386,
+        "occlusion": 0,
+        "cutoff": 5992.182946329481,
+        "gain": 1,
+        "audibility": 0.1026419575414558
+      },
+      {
+        "id": "enemy-2",
+        "kind": "enemy",
+        "position": {
+          "x": -57.585005676020316,
+          "y": 20.6524899200598,
+          "z": -446.3003104651538
+        },
+        "category": "enemies",
+        "distance": 45.009370709745994,
+        "occlusion": 0,
+        "cutoff": 5105.894960239663,
+        "gain": 1,
+        "audibility": 0.08887038269863813
+      },
+      {
+        "id": "enemy-3",
+        "kind": "enemy",
+        "position": {
+          "x": 27.93052090135596,
+          "y": 27.719436761271332,
+          "z": -537.2206204133694
+        },
+        "category": "enemies",
+        "distance": 53.79503608612968,
+        "occlusion": 0.3333333333333333,
+        "cutoff": 1564.5480516515217,
+        "gain": 0.74,
+        "audibility": 0.05502366417713392
+      },
+      {
+        "id": "goal",
+        "kind": "signal",
+        "position": {
+          "x": -520,
+          "y": 39.62688503381671,
+          "z": -700
+        },
+        "category": "signals",
+        "distance": 87.20641332890206,
+        "occlusion": 1,
+        "cutoff": 260,
+        "gain": 0.16988371927252538,
+        "audibility": 0.012003349508478907
+      },
+      {
+        "id": "reeds-936",
+        "kind": "reeds",
+        "position": {
+          "x": 31.295379638671875,
+          "y": 14.882697105407715,
+          "z": -15.80318546295166
+        },
+        "category": "biome",
+        "distance": 3.811503978761055,
+        "occlusion": 0,
+        "cutoff": 15309.011267501384,
+        "gain": 1,
+        "audibility": 1
+      },
+      {
+        "id": "tree-133",
+        "kind": "tree",
+        "position": {
+          "x": -150.87644958496094,
+          "y": 51.26210983329136,
+          "z": 145.27915954589844
+        },
+        "category": "biome",
+        "distance": 21.05440477186172,
+        "occlusion": 0,
+        "cutoff": 8768.135507430183,
+        "gain": 1,
+        "audibility": 0.25708309832050164
+      },
+      {
+        "id": "water-0",
+        "kind": "water",
+        "position": {
+          "x": -80,
+          "y": 3.236025214513462,
+          "z": -260
+        },
+        "category": "biome",
+        "distance": 27.332687890501525,
+        "occlusion": 0,
+        "cutoff": 7001.1288482279915,
+        "gain": 1,
+        "audibility": 0.19920779759045798
+      },
+      {
+        "id": "flock",
+        "kind": "fauna",
+        "position": {
+          "x": -209.21879252820742,
+          "y": 205.26054747592835,
+          "z": -507.1016819446814
+        },
+        "category": "biome",
+        "distance": 57.593248916429445,
+        "occlusion": 0,
+        "cutoff": 2875.9221914504683,
+        "gain": 1,
+        "audibility": 0.09554032290091394
+      }
+    ],
+    "latency": 0.01
+  },
+  "errors": []
+}

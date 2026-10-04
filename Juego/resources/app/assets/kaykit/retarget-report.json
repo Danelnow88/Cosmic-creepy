@@ -1,0 +1,809 @@
+{
+  "author": "Kay Lousberg",
+  "license": "CC0",
+  "source": "KayKit Character Animations 1.1",
+  "mapping": {
+    "Bip001": "root",
+    "Bip001_Pelvis": "hips",
+    "Bip001_Spine": "spine",
+    "Bip001_Spine1": "chest",
+    "Bip001_Neck": "head",
+    "Bip001_Head": "head",
+    "Bip001_L_UpperArm": "upperarm.l",
+    "Bip001_R_UpperArm": "upperarm.r",
+    "Bip001_L_Forearm": "lowerarm.l",
+    "Bip001_R_Forearm": "lowerarm.r",
+    "Bip001_L_Hand": "wrist.l",
+    "Bip001_R_Hand": "wrist.r",
+    "Bip001_L_Thigh": "upperleg.l",
+    "Bip001_R_Thigh": "upperleg.r",
+    "Bip001_L_Calf": "lowerleg.l",
+    "Bip001_R_Calf": "lowerleg.r",
+    "Bip001_L_Foot": "foot.l",
+    "Bip001_R_Foot": "foot.r",
+    "Bip001_L_Toe0": "toes.l",
+    "Bip001_R_Toe0": "toes.r"
+  },
+  "clips": [
+    {
+      "clip": "KK_Melee_1H_Attack_Chop",
+      "file": "Rig_Medium_CombatMelee.glb",
+      "duration": 1.0666667222976685,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Melee_1H_Attack_Jump_Chop",
+      "file": "Rig_Medium_CombatMelee.glb",
+      "duration": 1.3333333730697632,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Melee_1H_Attack_Slice_Diagonal",
+      "file": "Rig_Medium_CombatMelee.glb",
+      "duration": 1,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Melee_1H_Attack_Slice_Horizontal",
+      "file": "Rig_Medium_CombatMelee.glb",
+      "duration": 1.3666666746139526,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Melee_1H_Attack_Stab",
+      "file": "Rig_Medium_CombatMelee.glb",
+      "duration": 1.600000023841858,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Melee_2H_Attack_Chop",
+      "file": "Rig_Medium_CombatMelee.glb",
+      "duration": 1.6333333253860474,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Melee_2H_Attack_Slice",
+      "file": "Rig_Medium_CombatMelee.glb",
+      "duration": 1.100000023841858,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Melee_2H_Attack_Spin",
+      "file": "Rig_Medium_CombatMelee.glb",
+      "duration": 2.4000000953674316,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Melee_2H_Attack_Spinning",
+      "file": "Rig_Medium_CombatMelee.glb",
+      "duration": 0.6666666865348816,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Melee_2H_Attack_Stab",
+      "file": "Rig_Medium_CombatMelee.glb",
+      "duration": 1.600000023841858,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Melee_2H_Idle",
+      "file": "Rig_Medium_CombatMelee.glb",
+      "duration": 1.0666667222976685,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Melee_Block",
+      "file": "Rig_Medium_CombatMelee.glb",
+      "duration": 1.0666667222976685,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Melee_Block_Attack",
+      "file": "Rig_Medium_CombatMelee.glb",
+      "duration": 1.0666667222976685,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Melee_Block_Hit",
+      "file": "Rig_Medium_CombatMelee.glb",
+      "duration": 1.0666667222976685,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Melee_Blocking",
+      "file": "Rig_Medium_CombatMelee.glb",
+      "duration": 1.0666667222976685,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Melee_Dualwield_Attack_Chop",
+      "file": "Rig_Medium_CombatMelee.glb",
+      "duration": 1.2666666507720947,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Melee_Dualwield_Attack_Slice",
+      "file": "Rig_Medium_CombatMelee.glb",
+      "duration": 1.1666666269302368,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Melee_Dualwield_Attack_Stab",
+      "file": "Rig_Medium_CombatMelee.glb",
+      "duration": 1.600000023841858,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Melee_Unarmed_Attack_Kick",
+      "file": "Rig_Medium_CombatMelee.glb",
+      "duration": 0.9333333373069763,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Melee_Unarmed_Attack_Punch_A",
+      "file": "Rig_Medium_CombatMelee.glb",
+      "duration": 1.1666666269302368,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Melee_Unarmed_Idle",
+      "file": "Rig_Medium_CombatMelee.glb",
+      "duration": 1.0666667222976685,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Ranged_1H_Aiming",
+      "file": "Rig_Medium_CombatRanged.glb",
+      "duration": 1.0666667222976685,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Ranged_1H_Reload",
+      "file": "Rig_Medium_CombatRanged.glb",
+      "duration": 1.1666666269302368,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Ranged_1H_Shoot",
+      "file": "Rig_Medium_CombatRanged.glb",
+      "duration": 1.0666667222976685,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Ranged_1H_Shooting",
+      "file": "Rig_Medium_CombatRanged.glb",
+      "duration": 1.600000023841858,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Ranged_2H_Aiming",
+      "file": "Rig_Medium_CombatRanged.glb",
+      "duration": 1.600000023841858,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Ranged_2H_Reload",
+      "file": "Rig_Medium_CombatRanged.glb",
+      "duration": 1.600000023841858,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Ranged_2H_Shoot",
+      "file": "Rig_Medium_CombatRanged.glb",
+      "duration": 1.0666667222976685,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Ranged_2H_Shooting",
+      "file": "Rig_Medium_CombatRanged.glb",
+      "duration": 1.0666667222976685,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Ranged_Bow_Aiming_Idle",
+      "file": "Rig_Medium_CombatRanged.glb",
+      "duration": 1.8333333730697632,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Ranged_Bow_Draw",
+      "file": "Rig_Medium_CombatRanged.glb",
+      "duration": 1.3333333730697632,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Ranged_Bow_Draw_Up",
+      "file": "Rig_Medium_CombatRanged.glb",
+      "duration": 1.3333333730697632,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Ranged_Bow_Idle",
+      "file": "Rig_Medium_CombatRanged.glb",
+      "duration": 1.5666667222976685,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Ranged_Bow_Release",
+      "file": "Rig_Medium_CombatRanged.glb",
+      "duration": 1.3333333730697632,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Ranged_Bow_Release_Up",
+      "file": "Rig_Medium_CombatRanged.glb",
+      "duration": 1.3666666746139526,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Ranged_Magic_Raise",
+      "file": "Rig_Medium_CombatRanged.glb",
+      "duration": 2.0999999046325684,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Ranged_Magic_Shoot",
+      "file": "Rig_Medium_CombatRanged.glb",
+      "duration": 0.9333333373069763,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Ranged_Magic_Spellcasting",
+      "file": "Rig_Medium_CombatRanged.glb",
+      "duration": 0.6666666865348816,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Ranged_Magic_Spellcasting_Long",
+      "file": "Rig_Medium_CombatRanged.glb",
+      "duration": 2.5333333015441895,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Ranged_Magic_Summon",
+      "file": "Rig_Medium_CombatRanged.glb",
+      "duration": 4.300000190734863,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Death_A",
+      "file": "Rig_Medium_General.glb",
+      "duration": 0.800000011920929,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Death_A_Pose",
+      "file": "Rig_Medium_General.glb",
+      "duration": 0,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Death_B",
+      "file": "Rig_Medium_General.glb",
+      "duration": 2.633333444595337,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Death_B_Pose",
+      "file": "Rig_Medium_General.glb",
+      "duration": 0,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Hit_A",
+      "file": "Rig_Medium_General.glb",
+      "duration": 0.6666666865348816,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Hit_B",
+      "file": "Rig_Medium_General.glb",
+      "duration": 0.8666666746139526,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Idle_A",
+      "file": "Rig_Medium_General.glb",
+      "duration": 1.0666667222976685,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Idle_B",
+      "file": "Rig_Medium_General.glb",
+      "duration": 2.133333444595337,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Interact",
+      "file": "Rig_Medium_General.glb",
+      "duration": 1.2999999523162842,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_PickUp",
+      "file": "Rig_Medium_General.glb",
+      "duration": 1.2999999523162842,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Spawn_Air",
+      "file": "Rig_Medium_General.glb",
+      "duration": 1.2999999523162842,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Spawn_Ground",
+      "file": "Rig_Medium_General.glb",
+      "duration": 1.2999999523162842,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Throw",
+      "file": "Rig_Medium_General.glb",
+      "duration": 1.3666666746139526,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Use_Item",
+      "file": "Rig_Medium_General.glb",
+      "duration": 1.600000023841858,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Crawling",
+      "file": "Rig_Medium_MovementAdvanced.glb",
+      "duration": 1.0666667222976685,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Crouching",
+      "file": "Rig_Medium_MovementAdvanced.glb",
+      "duration": 1.0666667222976685,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Dodge_Backward",
+      "file": "Rig_Medium_MovementAdvanced.glb",
+      "duration": 0.4000000059604645,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Dodge_Forward",
+      "file": "Rig_Medium_MovementAdvanced.glb",
+      "duration": 0.4000000059604645,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Dodge_Left",
+      "file": "Rig_Medium_MovementAdvanced.glb",
+      "duration": 0.4000000059604645,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Dodge_Right",
+      "file": "Rig_Medium_MovementAdvanced.glb",
+      "duration": 0.4000000059604645,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Running_HoldingBow",
+      "file": "Rig_Medium_MovementAdvanced.glb",
+      "duration": 0.800000011920929,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Running_HoldingRifle",
+      "file": "Rig_Medium_MovementAdvanced.glb",
+      "duration": 0.800000011920929,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Running_Strafe_Left",
+      "file": "Rig_Medium_MovementAdvanced.glb",
+      "duration": 0.800000011920929,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Running_Strafe_Right",
+      "file": "Rig_Medium_MovementAdvanced.glb",
+      "duration": 0.800000011920929,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Sneaking",
+      "file": "Rig_Medium_MovementAdvanced.glb",
+      "duration": 2.133333444595337,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Walking_Backwards",
+      "file": "Rig_Medium_MovementAdvanced.glb",
+      "duration": 1.0666667222976685,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Jump_Full_Long",
+      "file": "Rig_Medium_MovementBasic.glb",
+      "duration": 2.3333332538604736,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Jump_Full_Short",
+      "file": "Rig_Medium_MovementBasic.glb",
+      "duration": 1.1666666269302368,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Jump_Idle",
+      "file": "Rig_Medium_MovementBasic.glb",
+      "duration": 1.0666667222976685,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Jump_Land",
+      "file": "Rig_Medium_MovementBasic.glb",
+      "duration": 0.6666666865348816,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Jump_Start",
+      "file": "Rig_Medium_MovementBasic.glb",
+      "duration": 0.6000000238418579,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Running_A",
+      "file": "Rig_Medium_MovementBasic.glb",
+      "duration": 0.800000011920929,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Running_B",
+      "file": "Rig_Medium_MovementBasic.glb",
+      "duration": 0.800000011920929,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Walking_A",
+      "file": "Rig_Medium_MovementBasic.glb",
+      "duration": 1.0666667222976685,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Walking_B",
+      "file": "Rig_Medium_MovementBasic.glb",
+      "duration": 1.0666667222976685,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Walking_C",
+      "file": "Rig_Medium_MovementBasic.glb",
+      "duration": 1.600000023841858,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Cheering",
+      "file": "Rig_Medium_Simulation.glb",
+      "duration": 1.6666666269302368,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Lie_Down",
+      "file": "Rig_Medium_Simulation.glb",
+      "duration": 3,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Lie_Idle",
+      "file": "Rig_Medium_Simulation.glb",
+      "duration": 2.6666667461395264,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Lie_StandUp",
+      "file": "Rig_Medium_Simulation.glb",
+      "duration": 2.3333332538604736,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Push_Ups",
+      "file": "Rig_Medium_Simulation.glb",
+      "duration": 1.0333333015441895,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Sit_Chair_Down",
+      "file": "Rig_Medium_Simulation.glb",
+      "duration": 0.800000011920929,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Sit_Chair_Idle",
+      "file": "Rig_Medium_Simulation.glb",
+      "duration": 3.5999999046325684,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Sit_Chair_StandUp",
+      "file": "Rig_Medium_Simulation.glb",
+      "duration": 0.800000011920929,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Sit_Floor_Down",
+      "file": "Rig_Medium_Simulation.glb",
+      "duration": 1,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Sit_Floor_Idle",
+      "file": "Rig_Medium_Simulation.glb",
+      "duration": 4,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Sit_Floor_StandUp",
+      "file": "Rig_Medium_Simulation.glb",
+      "duration": 1.1333333253860474,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Sit_Ups",
+      "file": "Rig_Medium_Simulation.glb",
+      "duration": 1.7333333492279053,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Waving",
+      "file": "Rig_Medium_Simulation.glb",
+      "duration": 2.133333444595337,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Skeletons_Awaken_Floor",
+      "file": "Rig_Medium_Special.glb",
+      "duration": 2.299999952316284,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Skeletons_Awaken_Floor_Long",
+      "file": "Rig_Medium_Special.glb",
+      "duration": 3.8333332538604736,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Skeletons_Awaken_Standing",
+      "file": "Rig_Medium_Special.glb",
+      "duration": 1,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Skeletons_Death",
+      "file": "Rig_Medium_Special.glb",
+      "duration": 2,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Skeletons_Death_Pose",
+      "file": "Rig_Medium_Special.glb",
+      "duration": 0,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Skeletons_Death_Resurrect",
+      "file": "Rig_Medium_Special.glb",
+      "duration": 2.700000047683716,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Skeletons_Idle",
+      "file": "Rig_Medium_Special.glb",
+      "duration": 4.266666889190674,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Skeletons_Inactive_Floor_Pose",
+      "file": "Rig_Medium_Special.glb",
+      "duration": 0,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Skeletons_Inactive_Standing_Pose",
+      "file": "Rig_Medium_Special.glb",
+      "duration": 0,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Skeletons_Spawn_Ground",
+      "file": "Rig_Medium_Special.glb",
+      "duration": 3.566666603088379,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Skeletons_Taunt",
+      "file": "Rig_Medium_Special.glb",
+      "duration": 1.0333333015441895,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Skeletons_Taunt_Longer",
+      "file": "Rig_Medium_Special.glb",
+      "duration": 3,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Skeletons_Walking",
+      "file": "Rig_Medium_Special.glb",
+      "duration": 1.600000023841858,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Chop",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 4.333333492279053,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Chopping",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 1.3333333730697632,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Dig",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 4.666666507720947,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Digging",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 1.399999976158142,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Fishing_Bite",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 2.2333333492279053,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Fishing_Cast",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 1.9333332777023315,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Fishing_Catch",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 3.2333333492279053,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Fishing_Idle",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 2.3333332538604736,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Fishing_Reeling",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 1.600000023841858,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Fishing_Struggling",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 3.433333396911621,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Fishing_Tug",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 1.899999976158142,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Hammer",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 4.333333492279053,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Hammering",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 2.6666667461395264,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Holding_A",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 1,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Holding_B",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 1,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Holding_C",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 1,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Lockpick",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 3,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Lockpicking",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 2.3333332538604736,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Pickaxe",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 6.0333333015441895,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Pickaxing",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 3.7333333492279053,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Saw",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 2.4000000953674316,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Sawing",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 0.6666666865348816,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Work_A",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 2.5333333015441895,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Work_B",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 3.0999999046325684,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Work_C",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 3.6666667461395264,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Working_A",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 1.5,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Working_B",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 2.5333333015441895,
+      "tracks": 20
+    },
+    {
+      "clip": "KK_Working_C",
+      "file": "Rig_Medium_Tools.glb",
+      "duration": 2,
+      "tracks": 20
+    }
+  ]
+}

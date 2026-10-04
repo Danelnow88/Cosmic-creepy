@@ -1,0 +1,71 @@
+{
+  "pass": true,
+  "cases": [
+    "Pause menu starts a 2x2 local match",
+    "Local match preserves expedition checkpoint and inventory",
+    "Active actor can shoot",
+    "Waiting actors remain immobile",
+    "Pause freezes turn clock",
+    "Enter ends turn into settling",
+    "Settling blocks attacks",
+    "Camera and control transfer to other team",
+    "Inactive poison advances in world time",
+    "Team/member rotation restores personal ammunition",
+    "Shooter ballistics damage opposing waiting actor",
+    "Team bodies are protected from friendly bullets",
+    "Compact mortar blast damages opposing actor",
+    "PvE threatens waiting actors",
+    "Configurable 4x6 roster works locally",
+    "Score victory ends match and blocks resume",
+    "Completed match stays paused",
+    "Expedition remains default",
+    "Final elimination enters the existing attack resolution window",
+    "Last team wins with Julian at exactly one HP",
+    "Victory screen names winning team and living player",
+    "Eliminated actors stay dead",
+    "Authored multi-level solids dimension 0",
+    "Stairs can be climbed dimension 0",
+    "Elevated deck supports actor dimension 0",
+    "Covered passage has playable clearance dimension 0",
+    "Authored multi-level solids dimension 1",
+    "Stairs can be climbed dimension 1",
+    "Elevated deck supports actor dimension 1",
+    "Covered passage has playable clearance dimension 1",
+    "No frame or renderer errors"
+  ],
+  "vertical": [
+    {
+      "sites": {
+        "tower": {
+          "x": 480,
+          "z": 1150
+        },
+        "passage": {
+          "x": 900,
+          "z": 620
+        }
+      },
+      "solids": 26,
+      "towerTop": 138.72593064492386,
+      "passageFloor": -71.71604015997006,
+      "passageRoof": 41.21783036471949
+    },
+    {
+      "sites": {
+        "tower": {
+          "x": 480,
+          "z": 1150
+        },
+        "passage": {
+          "x": 900,
+          "z": 620
+        }
+      },
+      "solids": 26,
+      "towerTop": 164.5700414178365,
+      "passageFloor": -64.94905464662054,
+      "passageRoof": 40.120586797952576
+    }
+  ],
+  "errors": []
+}

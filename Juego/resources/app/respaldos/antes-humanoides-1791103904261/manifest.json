@@ -1,0 +1,11 @@
+{
+  "originalApp": "C:/Users/party/Desktop/COSMIC ROLL 3D/resources/app",
+  "changed": [
+    "desktop/main.cjs",
+    "prototype/thirdperson.html",
+    "prototype/thirdperson.js",
+    "prototype/turn-view.js",
+    "prototype/singularity.js"
+  ],
+  "faceSHA256": "2b896c03a4f0ab4d90591441aebbb7fc5b48201fd4b57982367afdbb228208e5"
+}

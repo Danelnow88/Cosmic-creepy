@@ -1,0 +1,8 @@
+
+COMBAT QA PASS: 28 checks; errors=0
+WORLD QA PASS: 32 checks; errors=0; sampled FPS=60
+AUDIO QA PASS: 41 checks; errors=0
+MORTAR QA PASS: 26 checks; errors=0
+DIMENSIONS QA PASS: 22 checks; errors=0
+TERROR QA PASS: 13 checks; errors=0
+STABILITY QA PASS: 16 checks; 648 camera configurations

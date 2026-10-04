@@ -1,0 +1,94 @@
+{
+  "pass": true,
+  "initial": {
+    "ready": true,
+    "position": {
+      "x": -0.00009232256478509772,
+      "y": 18.000005660590947,
+      "z": -0.000030382709642085175
+    },
+    "velocity": {
+      "x": -0.002650112694698402,
+      "z": -0.0008721335194324985
+    },
+    "speed": 0.0027899308540391002,
+    "travelled": 0.00009719344120718136,
+    "worldSize": 7200,
+    "projectiles": 0,
+    "targets": 34,
+    "cameraDistance": 161.02385419895558,
+    "render": {
+      "triangles": 103408,
+      "calls": 185
+    }
+  },
+  "moving": {
+    "ready": true,
+    "position": {
+      "x": -0.10832363499646766,
+      "y": 24.206632462475415,
+      "z": -129.1932274552432
+    },
+    "velocity": {
+      "x": -0.3389594116271671,
+      "z": -196.1842780540135
+    },
+    "speed": 196.18457087410624,
+    "travelled": 129.1933542540774,
+    "worldSize": 7200,
+    "projectiles": 0,
+    "targets": 34,
+    "cameraDistance": 183.70940743097248,
+    "render": {
+      "triangles": 102960,
+      "calls": 177
+    }
+  },
+  "fired": {
+    "ready": true,
+    "position": {
+      "x": -0.13512581708392152,
+      "y": 24.639013519762,
+      "z": -142.05725474142687
+    },
+    "velocity": {
+      "x": -0.3110206589508966,
+      "z": -124.94973581795179
+    },
+    "speed": 124.9501229084079,
+    "travelled": 142.05740977675123,
+    "worldSize": 7200,
+    "projectiles": 1,
+    "targets": 34,
+    "cameraDistance": 181.89278931581245,
+    "render": {
+      "triangles": 102782,
+      "calls": 177
+    }
+  },
+  "distant": {
+    "ready": true,
+    "position": {
+      "x": 2715.607158981496,
+      "y": 2.124264053208197,
+      "z": -2018.4158440437213
+    },
+    "velocity": {
+      "x": 198.18574023325033,
+      "z": -202.91593110398836
+    },
+    "speed": 283.6414333760143,
+    "travelled": 319.6276257638039,
+    "worldSize": 7200,
+    "projectiles": 0,
+    "targets": 34,
+    "cameraDistance": 167.14549241578356,
+    "render": {
+      "triangles": 95734,
+      "calls": 101
+    }
+  },
+  "errors": [],
+  "date": "2026-10-03",
+  "scope": "Third-person 3D movement, dynamic camera, large heightfield, rolling sphere, physical obstacles and volumetric projectiles."
+}

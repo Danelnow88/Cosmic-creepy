@@ -1,0 +1,23 @@
+{
+  "pass": true,
+  "cases": [
+    "Three resonators and a gated breach installed in default tactical match",
+    "Real-world locked gate cannot start work",
+    "resonator-0 reachable and channel running",
+    "resonator-0 progress visible in HUD",
+    "resonator-0 completes under real simulation",
+    "resonator-1 reachable and channel running",
+    "resonator-1 progress visible in HUD",
+    "resonator-1 completes under real simulation",
+    "resonator-2 reachable and channel running",
+    "resonator-2 progress visible in HUD",
+    "resonator-2 completes under real simulation",
+    "Extraction wins match by objectives with opponents alive",
+    "Umbral II accessible resonator-0",
+    "Umbral II accessible resonator-1",
+    "Umbral II accessible resonator-2",
+    "Umbral II accessible breach",
+    "No new shader/frame/perspective faults"
+  ],
+  "errors": []
+}

@@ -1,0 +1,187 @@
+{
+  "pass": true,
+  "date": "2026-10-03",
+  "platform": "Electron 44.5.0 / Windows",
+  "cases": [
+    {
+      "character": "boti",
+      "moved": 65.27185199999963,
+      "dash": {
+        "count": 12,
+        "cap": 96,
+        "life": 0.42,
+        "pool": 0,
+        "glowCache": 1
+      },
+      "depth": {
+        "ready": true,
+        "active": true,
+        "contextLost": false,
+        "elevation": 43,
+        "entities": 7,
+        "projectiles": 2,
+        "triangles": 44714,
+        "drawCalls": 190,
+        "frame": 176
+      }
+    },
+    {
+      "character": "nova",
+      "moved": 79.12105269230801,
+      "dash": {
+        "count": 12,
+        "cap": 96,
+        "life": 0.42,
+        "pool": 0,
+        "glowCache": 1
+      },
+      "depth": {
+        "ready": true,
+        "active": true,
+        "contextLost": false,
+        "elevation": 43,
+        "entities": 7,
+        "projectiles": 0,
+        "triangles": 39459,
+        "drawCalls": 169,
+        "frame": 176
+      }
+    },
+    {
+      "character": "rook",
+      "moved": 56.938528923076774,
+      "dash": {
+        "count": 12,
+        "cap": 96,
+        "life": 0.42,
+        "pool": 0,
+        "glowCache": 1
+      },
+      "depth": {
+        "ready": true,
+        "active": true,
+        "contextLost": false,
+        "elevation": 43,
+        "entities": 6,
+        "projectiles": 0,
+        "triangles": 37018,
+        "drawCalls": 140,
+        "frame": 179
+      }
+    },
+    {
+      "character": "swarm",
+      "moved": 70.31429676923108,
+      "dash": {
+        "count": 12,
+        "cap": 96,
+        "life": 0.42,
+        "pool": 0,
+        "glowCache": 1
+      },
+      "depth": {
+        "ready": true,
+        "active": true,
+        "contextLost": false,
+        "elevation": 43,
+        "entities": 7,
+        "projectiles": 11,
+        "triangles": 45794,
+        "drawCalls": 239,
+        "frame": 179
+      }
+    },
+    {
+      "boss": {
+        "ready": true,
+        "active": true,
+        "contextLost": false,
+        "elevation": 43,
+        "entities": 3,
+        "projectiles": 3,
+        "triangles": 46855,
+        "drawCalls": 192,
+        "frame": 154
+      },
+      "projection": {
+        "expected": {
+          "x": 765,
+          "y": 443.9511279999999
+        },
+        "actual": {
+          "x": 764.9999999999986,
+          "y": 443.9511279999988
+        },
+        "error": 1.7758451749402083e-12
+      },
+      "manualFire": {
+        "hpBefore": 1440,
+        "hpAfter": 1370
+      }
+    },
+    {
+      "viewport": [
+        915,
+        412
+      ],
+      "result": {
+        "depth": {
+          "ready": true,
+          "active": true,
+          "contextLost": false,
+          "elevation": 43,
+          "entities": 4,
+          "projectiles": 5,
+          "triangles": 51068,
+          "drawCalls": 227,
+          "frame": 318
+        },
+        "canvas": {
+          "x": 0,
+          "y": 64,
+          "width": 915,
+          "height": 456,
+          "top": 64,
+          "right": 915,
+          "bottom": 520,
+          "left": 0
+        },
+        "width": 915,
+        "height": 520
+      }
+    },
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "result": {
+        "depth": {
+          "ready": true,
+          "active": true,
+          "contextLost": false,
+          "elevation": 43,
+          "entities": 4,
+          "projectiles": 5,
+          "triangles": 50484,
+          "drawCalls": 220,
+          "frame": 318
+        },
+        "canvas": {
+          "x": 0,
+          "y": 64,
+          "width": 844,
+          "height": 456,
+          "top": 64,
+          "right": 844,
+          "bottom": 520,
+          "left": 0
+        },
+        "width": 844,
+        "height": 520
+      }
+    }
+  ],
+  "errors": [],
+  "limits": "Cuerpos, jefe y proyectiles son geometría 3D real sobre plano 3D. Faltan modelos finales por enemigo, VFX 3D completos y prueba en dispositivos móviles físicos."
+}

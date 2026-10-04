@@ -1,0 +1,7 @@
+'use strict';const assert=require('node:assert/strict'),P=require('./profiles.js'),{create}=require('./turns.js');
+const store=new Map(),storage={getItem:k=>store.get(k)||null};store.set('CR3D-roster-v1',JSON.stringify([{name:'Equipo 1',members:['Carlitos','Martín']},{name:'Dulce de leche 🥛',members:['Julián 👾','Luz']} ]));
+const profiles=P.read(storage);assert.equal(profiles[0].name,'Equipo de prueba 1');assert.equal(profiles[1].name,'Dulce de leche 🥛');assert.equal(profiles[1].members[0].name,'Julián 👾');
+const family='👨‍👩‍👧‍👦';assert.equal(P.clip(family.repeat(25),24),family.repeat(24));profiles[1].members[0].avatar=family;store.set('CR3D-profiles-v2',JSON.stringify({schema:2,teams:profiles}));const read=P.read(storage);assert.equal(read[1].members[0].profileId,profiles[1].members[0].profileId);assert.equal(read[1].members[0].avatar,family);
+const t=create();t.start({teams:read.slice(0,2).map(team=>({...team,members:team.members.slice(0,2)}))});const s=t.snapshot();assert.equal(s.members[2].profileId,read[1].members[0].profileId);assert.equal(s.members[2].avatar,family);assert.deepEqual(s.members[2].cosmetics,{skinId:'default'});
+const client=create();client.restore(s);assert.deepEqual(client.snapshot().members,s.members);assert.equal(client.snapshot().teams[1].name,'Dulce de leche 🥛');assert.equal(P.normalize([{members:['<img onerror=bad>']}])[0].members[0].name,'<img onerror=bad>');
+console.log('PROFILES PASS: migration, defaults, family emojis intact, stable identities, match/network metadata and future cosmetic slot');

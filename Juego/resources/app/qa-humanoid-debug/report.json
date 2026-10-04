@@ -1,0 +1,5109 @@
+{
+  "pass": true,
+  "cases": [
+    "Upright rigs / mesh floor contact 0",
+    "Upright rigs / mesh floor contact 1",
+    "Upright rigs / mesh floor contact 2",
+    "Upright rigs / mesh floor contact 3",
+    "Upright rigs / mesh floor contact 4",
+    "Upright rigs / mesh floor contact 5",
+    "Upright rigs / mesh floor contact 6",
+    "Upright rigs / mesh floor contact 7",
+    "Upright rigs / mesh floor contact 8",
+    "Upright rigs / mesh floor contact 9",
+    "Upright rigs / mesh floor contact 10",
+    "Upright rigs / mesh floor contact 11",
+    "Upright rigs / mesh floor contact 12",
+    "Upright rigs / mesh floor contact 13",
+    "Upright rigs / mesh floor contact 14",
+    "Upright rigs / mesh floor contact 15",
+    "Animation LOD skips distant pose evaluations",
+    "Render counters include world and shadows",
+    "Live walking uses movement animation",
+    "Jump lifts collider and complete body",
+    "Attack stays finite and above actor floor",
+    "Roster rebuild does not leak actor rigs",
+    "Pause keeps game time fixed",
+    "No frame or renderer failures"
+  ],
+  "samples": [
+    [
+      {
+        "mode": "idle",
+        "minY": -17.65,
+        "maxY": 37.984820092513175,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.42863704981646,
+        "maxY": 52.3937922163601,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.87667290279642,
+        "maxY": 42.72911162347163,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.48403027297035,
+        "maxY": 50.45964777063165,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.148913482046915,
+        "maxY": 51.30740846696964,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -17.88893791921,
+        "maxY": 38.28674402066718,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.748802663804963,
+        "maxY": 40.275421824204216,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.249101868798604,
+        "maxY": 39.36979973853814,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.601423563357095,
+        "maxY": 42.259931603274254,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -27.52941026519256,
+        "maxY": 58.33879602324902,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.506357393485082,
+        "maxY": 46.09239542264925,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.675000892436948,
+        "maxY": 42.25961433645807,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.182926100410263,
+        "maxY": 43.491347122301605,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.522630392631974,
+        "maxY": 41.94072352005414,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.388395298317292,
+        "maxY": 50.226298520874586,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.106920964157315,
+        "maxY": 51.171497043583415,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.592344335320735,
+        "maxY": 56.3897115716487,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.98439502605469,
+        "maxY": 44.999998891200676,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.43898458195763,
+        "maxY": 39.82718420462299,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.92293198047846,
+        "maxY": 49.05709414793829,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.540540615694766,
+        "maxY": 41.97820719085512,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.850586292198564,
+        "maxY": 40.53422625108804,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.20912436574289,
+        "maxY": 47.56319150070826,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.129539880917577,
+        "maxY": 41.1215259529194,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.243860976296126,
+        "maxY": 49.80406158190152,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -28.162500188965353,
+        "maxY": 60.11380642471812,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.125060362578367,
+        "maxY": 41.10866330089206,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.438594516457126,
+        "maxY": 45.95057690000224,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.25442338600115,
+        "maxY": 49.75086075678536,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.96448896078582,
+        "maxY": 55.4226609067985,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.947239060621357,
+        "maxY": 48.90690152564747,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.710298504093952,
+        "maxY": 48.61208108461,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.289613110737985,
+        "maxY": 55.873191702397,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.227930979596564,
+        "maxY": 54.12659837329697,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.048812854508284,
+        "maxY": 55.60386585122701,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ],
+    [
+      {
+        "mode": "idle",
+        "minY": -17.650000000000002,
+        "maxY": 38.16659683206619,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.428637049816455,
+        "maxY": 52.15283201416459,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "shotTwo",
+        "minY": -19.876673006642537,
+        "maxY": 44.73871374956487,
+        "soleClearance": 0.3499998961538786,
+        "bodyClearance": 0.3499998961538786,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.484030272970347,
+        "maxY": 49.99188259622832,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.148913482046915,
+        "maxY": 51.783416276854005,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -17.888937919210008,
+        "maxY": 38.641122058693306,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.748802663804966,
+        "maxY": 40.04859329016112,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.249101868798604,
+        "maxY": 39.3220559272455,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.601423563357088,
+        "maxY": 42.07535934250449,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -27.529410265192567,
+        "maxY": 58.88048604680566,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.50635739348509,
+        "maxY": 45.78042086155094,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.675000892436927,
+        "maxY": 41.973780299617516,
+        "soleClearance": 0.3500000000000192,
+        "bodyClearance": 0.3500000000000192,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.182926100410278,
+        "maxY": 43.22198979046003,
+        "soleClearance": 0.3499999999999801,
+        "bodyClearance": 0.3499999999999801,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.52263039263199,
+        "maxY": 41.657064398225465,
+        "soleClearance": 0.34999999999999076,
+        "bodyClearance": 0.34999999999999076,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.3883952983173,
+        "maxY": 49.914890843834975,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.106920964157318,
+        "maxY": 51.60770724053749,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.592344335320742,
+        "maxY": 56.913194636708106,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.984395026054695,
+        "maxY": 44.69547474727656,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.438984581957627,
+        "maxY": 39.58070444181378,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.922931980478463,
+        "maxY": 48.72489960109013,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.54054061569477,
+        "maxY": 41.69429242102992,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.85058629219857,
+        "maxY": 40.26015979191109,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.209124365742912,
+        "maxY": 47.24118574302143,
+        "soleClearance": 0.3499999999999872,
+        "bodyClearance": 0.3499999999999872,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.129539880917584,
+        "maxY": 41.26055664842502,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.24386097629613,
+        "maxY": 49.78793931525268,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -28.162500188965353,
+        "maxY": 60.09432313068096,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.125060362578363,
+        "maxY": 40.8306790375679,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.438594516457126,
+        "maxY": 45.63956957664808,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.254423386001157,
+        "maxY": 49.41393454839438,
+        "soleClearance": 0.3499999999999872,
+        "bodyClearance": 0.3499999999999872,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.964488960785815,
+        "maxY": 55.047051604833456,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.94723906062135,
+        "maxY": 49.333979914850076,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.710298504093956,
+        "maxY": 48.282921637997276,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.289613110737992,
+        "maxY": 56.361541546200804,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.227930979596557,
+        "maxY": 53.655964464591975,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.048812854508277,
+        "maxY": 55.79228125190495,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ],
+    [
+      {
+        "mode": "idle",
+        "minY": -17.650000000000002,
+        "maxY": 37.78829067705679,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.428637049816466,
+        "maxY": 51.86715640852687,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.876672902796418,
+        "maxY": 42.78588583309943,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.484030272970355,
+        "maxY": 50.041633632692196,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.148913482046915,
+        "maxY": 51.59403963986424,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -17.88893791921,
+        "maxY": 38.50013504194518,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.74880266380497,
+        "maxY": 40.42334993687787,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.249101868798604,
+        "maxY": 38.999567119689466,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.601423563357095,
+        "maxY": 41.82498397778783,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -27.529410265192567,
+        "maxY": 58.66497816474599,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.506357393485096,
+        "maxY": 46.20928623863287,
+        "soleClearance": 0.34999999999999076,
+        "bodyClearance": 0.34999999999999076,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.675000892436927,
+        "maxY": 42.36671080510786,
+        "soleClearance": 0.3500000000000192,
+        "bodyClearance": 0.3500000000000192,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.18292610041027,
+        "maxY": 43.06828323981492,
+        "soleClearance": 0.3499999999999872,
+        "bodyClearance": 0.3499999999999872,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.522630392631974,
+        "maxY": 42.04700509024058,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.388395298317295,
+        "maxY": 49.73718860883394,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.10692096415732,
+        "maxY": 51.620200979469644,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.59234433532074,
+        "maxY": 56.70493027565461,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.98439502605468,
+        "maxY": 45.11409818040134,
+        "soleClearance": 0.35000000000001563,
+        "bodyClearance": 0.35000000000001563,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.43898458195763,
+        "maxY": 39.440052788167655,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.922931980478456,
+        "maxY": 49.18156100033063,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.540540615694773,
+        "maxY": 42.08458454738648,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.850586292198567,
+        "maxY": 40.636913636668965,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.20912436574289,
+        "maxY": 47.68384081145635,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.129539880917577,
+        "maxY": 40.85419314207715,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.243860976296123,
+        "maxY": 49.378846653383185,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -28.162500188965353,
+        "maxY": 59.599946453180934,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.125060362578367,
+        "maxY": 41.21281861168463,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.43859451645713,
+        "maxY": 46.067105310766756,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.254423386001157,
+        "maxY": 49.87710047096731,
+        "soleClearance": 0.3499999999999872,
+        "bodyClearance": 0.3499999999999872,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.96448896078582,
+        "maxY": 55.56339442572127,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.947239060621357,
+        "maxY": 48.89898736507932,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.710298504093952,
+        "maxY": 48.73541074382267,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.289613110737992,
+        "maxY": 55.86414212467309,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.22793097959656,
+        "maxY": 53.644021341794726,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.04881285450827,
+        "maxY": 55.24157449904736,
+        "soleClearance": 0.35000000000001563,
+        "bodyClearance": 0.35000000000001563,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ],
+    [
+      {
+        "mode": "idle",
+        "minY": -17.64999999999999,
+        "maxY": 37.95599410122375,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.428637049816455,
+        "maxY": 52.368188406546,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.876672902796415,
+        "maxY": 42.38693788596317,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.484030272970355,
+        "maxY": 50.46306953577624,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.148913482046915,
+        "maxY": 51.336383892643646,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -17.888937919210008,
+        "maxY": 38.3083156299729,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.748802663804973,
+        "maxY": 40.23853954190899,
+        "soleClearance": 0.34999999999999076,
+        "bodyClearance": 0.34999999999999076,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.24910186879861,
+        "maxY": 39.39539153055934,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.60142356335709,
+        "maxY": 42.277997315323766,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -27.529410265192567,
+        "maxY": 58.37176963983677,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.50635739348509,
+        "maxY": 46.10308474195206,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.67500089243692,
+        "maxY": 42.26940799167363,
+        "soleClearance": 0.3500000000000263,
+        "bodyClearance": 0.3500000000000263,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.18292610041027,
+        "maxY": 43.48666821783053,
+        "soleClearance": 0.3499999999999872,
+        "bodyClearance": 0.3499999999999872,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.522630392631978,
+        "maxY": 41.95044265521599,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.3883952983173,
+        "maxY": 50.22088917574012,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.106920964157318,
+        "maxY": 51.17295701314285,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.592344335320735,
+        "maxY": 56.42157689891486,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.984395026054695,
+        "maxY": 45.01043293363786,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.43898458195763,
+        "maxY": 39.822902697762366,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.92293198047846,
+        "maxY": 49.068476273357135,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.540540615694773,
+        "maxY": 41.98793508539487,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.850586292198567,
+        "maxY": 40.54361670870105,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.2091243657429,
+        "maxY": 47.57422452323789,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.129539880917577,
+        "maxY": 41.15538157333445,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.243860976296126,
+        "maxY": 49.794561016328664,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -28.162500188965346,
+        "maxY": 60.10232526536211,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.125060362578367,
+        "maxY": 41.11818799592287,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.43859451645713,
+        "maxY": 45.96123307841993,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.25442338600115,
+        "maxY": 49.76240500516992,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.964488960785815,
+        "maxY": 55.43553057074702,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.947239060621357,
+        "maxY": 48.89754068621036,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.710298504093956,
+        "maxY": 48.623359217076924,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.289613110737992,
+        "maxY": 55.86248789580659,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.227930979596564,
+        "maxY": 54.12524993883544,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.04881285450827,
+        "maxY": 55.64974723204371,
+        "soleClearance": 0.35000000000001563,
+        "bodyClearance": 0.35000000000001563,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ],
+    [
+      {
+        "mode": "idle",
+        "minY": -17.650000000000002,
+        "maxY": 38.18260579405407,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.42863704981646,
+        "maxY": 52.19974893403713,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.876672902796415,
+        "maxY": 42.67417694749659,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.484030272970358,
+        "maxY": 50.02670427811552,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.148913482046915,
+        "maxY": 51.79003918138893,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -17.888937919210008,
+        "maxY": 38.646052675095795,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.748802663804966,
+        "maxY": 40.050969629040495,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.249101868798604,
+        "maxY": 39.314146063448725,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.60142356335709,
+        "maxY": 42.06653181538493,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -27.529410265192567,
+        "maxY": 58.88802281666334,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.50635739348506,
+        "maxY": 45.77528625928082,
+        "soleClearance": 0.3500000000000263,
+        "bodyClearance": 0.3500000000000263,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.67500089243694,
+        "maxY": 41.96907592856468,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.182926100410263,
+        "maxY": 43.23856293215516,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.522630392631974,
+        "maxY": 41.652395822794965,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.388395298317302,
+        "maxY": 49.934051278493435,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.106920964157318,
+        "maxY": 51.59025994045466,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.592344335320732,
+        "maxY": 56.920478085201005,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.984395026054695,
+        "maxY": 44.69046276695612,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.438984581957623,
+        "maxY": 39.59586996192823,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.922931980478467,
+        "maxY": 48.71943221019656,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.540540615694773,
+        "maxY": 41.68961963804228,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.85058629219857,
+        "maxY": 40.255649096364294,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.2091243657429,
+        "maxY": 47.23588604330038,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.129539880917577,
+        "maxY": 41.254904929118894,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.243860976296133,
+        "maxY": 49.80671821068759,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -28.162500188965353,
+        "maxY": 60.117016883949034,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.125060362578363,
+        "maxY": 40.8261038612314,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.43859451645713,
+        "maxY": 45.634450893564086,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.25442338600115,
+        "maxY": 49.40838928192012,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.964488960785822,
+        "maxY": 55.04086967651284,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.947239060621357,
+        "maxY": 49.33188361137047,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.710298504093956,
+        "maxY": 48.27750419999889,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.289613110737992,
+        "maxY": 56.359144493334874,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.227930979596557,
+        "maxY": 53.67282519637335,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.04881285450829,
+        "maxY": 55.78462200116387,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ],
+    [
+      {
+        "mode": "idle",
+        "minY": -17.650000000000002,
+        "maxY": 37.80728572374777,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.428637049816462,
+        "maxY": 51.851810216656304,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.87667290279642,
+        "maxY": 42.81487518446618,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.48403027297035,
+        "maxY": 50.005358990254706,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.148913482046915,
+        "maxY": 51.52259895174512,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -17.88893791921,
+        "maxY": 38.44694891691697,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.748802663804963,
+        "maxY": 40.4601117868402,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.249101868798604,
+        "maxY": 39.00779270753792,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.601423563357095,
+        "maxY": 41.85244846309115,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -27.529410265192563,
+        "maxY": 58.583679691849994,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.50635739348509,
+        "maxY": 46.20083426551851,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.675000892436934,
+        "maxY": 42.358967027583034,
+        "soleClearance": 0.3500000000000121,
+        "bodyClearance": 0.3500000000000121,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.182926100410263,
+        "maxY": 43.061622599024304,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.52263039263199,
+        "maxY": 42.03932023522258,
+        "soleClearance": 0.34999999999999076,
+        "bodyClearance": 0.34999999999999076,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.3883952983173,
+        "maxY": 49.72948815137088,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.106920964157318,
+        "maxY": 51.6317029592075,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.592344335320742,
+        "maxY": 56.62636435801631,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.984395026054695,
+        "maxY": 45.10584805299334,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.438984581957616,
+        "maxY": 39.4339578615844,
+        "soleClearance": 0.3500000000000121,
+        "bodyClearance": 0.3500000000000121,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.92293198047846,
+        "maxY": 49.172561230064716,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.54054061569477,
+        "maxY": 42.076892766387125,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.85058629219857,
+        "maxY": 40.629488664785455,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.2091243657429,
+        "maxY": 47.67511707450467,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.129539880917577,
+        "maxY": 40.83470783590556,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.243860976296116,
+        "maxY": 49.378252302550855,
+        "soleClearance": 0.3500000000000121,
+        "bodyClearance": 0.3500000000000121,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -28.16250018896535,
+        "maxY": 59.59922819735006,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.125060362578367,
+        "maxY": 41.20528749917483,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.438594516457137,
+        "maxY": 46.05867954192812,
+        "soleClearance": 0.3499999999999872,
+        "bodyClearance": 0.3499999999999872,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.254423386001157,
+        "maxY": 49.86797251115924,
+        "soleClearance": 0.3499999999999872,
+        "bodyClearance": 0.3499999999999872,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.96448896078582,
+        "maxY": 55.55321846871203,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.947239060621357,
+        "maxY": 48.90881392697425,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.710298504093952,
+        "maxY": 48.72649320008669,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.289613110737996,
+        "maxY": 55.875378469306376,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.227930979596564,
+        "maxY": 53.63274269987066,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.04881285450829,
+        "maxY": 55.21516787167424,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ],
+    [
+      {
+        "mode": "hurt",
+        "minY": -17.65,
+        "maxY": 37.785120749575555,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.428637049816466,
+        "maxY": 52.33209494864711,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.876672902796418,
+        "maxY": 42.39957816454746,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.484030272970358,
+        "maxY": 50.457306166264964,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.14891348204692,
+        "maxY": 51.27051091970878,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -17.88893791921001,
+        "maxY": 38.25927455454755,
+        "soleClearance": 0.34999999999999076,
+        "bodyClearance": 0.34999999999999076,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.748802663804966,
+        "maxY": 40.34698849772187,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.249101868798608,
+        "maxY": 39.313216591364956,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.6014235633571,
+        "maxY": 42.211564311982514,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -27.529410265192567,
+        "maxY": 58.296807146533396,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.506357393485096,
+        "maxY": 46.121899456610294,
+        "soleClearance": 0.34999999999999076,
+        "bodyClearance": 0.34999999999999076,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.675000892436948,
+        "maxY": 42.28664621078937,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.182926100410263,
+        "maxY": 43.477445022460714,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.52263039263198,
+        "maxY": 41.96754970849185,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.3883952983173,
+        "maxY": 50.21022611405419,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.106920964157318,
+        "maxY": 51.17555346059457,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.59234433532074,
+        "maxY": 56.34913399974294,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.98439502605469,
+        "maxY": 45.02879832488745,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.438984581957627,
+        "maxY": 39.81446286435763,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.922931980478456,
+        "maxY": 49.088510424821195,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.54054061569477,
+        "maxY": 42.0050575564153,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.850586292198567,
+        "maxY": 40.560145242978535,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.209124365742905,
+        "maxY": 47.593644204214,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.129539880917577,
+        "maxY": 41.05367120691528,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.243860976296126,
+        "maxY": 49.77672618983613,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -28.162500188965346,
+        "maxY": 60.080772392169834,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.12506036257837,
+        "maxY": 41.13495280705209,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.43859451645713,
+        "maxY": 45.979989460430495,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.254423386001136,
+        "maxY": 49.782724515996215,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.964488960785815,
+        "maxY": 55.45818300053031,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.947239060621357,
+        "maxY": 48.88073357313533,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.710298504093952,
+        "maxY": 48.643210326229195,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.289613110737992,
+        "maxY": 55.843269524536815,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.227930979596564,
+        "maxY": 54.12012095040639,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.04881285450827,
+        "maxY": 55.51190861034739,
+        "soleClearance": 0.35000000000001563,
+        "bodyClearance": 0.35000000000001563,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ],
+    [
+      {
+        "mode": "idle",
+        "minY": -17.65,
+        "maxY": 38.11462883936251,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.428637049816462,
+        "maxY": 52.241547768551,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "shotTwo",
+        "minY": -19.87667300985249,
+        "maxY": 44.921540715543614,
+        "soleClearance": 0.3499998929439272,
+        "bodyClearance": 0.3499998929439272,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.484030272970358,
+        "maxY": 50.060721460923595,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.148913482046915,
+        "maxY": 51.80144315705282,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -17.888937919210004,
+        "maxY": 38.65454270075826,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.74880266380497,
+        "maxY": 40.056164686296796,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.249101868798608,
+        "maxY": 39.300333754699295,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.60142356335709,
+        "maxY": 42.051105334891965,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -27.529410265192563,
+        "maxY": 58.901000376522035,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.50635739348509,
+        "maxY": 45.76984794139311,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.675000892436955,
+        "maxY": 41.964093290396974,
+        "soleClearance": 0.34999999999999076,
+        "bodyClearance": 0.34999999999999076,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.182926100410256,
+        "maxY": 43.27101761153102,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.522630392631978,
+        "maxY": 41.64745109758777,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.388395298317306,
+        "maxY": 49.971572574997204,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.106920964157315,
+        "maxY": 51.55599141344106,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.592344335320742,
+        "maxY": 56.93301945114174,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.98439502605468,
+        "maxY": 44.685154324199374,
+        "soleClearance": 0.35000000000001563,
+        "bodyClearance": 0.35000000000001563,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.438984581957627,
+        "maxY": 39.62556813876981,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.922931980478463,
+        "maxY": 48.713641418986015,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.54054061569477,
+        "maxY": 41.684670456397804,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.850586292198567,
+        "maxY": 40.25087158975569,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.209124365742912,
+        "maxY": 47.230272862322366,
+        "soleClearance": 0.3499999999999872,
+        "bodyClearance": 0.3499999999999872,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.129539880917577,
+        "maxY": 41.2437012794976,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.24386097629613,
+        "maxY": 49.839764729256835,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -28.162500188965346,
+        "maxY": 60.15695264808264,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.125060362578374,
+        "maxY": 40.821258059745446,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.43859451645713,
+        "maxY": 45.62902943649441,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.25442338600115,
+        "maxY": 49.40251600872927,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.96448896078582,
+        "maxY": 55.034322082444675,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.947239060621353,
+        "maxY": 49.32503134073892,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.71029850409396,
+        "maxY": 48.27176631643515,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.289613110737996,
+        "maxY": 56.3513091512121,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.227930979596568,
+        "maxY": 53.70834272986539,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.0488128545083,
+        "maxY": 55.76943873444152,
+        "soleClearance": 0.3499999999999872,
+        "bodyClearance": 0.3499999999999872,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ],
+    [
+      {
+        "mode": "idle",
+        "minY": -17.649999999999995,
+        "maxY": 37.75779711033188,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.42863704981646,
+        "maxY": 51.84522864538948,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.876672902796415,
+        "maxY": 42.7201148952324,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.484030272970358,
+        "maxY": 49.98802038722827,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.148913482046915,
+        "maxY": 51.63371183714241,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -17.88893791921001,
+        "maxY": 38.529670178015785,
+        "soleClearance": 0.34999999999999076,
+        "bodyClearance": 0.34999999999999076,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.748802663804966,
+        "maxY": 40.40010776628979,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.249101868798604,
+        "maxY": 39.00153443458669,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.601423563357088,
+        "maxY": 41.81598034997065,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -27.52941026519256,
+        "maxY": 58.7101245531705,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.50635739348509,
+        "maxY": 46.182688278754725,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.675000892436927,
+        "maxY": 42.34234150327461,
+        "soleClearance": 0.3500000000000192,
+        "bodyClearance": 0.3500000000000192,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.182926100410278,
+        "maxY": 43.05030304436241,
+        "soleClearance": 0.3499999999999801,
+        "bodyClearance": 0.3499999999999801,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.52263039263199,
+        "maxY": 42.0228212147511,
+        "soleClearance": 0.34999999999999076,
+        "bodyClearance": 0.34999999999999076,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.3883952983173,
+        "maxY": 49.71640146017784,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.106920964157318,
+        "maxY": 51.6547153033966,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.592344335320742,
+        "maxY": 56.74855923088932,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.984395026054695,
+        "maxY": 45.08813541942014,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.438984581957627,
+        "maxY": 39.423599720860715,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.92293198047846,
+        "maxY": 49.15323914871007,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.540540615694766,
+        "maxY": 42.0603788761611,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.850586292198567,
+        "maxY": 40.61354760111952,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.2091243657429,
+        "maxY": 47.65638762362802,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.129539880917577,
+        "maxY": 40.868573853047565,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.24386097629613,
+        "maxY": 49.38134228755457,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -28.162500188965346,
+        "maxY": 59.602962355065586,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.125060362578367,
+        "maxY": 41.18911855660121,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.438594516457126,
+        "maxY": 46.04058981450559,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.254423386001157,
+        "maxY": 49.84837521291697,
+        "soleClearance": 0.3499999999999872,
+        "bodyClearance": 0.3499999999999872,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.96448896078582,
+        "maxY": 55.531371170016186,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.947239060621357,
+        "maxY": 48.92921931358393,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.710298504093952,
+        "maxY": 48.707347655205126,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.28961311073799,
+        "maxY": 55.898711345929364,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.227930979596564,
+        "maxY": 53.612445488616416,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.048812854508277,
+        "maxY": 55.261063342210164,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ],
+    [
+      {
+        "mode": "idle",
+        "minY": -17.65,
+        "maxY": 38.031774315199925,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.428637049816455,
+        "maxY": 52.31074462730372,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.876672902796415,
+        "maxY": 42.38233463324597,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.48403027297035,
+        "maxY": 50.44936906732262,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.14891348204692,
+        "maxY": 51.260853988933995,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -17.888937919210004,
+        "maxY": 38.25208516792353,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.748802663804963,
+        "maxY": 40.38862075404076,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.249101868798604,
+        "maxY": 39.275164372100896,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.601423563357095,
+        "maxY": 42.17615060867824,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -27.529410265192567,
+        "maxY": 58.28581769856581,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.506357393485082,
+        "maxY": 46.14545730909735,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.67500089243694,
+        "maxY": 42.308230137542736,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.18292610041027,
+        "maxY": 43.46358104411527,
+        "soleClearance": 0.3499999999999872,
+        "bodyClearance": 0.3499999999999872,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.522630392631985,
+        "maxY": 41.988969402857684,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.388395298317292,
+        "maxY": 50.194197780013404,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.106920964157318,
+        "maxY": 51.179602099855046,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.592344335320735,
+        "maxY": 56.33851392247511,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.98439502605469,
+        "maxY": 45.05179358077004,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.438984581957627,
+        "maxY": 39.80177640778034,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.92293198047846,
+        "maxY": 49.113595130779586,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.540540615694763,
+        "maxY": 42.026496555296816,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.850586292198564,
+        "maxY": 40.580840575297316,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.209124365742905,
+        "maxY": 47.61795953336413,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.129539880917562,
+        "maxY": 41.01232767409785,
+        "soleClearance": 0.3500000000000192,
+        "bodyClearance": 0.3500000000000192,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.243860976296133,
+        "maxY": 49.753441632447114,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -28.162500188965353,
+        "maxY": 60.05263367644113,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.12506036257836,
+        "maxY": 41.15594398096723,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.43859451645713,
+        "maxY": 46.003474274769765,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.25442338600115,
+        "maxY": 49.80816651962737,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.96448896078582,
+        "maxY": 55.48654604557254,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.947239060621357,
+        "maxY": 48.86163276629344,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.710298504093952,
+        "maxY": 48.668065845412315,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.28961311073799,
+        "maxY": 55.821428391214205,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.227930979596564,
+        "maxY": 54.111579752815544,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.048812854508284,
+        "maxY": 55.45587955667041,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ],
+    [
+      {
+        "mode": "idle",
+        "minY": -17.65,
+        "maxY": 38.13128256445321,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.42863704981646,
+        "maxY": 52.26980183514324,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.876672902796418,
+        "maxY": 42.7370942753026,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.48403027297035,
+        "maxY": 50.08568293427418,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.148913482046908,
+        "maxY": 51.69542475370657,
+        "soleClearance": 0.3500000000000121,
+        "bodyClearance": 0.3500000000000121,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -17.88893791921,
+        "maxY": 38.57561417691402,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.74880266380497,
+        "maxY": 40.03961311837298,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.249101868798604,
+        "maxY": 39.39767080954537,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.601423563357084,
+        "maxY": 42.16913913335011,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -27.529410265192567,
+        "maxY": 58.78035296231256,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.50635739348509,
+        "maxY": 45.770055520375735,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.675000892436948,
+        "maxY": 41.964283476219734,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.18292610041027,
+        "maxY": 43.26857181734485,
+        "soleClearance": 0.3499999999999872,
+        "bodyClearance": 0.3499999999999872,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.522630392631978,
+        "maxY": 41.64763983628402,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.388395298317302,
+        "maxY": 49.96874495905366,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.106920964157318,
+        "maxY": 51.558566081576956,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.59234433532074,
+        "maxY": 56.81642716508264,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.98439502605468,
+        "maxY": 44.68535694588675,
+        "soleClearance": 0.35000000000001563,
+        "bodyClearance": 0.35000000000001563,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.438984581957637,
+        "maxY": 39.6233300754256,
+        "soleClearance": 0.34999999999999076,
+        "bodyClearance": 0.34999999999999076,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.92293198047846,
+        "maxY": 48.71386245177099,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.540540615694773,
+        "maxY": 41.68485936519497,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.850586292198564,
+        "maxY": 40.25105394576761,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.209124365742905,
+        "maxY": 47.23048711577738,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.129539880917577,
+        "maxY": 41.3028064526504,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.243860976296126,
+        "maxY": 49.83733266746644,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -28.16250018896536,
+        "maxY": 60.15401357158602,
+        "soleClearance": 0.34999999999999076,
+        "bodyClearance": 0.34999999999999076,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.12506036257837,
+        "maxY": 40.82144302255258,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.438594516457123,
+        "maxY": 45.62923637190466,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.25442338600115,
+        "maxY": 49.402740189826986,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.964488960785822,
+        "maxY": 55.03457200217045,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.947239060621353,
+        "maxY": 49.325850242963796,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.71029850409396,
+        "maxY": 48.271985329750905,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.289613110738003,
+        "maxY": 56.35224553849772,
+        "soleClearance": 0.3499999999999872,
+        "bodyClearance": 0.3499999999999872,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.22793097959657,
+        "maxY": 53.70566254414547,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.0488128545083,
+        "maxY": 55.84953849112638,
+        "soleClearance": 0.3499999999999872,
+        "bodyClearance": 0.3499999999999872,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ],
+    [
+      {
+        "mode": "idle",
+        "minY": -17.65,
+        "maxY": 37.76728424414726,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.428637049816455,
+        "maxY": 51.840635522529894,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.876672902796418,
+        "maxY": 42.75962572031481,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.484030272970355,
+        "maxY": 49.952545251954625,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.148913482046915,
+        "maxY": 51.702910608889376,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -17.888937919210008,
+        "maxY": 38.58118724235022,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.748802663804966,
+        "maxY": 40.35328924488164,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.249101868798604,
+        "maxY": 39.014043499052,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.60142356335709,
+        "maxY": 41.80904717774717,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -27.529410265192553,
+        "maxY": 58.788871757563626,
+        "soleClearance": 0.3500000000000121,
+        "bodyClearance": 0.3500000000000121,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.506357393485082,
+        "maxY": 46.18566121445568,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.675000892436934,
+        "maxY": 42.34506533501808,
+        "soleClearance": 0.3500000000000121,
+        "bodyClearance": 0.3500000000000121,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.182926100410263,
+        "maxY": 43.05188631520738,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.522630392631967,
+        "maxY": 42.02552432082242,
+        "soleClearance": 0.3500000000000121,
+        "bodyClearance": 0.3500000000000121,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.3883952983173,
+        "maxY": 49.71823190114856,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.106920964157318,
+        "maxY": 51.65112127747618,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.59234433532074,
+        "maxY": 56.82465963172354,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.98439502605469,
+        "maxY": 45.09103735698865,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.438984581957616,
+        "maxY": 39.425048518336055,
+        "soleClearance": 0.3500000000000121,
+        "bodyClearance": 0.3500000000000121,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.92293198047846,
+        "maxY": 49.15640476908794,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.540540615694773,
+        "maxY": 42.06308441840876,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.850586292198564,
+        "maxY": 40.6161592947078,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.2091243657429,
+        "maxY": 47.65945615078475,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.12953988091757,
+        "maxY": 40.90346676084917,
+        "soleClearance": 0.3500000000000121,
+        "bodyClearance": 0.3500000000000121,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.243860976296126,
+        "maxY": 49.38085819912495,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -28.162500188965357,
+        "maxY": 59.602377348166726,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.125060362578363,
+        "maxY": 41.191767584579104,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.438594516457126,
+        "maxY": 46.043553532994686,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.25442338600115,
+        "maxY": 49.85158592327104,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.964488960785815,
+        "maxY": 55.53495050770158,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.947239060621357,
+        "maxY": 48.92568312980424,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.710298504093956,
+        "maxY": 48.71048435284706,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.28961311073799,
+        "maxY": 55.89466783813281,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.22793097959657,
+        "maxY": 53.615579938439055,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.04881285450827,
+        "maxY": 55.30835046236986,
+        "soleClearance": 0.35000000000001563,
+        "bodyClearance": 0.35000000000001563,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ],
+    [
+      {
+        "mode": "hurt",
+        "minY": -17.65,
+        "maxY": 37.80409920864419,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.428637049816466,
+        "maxY": 52.26741646273409,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.876672902796415,
+        "maxY": 42.38416864790782,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.484030272970355,
+        "maxY": 50.430381177861214,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.148913482046915,
+        "maxY": 51.273279594252664,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -17.88893791921,
+        "maxY": 38.261335775881356,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.748802663804973,
+        "maxY": 40.33946558373967,
+        "soleClearance": 0.34999999999999076,
+        "bodyClearance": 0.34999999999999076,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.249101868798608,
+        "maxY": 39.319751064753845,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.601423563357088,
+        "maxY": 42.217363191095686,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -27.52941026519256,
+        "maxY": 58.29995785823965,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.50635739348509,
+        "maxY": 46.14146852475382,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.675000892436948,
+        "maxY": 42.30457557568691,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.18292610041027,
+        "maxY": 43.46595387001781,
+        "soleClearance": 0.3499999999999872,
+        "bodyClearance": 0.3499999999999872,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.522630392631974,
+        "maxY": 41.98534264861188,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.388395298317295,
+        "maxY": 50.19694103633126,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.106920964157325,
+        "maxY": 51.1783049928836,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.59234433532074,
+        "maxY": 56.35217881162688,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.98439502605469,
+        "maxY": 45.04790005453751,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.438984581957634,
+        "maxY": 39.803947700321935,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.922931980478456,
+        "maxY": 49.109347821631005,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.54054061569477,
+        "maxY": 42.022866532436005,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.850586292198567,
+        "maxY": 40.57733646907275,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.209124365742905,
+        "maxY": 47.61384249407645,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.129539880917577,
+        "maxY": 41.061069147224146,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.24386097629613,
+        "maxY": 49.75743216582795,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -28.162500188965353,
+        "maxY": 60.057456120885035,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.125060362578363,
+        "maxY": 41.15238978323587,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.438594516457123,
+        "maxY": 45.99949785714853,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.254423386001143,
+        "maxY": 49.80385871331064,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.96448896078581,
+        "maxY": 55.48174365239767,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.947239060621357,
+        "maxY": 48.864857065655954,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.710298504093952,
+        "maxY": 48.6638573418646,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.289613110737996,
+        "maxY": 55.82511526961844,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.22793097959656,
+        "maxY": 54.113037978412706,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.04881285450827,
+        "maxY": 55.521934352378096,
+        "soleClearance": 0.35000000000001563,
+        "bodyClearance": 0.35000000000001563,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ],
+    [
+      {
+        "mode": "idle",
+        "minY": -17.649999999999995,
+        "maxY": 38.1148545638835,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.42863704981646,
+        "maxY": 52.31242562811697,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "shotTwo",
+        "minY": -19.8766730150353,
+        "maxY": 45.229447689535526,
+        "soleClearance": 0.3499998877611148,
+        "bodyClearance": 0.3499998877611148,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.484030272970355,
+        "maxY": 50.12851014890557,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.14891348204691,
+        "maxY": 51.681480082398814,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -17.888937919210008,
+        "maxY": 38.56523265552645,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.74880266380497,
+        "maxY": 40.04116779871846,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.24910186879861,
+        "maxY": 39.406983407025514,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.6014235633571,
+        "maxY": 42.18119126804707,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -27.529410265192563,
+        "maxY": 58.76448412744824,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.506357393485104,
+        "maxY": 45.768776090591786,
+        "soleClearance": 0.34999999999998366,
+        "bodyClearance": 0.34999999999998366,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.67500089243694,
+        "maxY": 41.963111250578336,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.182926100410256,
+        "maxY": 43.28358663732911,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.522630392631978,
+        "maxY": 41.64647653012323,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.388395298317295,
+        "maxY": 49.986103796774906,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.10692096415732,
+        "maxY": 51.542519615588816,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.59234433532074,
+        "maxY": 56.80109170392877,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.984395026054695,
+        "maxY": 44.684108070791666,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.438984581957627,
+        "maxY": 39.63706962817156,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.922931980478463,
+        "maxY": 48.71250009839254,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.54054061569477,
+        "maxY": 41.68369501060356,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.85058629219857,
+        "maxY": 40.24992997979609,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.2091243657429,
+        "maxY": 47.22916654734536,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.129539880917584,
+        "maxY": 41.304640459145986,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.243860976296126,
+        "maxY": 49.85227317703487,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -28.162500188965353,
+        "maxY": 60.17206874629113,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.125060362578367,
+        "maxY": 40.82030298938866,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.43859451645713,
+        "maxY": 45.62796090883125,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.25442338600115,
+        "maxY": 49.40135843156921,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.96448896078582,
+        "maxY": 55.03303160180462,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.947239060621353,
+        "maxY": 49.32079366499583,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.710298504093956,
+        "maxY": 48.27063542353365,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.289613110737996,
+        "maxY": 56.34646351083429,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.227930979596568,
+        "maxY": 53.72211496041463,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.048812854508284,
+        "maxY": 55.85202394994867,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ],
+    [
+      {
+        "mode": "idle",
+        "minY": -17.65,
+        "maxY": 37.760770824462355,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.428637049816466,
+        "maxY": 51.84454646014363,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.876672902796418,
+        "maxY": 42.69817136377751,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.484030272970358,
+        "maxY": 49.92568837563694,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.14891348204691,
+        "maxY": 51.64240577125094,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -17.88893791921,
+        "maxY": 38.53614263340018,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.748802663804973,
+        "maxY": 40.394594692997686,
+        "soleClearance": 0.34999999999999076,
+        "bodyClearance": 0.34999999999999076,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.249101868798608,
+        "maxY": 39.00234045659051,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.601423563357088,
+        "maxY": 41.813978913788006,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -27.52941026519256,
+        "maxY": 58.720018124818324,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.506357393485096,
+        "maxY": 46.17637920784958,
+        "soleClearance": 0.34999999999999076,
+        "bodyClearance": 0.34999999999999076,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.675000892436948,
+        "maxY": 42.33656107297551,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.182926100410256,
+        "maxY": 43.04695186606105,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.52263039263198,
+        "maxY": 42.017084767823526,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.388395298317306,
+        "maxY": 49.712527117337295,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.106920964157315,
+        "maxY": 51.66229277242478,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.592344335320742,
+        "maxY": 56.75812026577159,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.98439502605469,
+        "maxY": 45.08197701852497,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.438984581957623,
+        "maxY": 39.42053317120638,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.922931980478463,
+        "maxY": 49.14652116842676,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.54054061569477,
+        "maxY": 42.0546372592564,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.850586292198567,
+        "maxY": 40.60800514689642,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.2091243657429,
+        "maxY": 47.64987569153347,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.129539880917584,
+        "maxY": 40.87267453834957,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.243860976296116,
+        "maxY": 49.38236476548045,
+        "soleClearance": 0.3500000000000121,
+        "bodyClearance": 0.3500000000000121,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -28.162500188965353,
+        "maxY": 59.60419799013539,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.12506036257837,
+        "maxY": 41.18349687250736,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.43859451645713,
+        "maxY": 46.03430030407839,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.254423386001143,
+        "maxY": 49.84156154410042,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.96448896078582,
+        "maxY": 55.52377521183814,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.947239060621353,
+        "maxY": 48.936670453502984,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.710298504093952,
+        "maxY": 48.700691053844906,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.28961311073799,
+        "maxY": 55.90723147503821,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.227930979596564,
+        "maxY": 53.605803360430954,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.048812854508263,
+        "maxY": 55.26662062048912,
+        "soleClearance": 0.35000000000002274,
+        "bodyClearance": 0.35000000000002274,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ],
+    [
+      {
+        "mode": "idle",
+        "minY": -17.65,
+        "maxY": 38.01846900050869,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.428637049816462,
+        "maxY": 52.22941531273274,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.876672902796415,
+        "maxY": 42.38428707384707,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.484030272970358,
+        "maxY": 50.409753275696296,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.148913482046915,
+        "maxY": 51.263423171006515,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -17.888937919210008,
+        "maxY": 38.253997871209656,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.748802663804973,
+        "maxY": 40.43216731620146,
+        "soleClearance": 0.34999999999999076,
+        "bodyClearance": 0.34999999999999076,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.249101868798608,
+        "maxY": 39.228996224540005,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.6014235633571,
+        "maxY": 42.13043122450343,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -27.52941026519256,
+        "maxY": 58.288741390716424,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.506357393485096,
+        "maxY": 46.150041032160175,
+        "soleClearance": 0.34999999999999076,
+        "bodyClearance": 0.34999999999999076,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.675000892436962,
+        "maxY": 42.312429787867444,
+        "soleClearance": 0.34999999999998366,
+        "bodyClearance": 0.34999999999998366,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.182926100410256,
+        "maxY": 43.46084131427642,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.522630392631974,
+        "maxY": 41.99313709798687,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.3883952983173,
+        "maxY": 50.19103034106161,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -24.106920964157315,
+        "maxY": 51.18123885730351,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.59234433532074,
+        "maxY": 56.341339345247796,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -20.98439502605468,
+        "maxY": 45.05626783769914,
+        "soleClearance": 0.35000000000001563,
+        "bodyClearance": 0.35000000000001563,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.43898458195763,
+        "maxY": 39.79926937388518,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.92293198047846,
+        "maxY": 49.11847593836971,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.540540615694766,
+        "maxY": 42.030668006564305,
+        "soleClearance": 0.350000000000005,
+        "bodyClearance": 0.350000000000005,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -18.850586292198567,
+        "maxY": 40.58486732909819,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.20912436574289,
+        "maxY": 47.622690640966866,
+        "soleClearance": 0.3500000000000085,
+        "bodyClearance": 0.3500000000000085,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.12953988091757,
+        "maxY": 40.96566406721675,
+        "soleClearance": 0.3500000000000121,
+        "bodyClearance": 0.3500000000000121,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.243860976296133,
+        "maxY": 49.748831338433526,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -28.16250018896535,
+        "maxY": 60.047062269155774,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -19.12506036257837,
+        "maxY": 41.16002829756795,
+        "soleClearance": 0.34999999999999787,
+        "bodyClearance": 0.34999999999999787,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -21.43859451645713,
+        "maxY": 46.00804378657785,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -23.254423386001157,
+        "maxY": 49.813116847713204,
+        "soleClearance": 0.3499999999999872,
+        "bodyClearance": 0.3499999999999872,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.96448896078582,
+        "maxY": 55.492064729576654,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.947239060621346,
+        "maxY": 48.857912065981324,
+        "soleClearance": 0.3500000000000121,
+        "bodyClearance": 0.3500000000000121,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -22.710298504093952,
+        "maxY": 48.67290205943395,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.28961311073799,
+        "maxY": 55.81717389493861,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -25.227930979596564,
+        "maxY": 54.10989786816964,
+        "soleClearance": 0.3500000000000014,
+        "bodyClearance": 0.3500000000000014,
+        "tilt": 0,
+        "invalid": 0
+      },
+      {
+        "mode": "idle",
+        "minY": -26.04881285450829,
+        "maxY": 55.392640700275436,
+        "soleClearance": 0.3499999999999943,
+        "bodyClearance": 0.3499999999999943,
+        "tilt": 0,
+        "invalid": 0
+      }
+    ]
+  ],
+  "errors": [],
+  "animation": {
+    "poseCalls": 65232,
+    "skippedPoses": 12972,
+    "meanPoseMs": 0.06966979393581564
+  }
+}

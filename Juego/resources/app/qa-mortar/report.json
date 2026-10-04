@@ -1,0 +1,124 @@
+{
+  "pass": true,
+  "cases": [
+    "Mortar slot stays locked before pickup",
+    "Pickup requires actual proximity",
+    "Near weapon displays the pickup prompt",
+    "E collects and equips the mortar",
+    "Mortar icon loads locally",
+    "Weapon slots and camera controls do not overlap",
+    "A collected pickup cannot be duplicated",
+    "Checkpoint preserves collected inventory",
+    "Preview has an impact point and positive flight time",
+    "Telemetry draws one hundred dense ballistic samples",
+    "Telemetry refreshes at render cadence without a fixed low-rate gate",
+    "Equipped mortar displays flight telemetry",
+    "Firing spends one shell",
+    "Pause freezes ballistic shells",
+    "Predicted and actual swept impact agree",
+    "Impact creates a compact bounded explosion",
+    "Mortar reload restores its three-shell magazine",
+    "Switching weapons hides the arc",
+    "Fire, smoke and transient light finish cleanly",
+    "Explosion damages a nearby creature",
+    "Creatures outside blast radius remain intact",
+    "Ballistic swept collisions stop at real cover",
+    "Cover shields creatures from the compact blast",
+    "Repeated explosions respect effect pool",
+    "New expedition respawns pickup and clears effects",
+    "Mortar integration has no renderer errors"
+  ],
+  "preview": {
+    "owned": true,
+    "shots": 0,
+    "explosions": 0,
+    "shells": 0,
+    "effects": 0,
+    "radius": 42,
+    "pickup": {
+      "x": 65,
+      "z": 65
+    },
+    "telemetry": {
+      "standard": "render-cadence-exponential",
+      "points": 100,
+      "response": 32,
+      "frames": 2,
+      "maxSegment": 2.949631156029245
+    },
+    "prediction": {
+      "impact": [
+        -1.4514270630705184,
+        6.699589208065846,
+        -188.0669842520549
+      ],
+      "flight": 1.1590413411458333,
+      "blocked": false,
+      "range": 191.70405270000458
+    }
+  },
+  "predictedAtFire": {
+    "owned": true,
+    "shots": 0,
+    "explosions": 0,
+    "shells": 0,
+    "effects": 0,
+    "radius": 42,
+    "pickup": {
+      "x": 65,
+      "z": 65
+    },
+    "telemetry": {
+      "standard": "render-cadence-exponential",
+      "points": 100,
+      "response": 32,
+      "frames": 51,
+      "maxSegment": 2.959475284688624
+    },
+    "prediction": {
+      "impact": [
+        -5.644364713924258,
+        6.549260922610813,
+        -188.53641066337468
+      ],
+      "flight": 1.1607259114583333,
+      "blocked": false,
+      "range": 192.27108897294642
+    }
+  },
+  "impact": {
+    "owned": true,
+    "shots": 1,
+    "explosions": 1,
+    "shells": 0,
+    "effects": 1,
+    "radius": 42,
+    "pickup": {
+      "x": 65,
+      "z": 65
+    },
+    "lastImpact": [
+      -5.64436471392425,
+      6.549260922611134,
+      -188.53641066337443
+    ],
+    "telemetry": {
+      "standard": "render-cadence-exponential",
+      "points": 100,
+      "response": 32,
+      "frames": 56,
+      "maxSegment": 2.959478123487235
+    },
+    "prediction": {
+      "impact": [
+        -5.644292147796554,
+        6.548761724253192,
+        -188.535996941072
+      ],
+      "flight": 1.1607259114583333,
+      "blocked": false,
+      "range": 192.2707779670707
+    }
+  },
+  "errors": []
+}

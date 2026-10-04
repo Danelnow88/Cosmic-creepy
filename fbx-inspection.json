@@ -1,0 +1,1262 @@
+{
+  "source": "https://github.com/mrdoob/three.js/blob/13a06fc663fcf35de89a1044f64b40ef499e6f2e/examples/models/fbx/warrior/Warrior.fbx",
+  "fileBytes": 2052864,
+  "sha256": "f00e5b65fface7d30beeb96b7469f129809810020b694af53c7e25affcb6762c",
+  "version": 7300,
+  "global": {
+    "UpAxis": [
+      1
+    ],
+    "UpAxisSign": [
+      1
+    ],
+    "FrontAxis": [
+      2
+    ],
+    "FrontAxisSign": [
+      1
+    ],
+    "CoordAxis": [
+      0
+    ],
+    "CoordAxisSign": [
+      1
+    ],
+    "OriginalUpAxis": [
+      -1
+    ],
+    "OriginalUpAxisSign": [
+      1
+    ],
+    "UnitScaleFactor": [
+      1
+    ],
+    "OriginalUnitScaleFactor": [
+      1
+    ],
+    "AmbientColor": [
+      0,
+      0,
+      0
+    ],
+    "DefaultCamera": [
+      "Producer Perspective"
+    ],
+    "TimeMode": [
+      0
+    ],
+    "TimeProtocol": [
+      2
+    ],
+    "SnapOnFrameMode": [
+      0
+    ],
+    "TimeSpanStart": [
+      0
+    ],
+    "TimeSpanStop": [
+      46186158000
+    ],
+    "CustomFrameRate": [
+      -1
+    ],
+    "TimeMarker": [],
+    "CurrentTimeMarker": [
+      -1
+    ]
+  },
+  "header": [
+    [
+      "FBX SDK/FBX Plugins version 2015.1"
+    ]
+  ],
+  "bones": [
+    {
+      "id": 650663264,
+      "name": "100820_kl_npc::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ]
+    },
+    {
+      "id": 650665264,
+      "name": "100800_kl_npc_mo::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0,
+        -0.0005933952052146196,
+        0
+      ],
+      "Lcl Rotation": [
+        -90,
+        0,
+        0
+      ]
+    },
+    {
+      "id": 650667264,
+      "name": "Bip001::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        -0.013319379650056362,
+        0.20896850526332855,
+        -0.04211541265249252
+      ],
+      "Lcl Rotation": [
+        156.33224487304688,
+        -76.4024658203125,
+        113.72268676757812
+      ],
+      "Lcl Scaling": [
+        0.9999999403953552,
+        0.9999999403953552,
+        0.9999999403953552
+      ]
+    },
+    {
+      "id": 650669264,
+      "name": "Bip001 Pelvis::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Rotation": [
+        -89.99992370605469,
+        -90,
+        0
+      ],
+      "Lcl Scaling": [
+        0.9999999403953552,
+        0.9999999403953552,
+        0.9999999403953552
+      ]
+    },
+    {
+      "id": 650671264,
+      "name": "Bip001 Spine::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.059376027435064316,
+        -0.014010597951710224,
+        -0.0000023090838112693746
+      ],
+      "Lcl Rotation": [
+        3.0735931396484375,
+        -0.0899016410112381,
+        36.92926788330078
+      ],
+      "Lcl Scaling": [
+        0.9999999403953552,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 650673264,
+      "name": "Bip001 L Thigh::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        -0.038964901119470596,
+        0.049577273428440094,
+        0.04907368868589401
+      ],
+      "Lcl Rotation": [
+        172.0501708984375,
+        -16.870027542114258,
+        151.61988830566406
+      ],
+      "Lcl Scaling": [
+        1,
+        1.0000001192092896,
+        1
+      ]
+    },
+    {
+      "id": 1948749888,
+      "name": "Bip001 L Calf::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.12185973674058914,
+        1.19209286886246e-9,
+        9.53674295089968e-9
+      ],
+      "Lcl Rotation": [
+        -8.53773599374108e-7,
+        8.537736562175269e-7,
+        -61.353553771972656
+      ]
+    },
+    {
+      "id": 1948751888,
+      "name": "Bip001 L Foot::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.09849674999713898,
+        -4.76837147544984e-9,
+        0
+      ],
+      "Lcl Rotation": [
+        -8.554119110107422,
+        -18.23708152770996,
+        54.67784881591797
+      ]
+    },
+    {
+      "id": 1948753888,
+      "name": "Bip001 L Toe0::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.03172443434596062,
+        0.034603409469127655,
+        9.53674295089968e-9
+      ],
+      "Lcl Rotation": [
+        -0.000003895343525073258,
+        -0.00003416342588025145,
+        90.00000762939453
+      ],
+      "Lcl Scaling": [
+        1,
+        0.9999999403953552,
+        1
+      ]
+    },
+    {
+      "id": 1948755888,
+      "name": "Bip001 R Thigh::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        -0.039126813411712646,
+        0.04404386505484581,
+        -0.053973425179719925
+      ],
+      "Lcl Rotation": [
+        177.95425415039062,
+        14.845794677734375,
+        101.17194366455078
+      ],
+      "Lcl Scaling": [
+        1,
+        1.0000001192092896,
+        1
+      ]
+    },
+    {
+      "id": 1948757888,
+      "name": "Bip001 R Calf::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.12185972183942795,
+        -9.53674295089968e-9,
+        0
+      ],
+      "Lcl Rotation": [
+        9.071343924915709e-7,
+        0.0000017075474261218915,
+        -58.10172653198242
+      ],
+      "Lcl Scaling": [
+        1,
+        1,
+        0.9999999403953552
+      ]
+    },
+    {
+      "id": 1948759888,
+      "name": "Bip001 R Foot::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.09849674999713898,
+        9.53674295089968e-9,
+        9.53674295089968e-9
+      ],
+      "Lcl Rotation": [
+        8.272370338439941,
+        8.180679321289062,
+        3.552687644958496
+      ],
+      "Lcl Scaling": [
+        0.9999999403953552,
+        0.9999999403953552,
+        0.9999999403953552
+      ]
+    },
+    {
+      "id": 1948761888,
+      "name": "Bip001 R Toe0::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.031724441796541214,
+        0.03460341691970825,
+        0
+      ],
+      "Lcl Rotation": [
+        0.00001734227771521546,
+        0.00003554489012458362,
+        89.99998474121094
+      ],
+      "Lcl Scaling": [
+        1.0000001192092896,
+        1,
+        1.0000001192092896
+      ]
+    },
+    {
+      "id": 1948763888,
+      "name": "Bip001 Spine1::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.0574304573237896,
+        -0.00006479262810898945,
+        -4.887580757895194e-7
+      ],
+      "Lcl Rotation": [
+        0.39389556646347046,
+        0.9060773849487305,
+        24.23989486694336
+      ],
+      "Lcl Scaling": [
+        0.9999999403953552,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 1915203648,
+      "name": "Bip001 Neck::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.08831367641687393,
+        -0.025974081829190254,
+        -2.38418573772492e-9
+      ],
+      "Lcl Rotation": [
+        -2.1344341405438172e-7,
+        -2.1344341405438172e-7,
+        0.0000017075473124350538
+      ],
+      "Lcl Scaling": [
+        1,
+        1,
+        0.9999999403953552
+      ]
+    },
+    {
+      "id": 1915205648,
+      "name": "Bip001 Head::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.03379400074481964,
+        1.907348590179936e-8,
+        1.19209286886246e-9
+      ],
+      "Lcl Rotation": [
+        2.8082377910614014,
+        -8.597121238708496,
+        -33.033267974853516
+      ],
+      "Lcl Scaling": [
+        1.0000001192092896,
+        0.9999999403953552,
+        1
+      ]
+    },
+    {
+      "id": 1915207648,
+      "name": "Bip001 L Clavicle::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        -0.001781520782969892,
+        0.012835044413805008,
+        0.03556399419903755
+      ],
+      "Lcl Rotation": [
+        -58.58161163330078,
+        -58.05134963989258,
+        -125.79537963867188
+      ],
+      "Lcl Scaling": [
+        0.9999999403953552,
+        0.9999998807907104,
+        1.0000001192092896
+      ]
+    },
+    {
+      "id": 1915209648,
+      "name": "Bip001 L UpperArm::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.05857625976204872,
+        0,
+        0
+      ],
+      "Lcl Rotation": [
+        -14.05335521697998,
+        48.048851013183594,
+        -33.0919189453125
+      ],
+      "Lcl Scaling": [
+        1.0000001192092896,
+        1.0000001192092896,
+        1
+      ]
+    },
+    {
+      "id": 1915211648,
+      "name": "Bip001 L Forearm::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.13517603278160095,
+        0,
+        0
+      ],
+      "Lcl Rotation": [
+        -8.537738835912023e-7,
+        0.000001707547653495567,
+        -66.22437286376953
+      ],
+      "Lcl Scaling": [
+        0.9999997615814209,
+        0.9999998211860657,
+        1
+      ]
+    },
+    {
+      "id": 1915213648,
+      "name": "Bip001 L Hand::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.10189659148454666,
+        -9.53674295089968e-9,
+        -1.907348590179936e-8
+      ],
+      "Lcl Rotation": [
+        -102.8980484008789,
+        18.250694274902344,
+        13.244741439819336
+      ],
+      "Lcl Scaling": [
+        1,
+        1.0000001192092896,
+        1.0000001192092896
+      ]
+    },
+    {
+      "id": 1915215648,
+      "name": "Bip001 L Finger0::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.011078299954533577,
+        0.011875476688146591,
+        -0.03550997003912926
+      ],
+      "Lcl Rotation": [
+        101.4736099243164,
+        18.334352493286133,
+        35.98544692993164
+      ],
+      "Lcl Scaling": [
+        1.0000001192092896,
+        1,
+        1.0000001192092896
+      ]
+    },
+    {
+      "id": 1915217648,
+      "name": "Bip001 L Finger01::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.01912698708474636,
+        9.53674295089968e-9,
+        -9.53674295089968e-9
+      ],
+      "Lcl Rotation": [
+        8.537737699043646e-7,
+        -0.0000017075473124350538,
+        14.5936279296875
+      ],
+      "Lcl Scaling": [
+        1,
+        0.9999999403953552,
+        1
+      ]
+    },
+    {
+      "id": 1976778816,
+      "name": "Bip001 L Finger02::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.019127005711197853,
+        4.76837147544984e-9,
+        0
+      ],
+      "Lcl Rotation": [
+        0.0000017075473124350538,
+        0.0000017075473124350538,
+        0
+      ]
+    },
+    {
+      "id": 1976780816,
+      "name": "Bip001 L Finger1::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.04757745563983917,
+        0,
+        -4.76837147544984e-9
+      ],
+      "Lcl Rotation": [
+        -0.03429694473743439,
+        0.03008783608675003,
+        41.26091003417969
+      ],
+      "Lcl Scaling": [
+        1,
+        1.0000001192092896,
+        1.0000001192092896
+      ]
+    },
+    {
+      "id": 1976782816,
+      "name": "Bip001 L Finger11::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.017344322055578232,
+        -1.907348590179936e-8,
+        4.76837147544984e-9
+      ],
+      "Lcl Rotation": [
+        3.210478910308347e-15,
+        4.268867712653446e-7,
+        46.66053771972656
+      ],
+      "Lcl Scaling": [
+        1.0000001192092896,
+        1.0000001192092896,
+        1.0000001192092896
+      ]
+    },
+    {
+      "id": 1976784816,
+      "name": "Bip001 L Finger12::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.017344322055578232,
+        9.53674295089968e-9,
+        -4.76837147544984e-9
+      ],
+      "Lcl Rotation": [
+        -0.0000017075475398087292,
+        -4.2688682810876344e-7,
+        -8.537736562175269e-7
+      ],
+      "Lcl Scaling": [
+        1,
+        0.9999999403953552,
+        0.9999999403953552
+      ]
+    },
+    {
+      "id": 1976786816,
+      "name": "Bip001 R Clavicle::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        -0.001781520782969892,
+        0.012835235334932804,
+        -0.03556406497955322
+      ],
+      "Lcl Rotation": [
+        67.59284210205078,
+        49.5416145324707,
+        -118.49870300292969
+      ],
+      "Lcl Scaling": [
+        1,
+        0.9999999403953552,
+        1.0000001192092896
+      ]
+    },
+    {
+      "id": 1976788816,
+      "name": "Bip001 R UpperArm::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.05857625976204872,
+        -1.907348590179936e-8,
+        1.907348590179936e-8
+      ],
+      "Lcl Rotation": [
+        10.47549057006836,
+        -35.00860595703125,
+        -57.415802001953125
+      ],
+      "Lcl Scaling": [
+        1.0000001192092896,
+        1,
+        1.0000001192092896
+      ]
+    },
+    {
+      "id": 1976790816,
+      "name": "Bip001 R Forearm::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.13517607748508453,
+        0,
+        1.907348590179936e-8
+      ],
+      "Lcl Rotation": [
+        -0.0000032016512250265805,
+        -0.0000034150946248701075,
+        -35.423580169677734
+      ],
+      "Lcl Scaling": [
+        1.0000001192092896,
+        1,
+        1.0000001192092896
+      ]
+    },
+    {
+      "id": 1976792816,
+      "name": "Bip001 R Hand::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.10189655423164368,
+        -9.53674295089968e-9,
+        -1.907348590179936e-8
+      ],
+      "Lcl Rotation": [
+        123.0184097290039,
+        -16.295732498168945,
+        4.728527545928955
+      ],
+      "Lcl Scaling": [
+        1,
+        0.9999999403953552,
+        0.9999999403953552
+      ]
+    },
+    {
+      "id": 1987289152,
+      "name": "Bip001 R Finger0::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.011078310199081898,
+        0.011875476688146591,
+        0.03550997003912926
+      ],
+      "Lcl Rotation": [
+        -120.61223602294922,
+        -1.2696285247802734,
+        50.5449104309082
+      ],
+      "Lcl Scaling": [
+        1,
+        0.9999998807907104,
+        1
+      ]
+    },
+    {
+      "id": 1987291152,
+      "name": "Bip001 R Finger01::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.01912698708474636,
+        0,
+        0
+      ],
+      "Lcl Rotation": [
+        -1.690110250644923e-14,
+        -0.000001707547198748216,
+        36.04688262939453
+      ],
+      "Lcl Scaling": [
+        1.0000001192092896,
+        1.0000001192092896,
+        0.9999999403953552
+      ]
+    },
+    {
+      "id": 1987293152,
+      "name": "Bip001 R Finger02::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.01912698708474636,
+        9.53674295089968e-9,
+        0
+      ],
+      "Lcl Rotation": [
+        -0.0000017075475398087292,
+        3.412365192128807e-21,
+        0.0000019209908259654185
+      ],
+      "Lcl Scaling": [
+        0.9999998807907104,
+        0.9999999403953552,
+        0.9999999403953552
+      ]
+    },
+    {
+      "id": 1987295152,
+      "name": "Bip001 R Finger1::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.047577474266290665,
+        -1.907348590179936e-8,
+        0
+      ],
+      "Lcl Rotation": [
+        0.04445797577500343,
+        -0.01025040727108717,
+        12.98365592956543
+      ],
+      "Lcl Scaling": [
+        0.9999999403953552,
+        0.9999999403953552,
+        0.9999999403953552
+      ]
+    },
+    {
+      "id": 1987297152,
+      "name": "Bip001 R Finger11::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.017344322055578232,
+        3.814697180359872e-8,
+        -2.38418573772492e-9
+      ],
+      "Lcl Rotation": [
+        4.2688685653047287e-7,
+        -8.537737130609457e-7,
+        25.587051391601562
+      ],
+      "Lcl Scaling": [
+        0.9999999403953552,
+        0.9999999403953552,
+        0.9999999403953552
+      ]
+    },
+    {
+      "id": 1987299152,
+      "name": "Bip001 R Finger12::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.017344322055578232,
+        1.907348590179936e-8,
+        0
+      ],
+      "Lcl Rotation": [
+        0,
+        -4.2688682810876344e-7,
+        0
+      ]
+    },
+    {
+      "id": 1987301152,
+      "name": "Bip001 Prop1::Model",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ],
+      "Lcl Translation": [
+        0.012338814325630665,
+        0.17451010644435883,
+        -0.023321589455008507
+      ],
+      "Lcl Rotation": [
+        -25.007511138916016,
+        79.79827117919922,
+        -25.099742889404297
+      ],
+      "Lcl Scaling": [
+        0.9999999403953552,
+        0.9999999403953552,
+        0.9999999403953552
+      ]
+    }
+  ],
+  "meshes": [
+    {
+      "name": "::Geometry",
+      "vertices": 2638,
+      "triangles": 2823,
+      "bounds": {
+        "min": [
+          -0.4201011657714844,
+          -0.11891881376504898,
+          0.0010898589389398694
+        ],
+        "max": [
+          0.29445740580558777,
+          0.15755121409893036,
+          0.733769953250885
+        ]
+      },
+      "layers": [
+        "LayerElementNormal",
+        "LayerElementTangent",
+        "LayerElementUV",
+        "LayerElementMaterial",
+        "Layer"
+      ]
+    }
+  ],
+  "clusters": [
+    {
+      "name": "Bip001 PelvisCluster::SubDeformer",
+      "influencedVertices": 639
+    },
+    {
+      "name": "Bip001 HeadCluster::SubDeformer",
+      "influencedVertices": 242
+    },
+    {
+      "name": "Bip001 Prop1Cluster::SubDeformer",
+      "influencedVertices": 70
+    },
+    {
+      "name": "Bip001 R ThighCluster::SubDeformer",
+      "influencedVertices": 172
+    },
+    {
+      "name": "Bip001 L ThighCluster::SubDeformer",
+      "influencedVertices": 152
+    },
+    {
+      "name": "Bip001 SpineCluster::SubDeformer",
+      "influencedVertices": 212
+    },
+    {
+      "name": "Bip001 L CalfCluster::SubDeformer",
+      "influencedVertices": 93
+    },
+    {
+      "name": "Bip001 R CalfCluster::SubDeformer",
+      "influencedVertices": 80
+    },
+    {
+      "name": "Bip001 Spine1Cluster::SubDeformer",
+      "influencedVertices": 266
+    },
+    {
+      "name": "Bip001 L UpperArmCluster::SubDeformer",
+      "influencedVertices": 82
+    },
+    {
+      "name": "Bip001 NeckCluster::SubDeformer",
+      "influencedVertices": 121
+    },
+    {
+      "name": "Bip001 R UpperArmCluster::SubDeformer",
+      "influencedVertices": 82
+    },
+    {
+      "name": "Bip001 L HandCluster::SubDeformer",
+      "influencedVertices": 104
+    },
+    {
+      "name": "Bip001 L Finger1Cluster::SubDeformer",
+      "influencedVertices": 140
+    },
+    {
+      "name": "Bip001 L Finger12Cluster::SubDeformer",
+      "influencedVertices": 125
+    },
+    {
+      "name": "Bip001 L Finger0Cluster::SubDeformer",
+      "influencedVertices": 50
+    },
+    {
+      "name": "Bip001 L ForearmCluster::SubDeformer",
+      "influencedVertices": 105
+    },
+    {
+      "name": "Bip001 L Finger01Cluster::SubDeformer",
+      "influencedVertices": 41
+    },
+    {
+      "name": "Bip001 R HandCluster::SubDeformer",
+      "influencedVertices": 104
+    },
+    {
+      "name": "Bip001 R Finger1Cluster::SubDeformer",
+      "influencedVertices": 140
+    },
+    {
+      "name": "Bip001 R Finger11Cluster::SubDeformer",
+      "influencedVertices": 125
+    },
+    {
+      "name": "Bip001 R Finger0Cluster::SubDeformer",
+      "influencedVertices": 50
+    },
+    {
+      "name": "Bip001 R ForearmCluster::SubDeformer",
+      "influencedVertices": 105
+    },
+    {
+      "name": "Bip001 R Finger01Cluster::SubDeformer",
+      "influencedVertices": 41
+    },
+    {
+      "name": "Bip001 L FootCluster::SubDeformer",
+      "influencedVertices": 58
+    },
+    {
+      "name": "Bip001 L Toe0Cluster::SubDeformer",
+      "influencedVertices": 68
+    },
+    {
+      "name": "Bip001 R FootCluster::SubDeformer",
+      "influencedVertices": 58
+    },
+    {
+      "name": "Bip001 R Toe0Cluster::SubDeformer",
+      "influencedVertices": 68
+    }
+  ],
+  "animations": [
+    {
+      "name": "idle::AnimStack",
+      "startSeconds": 0,
+      "stopSeconds": 2.033333301527267,
+      "durationSeconds": 2.033333301527267
+    },
+    {
+      "name": "hurt::AnimStack",
+      "startSeconds": 0,
+      "stopSeconds": 0.6999999880700187,
+      "durationSeconds": 0.6999999880700187
+    },
+    {
+      "name": "atk01::AnimStack",
+      "startSeconds": 0,
+      "stopSeconds": 1.0666667222893924,
+      "durationSeconds": 1.0666667222893924
+    },
+    {
+      "name": "mv_tar21::AnimStack",
+      "startSeconds": 0,
+      "stopSeconds": 0.5666666626827891,
+      "durationSeconds": 0.5666666626827891
+    },
+    {
+      "name": "win::AnimStack",
+      "startSeconds": 0,
+      "stopSeconds": 2.8666665553995636,
+      "durationSeconds": 2.8666665553995636
+    },
+    {
+      "name": "enter::AnimStack",
+      "startSeconds": 0,
+      "stopSeconds": 0.5666666626827891,
+      "durationSeconds": 0.5666666626827891
+    },
+    {
+      "name": "yunxuan::AnimStack",
+      "startSeconds": 0,
+      "stopSeconds": 1.2999999523017265,
+      "durationSeconds": 1.2999999523017265
+    },
+    {
+      "name": "shuimian::AnimStack",
+      "startSeconds": 0,
+      "stopSeconds": 1.7000000476766222,
+      "durationSeconds": 1.7000000476766222
+    }
+  ],
+  "textures": [
+    {
+      "type": "Video",
+      "name": "100820_kl_npc_d_512.png::Video",
+      "relative": [
+        "100820_kl_npc_d_512.png"
+      ]
+    },
+    {
+      "type": "Texture",
+      "name": "100820_kl_npc_d_512.png::Texture",
+      "file": [
+        "100820_kl_npc_d_512.png"
+      ],
+      "relative": [
+        "100820_kl_npc_d_512.png"
+      ]
+    }
+  ],
+  "materialNames": [
+    "100820_kl_npc_ma::Material"
+  ],
+  "models": [
+    {
+      "name": "100800_kl_npc_mo_0::Model",
+      "type": "Mesh",
+      "ScalingMax": [
+        0,
+        0,
+        0
+      ],
+      "DefaultAttributeIndex": [
+        0
+      ]
+    }
+  ],
+  "license": {
+    "status": "unconfirmed-do-not-package",
+    "author": "unknown",
+    "originalSource": "Unity Asset Store, package not identified",
+    "appliesTo": "model, original texture, all eight clips",
+    "evidence": "https://github.com/mrdoob/three.js/issues/22167"
+  }
+}
