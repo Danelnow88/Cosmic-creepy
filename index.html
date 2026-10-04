@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COSMIC ROLL 3D - Humanoides</title>
+    <meta
+      name="description"
+      content="Prototipo web jugable de COSMIC ROLL 3D - Humanoides. Un demo 3D pseudo-cosmico para probar el juego en navegador."
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark">✦</span>
+          <span>COSMIC ROLL 3D</span>
+        </div>
+        <nav>
+          <a href="https://github.com/Danelnow88/Cosmic-creepy" target="_blank" rel="noreferrer">Repositorio</a>
+          <a href="https://github.com/Danelnow88/Cosmic-creepy/releases" target="_blank" rel="noreferrer">Descargar</a>
+        </nav>
+      </header>
+
+      <main class="hero">
+        <div class="intro">
+          <p class="eyebrow">PROTOTIPO WEB</p>
+          <h1>Humanoides en la frontera cósmica</h1>
+          <p class="subtitle">
+            Demo jugable en navegador para mostrar la idea, la sensación y el ritmo del juego sin instalar nada.
+          </p>
+          <div class="actions">
+            <button id="playButton" class="primary">Jugar demo</button>
+            <a class="secondary" href="https://github.com/Danelnow88/Cosmic-creepy" target="_blank" rel="noreferrer">Ver proyecto</a>
+          </div>
+        </div>
+
+        <div class="game-panel">
+          <div class="hud">
+            <div><span>Puntuación</span><strong id="score">0</strong></div>
+            <div><span>Vidas</span><strong id="lives">3</strong></div>
+          </div>
+
+          <canvas id="gameCanvas" width="960" height="540" aria-label="Canvas del juego"></canvas>
+
+          <div id="overlay" class="overlay visible">
+            <h2 id="overlayTitle">COSMIC ROLL</h2>
+            <p id="overlayText">Mueve con A/D o ←/→. Evita los meteoritos y aguanta lo máximo posible.</p>
+            <button id="startButton">Iniciar partida</button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="game.js"></script>
+  </body>
+</html>
